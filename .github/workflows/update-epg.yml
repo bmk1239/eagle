@@ -20,13 +20,9 @@ jobs:
 
       - name: Download and install WebGrab+Plus
         run: |
-          wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.1_install.tar.gz
+          wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz
           mkdir -p ~/wgplus
-          tar -xvzf WebGrabPlus_V5.1_install.tar.gz -C ~/wgplus
-          echo "****************ls -l .*****************"
-          ls -l .
-          echo "****************ls -l ~*****************"
-          ls -l ~
+          tar -xvzf WebGrabPlus_V5.3_install.tar.gz -C ~/wgplus
           echo "****************ls -l ~/wgplus*****************"
           ls -l ~/wgplus
           
