@@ -23,18 +23,16 @@ jobs:
           wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz
           mkdir -p ~/wgplus
           tar -xvzf WebGrabPlus_V5.3_install.tar.gz -C ~/wgplus
-          echo "****************ls -l ~/wgplus*****************"
-          ls -l ~/wgplus
           
       - name: Copy siteini and config
         run: |
-          mkdir -p ~/.wg++
-          cp wg-config.xml ~/.wg++/
-          cp -r site.ini/* ~/.wg++/
+          #mkdir -p ~/.wg++
+          cp wg-config.xml ~/wgplus/.wg++/WebGrab++.config.example.xml
+          cp -r site.ini/* ~/wgplus/.wg++/siteini.user/
 
       - name: Run WebGrab+Plus
         run: |
-          mono ~/wgplus/WebGrabPlus.exe
+          mono ~/wgplus/.wg++/run.net.sh
 
       - name: Commit and push EPG
         run: |
