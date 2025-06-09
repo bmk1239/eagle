@@ -26,8 +26,10 @@ jobs:
           
       - name: BMAKRO
         run: |
-          echo "******************************************************************************"
-          ls -l ~/wgplus
+          echo '### WebGrab+Plus Directory Listing' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          ls -l ~/wgplus >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
           
       - name: Copy siteini and config
         run: |
