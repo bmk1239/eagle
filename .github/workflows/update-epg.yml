@@ -23,13 +23,14 @@ jobs:
           wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.1_install.tar.gz
           mkdir -p ~/wgplus
           tar -xvzf WebGrabPlus_V5.1_install.tar.gz -C ~/wgplus
+          echo "******************************************************************************"
+          ls ~/wgplus/
 
       - name: Copy siteini and config
         run: |
           mkdir -p ~/.wg++
           cp wg-config.xml ~/.wg++/
           cp -r site.ini/* ~/.wg++/
-          ls ~/wgplus/
 
       - name: Run WebGrab+Plus
         run: |
