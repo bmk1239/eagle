@@ -1,44 +1,45 @@
 name: Update EPG XMLTV
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: '0 3 * * *'
-  workflow_dispatch:
 
 jobs:
-  build:
+  grab-epg:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install mono-complete (WebGrab+Plus dependency)
-        run: |
-          sudo apt update
-          sudo apt install -y mono-complete
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y wget mono-complete
 
-      - name: Download and install WebGrab+Plus
+      - name: Download WebGrab+Plus Linux v5.3
         run: |
-          wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz
-          mkdir -p ~/wgplus
-          tar -xvzf WebGrabPlus_V5.3_install.tar.gz -C ~/wgplus
-          
-      - name: Copy siteini and config
-        run: |
-          #mkdir -p ~/.wg++
-          cp wg-config.xml ~/wgplus/.wg++/WebGrab++.config.example.xml
-          cp -r site.ini/* ~/wgplus/.wg++/siteini.user/
+          wget -O wg.tar.gz "https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz"
+          mkdir -p ~/.wg++
+          tar -xzf wg.tar.gz -C ~/.wg++
 
-      - name: Run WebGrab+Plus
+      - name: Verify installation
         run: |
-          ~/wgplus/.wg++/run.net.sh
+          echo "Listing ~/.wg++ directory:"
+          ls -R ~/.wg++
 
-      - name: Commit and push EPG
+      - name: Copy configuration files
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          cp ~/.wg++/guide.xml xmltv.xml
-          git add xmltv.xml
-          git commit -m "Update EPG $(date)"
-          git push
+          mkdir -p ~/.wg++/config
+          cp wg-config.xml ~/.wg++/config/WebGrabPlus.config.xml
+          cp ini_sources/*.ini ~/.wg++/siteini.pack/
+
+      - name: Run wg++
+        run: |
+          ~/.wg++/wg++ -g  # generate default config if needed
+          ~/.wg++/wg++     # grab EPG guide.xml
+
+      - name: Output result
+        run: |
+          echo "Generated guide.xml:"
+          ls -l ~/.wg++/guide.xml
