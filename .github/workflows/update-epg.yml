@@ -35,9 +35,9 @@ jobs:
       #     ls -l ~/wg++/bin
       #     ls -l ~/wg++/siteini.pack
 
-      # - name: Copy config & INI files
-      #   run: |
-      #     cp wg-config.xml ~/wg++/
+      - name: Copy config & INI files
+        run: |
+          cp wg-config.xml ~/wgplus/.wg++/WebGrab++.config.example.xml
       #     mkdir -p ~/wg++/siteini.pack
       #     cp site.ini/*.ini ~/wg++/siteini.pack/
 
