@@ -1,8 +1,6 @@
 name: Update EPG XMLTV
 
 on:
-  push:
-    branches: [main]
   schedule:
     - cron: '0 3 * * *'
 
