@@ -44,7 +44,7 @@ jobs:
       - name: Run WebGrab+Plus (wg++)
         run: |
           ~/wgplus/.wg++/install.sh
-          ~/wgplus/.wg++/run.sh
+          ~/wgplus/.wg++/run.net.sh
 
       - name: Commit and push EPG
         run: |
