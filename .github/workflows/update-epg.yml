@@ -1,44 +1,54 @@
-name: Update EPG XMLTV
+name: Update EPG with WebGrab+Plus (Linux)
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: '0 3 * * *'
-  workflow_dispatch:
 
 jobs:
-  build:
+  grab:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y wget mono-complete
+      - name: Install dependencies (dotnet)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget apt-transport-https
+          wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
+          sudo dpkg -i packages-microsoft-prod.deb
+          sudo apt-get update
+          sudo apt-get install -y dotnet-runtime-6.0
 
-      - name: Download WebGrab+Plus Linux v5.3
+      - name: Download WebGrab+Plus Linux
         run: |
           wget -O wg.tar.gz "https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz"
-          mkdir -p ~/.wg++
-          tar -xzf wg.tar.gz -C ~/.wg++
+          mkdir -p ~/wg++
+          tar -xzf wg.tar.gz -C ~/
 
-      - name: Verify installation
+      - name: Verify install
         run: |
-          echo "Listing ~/.wg++ directory:"
-          ls -R ~/.wg++
+          ls -l ~/wg++
+          ls -l ~/wg++/bin
+          ls -l ~/wg++/siteini.pack
 
-      - name: Copy configuration files
+      - name: Copy config & INI files
         run: |
-          mkdir -p ~/.wg++/config
-          cp wg-config.xml ~/.wg++/config/WebGrabPlus.config.xml
-          cp ini_sources/*.ini ~/.wg++/siteini.pack/
+          cp wg-config.xml ~/wg++/
+          mkdir -p ~/wg++/siteini.pack
+          cp site.ini/*.ini ~/wg++/siteini.pack/
 
-      - name: Run wg++
+      - name: Run WebGrab+Plus (wg++)
         run: |
-          ~/.wg++/wg++ -g  # generate default config if needed
-          ~/.wg++/wg++     # grab EPG guide.xml
+          cd ~/wg++
+          ./wg++ -g
+          ./wg++
 
-      - name: Output result
-        run: |
-          echo "Generated guide.xml:"
-          ls -l ~/.wg++/guide.xml
+      - name: Upload guide.xml as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: guide.xml
+          path: ~/wg++/guide.xml
