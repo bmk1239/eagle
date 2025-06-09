@@ -16,7 +16,6 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt upgrade
           sudo apt-get install mono-complete
           # sudo apt-get install -y wget apt-transport-https
           # wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
@@ -26,7 +25,7 @@ jobs:
 
       - name: Download WebGrab+Plus Linux
         run: |
-          wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz"
+          wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz
           mkdir -p ~/wgplus
           tar -xvzf WebGrabPlus_V5.1_install.tar.gz -C ~/wgplus
 
