@@ -20,9 +20,9 @@ jobs:
 
       - name: Download and install WebGrab+Plus
         run: |
-          wget https://webgrabplus.com/sites/default/files/download/SW/V3.3.8/WebGrabPlus_V3.3.8_install.tar.gz
+          wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.1_install.tar.gz
           mkdir -p ~/wgplus
-          tar -xvzf WebGrabPlus_V3.3.8_install.tar.gz -C ~/wgplus
+          tar -xvzf WebGrabPlus_V5.1_install.tar.gz -C ~/wgplus
 
       - name: Copy siteini and config
         run: |
