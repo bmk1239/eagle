@@ -23,9 +23,6 @@ jobs:
           wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.1_install.tar.gz
           mkdir -p ~/wgplus
           tar -xvzf WebGrabPlus_V5.1_install.tar.gz -C ~/wgplus
-          
-      - name: BMAKRO
-        run: |
           echo "****************ls -l .*****************"
           ls -l .
           echo "****************ls -l ~*****************"
