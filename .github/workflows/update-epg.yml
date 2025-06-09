@@ -27,7 +27,8 @@ jobs:
       - name: Download WebGrab+Plus Linux
         run: |
           wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz"
-          tar -xvzf WebGrabPlus_V5.1_install.tar.gz -C ~
+          mkdir -p ~/wgplus
+          tar -xvzf WebGrabPlus_V5.1_install.tar.gz -C ~/wgplus
 
       # - name: Verify install
       #   run: |
@@ -43,9 +44,8 @@ jobs:
 
       - name: Run WebGrab+Plus (wg++)
         run: |
-          cd ~/.wg++
-          ./install.sh
-          ~/.wg++/run.sh
+          ~/wgplus/.wg++/install.sh
+          ~/wgplus/.wg++/run.sh
 
       - name: Commit and push EPG
         run: |
