@@ -27,7 +27,7 @@ jobs:
       - name: BMAKRO
         run: |
           echo "******************************************************************************"
-          ls ~/wgplus/
+          ls -l ~/wgplus
           
       - name: Copy siteini and config
         run: |
