@@ -3,9 +3,10 @@ name: Update EPG XMLTV
 on:
   schedule:
     - cron: '0 3 * * *'
+  workflow_dispatch:
 
 jobs:
-  grab-epg:
+  build:
     runs-on: ubuntu-latest
 
     steps:
