@@ -32,7 +32,7 @@ jobs:
 
       - name: Run WebGrab+Plus
         run: |
-          mono ~/wgplus/.wg++/run.net.sh
+          ~/wgplus/.wg++/run.net.sh
 
       - name: Commit and push EPG
         run: |
