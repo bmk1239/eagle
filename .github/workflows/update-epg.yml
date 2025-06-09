@@ -1,13 +1,12 @@
-name: Update EPG with WebGrab+Plus (Linux)
+name: Update EPG XMLTV
 
 on:
-  push:
-    branches: [main]
   schedule:
     - cron: '0 3 * * *'
+  workflow_dispatch:
 
 jobs:
-  grab:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -47,8 +46,11 @@ jobs:
           ./wg++ -g
           ./wg++
 
-      - name: Upload guide.xml as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: guide.xml
-          path: ~/wg++/guide.xml
+      - name: Commit and push EPG
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          cp ~/wg++/guide.xml xmltv.xml
+          git add xmltv.xml
+          git commit -m "Update EPG $(date)"
+          git push
