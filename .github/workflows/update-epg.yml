@@ -29,6 +29,7 @@ jobs:
           mkdir -p ~/.wg++
           cp wg-config.xml ~/.wg++/
           cp -r site.ini/* ~/.wg++/
+          ls ~/wgplus/
 
       - name: Run WebGrab+Plus
         run: |
