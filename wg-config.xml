@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <filename>xmltv.xml</filename>
+  <mode>full</mode>
+  <postprocess>yes</postprocess>
+  <update>f</update>
+  <proxy>off</proxy>
+  <user-agent>Mozilla/5.0</user-agent>
+  <!-- HOT -->
+  <site id="hot.net.il">hot.net.il.ini</site>
+  <!-- YES -->
+  <site id="yes.net.il">yes.net.il.ini</site>
+  <!-- FREETV -->
+  <site id="freetv.il">freetv.il.ini</site>
+  <!-- CELLCOMTV -->
+  <site id="cellcomtv.il">cellcomtv.il.ini</site>
+  <!-- PARTNERTV -->
+  <site id="partner.net.il">partner.net.il.ini</site>
+</settings>
