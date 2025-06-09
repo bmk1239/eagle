@@ -1,0 +1,44 @@
+name: Update EPG XMLTV
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install mono-complete (WebGrab+Plus dependency)
+        run: |
+          sudo apt update
+          sudo apt install -y mono-complete
+
+      - name: Download and install WebGrab+Plus
+        run: |
+          wget https://webgrabplus.com/sites/default/files/download/SW/V3.3.8/WebGrabPlus_V3.3.8_install.tar.gz
+          mkdir -p ~/wgplus
+          tar -xvzf WebGrabPlus_V3.3.8_install.tar.gz -C ~/wgplus
+
+      - name: Copy siteini and config
+        run: |
+          mkdir -p ~/.wg++
+          cp wg-config.xml ~/.wg++/
+          cp -r site.ini/* ~/.wg++/
+
+      - name: Run WebGrab+Plus
+        run: |
+          mono ~/wgplus/WebGrabPlus.exe
+
+      - name: Commit and push EPG
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          cp ~/.wg++/guide.xml xmltv.xml
+          git add xmltv.xml
+          git commit -m "Update EPG $(date)"
+          git push
