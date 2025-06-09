@@ -13,38 +13,40 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies (dotnet)
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget apt-transport-https
-          wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
-          sudo dpkg -i packages-microsoft-prod.deb
-          sudo apt-get update
-          sudo apt-get install -y dotnet-runtime-6.0
+          sudo apt upgrade
+          sudo apt-get install mono-complete
+          # sudo apt-get install -y wget apt-transport-https
+          # wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
+          # sudo dpkg -i packages-microsoft-prod.deb
+          # sudo apt-get update
+          # sudo apt-get install -y dotnet-runtime-6.0
 
       - name: Download WebGrab+Plus Linux
         run: |
-          wget -O wg.tar.gz "https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz"
-          mkdir -p ~/wg++
-          tar -xzf wg.tar.gz -C ~/
+          wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz"
+          cd ~
+          tar -zxvf WebGrabPlus_V5.1_install.tar.gz
 
-      - name: Verify install
-        run: |
-          ls -l ~/wg++
-          ls -l ~/wg++/bin
-          ls -l ~/wg++/siteini.pack
+      # - name: Verify install
+      #   run: |
+      #     ls -l ~/wg++
+      #     ls -l ~/wg++/bin
+      #     ls -l ~/wg++/siteini.pack
 
-      - name: Copy config & INI files
-        run: |
-          cp wg-config.xml ~/wg++/
-          mkdir -p ~/wg++/siteini.pack
-          cp site.ini/*.ini ~/wg++/siteini.pack/
+      # - name: Copy config & INI files
+      #   run: |
+      #     cp wg-config.xml ~/wg++/
+      #     mkdir -p ~/wg++/siteini.pack
+      #     cp site.ini/*.ini ~/wg++/siteini.pack/
 
       - name: Run WebGrab+Plus (wg++)
         run: |
-          cd ~/wg++
-          ./wg++ -g
-          ./wg++
+          cd ~/.wg++
+          ./install.sh
+          ~/.wg++/run.sh
 
       - name: Commit and push EPG
         run: |
