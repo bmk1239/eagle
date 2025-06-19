@@ -48,7 +48,7 @@ jobs:
         run: |
           cp freetv.tv.channels.xml epg/sites/freetv.tv/freetv.tv.channels.xml
           cd epg
-          # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
+          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
           NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../il.channels.xml --maxConnections=10 --output="../il_guide.xml"
       - name: Fixing the document
         run: python scripts/fix.py --input guide.xml guide.xml
@@ -67,7 +67,7 @@ jobs:
           git config --global user.name 'bmk1239'
           git config --global user.email 'bmk1239@users.noreply.github.com'
           export NOW=$(date +'%Y-%m-%dT%H:%M:%S')
-          # git add guide.xml
+          git add guide.xml
           git add il_guide.xml
           git add channels.json
           git add il.channels.xml
