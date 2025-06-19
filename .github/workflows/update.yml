@@ -46,9 +46,9 @@ jobs:
           npm install
       - name: Fetching the programs data
         run: |
-          cp site.ini/* epg/sites/
+          cp freetv.tv.channels.xml epg/sites/freetv.tv/freetv.tv.channels.xml
           cd epg
-          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
+          # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
           NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../il.channels.xml --maxConnections=10 --output="../il_guide.xml"
       - name: Fixing the document
         run: python scripts/fix.py --input guide.xml guide.xml
