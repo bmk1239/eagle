@@ -47,7 +47,8 @@ jobs:
       - name: Fetching the programs data
         run: |
           cd epg
-          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../il.channels.xml --maxConnections=10 --output="../guide.xml"
+          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
+          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../il.channels.xml --maxConnections=10 --output="../il_guide.xml"
       - name: Fixing the document
         run: python scripts/fix.py --input guide.xml guide.xml
       - name: Merging redundant programs
@@ -66,6 +67,7 @@ jobs:
           git config --global user.email 'bmk1239@users.noreply.github.com'
           export NOW=$(date +'%Y-%m-%dT%H:%M:%S')
           git add guide.xml
+          git add il_guide.xml
           git add channels.json
           git add il.channels.xml
           git commit -am "Automated guide.xml update ($NOW)"
