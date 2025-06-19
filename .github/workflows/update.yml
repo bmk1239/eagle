@@ -46,11 +46,9 @@ jobs:
           npm install
       - name: Fetching the programs data
         run: |
-          cd site.ini
-          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
-      - name: Fetching the il programs data
-        run: |
+          cp site.ini/* epg/sites/
           cd epg
+          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
           NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../il.channels.xml --maxConnections=10 --output="../il_guide.xml"
       - name: Fixing the document
         run: python scripts/fix.py --input guide.xml guide.xml
