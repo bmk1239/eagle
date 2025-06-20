@@ -4,6 +4,7 @@ import os, sys, json, argparse
 from datetime import datetime, timedelta, timezone
 import requests
 import xml.etree.ElementTree as ET
+import subprocess
 
 #BASE_URL = os.getenv("EMBY_BASE_URL", "https://play.embyil.tv")
 #USER_ID   = os.getenv("EMBY_USER_ID")
@@ -36,18 +37,17 @@ now = datetime.utcnow().replace(tzinfo=timezone.utc)
 max_start = now + timedelta(hours=args.hours)
 
 url = "https://play.embyil.tv/emby/LiveTv/Programs?UserId=f77d2537830c404a8a0e616694be0964&MinEndDate=2025-06-20T20:46:33Z&MaxStartDate=2025-06-21T20:46:33Z&channelIds=2436645,2299409,2299410&ImageTypeLimit=1&SortBy=StartDate&EnableTotalRecordCount=false&EnableUserData=false&EnableImages=false"
+token = "a9a768bda323427ea639cb6277d736bb"
 
-headers = {
-    "X-Emby-Token": "a9a768bda323427ea639cb6277d736bb"
-}
+cmd = [
+    "curl", "-s",
+    "-H", f"X-Emby-Token: {token}",
+    url
+]
 
-s = requests.Session()
-s.headers.clear()
-
-r = s.get(url, headers=headers)
-
-print(f"Status: {r.status_code}")
-print(f"Body: {r.text[:300]}")
+result = subprocess.run(cmd, capture_output=True, text=True)
+print("Status:", result.returncode)
+print("Output:", result.stdout[:500])  # Print partial output for sanity
 
 params = {
     "UserId": USER_ID,
