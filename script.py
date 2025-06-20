@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-import os, sys, requests, xml.etree.ElementTree as ET
+import os, sys, requests
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 import html
+from xml.dom import minidom
 
 BASE = os.getenv("MY_BASE")
 USERNAME = os.getenv("MY_USER")
@@ -28,7 +30,7 @@ token = login["AccessToken"]
 user_id = login["User"]["Id"]
 print("✅ Logged in")
 
-# Fetch programs for 24h
+# Fetch programmes
 now = datetime.now(timezone.utc)
 later = now + timedelta(hours=24)
 params = {
@@ -46,23 +48,23 @@ r = requests.get(f"{BASE}/emby/LiveTv/Programs",
                  headers={"X-Emby-Token": token}, timeout=30)
 r.raise_for_status()
 programs = r.json().get("Items", [])
-print(f"📺 Found {len(programs)} programmes")
+print(f"📺 {len(programs)} programmes")
 
-# Build XMLTV tree
+# Build XMLTV
 tv = ET.Element("tv")
-channel_ids = {}
+channels = {}
 
+# <channel> entries
 for prog in programs:
     ch_id = str(prog["ChannelId"])
     ch_name = prog.get("ChannelName", f"Channel {ch_id}")
-    channel_ids[ch_id] = ch_name
+    channels[ch_id] = ch_name
 
-# Add channel elements
-for ch_id, ch_name in channel_ids.items():
+for ch_id, ch_name in channels.items():
     ch = ET.SubElement(tv, "channel", {"id": ch_id})
     ET.SubElement(ch, "display-name").text = ch_name
 
-# Add programme elements
+# <programme> entries
 for prog in programs:
     ch_id = str(prog["ChannelId"])
     start = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
@@ -79,7 +81,10 @@ for prog in programs:
     if prog.get("Overview"):
         ET.SubElement(p, "desc", {"lang": "he"}).text = html.escape(prog["Overview"])
 
-# Write final file
-tree = ET.ElementTree(tv)
-tree.write("file.xml", encoding="utf-8", xml_declaration=True)
-print("✅ Valid EPG saved to file.xml")
+# Pretty-print using minidom
+rough_string = ET.tostring(tv, encoding="utf-8")
+reparsed = minidom.parseString(rough_string)
+with open("file.xml", "w", encoding="utf-8") as f:
+    f.write(reparsed.toprettyxml(indent="  "))
+
+print("✅ Valid and pretty file.xml saved")
