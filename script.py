@@ -45,10 +45,19 @@ headers = {
 }
 
 print("→ Fetching programs …", file=sys.stderr)
+print("Request URL:", f"{BASE_URL}/emby/LiveTv/Programs", file=sys.stderr)
+print("Params:", json.dumps(params, indent=2), file=sys.stderr)
+print("Headers:", json.dumps(headers, indent=2), file=sys.stderr)
+
 r = requests.get(f"{BASE_URL}/emby/LiveTv/Programs", params=params, headers=headers, timeout=30)
-r.raise_for_status()
+
+if r.status_code != 200:
+    print(f"❌ Request failed with status {r.status_code}", file=sys.stderr)
+    print("Response body:", r.text[:500], file=sys.stderr)
+    r.raise_for_status()
+
 items = r.json().get("Items", [])
-print(f"   {len(items)} programmes received", file=sys.stderr)
+print(f"✔  {len(items)} programmes received", file=sys.stderr)
 
 # Build XMLTV
 root = ET.Element("tv")
@@ -73,6 +82,6 @@ for cid in CHANNELS:
     ch = ET.SubElement(root, "channel", {"id": cid})
     ET.SubElement(ch, "display-name").text = cid
 
-ET.indent(root)  # Python 3.9+
+ET.indent(root)  # Requires Python 3.9+
 ET.ElementTree(root).write(args.output, encoding="utf-8", xml_declaration=True)
 print(f"✔  XMLTV written to {args.output}")
