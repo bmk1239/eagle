@@ -1,23 +1,12 @@
-import requests
+import subprocess
+import json
 
-url = "https://play.embyil.tv/emby/LiveTv/Programs"
+cmd = [
+    "curl", "-s", "-X", "GET",
+    "https://play.embyil.tv/emby/LiveTv/Programs?UserId=f77d2537830c404a8a0e616694be0964&MinEndDate=2025-06-20T20%3A50%3A14Z&MaxStartDate=2025-06-21T20%3A50%3A14Z&ImageTypeLimit=1&SortBy=StartDate&EnableTotalRecordCount=false&EnableUserData=false&EnableImages=false",
+    "-H", "X-Emby-Token: e70e9dd9d9254859aa208efaadb6dfcf"
+]
 
-params = {
-    "UserId": "f77d2537830c404a8a0e616694be0964",
-    "MinEndDate": "2025-06-20T20:50:14Z",
-    "MaxStartDate": "2025-06-21T20:50:14Z",
-    "ImageTypeLimit": 1,
-    "SortBy": "StartDate",
-    "EnableTotalRecordCount": "false",
-    "EnableUserData": "false",
-    "EnableImages": "false"
-}
+result = subprocess.run(cmd, capture_output=True, text=True)
 
-headers = {
-    "X-Emby-Token": "e70e9dd9d9254859aa208efaadb6dfcf"
-}
-
-response = requests.get(url, params=params, headers=headers)
-
-print("Status Code:", response.status_code)
-print("Response Body:", response.text[:1000])
+print("Output:", result.stdout[:1000])
