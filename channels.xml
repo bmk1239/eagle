@@ -70,7 +70,7 @@
     <channel site="freetv.tv" lang="he" site_id="3611644" xmltv_id="FreeTV אוכל">FreeTV אוכל</channel>
     <channel site="freetv.tv" lang="he" site_id="4721323" xmltv_id="ערוץ הקריוקי">ערוץ הקריוקי</channel>
     <channel site="freetv.tv" lang="he" site_id="3584119" xmltv_id="ערוץ הכוכב הבא">ערוץ הכוכב הבא</channel>
-    <channel site="freetv.tv" lang="he" site_id="3584122" xmltv_id="ערוץ חתונה ממבט ראשון">ערוץ חתונה ממבט ראשון</channel><!-- CELLCOMTV --> -->
+    <channel site="freetv.tv" lang="he" site_id="3584122" xmltv_id="ערוץ חתונה ממבט ראשון">ערוץ חתונה ממבט ראשון</channel> -->
     
     <!-- CELLCOMTV -->
 <!--     <channel update="i" site="cellcom.co.il" site_id="3725##560a7ac3a0db499f8b7d0a0ddf77baf3/version/2" xmltv_id="\u05de\u05e8\u05ea\u05d5\u05df \u05e1\u05e8\u05d8\u05d9\u05dd">\u05de\u05e8\u05ea\u05d5\u05df \u05e1\u05e8\u05d8\u05d9\u05dd</channel>
