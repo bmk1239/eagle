@@ -1,16 +1,11 @@
 import requests
-from datetime import datetime, timedelta, timezone
 
-token = "e70e9dd9d9254859aa208efaadb6dfcf"
-user_id = "f77d2537830c404a8a0e616694be0964"
-
-now = datetime.now(timezone.utc)
-later = now + timedelta(hours=24)
+url = "https://play.embyil.tv/emby/LiveTv/Programs"
 
 params = {
-    "UserId": user_id,
-    "MinEndDate": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-    "MaxStartDate": later.strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "UserId": "f77d2537830c404a8a0e616694be0964",
+    "MinEndDate": "2025-06-20T20:50:14Z",
+    "MaxStartDate": "2025-06-21T20:50:14Z",
     "ImageTypeLimit": 1,
     "SortBy": "StartDate",
     "EnableTotalRecordCount": "false",
@@ -19,14 +14,10 @@ params = {
 }
 
 headers = {
-    "X-Emby-Token": token,
-    "X-Emby-Client": "Emby Web",
-    "X-Emby-Device-Name": "MyPythonScript",
-    "X-Emby-Device-Id": "abc123456789",
-    "X-Emby-Client-Version": "4.9.0.42",
-    "X-Emby-Language": "he"
+    "X-Emby-Token": "e70e9dd9d9254859aa208efaadb6dfcf"
 }
 
-r = requests.get("https://play.embyil.tv/emby/LiveTv/Programs", params=params, headers=headers)
-print("Status:", r.status_code)
-print("Response:", r.text[:500])
+response = requests.get(url, params=params, headers=headers)
+
+print("Status Code:", response.status_code)
+print("Response Body:", response.text[:1000])
