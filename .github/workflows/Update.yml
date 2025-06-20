@@ -24,16 +24,17 @@ jobs:
         run: |
           tv_grab_il | tee epg_il.xml
 
-      - name: Download iptv-org feeds
-        run: |
-          cp iptv-epg/kan.org.il.xml iptv.xml
-          wget -qO- https://iptv-org.github.io/epg/i24news.tv.xml >> iptv.xml
-          wget -qO- https://iptv-org.github.io/epg/9tv.co.il.xml >> iptv.xml
-          wget -qO- https://iptv-org.github.io/epg/mako.co.il.xml >> iptv.xml
+      # - name: Download iptv-org feeds
+      #   run: |
+      #     cp iptv-epg/kan.org.il.xml iptv.xml
+      #     wget -qO- https://iptv-org.github.io/epg/i24news.tv.xml >> iptv.xml
+      #     wget -qO- https://iptv-org.github.io/epg/9tv.co.il.xml >> iptv.xml
+      #     wget -qO- https://iptv-org.github.io/epg/mako.co.il.xml >> iptv.xml
 
       - name: Merge all into guide.xml
         run: |
-          xmltv_merge epg_il.xml iptv.xml > guide.xml
+          # xmltv_merge epg_il.xml iptv.xml > guide.xml
+          xmltv_merge epg_il.xml > guide.xml
           xmltv_sort guide.xml > guide_sorted.xml
 
       - name: Commit & push guide
