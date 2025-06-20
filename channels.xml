@@ -28,11 +28,11 @@
     <channel update="i" site="yes.co.il" site_id="CHN3" xmltv_id="Sport Edge HD">Sport Edge HD</channel> -->
 
     <!-- HOT -->
-<!--     <channel update="i" site="hot.net.il" site_id="129" xmltv_id="HOT cinema 1">HOT cinema 1</channel>
+    <channel update="i" site="hot.net.il" site_id="129" xmltv_id="HOT cinema 1">HOT cinema 1</channel>
     <channel update="i" site="hot.net.il" site_id="130" xmltv_id="HOT cinema 2">HOT cinema 2</channel>
     <channel update="i" site="hot.net.il" site_id="131" xmltv_id="HOT cinema 3">HOT cinema 3</channel>
     <channel update="i" site="hot.net.il" site_id="228" xmltv_id="HOT cinema 4">HOT cinema 4</channel>
-    <channel update="i" site="hot.net.il" site_id="666" xmltv_id="\u05d4\u05d5\u05d8 \u05e7\u05d5\u05dc\u05e0\u05d5\u05e2 \u05d9\u05e9\u05e8\u05d0\u05dc\u05d9">\u05d4\u05d5\u05d8 \u05e7\u05d5\u05dc\u05e0\u05d5\u05e2 \u05d9\u05e9\u05e8\u05d0\u05dc\u05d9</channel>
+    <channel update="i" site="hot.net.il" site_id="666" xmltv_id="הוט קולנוע ישראלי">הוט קולנוע ישראלי</channel>
     <channel update="i" site="hot.net.il" site_id="243" xmltv_id="HOT COMEDY">HOT COMEDY</channel>
     <channel update="i" site="hot.net.il" site_id="160" xmltv_id="HOT3">HOT3</channel>
     <channel update="i" site="hot.net.il" site_id="286" xmltv_id="HOT8">HOT8</channel>
@@ -40,8 +40,8 @@
     <channel update="i" site="hot.net.il" site_id="127" xmltv_id="HOT Zone">HOT Zone</channel>
     <channel update="i" site="hot.net.il" site_id="555" xmltv_id="HOT Real">HOT Real</channel>
     <channel update="i" site="hot.net.il" site_id="215" xmltv_id="HOT HBO">HOT HBO</channel>
-    <channel update="i" site="hot.net.il" site_id="550" xmltv_id="\u05d4\u05d5\u05d8 \u05d1\u05d9\u05d3\u05d5\u05e8">\u05d4\u05d5\u05d8 \u05d1\u05d9\u05d3\u05d5\u05e8</channel>
-    <channel update="i" site="hot.net.il" site_id="676" xmltv_id="HOT \u05d1\u05d0\u05d6\u05d6">HOT \u05d1\u05d0\u05d6\u05d6</channel> -->
+    <channel update="i" site="hot.net.il" site_id="550" xmltv_id="HOT בידור">HOT בידור</channel>
+    <channel update="i" site="hot.net.il" site_id="676" xmltv_id="HOT באזז">HOT באזז</channel>
 
     <!-- PARTNERTV -->
 <!--     <channel update="i" site="partner.co.il" site_id="1271" xmltv_id="\u05e4\u05e8\u05d8\u05e0\u05e8 \u05e1\u05e8\u05d8\u05d9\u05dd">\u05e4\u05e8\u05d8\u05e0\u05e8 \u05e1\u05e8\u05d8\u05d9\u05dd</channel>
@@ -56,7 +56,7 @@
     <channel site="freetv.tv" lang="he" xmltv_id="Channel13.il" site_id="3328044">רשת 13</channel>
     <channel site="freetv.tv" lang="he" xmltv_id="Now14.il" site_id="3457869">ערוץ 14</channel>
     <channel site="freetv.tv" lang="he" xmltv_id="KnessetChannel.il" site_id="3362990">ערוץ הכנסת</channel>
-<!--     <channel site="freetv.tv" lang="he" site_id="3598042" xmltv_id="FreeTV סדרות דרמה">FreeTV סדרות דרמה</channel>
+    <channel site="freetv.tv" lang="he" site_id="3598042" xmltv_id="FreeTV סדרות דרמה">FreeTV סדרות דרמה</channel>
     <channel site="freetv.tv" lang="he" site_id="3598043" xmltv_id="FreeTV סדרות קומדיה">FreeTV סדרות קומדיה</channel>
     <channel site="freetv.tv" lang="he" site_id="3479997" xmltv_id="FreeTV סרטים ישראלי">FreeTV סרטים ישראלי</channel>
     <channel site="freetv.tv" lang="he" site_id="3479998" xmltv_id="FreeTV סרטים פעולה">FreeTV סרטים פעולה</channel>
@@ -70,7 +70,7 @@
     <channel site="freetv.tv" lang="he" site_id="3611644" xmltv_id="FreeTV אוכל">FreeTV אוכל</channel>
     <channel site="freetv.tv" lang="he" site_id="4721323" xmltv_id="ערוץ הקריוקי">ערוץ הקריוקי</channel>
     <channel site="freetv.tv" lang="he" site_id="3584119" xmltv_id="ערוץ הכוכב הבא">ערוץ הכוכב הבא</channel>
-    <channel site="freetv.tv" lang="he" site_id="3584122" xmltv_id="ערוץ חתונה ממבט ראשון">ערוץ חתונה ממבט ראשון</channel> -->
+    <channel site="freetv.tv" lang="he" site_id="3584122" xmltv_id="ערוץ חתונה ממבט ראשון">ערוץ חתונה ממבט ראשון</channel>
     
     <!-- CELLCOMTV -->
 <!--     <channel update="i" site="cellcom.co.il" site_id="3725##560a7ac3a0db499f8b7d0a0ddf77baf3/version/2" xmltv_id="\u05de\u05e8\u05ea\u05d5\u05df \u05e1\u05e8\u05d8\u05d9\u05dd">\u05de\u05e8\u05ea\u05d5\u05df \u05e1\u05e8\u05d8\u05d9\u05dd</channel>
