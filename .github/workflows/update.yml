@@ -1,4 +1,4 @@
-name: update EPG
+name: update
 
 on:
   schedule:
@@ -9,8 +9,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     env:
-      EMBY_USER: ${{ secrets.EMBY_USER }}
-      EMBY_PASS: ${{ secrets.EMBY_PASS }}
+      EMBY_USER: ${{ secrets.MY_USER }}
+      EMBY_PASS: ${{ secrets.MY_PASS }}
 
     steps:
       - uses: actions/checkout@v4
@@ -21,5 +21,5 @@ jobs:
       - run: python script.py
       - uses: EndBug/add-and-commit@v9
         with:
-          add: epg.xml
-          message: "ci: update epg.xml"
+          add: file.xml
+          message: "ci: update file.xml"
