@@ -1,0 +1,40 @@
+on:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  build-epg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v2
+        with:
+          repository: iptv-org/epg
+          path: iptv-epg
+
+      - name: Install xmltv-tools
+        run: |
+          sudo apt update
+          sudo apt install xmltv
+
+      - name: Run tv_grab_il
+        run: |
+          tv_grab_il | tee epg_il.xml
+
+      - name: Download iptv-org feeds
+        run: |
+          cp iptv-epg/kan.org.il.xml iptv.xml
+          wget -qO- https://iptv-org.github.io/epg/i24news.tv.xml >> iptv.xml
+          wget -qO- https://iptv-org.github.io/epg/9tv.co.il.xml >> iptv.xml
+          wget -qO- https://iptv-org.github.io/epg/mako.co.il.xml >> iptv.xml
+
+      - name: Merge all into guide.xml
+        run: |
+          xmltv_merge epg_il.xml iptv.xml > guide.xml
+          xmltv_sort guide.xml > guide_sorted.xml
+
+      - name: Commit & push guide
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Daily EPG update"
+          file_pattern: guide_sorted.xml
