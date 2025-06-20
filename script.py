@@ -6,7 +6,7 @@ BASE = os.getenv("MY_BASE")
 USERNAME = os.getenv("MY_USER")
 PASSWORD = os.getenv("MY_PASS")
 
-if not BASE not USERNAME or not PASSWORD:
+if not BASE or not USERNAME or not PASSWORD:
     sys.exit("❌  Missing MY_BASE / MY_USER / MY_PASS")
 
 # Login to get token + userId
