@@ -1,0 +1,32 @@
+name: Update EPG
+
+on:
+  schedule:
+    # Runs daily at 03:00 UTC ≈ 06:00 Asia/Jerusalem (summer time)
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      EMBY_BASE_URL: ${{ secrets.EMBY_BASE_URL }}
+      EMBY_USER_ID:  ${{ secrets.EMBY_USER_ID }}
+      EMBY_TOKEN:    ${{ secrets.EMBY_TOKEN }}
+      CHANNEL_IDS:   ${{ secrets.CHANNEL_IDS }}
+      DEVICE_ID:     ${{ secrets.DEVICE_ID }}
+      CLIENT_VERSION: ${{ secrets.CLIENT_VERSION }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install deps
+        run: pip install requests
+      - name: Generate XMLTV
+        run: python emby_to_xmltv.py --hours 24 --output epg.xml
+      - name: Commit & push
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'epg.xml'
+          message: 'chore: daily EPG update 🚀'
