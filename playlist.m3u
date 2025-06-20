@@ -1,0 +1,353 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="Kan.HD.il", כאן 11
+
+https://play.embyil.tv/emby/videos/2299409/master.m3u8
+
+#EXTINF:-1 tvg-id="Keshet.HD.il", ערוץ 12
+
+https://play.embyil.tv/emby/videos/2299410/master.m3u8
+
+#EXTINF:-1 tvg-id="Reshet.HD.il", ערוץ 13
+
+https://play.embyil.tv/emby/videos/2299411/master.m3u8
+
+#EXTINF:-1 tvg-id="Channel.14.HD.il", ערוץ 14
+
+https://play.embyil.tv/emby/videos/2299412/master.m3u8
+
+#EXTINF:-1 tvg-id="Kan.Educational.il", כאן חינוכית
+
+https://play.embyil.tv/emby/videos/2305576/master.m3u8
+
+#EXTINF:-1 tvg-id="i24.Hebrew.il", i24
+
+https://play.embyil.tv/emby/videos/2299413/master.m3u8
+
+#EXTINF:-1 tvg-id="", ערוץ הכלכלה
+
+https://play.embyil.tv/emby/videos/2305578/master.m3u8
+
+#EXTINF:-1 tvg-id="", ערוץ הכנסת
+
+https://play.embyil.tv/emby/videos/2299415/master.m3u8
+
+#EXTINF:-1 tvg-id="ערוץ.9.שידור.חי.il", ערוץ 9
+
+https://play.embyil.tv/emby/videos/2299414/master.m3u8
+
+#EXTINF:-1 tvg-id="Music.24.il", ערוץ 24
+
+https://play.embyil.tv/emby/videos/2305577/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.1.HD.il", ספורט 1
+
+https://play.embyil.tv/emby/videos/2299416/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.2.HD.il", ספורט 2
+
+https://play.embyil.tv/emby/videos/2299417/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.3.HD.il", ספורט 3
+
+https://play.embyil.tv/emby/videos/2299418/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.4.HD.il", ספורט 4
+
+https://play.embyil.tv/emby/videos/2299419/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.5.4K.il", ספורט 5
+
+https://play.embyil.tv/emby/videos/2299420/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.5.Gold.(57).il", ספורט 5 גולד
+
+https://play.embyil.tv/emby/videos/2299423/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.5.Live.HD.(58).il", ספורט 5 ישיר
+
+https://play.embyil.tv/emby/videos/2299421/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.5.Stars.HD.(59).il", ספורט 5 סטארס
+
+https://play.embyil.tv/emby/videos/2299422/master.m3u8
+
+#EXTINF:-1 tvg-id="Sport.5+.HD.(56).il", ספורט 5 פלוס
+
+https://play.embyil.tv/emby/videos/2350798/master.m3u8
+
+#EXTINF:-1 tvg-id="ONE.HD.il", ONE 1
+
+https://play.embyil.tv/emby/videos/2299424/master.m3u8
+
+#EXTINF:-1 tvg-id="ONE2.HD.il", ONE 2
+
+https://play.embyil.tv/emby/videos/2299425/master.m3u8
+
+#EXTINF:-1 tvg-id="Eurosport.il", יורוספורט 1
+
+https://play.embyil.tv/emby/videos/2299426/master.m3u8
+
+#EXTINF:-1 tvg-id="Eurosport.2.il", יורוספורט 2
+
+https://play.embyil.tv/emby/videos/2299427/master.m3u8
+
+#EXTINF:-1 tvg-id="ONE.EDGE.il", Edge Sport
+
+https://play.embyil.tv/emby/videos/2299428/master.m3u8
+
+#EXTINF:-1 tvg-id="ערוץ.3.שידור.חי.il", HOT 3
+
+https://play.embyil.tv/emby/videos/2299435/master.m3u8
+
+#EXTINF:-1 tvg-id="ערוץ.8.שידור.חי.il", HOT 8
+
+https://play.embyil.tv/emby/videos/2299436/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT סינמה ישראלי
+
+https://play.embyil.tv/emby/videos/2299433/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Cinema 1
+
+https://play.embyil.tv/emby/videos/2299429/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Cinema 2
+
+https://play.embyil.tv/emby/videos/2299430/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Cinema 3
+
+https://play.embyil.tv/emby/videos/2299431/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Cinema 4
+
+https://play.embyil.tv/emby/videos/2299432/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Comedy
+
+https://play.embyil.tv/emby/videos/2299434/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Zone
+
+https://play.embyil.tv/emby/videos/2299438/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT HBO
+
+https://play.embyil.tv/emby/videos/2299441/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Buzz
+
+https://play.embyil.tv/emby/videos/2299443/master.m3u8
+
+#EXTINF:-1 tvg-id="הוט.בידור.ישראלי.il", HOT בידור
+
+https://play.embyil.tv/emby/videos/2299442/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT משפחה
+
+https://play.embyil.tv/emby/videos/2299440/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Real
+
+https://play.embyil.tv/emby/videos/2299439/master.m3u8
+
+#EXTINF:-1 tvg-id="", HOT Senior
+
+https://play.embyil.tv/emby/videos/2299437/master.m3u8
+
+#EXTINF:-1 tvg-id="", Partner ילדים
+
+https://play.embyil.tv/emby/videos/2299446/master.m3u8
+
+#EXTINF:-1 tvg-id="", Partner סדרות
+
+https://play.embyil.tv/emby/videos/2299445/master.m3u8
+
+#EXTINF:-1 tvg-id="", Partner סרטים
+
+https://play.embyil.tv/emby/videos/2299444/master.m3u8
+
+#EXTINF:-1 tvg-id="", סלקום ילדים
+
+https://play.embyil.tv/emby/videos/2299465/master.m3u8
+
+#EXTINF:-1 tvg-id="", סלקום ישראלי
+
+https://play.embyil.tv/emby/videos/2299464/master.m3u8
+
+#EXTINF:-1 tvg-id="", סלקום סרטים
+
+https://play.embyil.tv/emby/videos/2299463/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV סדרות דרמה
+
+https://play.embyil.tv/emby/videos/2299447/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV סדרות קומדיה
+
+https://play.embyil.tv/emby/videos/2299448/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Movies ישראלי
+
+https://play.embyil.tv/emby/videos/2299449/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Movies Action
+
+https://play.embyil.tv/emby/videos/2299450/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Movies Comedy
+
+https://play.embyil.tv/emby/videos/2299453/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Movies Drama
+
+https://play.embyil.tv/emby/videos/2299452/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Movies Romantic
+
+https://play.embyil.tv/emby/videos/2299451/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV דוקו
+
+https://play.embyil.tv/emby/videos/2299457/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Movies אימה
+
+https://play.embyil.tv/emby/videos/2299454/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Series Global
+
+https://play.embyil.tv/emby/videos/2299455/master.m3u8
+
+#EXTINF:-1 tvg-id="", Free Movies Family
+
+https://play.embyil.tv/emby/videos/2299456/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV Lifestyle
+
+https://play.embyil.tv/emby/videos/2299458/master.m3u8
+
+#EXTINF:-1 tvg-id="", ערוץ חתונמי
+
+https://play.embyil.tv/emby/videos/2299462/master.m3u8
+
+#EXTINF:-1 tvg-id="Big.Brother.HD.il", האח הגדול
+
+https://play.embyil.tv/emby/videos/2436645/master.m3u8
+
+#EXTINF:-1 tvg-id="", FreeTV בישול
+
+https://play.embyil.tv/emby/videos/2299459/master.m3u8
+
+#EXTINF:-1 tvg-id="", ערוץ קריוקי
+
+https://play.embyil.tv/emby/videos/2299460/master.m3u8
+
+#EXTINF:-1 tvg-id="", ערוץ הכוכב הבא
+
+https://play.embyil.tv/emby/videos/2299461/master.m3u8
+
+#EXTINF:-1 tvg-id="History.HD.il", ערוץ ההיסטוריה
+
+https://play.embyil.tv/emby/videos/2305579/master.m3u8
+
+#EXTINF:-1 tvg-id="Discovery.HD.il", דיסקברי
+
+https://play.embyil.tv/emby/videos/2305580/master.m3u8
+
+#EXTINF:-1 tvg-id="National.G..HD.il", נשיונל גיאוגרפיק
+
+https://play.embyil.tv/emby/videos/2305581/master.m3u8
+
+#EXTINF:-1 tvg-id="Viva.Premium.il", ויוה
+
+https://play.embyil.tv/emby/videos/2299477/master.m3u8
+
+#EXTINF:-1 tvg-id="Viva.Istanbul.(Viva.Plus).il", ויוה +
+
+https://play.embyil.tv/emby/videos/2299474/master.m3u8
+
+#EXTINF:-1 tvg-id="Viva.Vintage.il", ויוה וינטג
+
+https://play.embyil.tv/emby/videos/2299475/master.m3u8
+
+#EXTINF:-1 tvg-id="Viva.Premium.il", ויוה פרמיום
+
+https://play.embyil.tv/emby/videos/2299476/master.m3u8
+
+#EXTINF:-1 tvg-id="Indian.series.il", ערוץ הדרמות ההודיות 1
+
+https://play.embyil.tv/emby/videos/2299471/master.m3u8
+
+#EXTINF:-1 tvg-id="Indian.series.2.il", ערוץ הדרמות ההודיות 2
+
+https://play.embyil.tv/emby/videos/2299472/master.m3u8
+
+#EXTINF:-1 tvg-id="Turkish.Drama.2.il", ערוץ הדרמות הטורקיות 2
+
+https://play.embyil.tv/emby/videos/2299467/master.m3u8
+
+#EXTINF:-1 tvg-id="Turkish.Drama.3.il", ערוץ הדרמות הטורקיות 3
+
+https://play.embyil.tv/emby/videos/2299468/master.m3u8
+
+#EXTINF:-1 tvg-id="Turkish.Drama.il", ערוץ הדרמות הטורקיות+
+
+https://play.embyil.tv/emby/videos/2299466/master.m3u8
+
+#EXTINF:-1 tvg-id="", ערוץ הדרמות הספרדיות 2
+
+https://play.embyil.tv/emby/videos/2299470/master.m3u8
+
+#EXTINF:-1 tvg-id="", ערוץ הדרמות הספריות 1
+
+https://play.embyil.tv/emby/videos/2299469/master.m3u8
+
+#EXTINF:-1 tvg-id="", Bollywood
+
+https://play.embyil.tv/emby/videos/2299473/master.m3u8
+
+#EXTINF:-1 tvg-id="Disney.HD.il", ערוץ דיסני
+
+https://play.embyil.tv/emby/videos/2299479/master.m3u8
+
+#EXTINF:-1 tvg-id="Disney.Junior.il", ערוץ דיסני ג'וניור
+
+https://play.embyil.tv/emby/videos/2299478/master.m3u8
+
+#EXTINF:-1 tvg-id="Nickelodeon.il", ניקלודיאון
+
+https://play.embyil.tv/emby/videos/2299480/master.m3u8
+
+#EXTINF:-1 tvg-id="NICK.Junior.il", ניק ג'וניור
+
+https://play.embyil.tv/emby/videos/2299481/master.m3u8
+
+#EXTINF:-1 tvg-id="TeenNick.il", TeenNick
+
+https://play.embyil.tv/emby/videos/2299482/master.m3u8
+
+#EXTINF:-1 tvg-id="Junior.il", Junior
+
+https://play.embyil.tv/emby/videos/2299484/master.m3u8
+
+#EXTINF:-1 tvg-id="HOP.il", הופ!
+
+https://play.embyil.tv/emby/videos/2299485/master.m3u8
+
+#EXTINF:-1 tvg-id="", לולי
+
+https://play.embyil.tv/emby/videos/2299483/master.m3u8
+
+#EXTINF:-1 tvg-id="Baby.il", בייבי
+
+https://play.embyil.tv/emby/videos/2299486/master.m3u8
+
+#EXTINF:-1 tvg-id="ZOOM.il", Zoom
+
+https://play.embyil.tv/emby/videos/2299487/master.m3u8
+
+#EXTINF:-1 tvg-id="ZOOM.TOON.il", Zoom Toon
+
+https://play.embyil.tv/emby/videos/2299488/master.m3u8
