@@ -5,13 +5,24 @@ from datetime import datetime, timedelta, timezone
 import requests
 import xml.etree.ElementTree as ET
 
-BASE_URL = os.getenv("EMBY_BASE_URL", "https://play.embyil.tv")
-USER_ID   = os.getenv("EMBY_USER_ID")
-TOKEN     = os.getenv("EMBY_TOKEN")
-CHANNELS  = os.getenv("CHANNEL_IDS", "").split(",")
-DEVICE_ID = os.getenv("DEVICE_ID", "embyil-xmltv-export")
-CLIENT    = os.getenv("CLIENT_VERSION", "4.9.0.42")
-LANG      = os.getenv("EMBY_LANG", "he")
+#BASE_URL = os.getenv("EMBY_BASE_URL", "https://play.embyil.tv")
+#USER_ID   = os.getenv("EMBY_USER_ID")
+#TOKEN     = os.getenv("EMBY_TOKEN")
+#CHANNELS  = os.getenv("CHANNEL_IDS", "").split(",")
+#DEVICE_ID = os.getenv("DEVICE_ID", "embyil-xmltv-export")
+#CLIENT    = os.getenv("CLIENT_VERSION", "4.9.0.42")
+#LANG      = os.getenv("EMBY_LANG", "he")
+
+BASE_URL = "https://play.embyil.tv"
+USER_ID = "f77d2537830c404a8a0e616694be0964"
+TOKEN = "a9a768bda323427ea639cb6277d736bb"
+CHANNELS = [
+    "2436645", "2299409", "2299410", "2299411", "2299412",
+    "2305576", "2299413", "2305577", "2305578"
+]
+DEVICE_ID = "672abf61-bd6c-4838-86a3-561ee37175cd"
+CLIENT = "4.9.0.42"
+LANG = "he"
 
 parser = argparse.ArgumentParser(description="Export EmbyIL EPG to XMLTV")
 parser.add_argument("--hours", type=int, default=24, help="Guide look-ahead hours (default 24)")
@@ -20,8 +31,6 @@ args = parser.parse_args()
 
 if not USER_ID or not TOKEN or not CHANNELS:
     sys.exit("❌ Missing EMBY_USER_ID / EMBY_TOKEN / CHANNEL_IDS env vars")
-
-print("**********TOKEN=", TOKEN)
 
 now = datetime.utcnow().replace(tzinfo=timezone.utc)
 max_start = now + timedelta(hours=args.hours)
