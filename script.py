@@ -48,11 +48,11 @@ params = {
 }
 headers = {
     "X-Emby-Token": TOKEN,
-    "X-Emby-Client": "Emby Web",
-    "X-Emby-Device-Name": "Google Chrome Android",
-    "X-Emby-Device-Id": DEVICE_ID,
-    "X-Emby-Client-Version": CLIENT,
-    "X-Emby-Language": LANG
+    #"X-Emby-Client": "Emby Web",
+    #"X-Emby-Device-Name": "Google Chrome Android",
+    #"X-Emby-Device-Id": DEVICE_ID,
+    #"X-Emby-Client-Version": CLIENT,
+    #"X-Emby-Language": LANG
 }
 
 print("→ Fetching programs …", file=sys.stderr)
