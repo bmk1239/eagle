@@ -48,6 +48,7 @@ params = {
 }
 headers = {
     "X-Emby-Token": "a9a768bda323427ea639cb6277d736bb",
+    "User-Agent": "curl/7.81.0"
     #"X-Emby-Client": "Emby Web",
     #"X-Emby-Device-Name": "Google Chrome Android",
     #"X-Emby-Device-Id": DEVICE_ID,
