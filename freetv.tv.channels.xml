@@ -7,7 +7,7 @@
   <channel site="freetv.tv" lang="he" xmltv_id="Channel13.il" site_id="3328044">רשת 13</channel>
   <channel site="freetv.tv" lang="he" xmltv_id="Now14.il" site_id="3457869">ערוץ 14</channel>
   <channel site="freetv.tv" lang="he" xmltv_id="KnessetChannel.il" site_id="3362990">ערוץ הכנסת</channel>
-  <channel site="freetv.tv" lang="he" site_id="3598042" xmltv_id="FreeTV סדרות דרמה">FreeTV סדרות דרמה</channel>
+<!--   <channel site="freetv.tv" lang="he" site_id="3598042" xmltv_id="FreeTV סדרות דרמה">FreeTV סדרות דרמה</channel>
   <channel site="freetv.tv" lang="he" site_id="3598043" xmltv_id="FreeTV סדרות קומדיה">FreeTV סדרות קומדיה</channel>
   <channel site="freetv.tv" lang="he" site_id="3479997" xmltv_id="FreeTV סרטים ישראלי">FreeTV סרטים ישראלי</channel>
   <channel site="freetv.tv" lang="he" site_id="3479998" xmltv_id="FreeTV סרטים פעולה">FreeTV סרטים פעולה</channel>
@@ -21,5 +21,5 @@
   <channel site="freetv.tv" lang="he" site_id="3611644" xmltv_id="FreeTV אוכל">FreeTV אוכל</channel>
   <channel site="freetv.tv" lang="he" site_id="4721323" xmltv_id="ערוץ הקריוקי">ערוץ הקריוקי</channel>
   <channel site="freetv.tv" lang="he" site_id="3584119" xmltv_id="ערוץ הכוכב הבא">ערוץ הכוכב הבא</channel>
-  <channel site="freetv.tv" lang="he" site_id="3584122" xmltv_id="ערוץ חתונה ממבט ראשון">ערוץ חתונה ממבט ראשון</channel>
+  <channel site="freetv.tv" lang="he" site_id="3584122" xmltv_id="ערוץ חתונה ממבט ראשון">ערוץ חתונה ממבט ראשון</channel> -->
 </channels>
