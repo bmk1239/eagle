@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install requests
-      - run: python fetch_epg.py
+      - run: python script.py
       - uses: EndBug/add-and-commit@v9
         with:
           add: epg.xml
