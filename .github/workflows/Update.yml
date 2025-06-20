@@ -9,45 +9,35 @@ jobs:
   build-epg:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout iptv-org EPG
-        uses: actions/checkout@v2
-        with:
-          repository: iptv-org/epg
-          path: iptv-epg
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-      - name: Install xmltv-tools
+      - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install xmltv
+          sudo apt-get update
+          sudo apt-get install -y build-essential cpanminus git libxml-simple-perl libdatetime-perl \
+                                  libxmltv-perl libjson-perl libwww-perl libhtml-parser-perl \
+                                  libfile-slurp-perl libterm-readkey-perl
+          sudo cpanm XML::TV
 
-      - name: Run tv_grab_il
+      - name: Clone and install XMLTV with tv_grab_il
         run: |
-          # tv_grab_il | tee epg_il.xml
-          tv_grab_il | tee guide_sorted.xml
+          git clone https://github.com/XMLTV/xmltv.git
+          cd xmltv
+          ./configure
+          make
+          sudo make install
+          which tv_grab_il
 
-      # - name: Download iptv-org feeds
-      #   run: |
-      #     cp iptv-epg/kan.org.il.xml iptv.xml
-      #     wget -qO- https://iptv-org.github.io/epg/i24news.tv.xml >> iptv.xml
-      #     wget -qO- https://iptv-org.github.io/epg/9tv.co.il.xml >> iptv.xml
-      #     wget -qO- https://iptv-org.github.io/epg/mako.co.il.xml >> iptv.xml
-
-      # - name: Merge all into guide.xml
-      #   run: |
-      #     xmltv_merge epg_il.xml iptv.xml > guide.xml
-      #     xmltv_sort guide.xml > guide_sorted.xml
-
-      # - name: Commit & push guide
-      #   uses: stefanzweifel/git-auto-commit-action@v4
-      #   with:
-      #     commit_message: "Daily EPG update"
-      #     file_pattern: guide_sorted.xml
+      - name: Grab EPG using tv_grab_il
+        run: |
+          tv_grab_il --days 3 --output epg_il.xml
       
       - name: Committing the new data
         run: |
           git config --global user.name 'bmk1239'
           git config --global user.email 'bmk1239@users.noreply.github.com'
           export NOW=$(date +'%Y-%m-%dT%H:%M:%S')
-          git add guide_sorted.xml
+          git add epg_il.xml
           git commit -am "Automated guide.xml update ($NOW)"
           git push
