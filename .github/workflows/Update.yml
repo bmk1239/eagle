@@ -1,47 +1,27 @@
-name: EPG1 Update
-run-name: Updating the EPG 🎐
+name: 🇮🇱 tv_grab_il EPG via Docker
+
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *'  # Every day at 03:00 UTC
+  workflow_dispatch:
 
 jobs:
-  build-epg:
+  grab-epg:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout your repo
         uses: actions/checkout@v4
-     
-      - name: Install xmltv
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y xmltv
- 
-      # - name: Install Dependencies
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y build-essential git \
-      #       libxml-simple-perl libdatetime-format-strptime-perl \
-      #       libwww-perl libhtml-parser-perl libterm-readkey-perl \
-      #       libfile-slurp-perl cpanminus
 
-      # - name: Clone and Build XMLTV (tv_grab_il only)
-      #   run: |
-      #     git clone https://github.com/XMLTV/xmltv.git
-      #     cd xmltv
-      #     PERL_MM_USE_DEFAULT=1 PERL5LIB=. perl Makefile.PL --grab tv_grab_il
-      #     make
-      #     sudo make install
+      - name: Run tv_grab_il in Docker
+        run: |
+          mkdir -p epg
+          docker run --rm -v ${{ github.workspace }}/epg:/data \
+            ghcr.io/baruchmakro/xmltv-grabber:latest \
+            tv_grab_il --output /data/epg_il.xml --days 3
 
-      - name: Generate EPG using tv_grab_il
-        run: |
-          tv_grab_il --output epg_il.xml --days 3 --quiet
-      
-      - name: Committing the new data
-        run: |
-          git config --global user.name 'bmk1239'
-          git config --global user.email 'bmk1239@users.noreply.github.com'
-          export NOW=$(date +'%Y-%m-%dT%H:%M:%S')
-          git add epg_il.xml
-          git commit -am "Automated guide.xml update ($NOW)"
-          git push
+      - name: Commit and push EPG
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "📺 EPG from tv_grab_il (via Docker)"
+          file_pattern: epg/epg_il.xml
