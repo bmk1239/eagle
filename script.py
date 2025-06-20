@@ -59,11 +59,11 @@ for prog in data:
         "start": st.strftime("%Y%m%d%H%M%S +0000"),
         "stop": en.strftime("%Y%m%d%H%M%S +0000")
     })
-    ET.SubElement(p, "title", {"lang": "he"}).text = prog.get("Name", "")
+    ET.SubElement(p, "title").text = prog.get("Name", "")
     if prog.get("EpisodeTitle"):
-        ET.SubElement(p, "sub-title", {"lang": "he"}).text = prog["EpisodeTitle"]
+        ET.SubElement(p, "sub-title").text = prog["EpisodeTitle"]
     if prog.get("Overview"):
-        ET.SubElement(p, "desc", {"lang": "he"}).text = prog["Overview"]
+        ET.SubElement(p, "desc").text = prog["Overview"]
 
 ET.indent(root)
 ET.ElementTree(root).write("file.xml", encoding="utf-8", xml_declaration=True)
