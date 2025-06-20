@@ -39,7 +39,7 @@ params = {
     "UserId": USER_ID,
     "MinEndDate": now.isoformat(timespec="seconds") + "Z",
     "MaxStartDate": max_start.isoformat(timespec="seconds") + "Z",
-    "channelIds": ",".join(CHANNELS),
+    #"channelIds": ",".join(CHANNELS),
     "ImageTypeLimit": 1,
     "SortBy": "StartDate",
     "EnableTotalRecordCount": "false",
@@ -49,11 +49,10 @@ params = {
 headers = {
     "X-Emby-Token": TOKEN,
     "X-Emby-Client": "Emby Web",
-    "X-Emby-Device-Name": "GitHubAction",
+    "X-Emby-Device-Name": "Google Chrome Android",
     "X-Emby-Device-Id": DEVICE_ID,
     "X-Emby-Client-Version": CLIENT,
-    "X-Emby-Language": LANG,
-    "User-Agent": "Mozilla/5.0 (Android; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36"
+    "X-Emby-Language": LANG
 }
 
 print("→ Fetching programs …", file=sys.stderr)
