@@ -1,32 +1,25 @@
-name: Update EPG
+name: update EPG
 
 on:
   schedule:
-    # Runs daily at 03:00 UTC ≈ 06:00 Asia/Jerusalem (summer time)
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *'   # 06:00 Israel = 03:00 UTC
   workflow_dispatch:
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
     env:
-      EMBY_BASE_URL: ${{ secrets.EMBY_BASE_URL }}
-      EMBY_USER_ID:  ${{ secrets.EMBY_USER_ID }}
-      EMBY_TOKEN:    ${{ secrets.EMBY_TOKEN }}
-      CHANNEL_IDS:   ${{ secrets.CHANNEL_IDS }}
-      DEVICE_ID:     ${{ secrets.DEVICE_ID }}
-      CLIENT_VERSION: ${{ secrets.CLIENT_VERSION }}
+      EMBY_USER: ${{ secrets.EMBY_USER }}
+      EMBY_PASS: ${{ secrets.EMBY_PASS }}
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Install deps
-        run: pip install requests
-      - name: Generate XMLTV
-        run: python script.py --hours 24 --output epg.xml
-      - name: Commit & push
-        uses: EndBug/add-and-commit@v9
+      - run: pip install requests
+      - run: python fetch_epg.py
+      - uses: EndBug/add-and-commit@v9
         with:
-          add: 'epg.xml'
-          message: 'chore: daily EPG update 🚀'
+          add: epg.xml
+          message: "ci: update epg.xml"
