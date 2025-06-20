@@ -1,0 +1,41 @@
+name: Build Israeli EPG
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # daily at 4am UTC
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cpanminus git libxml-simple-perl libdatetime-perl \
+                                  libxmltv-perl libjson-perl libwww-perl libhtml-parser-perl \
+                                  libfile-slurp-perl libterm-readkey-perl
+          sudo cpanm XML::TV
+
+      - name: Clone and install XMLTV with tv_grab_il
+        run: |
+          git clone https://github.com/XMLTV/xmltv.git
+          cd xmltv
+          ./configure
+          make
+          sudo make install
+          which tv_grab_il
+
+      - name: Grab EPG using tv_grab_il
+        run: |
+          mkdir -p epg
+          tv_grab_il --days 3 --output epg/epg_il.xml
+
+      - name: Commit EPG
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Daily Israeli EPG update"
+          file_pattern: epg/epg_il.xml
