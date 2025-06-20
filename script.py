@@ -21,6 +21,8 @@ args = parser.parse_args()
 if not USER_ID or not TOKEN or not CHANNELS:
     sys.exit("❌ Missing EMBY_USER_ID / EMBY_TOKEN / CHANNEL_IDS env vars")
 
+print("**********TOKEN=", TOKEN)
+
 now = datetime.utcnow().replace(tzinfo=timezone.utc)
 max_start = now + timedelta(hours=args.hours)
 
