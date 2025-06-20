@@ -41,7 +41,7 @@ params = {
     "EnableImages": "false"
 }
 
-# Make the request like curl
+# Fetch program data
 r = requests.get(f"{BASE}/emby/LiveTv/Programs",
                  params=params,
                  headers={"X-Emby-Token": token}, timeout=30)
@@ -49,13 +49,24 @@ r.raise_for_status()
 data = r.json().get("Items", [])
 print(f"📺 {len(data)} programmes")
 
-# Write XMLTV
+# Create XMLTV root
 root = ET.Element("tv")
+
+# Collect unique channels
+channel_map = {}
+
+# Write programme elements
 for prog in data:
     st = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
     en = datetime.fromisoformat(prog["EndDate"].replace("Z", "+00:00"))
+    ch_id = str(prog["ChannelId"])
+    
+    # Save display name for channels
+    if ch_id not in channel_map:
+        channel_map[ch_id] = prog.get("ChannelName", f"Channel {ch_id}")
+
     p = ET.SubElement(root, "programme", {
-        "channel": str(prog["ChannelId"]),
+        "channel": ch_id,
         "start": st.strftime("%Y%m%d%H%M%S +0000"),
         "stop": en.strftime("%Y%m%d%H%M%S +0000")
     })
@@ -65,6 +76,12 @@ for prog in data:
     if prog.get("Overview"):
         ET.SubElement(p, "desc").text = prog["Overview"]
 
+# Add channel elements
+for ch_id, name in sorted(channel_map.items()):
+    c = ET.SubElement(root, "channel", {"id": ch_id})
+    ET.SubElement(c, "display-name").text = name
+
+# Write file
 ET.indent(root)
 ET.ElementTree(root).write("file.xml", encoding="utf-8", xml_declaration=True)
-print("✅ file.xml saved")
+print("✅ file.xml with channels saved")
