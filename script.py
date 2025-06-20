@@ -2,12 +2,12 @@
 import os, sys, json, requests, xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 
-BASE = "https://play.embyil.tv"
-USERNAME = os.getenv("EMBY_USER")
-PASSWORD = os.getenv("EMBY_PASS")
+BASE = os.getenv("MY_BASE")
+USERNAME = os.getenv("MY_USER")
+PASSWORD = os.getenv("MY_PASS")
 
-if not USERNAME or not PASSWORD:
-    sys.exit("❌  Missing EMBY_USER / EMBY_PASS")
+if not BASE not USERNAME or not PASSWORD:
+    sys.exit("❌  Missing MY_BASE / MY_USER / MY_PASS")
 
 # Login to get token + userId
 auth_hdr = (
@@ -66,5 +66,5 @@ for prog in data:
         ET.SubElement(p, "desc", {"lang": "he"}).text = prog["Overview"]
 
 ET.indent(root)
-ET.ElementTree(root).write("epg.xml", encoding="utf-8", xml_declaration=True)
-print("✅ epg.xml saved")
+ET.ElementTree(root).write("file.xml", encoding="utf-8", xml_declaration=True)
+print("✅ file.xml saved")
