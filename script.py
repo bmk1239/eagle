@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 # ───---  FILL IN YOUR CONSTANTS  ---─────────────────────────────
 BASE_URL   = "https://play.embyil.tv"
 USER_ID    = "f77d2537830c404a8a0e616694be0964"
-TOKEN      = "a9a768bda323427ea639cb6277d736bb"
+TOKEN      = "e70e9dd9d9254859aa208efaadb6dfcf"
 CHANNELS   = ["2436645","2299409","2299410","2299411","2299412","2305576","2299413","2305577","2305578"]
 LANG       = "he"
 # ────────────────────────────────────────────────────────────────
