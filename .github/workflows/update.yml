@@ -24,7 +24,7 @@ jobs:
       - name: Install deps
         run: pip install requests
       - name: Generate XMLTV
-        run: python emby_to_xmltv.py --hours 24 --output epg.xml
+        run: python script.py --hours 24 --output epg.xml
       - name: Commit & push
         uses: EndBug/add-and-commit@v9
         with:
