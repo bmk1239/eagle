@@ -9,18 +9,24 @@ jobs:
   build-epg:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install Perl dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cpanminus git libxml-simple-perl libdatetime-perl \
-                                  libxmltv-perl libjson-perl libwww-perl libhtml-parser-perl \
-                                  libfile-slurp-perl libterm-readkey-perl
-          sudo cpanm XML::TV
+          sudo apt-get install -y build-essential \
+            libxml-parser-perl \
+            libxml-simple-perl \
+            libdatetime-perl \
+            libwww-perl \
+            libjson-perl \
+            libhtml-parser-perl \
+            libterm-readkey-perl \
+            libfile-slurp-perl \
+            git
 
-      - name: Clone and install XMLTV with tv_grab_il
+      - name: Clone and build XMLTV with tv_grab_il
         run: |
           git clone https://github.com/XMLTV/xmltv.git
           cd xmltv
@@ -29,9 +35,9 @@ jobs:
           sudo make install
           which tv_grab_il
 
-      - name: Grab EPG using tv_grab_il
+      - name: Generate EPG with tv_grab_il
         run: |
-          tv_grab_il --days 3 --output epg_il.xml
+          tv_grab_il --output epg_il.xml --days 3 --quiet
       
       - name: Committing the new data
         run: |
