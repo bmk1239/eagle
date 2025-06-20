@@ -11,7 +11,6 @@ params = {
     "UserId": user_id,
     "MinEndDate": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     "MaxStartDate": later.strftime("%Y-%m-%dT%H:%M:%SZ"),
-    "channelIds": "2436645,2299409",
     "ImageTypeLimit": 1,
     "SortBy": "StartDate",
     "EnableTotalRecordCount": "false",
@@ -20,10 +19,14 @@ params = {
 }
 
 headers = {
-    "X-Emby-Token": token
+    "X-Emby-Token": token,
+    "X-Emby-Client": "Emby Web",
+    "X-Emby-Device-Name": "MyPythonScript",
+    "X-Emby-Device-Id": "abc123456789",
+    "X-Emby-Client-Version": "4.9.0.42",
+    "X-Emby-Language": "he"
 }
 
 r = requests.get("https://play.embyil.tv/emby/LiveTv/Programs", params=params, headers=headers)
-
 print("Status:", r.status_code)
-print("Response:", r.text[:300])
+print("Response:", r.text[:500])
