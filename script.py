@@ -37,8 +37,8 @@ max_start = now + timedelta(hours=args.hours)
 
 params = {
     "UserId": USER_ID,
-    "MinEndDate": now.isoformat(timespec="seconds") + "Z",
-    "MaxStartDate": max_start.isoformat(timespec="seconds") + "Z",
+    "MinEndDate": now.isoformat(timespec="seconds").replace("+00:00", "Z"),
+    "MaxStartDate": max_start.isoformat(timespec="seconds").replace("+00:00", "Z"),
     #"channelIds": ",".join(CHANNELS),
     "ImageTypeLimit": 1,
     "SortBy": "StartDate",
