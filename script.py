@@ -37,6 +37,9 @@ result = subprocess.run(
 
 if result.returncode != 0:
     sys.exit(f"curl failed (code {result.returncode})")
+print("Raw curl output:")
+print(result.stdout[:500])  # Print first 500 characters
+
 
 data = json.loads(result.stdout)
 print(f"✔ received {len(data.get('Items', []))} programmes")
