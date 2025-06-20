@@ -7,9 +7,9 @@ USERNAME = os.getenv("MY_USER")
 PASSWORD = os.getenv("MY_PASS")
 
 if not BASE or not USERNAME or not PASSWORD:
-    sys.exit("❌  Missing MY_BASE / MY_USER / MY_PASS")
+    sys.exit("❌ Missing MY_BASE / MY_USER / MY_PASS")
 
-# Login to get token + userId
+# Login to get token
 auth_hdr = (
     'MediaBrowser Client="GitHubAction", Device="CI", '
     'DeviceId="gh-epg", Version="4.9.0.42"'
@@ -23,11 +23,11 @@ resp = requests.post(
 )
 resp.raise_for_status()
 login = resp.json()
-token   = login["AccessToken"]
+token = login["AccessToken"]
 user_id = login["User"]["Id"]
 print("✅ Logged in")
 
-# Prepare date window (24 hours from now)
+# Get EPG window
 now = datetime.now(timezone.utc)
 later = now + timedelta(hours=24)
 params = {
@@ -41,47 +41,47 @@ params = {
     "EnableImages": "false"
 }
 
-# Fetch program data
 r = requests.get(f"{BASE}/emby/LiveTv/Programs",
                  params=params,
                  headers={"X-Emby-Token": token}, timeout=30)
 r.raise_for_status()
-data = r.json().get("Items", [])
-print(f"📺 {len(data)} programmes")
+programs = r.json().get("Items", [])
+print(f"📺 Found {len(programs)} programmes")
 
-# Create XMLTV root
-root = ET.Element("tv")
+# Begin XML
+ET.register_namespace('', "http://xmltv.org/xmltv")  # optional
+tv = ET.Element("tv")
 
-# Collect unique channels
-channel_map = {}
-
-# Write programme elements
-for prog in data:
-    st = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
-    en = datetime.fromisoformat(prog["EndDate"].replace("Z", "+00:00"))
+# Build channel set
+channels = {}
+for prog in programs:
     ch_id = str(prog["ChannelId"])
-    
-    # Save display name for channels
-    if ch_id not in channel_map:
-        channel_map[ch_id] = prog.get("ChannelName", f"Channel {ch_id}")
+    ch_name = prog.get("ChannelName", f"Channel {ch_id}")
+    if ch_id not in channels:
+        channels[ch_id] = ch_name
 
-    p = ET.SubElement(root, "programme", {
+# Add <channel> elements
+for ch_id, ch_name in sorted(channels.items()):
+    ch_elem = ET.SubElement(tv, "channel", {"id": ch_id})
+    ET.SubElement(ch_elem, "display-name").text = ch_name
+
+# Add <programme> elements
+for prog in programs:
+    ch_id = str(prog["ChannelId"])
+    start = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
+    stop = datetime.fromisoformat(prog["EndDate"].replace("Z", "+00:00"))
+    p_elem = ET.SubElement(tv, "programme", {
         "channel": ch_id,
-        "start": st.strftime("%Y%m%d%H%M%S +0000"),
-        "stop": en.strftime("%Y%m%d%H%M%S +0000")
+        "start": start.strftime("%Y%m%d%H%M%S +0000"),
+        "stop": stop.strftime("%Y%m%d%H%M%S +0000")
     })
-    ET.SubElement(p, "title").text = prog.get("Name", "")
+    ET.SubElement(p_elem, "title", {"lang": "he"}).text = prog.get("Name", "")
     if prog.get("EpisodeTitle"):
-        ET.SubElement(p, "sub-title").text = prog["EpisodeTitle"]
+        ET.SubElement(p_elem, "sub-title", {"lang": "he"}).text = prog["EpisodeTitle"]
     if prog.get("Overview"):
-        ET.SubElement(p, "desc").text = prog["Overview"]
+        ET.SubElement(p_elem, "desc", {"lang": "he"}).text = prog["Overview"]
 
-# Add channel elements
-for ch_id, name in sorted(channel_map.items()):
-    c = ET.SubElement(root, "channel", {"id": ch_id})
-    ET.SubElement(c, "display-name").text = name
-
-# Write file
-ET.indent(root)
-ET.ElementTree(root).write("file.xml", encoding="utf-8", xml_declaration=True)
-print("✅ file.xml with channels saved")
+# Output file
+tree = ET.ElementTree(tv)
+tree.write("file.xml", encoding="utf-8", xml_declaration=True)
+print("✅ file.xml created (with channels)")
