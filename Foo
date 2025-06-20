@@ -2,47 +2,41 @@ name: Build Israel EPG
 
 on:
   schedule:
-    - cron: '0 4 * * *' # every day at 04:00 UTC
+    - cron: '0 4 * * *'  # Daily at 04:00 UTC
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install Perl dependencies
+      - name: Install Perl and build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential \
-            libxml-parser-perl \
-            libxml-simple-perl \
-            libdatetime-perl \
-            libwww-perl \
-            libjson-perl \
-            libhtml-parser-perl \
-            libterm-readkey-perl \
-            libfile-slurp-perl \
-            git
+          sudo apt-get install -y build-essential cpanminus libxml-simple-perl libdatetime-perl \
+            libwww-perl libhtml-parser-perl git
 
-      - name: Clone and build XMLTV with tv_grab_il
+      - name: Clone XMLTV repo
         run: |
           git clone https://github.com/XMLTV/xmltv.git
           cd xmltv
-          ./configure
+
+      - name: Build and install XMLTV (including tv_grab_il)
+        run: |
+          cd xmltv
+          perl Makefile.PL
           make
           sudo make install
           which tv_grab_il
 
-      - name: Generate EPG with tv_grab_il
+      - name: Generate EPG using tv_grab_il
         run: |
           mkdir -p epg
           tv_grab_il --output epg/epg_il.xml --days 3 --quiet
 
-      - name: Commit and push guide
+      - name: Commit generated EPG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "🗓️ Daily EPG update (Israel)"
+          commit_message: "🗓️ Daily Israel EPG"
           file_pattern: epg/epg_il.xml
