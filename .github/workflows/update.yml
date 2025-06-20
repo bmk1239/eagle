@@ -9,8 +9,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
     env:
-      EMBY_USER: ${{ secrets.MY_USER }}
-      EMBY_PASS: ${{ secrets.MY_PASS }}
+      MY_BASE: ${{ secrets.MY_BASE }}
+      MY_USER: ${{ secrets.MY_USER }}
+      MY_PASS: ${{ secrets.MY_PASS }}
 
     steps:
       - uses: actions/checkout@v4
