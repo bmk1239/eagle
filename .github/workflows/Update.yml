@@ -1,4 +1,7 @@
+name: EPG1 Update
+run-name: Updating the EPG 🎐
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 3 * * *'
 
