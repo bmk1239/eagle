@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-import os, sys, json, requests, xml.etree.ElementTree as ET
+import os, sys, requests, xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
+import html
 
 BASE = os.getenv("MY_BASE")
 USERNAME = os.getenv("MY_USER")
@@ -9,7 +10,7 @@ PASSWORD = os.getenv("MY_PASS")
 if not BASE or not USERNAME or not PASSWORD:
     sys.exit("❌ Missing MY_BASE / MY_USER / MY_PASS")
 
-# Login to get token
+# Authenticate
 auth_hdr = (
     'MediaBrowser Client="GitHubAction", Device="CI", '
     'DeviceId="gh-epg", Version="4.9.0.42"'
@@ -27,7 +28,7 @@ token = login["AccessToken"]
 user_id = login["User"]["Id"]
 print("✅ Logged in")
 
-# Get EPG window
+# Fetch programs for 24h
 now = datetime.now(timezone.utc)
 later = now + timedelta(hours=24)
 params = {
@@ -40,7 +41,6 @@ params = {
     "EnableUserData": "false",
     "EnableImages": "false"
 }
-
 r = requests.get(f"{BASE}/emby/LiveTv/Programs",
                  params=params,
                  headers={"X-Emby-Token": token}, timeout=30)
@@ -48,40 +48,38 @@ r.raise_for_status()
 programs = r.json().get("Items", [])
 print(f"📺 Found {len(programs)} programmes")
 
-# Begin XML
-ET.register_namespace('', "http://xmltv.org/xmltv")  # optional
+# Build XMLTV tree
 tv = ET.Element("tv")
+channel_ids = {}
 
-# Build channel set
-channels = {}
 for prog in programs:
     ch_id = str(prog["ChannelId"])
     ch_name = prog.get("ChannelName", f"Channel {ch_id}")
-    if ch_id not in channels:
-        channels[ch_id] = ch_name
+    channel_ids[ch_id] = ch_name
 
-# Add <channel> elements
-for ch_id, ch_name in sorted(channels.items()):
-    ch_elem = ET.SubElement(tv, "channel", {"id": ch_id})
-    ET.SubElement(ch_elem, "display-name").text = ch_name
+# Add channel elements
+for ch_id, ch_name in channel_ids.items():
+    ch = ET.SubElement(tv, "channel", {"id": ch_id})
+    ET.SubElement(ch, "display-name").text = ch_name
 
-# Add <programme> elements
+# Add programme elements
 for prog in programs:
     ch_id = str(prog["ChannelId"])
     start = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
     stop = datetime.fromisoformat(prog["EndDate"].replace("Z", "+00:00"))
-    p_elem = ET.SubElement(tv, "programme", {
+
+    p = ET.SubElement(tv, "programme", {
         "channel": ch_id,
         "start": start.strftime("%Y%m%d%H%M%S +0000"),
         "stop": stop.strftime("%Y%m%d%H%M%S +0000")
     })
-    ET.SubElement(p_elem, "title", {"lang": "he"}).text = prog.get("Name", "")
+    ET.SubElement(p, "title", {"lang": "he"}).text = html.escape(prog.get("Name", ""))
     if prog.get("EpisodeTitle"):
-        ET.SubElement(p_elem, "sub-title", {"lang": "he"}).text = prog["EpisodeTitle"]
+        ET.SubElement(p, "sub-title", {"lang": "he"}).text = html.escape(prog["EpisodeTitle"])
     if prog.get("Overview"):
-        ET.SubElement(p_elem, "desc", {"lang": "he"}).text = prog["Overview"]
+        ET.SubElement(p, "desc", {"lang": "he"}).text = html.escape(prog["Overview"])
 
-# Output file
+# Write final file
 tree = ET.ElementTree(tv)
 tree.write("file.xml", encoding="utf-8", xml_declaration=True)
-print("✅ file.xml created (with channels)")
+print("✅ Valid EPG saved to file.xml")
