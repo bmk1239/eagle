@@ -12,24 +12,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install Perl and build dependencies
+      - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cpanminus libxml-simple-perl libdatetime-perl \
-            libwww-perl libhtml-parser-perl git
+          sudo apt-get install -y build-essential git \
+            libxml-simple-perl libdatetime-format-strptime-perl \
+            libwww-perl libhtml-parser-perl libterm-readkey-perl \
+            libfile-slurp-perl cpanminus
 
-      - name: Clone XMLTV repo
+      - name: Clone and Build XMLTV (tv_grab_il only)
         run: |
           git clone https://github.com/XMLTV/xmltv.git
           cd xmltv
-
-      - name: Build and install XMLTV (including tv_grab_il)
-        run: |
-          cd xmltv
-          perl Makefile.PL
+          PERL_MM_USE_DEFAULT=1 PERL5LIB=. perl Makefile.PL --grab tv_grab_il
           make
           sudo make install
-          which tv_grab_il
 
       - name: Generate EPG using tv_grab_il
         run: |
