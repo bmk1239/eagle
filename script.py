@@ -1,6 +1,3 @@
----
-## 2 emby_to_xmltv.py (JSON → XMLTV)
-```python
 #!/usr/bin/env python3
 """Fetch EmbyIL /LiveTv/Programs JSON and export XMLTV."""
 import os, sys, json, argparse
