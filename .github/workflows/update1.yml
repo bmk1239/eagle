@@ -2,7 +2,7 @@ name: update1
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # every day at midnight UTC
+    - cron: '0 3 * * *'  # every day at midnight UTC
   workflow_dispatch:    # also allow manual trigger
 
 jobs:
