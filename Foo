@@ -1,0 +1,35 @@
+$url = "http://localhost:8096/Users/AuthenticateByName"
+
+$headers = @{
+    "X-Emby-Client" = "MyApp"
+    "X-Emby-Device-Name" = "MyDevice"
+    "X-Emby-Client-Version" = "1.0"
+    "Content-Type" = "application/json"
+}
+
+$body = @{
+    Username = "your_username"
+    Pw       = "your_password"
+} | ConvertTo-Json
+
+$response = Invoke-RestMethod -Uri $url -Method Post -Headers $headers -Body $body
+
+$accessToken = $response.AccessToken
+$userId = $response.User.Id
+
+
+
+$tokenUrl = "http://localhost:8096/Users/$userId/AccessTokens"
+
+$headers = @{
+    "X-Emby-Token" = $accessToken
+    "Content-Type" = "application/json"
+}
+
+$tokenBody = @{
+    Name = "My Permanent Token"
+} | ConvertTo-Json
+
+$newToken = Invoke-RestMethod -Uri $tokenUrl -Method Post -Headers $headers -Body $tokenBody
+
+$newToken | Format-List
