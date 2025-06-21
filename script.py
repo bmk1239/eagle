@@ -10,8 +10,8 @@ BASE = os.getenv("MY_BASE")
 USERNAME = os.getenv("MY_USER")
 PASSWORD = os.getenv("MY_PASS")
 CACHE_FILE = os.getenv("EMBY_TOKEN_CACHE", "token_cache.json")
-COUNT_FILE  = Path("channels_count.txt")
-FLAG_FILE    = Path("channel_count_changed.flag")
+COUNT_FILE  = Path("count.txt")
+FLAG_FILE    = Path("count_changed.flag")
 
 if not BASE or not USERNAME or not PASSWORD:
     sys.exit("❌ Missing MY_BASE / MY_USER / MY_PASS")
@@ -71,8 +71,8 @@ headers = {
 
 m3u_lines = ['#EXTM3U']
 
-# Step 1: Get channels
-channels_url = f"{BASE}/emby/LiveTv/Channels"
+# Step 1: Get info
+url = f"{BASE}/emby/LiveTv/Channels"
 params = {
     "IsAiring": "true",
     "EnableUserData": "false",
@@ -82,11 +82,11 @@ params = {
     "SortBy": "DefaultChannelOrder",  # << gets server-side order
     "SortOrder": "Ascending"
 }
-response = requests.get(channels_url, headers=headers, params=params)
-channels = response.json().get("Items", []) 
+response = requests.get(url, headers=headers, params=params)
+info = response.json().get("Items", []) 
 
 # Count check
-current_count = len(channels)
+current_count = len(info)
 try:
     previous_count = int(COUNT_FILE.read_text().strip())
 except Exception:
@@ -96,29 +96,29 @@ print(f"Previous count: {previous_count}")
 print(f"Current  count: {current_count}")
 changed = previous_count is not None and previous_count != current_count
 if changed:
-    print("⚠️  Channel count changed!")
+    print("⚠️ count changed!")
 else:
-    print("No change in channel count.")
+    print("No change in count.")
 
-# Step 2: Process each channel
-for ch in channels:
-    channel_id = ch["Id"]
-    channel_name = ch["Name"]
+# Step 2: Process
+for ch in info:
+    id = ch["Id"]
+    name = ch["Name"]
     image_tag = ch.get("ImageTags", {}).get("Primary")
 
     if not image_tag:
         continue  # skip if no image
 
     # Icon URL
-    logo_url = f"{BASE}/emby/Items/{channel_id}/Images/Primary?tag={image_tag}"
+    logo_url = f"{BASE}/emby/Items/{id}/Images/Primary?tag={image_tag}"
 
     # M3U8 URL (this works if the server is configured properly)
     m3u8_url = (
-        f"{BASE}/emby/videos/{channel_id}/master.m3u8"
+        f"{BASE}/emby/videos/{id}/master.m3u8"
     )
 
     # Write M3U line
-    extinf = f'#EXTINF:-1 tvg-id="{channel_id}" tvg-name="{channel_name}" tvg-logo="{logo_url}",{channel_name}'
+    extinf = f'#EXTINF:-1 tvg-id="{id}" tvg-name="{name}" tvg-logo="{logo_url}",{name}'
     m3u_lines.append(extinf)
     m3u_lines.append(m3u8_url)
 
@@ -149,15 +149,15 @@ print(f"📺 {len(programs)} programmes")
 
 # Build XMLTV
 tv = ET.Element("tv")
-channels = {}
+info = {}
 
-# <channel> entries
+# entries
 for prog in programs:
     ch_id = str(prog["ChannelId"])
     ch_name = prog.get("ChannelName", f"Channel {ch_id}")
-    channels[ch_id] = ch_name
+    info[ch_id] = ch_name
 
-for ch_id, ch_name in channels.items():
+for ch_id, ch_name in info.items():
     ch = ET.SubElement(tv, "channel", {"id": ch_id})
     ET.SubElement(ch, "display-name").text = ch_name
 
