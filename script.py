@@ -78,7 +78,7 @@ params = {
     "Fields": "PrimaryImageAspectRatio",
     "ImageTypeLimit": "1",
     "EnableImageTypes": "Primary",
-    "SortBy": "ChannelNumber",  # ← sort here
+    "SortBy": "DefaultChannelOrder",  # << gets server-side order
     "SortOrder": "Ascending"
     #"Limit": 100,
     #"SortBy": "SortName"
