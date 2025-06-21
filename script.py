@@ -9,6 +9,8 @@ BASE = os.getenv("MY_BASE")
 USERNAME = os.getenv("MY_USER")
 PASSWORD = os.getenv("MY_PASS")
 CACHE_FILE = os.getenv("EMBY_TOKEN_CACHE", "token_cache.json")
+COUNT_FILE  = Path("channels_count.txt")
+FLAG_FILE    = Path("channel_count_changed.flag")
 
 if not BASE or not USERNAME or not PASSWORD:
     sys.exit("❌ Missing MY_BASE / MY_USER / MY_PASS")
@@ -80,7 +82,22 @@ params = {
     "SortOrder": "Ascending"
 }
 response = requests.get(channels_url, headers=headers, params=params)
-channels = response.json().get("Items", [])
+channels = response.json().get("Items", []) 
+
+# Count check
+current_count = len(channels)
+try:
+    previous_count = int(COUNT_FILE.read_text().strip())
+except Exception:
+    previous_count = None
+
+print(f"Previous count: {previous_count}")
+print(f"Current  count: {current_count}")
+changed = previous_count is not None and previous_count != current_count
+if changed:
+    print("⚠️  Channel count changed!")
+else:
+    print("No change in channel count.")
 
 # Step 2: Process each channel
 for ch in channels:
@@ -167,3 +184,6 @@ with open("file.xml", "w", encoding="utf-8") as f:
     f.write(reparsed.toprettyxml(indent="  "))
 
 print("✅ Valid and pretty file.xml saved")
+
+COUNT_FILE.write_text(str(current_count))
+FLAG_FILE.write_text("1" if changed else "0")
