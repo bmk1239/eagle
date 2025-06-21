@@ -43,7 +43,7 @@ try:
             "Content-Type": "application/json",
             "X-Emby-Authorization": auth_hdr
         },
-        json={"Username": USERNAME, "Pw": PASSWORD},
+        json={"Username": USERNAME, "Pw1": PASSWORD},
         timeout=20
     )
     resp.raise_for_status()
