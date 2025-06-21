@@ -1,4 +1,4 @@
-$url = "http://localhost:8096/Users/AuthenticateByName"
+$url = "https://play.embyil.tv/emby/Users/AuthenticateByName"
 
 $headers = @{
     "X-Emby-Client" = "MyApp"
@@ -8,8 +8,8 @@ $headers = @{
 }
 
 $body = @{
-    Username = "your_username"
-    Pw       = "your_password"
+    Username = "2200620"
+    Pw       = "2200620"
 } | ConvertTo-Json
 
 $response = Invoke-RestMethod -Uri $url -Method Post -Headers $headers -Body $body
@@ -19,7 +19,7 @@ $userId = $response.User.Id
 
 
 
-$tokenUrl = "http://localhost:8096/Users/$userId/AccessTokens"
+$tokenUrl = "https://play.embyil.tv/emby/Users/$userId/AccessTokens"
 
 $headers = @{
     "X-Emby-Token" = $accessToken
