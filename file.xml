@@ -54,9 +54,6 @@
   <channel id="2299429">
     <display-name>Channel 2299429</display-name>
   </channel>
-  <channel id="2299435">
-    <display-name>Channel 2299435</display-name>
-  </channel>
   <channel id="2299430">
     <display-name>Channel 2299430</display-name>
   </channel>
@@ -180,6 +177,9 @@
   <channel id="2299425">
     <display-name>Channel 2299425</display-name>
   </channel>
+  <channel id="2299435">
+    <display-name>Channel 2299435</display-name>
+  </channel>
   <programme channel="2299437" start="20250621060100 +0000" stop="20250621082400 +0000">
     <title lang="he">חוגגים 90 לאפי נצר</title>
   </programme>
@@ -233,9 +233,6 @@
   </programme>
   <programme channel="2299429" start="20250621072000 +0000" stop="20250621092400 +0000">
     <title lang="he">בחירתו של הארט - ברוס וויליס</title>
-  </programme>
-  <programme channel="2299435" start="20250621072300 +0000" stop="20250621080800 +0000">
-    <title lang="he">Suits 9</title>
   </programme>
   <programme channel="2299430" start="20250621072700 +0000" stop="20250621094600 +0000">
     <title lang="he">רובין הוד - ראסל קרואו</title>
