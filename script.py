@@ -86,7 +86,7 @@ response = requests.get(url, headers=headers, params=params)
 info = response.json().get("Items", []) 
 
 # Count check
-current_count = len(info)
+current_count = len(info) - 1
 try:
     previous_count = int(COUNT_FILE.read_text().strip())
 except Exception:
