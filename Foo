@@ -1,19 +1,18 @@
 $url = "https://play.embyil.tv/emby/Users/AuthenticateByName"
 
 $headers = @{
-    "X-Emby-Client" = "MyApp"
-    "X-Emby-Device-Name" = "MyDevice"
-    "X-Emby-Client-Version" = "1.0"
-    "Content-Type" = "application/json"
+    "X-Emby-Authorization" = 'MediaBrowser Client="MyApp", Device="MyDevice", DeviceId="abc123", Version="1.0.0"'
+    "Content-Type"         = "application/json"
 }
 
-$bodyobject = @{
+$body = @{
     Username = "2200620"
     Pw       = "2200620"
-}
-$body = $bodyobject | ConvertTo-Json -Depth 10 -Compress
+} | ConvertTo-Json -Compress
 
 $response = Invoke-RestMethod -Uri $url -Method Post -Headers $headers -Body $body
+
+$response | Format-List
 
 $accessToken = $response.AccessToken
 $userId = $response.User.Id
