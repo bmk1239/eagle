@@ -7,10 +7,11 @@ $headers = @{
     "Content-Type" = "application/json"
 }
 
-$body = @{
+$bodyobject = @{
     Username = "2200620"
     Pw       = "2200620"
-} | ConvertTo-Json
+}
+$body = $bodyobject | ConvertTo-Json -Depth 10 -Compress
 
 $response = Invoke-RestMethod -Uri $url -Method Post -Headers $headers -Body $body
 
