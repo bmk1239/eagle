@@ -129,9 +129,6 @@
   <channel id="2305578">
     <display-name>Channel 2305578</display-name>
   </channel>
-  <channel id="2299427">
-    <display-name>Channel 2299427</display-name>
-  </channel>
   <channel id="2299451">
     <display-name>Channel 2299451</display-name>
   </channel>
@@ -162,9 +159,6 @@
   <channel id="2299428">
     <display-name>Channel 2299428</display-name>
   </channel>
-  <channel id="2305576">
-    <display-name>Channel 2305576</display-name>
-  </channel>
   <channel id="2299422">
     <display-name>Channel 2299422</display-name>
   </channel>
@@ -179,6 +173,12 @@
   </channel>
   <channel id="2299424">
     <display-name>Channel 2299424</display-name>
+  </channel>
+  <channel id="2305576">
+    <display-name>Channel 2305576</display-name>
+  </channel>
+  <channel id="2299427">
+    <display-name>Channel 2299427</display-name>
   </channel>
   <programme channel="2299409" start="20250621070000 +0000" stop="20250621100000 +0000">
     <title lang="he">משדר מיוחד - יפעת גליק ותמר אלמוג</title>
@@ -309,9 +309,6 @@
   <programme channel="2305578" start="20250621090000 +0000" stop="20250621100000 +0000">
     <title lang="he">נשוב לשדר במוצאי שבת</title>
   </programme>
-  <programme channel="2299427" start="20250621090000 +0000" stop="20250621093000 +0000">
-    <title lang="he">אליפות העולם ב-MX2</title>
-  </programme>
   <programme channel="2299451" start="20250621090135 +0000" stop="20250621104750 +0000">
     <title lang="he">לפני חצות</title>
   </programme>
@@ -341,9 +338,6 @@
   </programme>
   <programme channel="2299428" start="20250621091500 +0000" stop="20250621095900 +0000">
     <title lang="he">סופר היי רולר בול - פרק 2</title>
-  </programme>
-  <programme channel="2305576" start="20250621091700 +0000" stop="20250621093000 +0000">
-    <title lang="he">צ&amp;#x27;רלי ולולה 3</title>
   </programme>
   <programme channel="2299422" start="20250621092000 +0000" stop="20250621100000 +0000">
     <title lang="he">עולם הרכב: תכנית הרכב של ישראל</title>
