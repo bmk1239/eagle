@@ -141,9 +141,6 @@
   <channel id="2299445">
     <display-name>Channel 2299445</display-name>
   </channel>
-  <channel id="2299434">
-    <display-name>Channel 2299434</display-name>
-  </channel>
   <channel id="2299438">
     <display-name>Channel 2299438</display-name>
   </channel>
@@ -174,11 +171,14 @@
   <channel id="2299424">
     <display-name>Channel 2299424</display-name>
   </channel>
-  <channel id="2305576">
-    <display-name>Channel 2305576</display-name>
-  </channel>
   <channel id="2299427">
     <display-name>Channel 2299427</display-name>
+  </channel>
+  <channel id="2299434">
+    <display-name>Channel 2299434</display-name>
+  </channel>
+  <channel id="2305576">
+    <display-name>Channel 2305576</display-name>
   </channel>
   <programme channel="2299409" start="20250621070000 +0000" stop="20250621100000 +0000">
     <title lang="he">משדר מיוחד - יפעת גליק ותמר אלמוג</title>
@@ -321,9 +321,6 @@
   <programme channel="2299445" start="20250621090500 +0000" stop="20250621095000 +0000">
     <title lang="he">חוק וסדר: מדור מיוחד 24 - פרק 9</title>
   </programme>
-  <programme channel="2299434" start="20250621090700 +0000" stop="20250621093400 +0000">
-    <title lang="he">VEEP, עונה 2</title>
-  </programme>
   <programme channel="2299438" start="20250621090700 +0000" stop="20250621095000 +0000">
     <title lang="he">FBI International - עונה 4</title>
   </programme>
@@ -353,9 +350,6 @@
   </programme>
   <programme channel="2299424" start="20250621092500 +0000" stop="20250621111000 +0000">
     <title lang="he">ל. ספרדית 2024/25 - ברצלונה/אספניול</title>
-  </programme>
-  <programme channel="2305576" start="20250621093000 +0000" stop="20250621093700 +0000">
-    <title lang="he">בלואי</title>
   </programme>
   <programme channel="2299427" start="20250621093000 +0000" stop="20250621100000 +0000">
     <title lang="he">אליפות העולם ב-MXGP</title>
