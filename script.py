@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 import html
 from xml.dom import minidom
+from pathlib import Path
 
 BASE = os.getenv("MY_BASE")
 USERNAME = os.getenv("MY_USER")
