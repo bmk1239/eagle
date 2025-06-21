@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
 <tv>
-  <channel id="2299425">
-    <display-name>Channel 2299425</display-name>
-  </channel>
   <channel id="2299410">
     <display-name>Channel 2299410</display-name>
   </channel>
@@ -96,26 +93,17 @@
   <channel id="2299484">
     <display-name>Channel 2299484</display-name>
   </channel>
-  <channel id="2305578">
-    <display-name>Channel 2305578</display-name>
-  </channel>
   <channel id="2299421">
     <display-name>Channel 2299421</display-name>
   </channel>
   <channel id="2299426">
     <display-name>Channel 2299426</display-name>
   </channel>
-  <channel id="2299427">
-    <display-name>Channel 2299427</display-name>
-  </channel>
   <channel id="2299436">
     <display-name>Channel 2299436</display-name>
   </channel>
   <channel id="2299431">
     <display-name>Channel 2299431</display-name>
-  </channel>
-  <channel id="2299413">
-    <display-name>Channel 2299413</display-name>
   </channel>
   <channel id="2299424">
     <display-name>Channel 2299424</display-name>
@@ -134,12 +122,6 @@
   </channel>
   <channel id="2299448">
     <display-name>Channel 2299448</display-name>
-  </channel>
-  <channel id="2299409">
-    <display-name>Channel 2299409</display-name>
-  </channel>
-  <channel id="2305576">
-    <display-name>Channel 2305576</display-name>
   </channel>
   <channel id="2299423">
     <display-name>Channel 2299423</display-name>
@@ -174,15 +156,30 @@
   <channel id="2299449">
     <display-name>Channel 2299449</display-name>
   </channel>
+  <channel id="2299409">
+    <display-name>Channel 2299409</display-name>
+  </channel>
+  <channel id="2305576">
+    <display-name>Channel 2305576</display-name>
+  </channel>
+  <channel id="2299413">
+    <display-name>Channel 2299413</display-name>
+  </channel>
+  <channel id="2305578">
+    <display-name>Channel 2305578</display-name>
+  </channel>
+  <channel id="2299427">
+    <display-name>Channel 2299427</display-name>
+  </channel>
+  <channel id="2299425">
+    <display-name>Channel 2299425</display-name>
+  </channel>
   <channel id="2299434">
     <display-name>Channel 2299434</display-name>
   </channel>
   <channel id="2299433">
     <display-name>Channel 2299433</display-name>
   </channel>
-  <programme channel="2299425" start="20250620214700 +0000" stop="20250621010300 +0000">
-    <title lang="he">One Championship - FIGHT NIGHT 32</title>
-  </programme>
   <programme channel="2299410" start="20250620220000 +0000" stop="20250621020000 +0000">
     <title lang="he">משדר חדשות מיוחד - אדוה דדון ודין פישר</title>
   </programme>
@@ -276,26 +273,17 @@
   <programme channel="2299484" start="20250621000000 +0000" stop="20250621040000 +0000">
     <title lang="he">Junior</title>
   </programme>
-  <programme channel="2305578" start="20250621000000 +0000" stop="20250621010000 +0000">
-    <title lang="he">נשוב לשדר במוצאי שבת</title>
-  </programme>
   <programme channel="2299421" start="20250621000000 +0000" stop="20250621031500 +0000">
     <title lang="he">ישיר! מונדיאל המועדונים - כמו במגרש</title>
   </programme>
   <programme channel="2299426" start="20250621000000 +0000" stop="20250621020000 +0000">
     <title lang="he">הטור של שוויץ, מירוץ הגברים</title>
   </programme>
-  <programme channel="2299427" start="20250621000000 +0000" stop="20250621010000 +0000">
-    <title lang="he">פורמולה E</title>
-  </programme>
   <programme channel="2299436" start="20250621001000 +0000" stop="20250621011400 +0000">
     <title lang="he">ספי</title>
   </programme>
   <programme channel="2299431" start="20250621001900 +0000" stop="20250621014900 +0000">
     <title lang="he">סלסט וג&amp;#x27;סי לנצח - ראשידה ג&amp;#x27;ונס</title>
-  </programme>
-  <programme channel="2299413" start="20250621003000 +0000" stop="20250621010000 +0000">
-    <title lang="he">משדר מיוחד</title>
   </programme>
   <programme channel="2299424" start="20250621003000 +0000" stop="20250621030000 +0000">
     <title lang="he">סבב הפאדל העולמי - קנקון וויבס/טורונטו פולר ברס</title>
@@ -314,12 +302,6 @@
   </programme>
   <programme channel="2299448" start="20250621003340 +0000" stop="20250621013918 +0000">
     <title lang="he">איזה צחוק 1 - אורנה בנאי</title>
-  </programme>
-  <programme channel="2299409" start="20250621003400 +0000" stop="20250621010000 +0000">
-    <title lang="he">100% ישראלית</title>
-  </programme>
-  <programme channel="2305576" start="20250621003500 +0000" stop="20250621010000 +0000">
-    <title lang="he">חדש! מלון הוטל 2</title>
   </programme>
   <programme channel="2299423" start="20250621003500 +0000" stop="20250621013000 +0000">
     <title lang="he">הדיפלומטית</title>
