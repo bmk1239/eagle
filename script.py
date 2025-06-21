@@ -95,7 +95,7 @@ for ch_id, ch_name in channels.items():
 
 # <programme> entries
 for prog in programs:
-    print("🔑 Available keys:", list(prog.keys()))
+    #print("🔑 Available keys:", list(prog.keys()))
     ch_id = str(prog["ChannelId"])
     start = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
     stop = datetime.fromisoformat(prog["EndDate"].replace("Z", "+00:00"))
