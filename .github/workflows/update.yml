@@ -12,9 +12,16 @@ jobs:
       MY_BASE: ${{ secrets.MY_BASE }}
       MY_USER: ${{ secrets.MY_USER }}
       MY_PASS: ${{ secrets.MY_PASS }}
+      EMBY_TOKEN_CACHE: token_cache.json  # file name used by the Python script
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: token_cache.json
+          key: emby-token-cache-${{ runner.os }}
+          restore-keys: |
+            emby-token-cache-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
