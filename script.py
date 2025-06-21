@@ -18,15 +18,15 @@ def load_cached_token():
     try:
         with open(CACHE_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
-            return data.get("AccessToken"), data.get("UserId")
+            return data.get("AccessToken")
     except:
         return None, None
 
 # Save cache
-def save_cached_token(token, user_id):
+def save_cached_token(token):
     try:
         with open(CACHE_FILE, "w", encoding="utf-8") as f:
-            json.dump({"AccessToken": token, "UserId": user_id}, f)
+            json.dump({"AccessToken": token}, f)
     except Exception as e:
         print(f"⚠️ Failed to save token cache: {e}")
 
@@ -49,13 +49,12 @@ try:
     resp.raise_for_status()
     login = resp.json()
     token = login["AccessToken"]
-    user_id = login["User"]["Id"]
-    save_cached_token(token, user_id)
+    save_cached_token(token)
     print("✅ Logged in")
 except Exception as e:
     print(f"⚠️ Authentication failed: {e}")
-    token, user_id = load_cached_token()
-    if not token or not user_id:
+    token = load_cached_token()
+    if not token:
         sys.exit("❌ No valid cached token available")
     print("✅ Using cached token")
 
@@ -72,7 +71,6 @@ m3u_lines = ['#EXTM3U']
 # Step 1: Get channels
 channels_url = f"{BASE}/emby/LiveTv/Channels"
 params = {
-    #"userId": user_id,
     "IsAiring": "true",
     "EnableUserData": "false",
     "Fields": "PrimaryImageAspectRatio",
@@ -80,8 +78,6 @@ params = {
     "EnableImageTypes": "Primary",
     "SortBy": "DefaultChannelOrder",  # << gets server-side order
     "SortOrder": "Ascending"
-    #"Limit": 100,
-    #"SortBy": "SortName"
 }
 response = requests.get(channels_url, headers=headers, params=params)
 channels = response.json().get("Items", [])
@@ -96,7 +92,7 @@ for ch in channels:
         continue  # skip if no image
 
     # Icon URL
-    logo_url = f"{BASE}/emby/Items/{channel_id}/Images/Primary?tag={image_tag}"#&X-Emby-Token={token}"
+    logo_url = f"{BASE}/emby/Items/{channel_id}/Images/Primary?tag={image_tag}"
 
     # M3U8 URL (this works if the server is configured properly)
     m3u8_url = (
@@ -118,7 +114,6 @@ print("✅ M3U playlist saved as file.m3u")
 now = datetime.now(timezone.utc)
 later = now + timedelta(hours=24)
 params = {
-    "UserId": user_id,
     "MinEndDate": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     "MaxStartDate": later.strftime("%Y-%m-%dT%H:%M:%SZ"),
     "ImageTypeLimit": 1,
@@ -150,10 +145,6 @@ for ch_id, ch_name in channels.items():
 
 # <programme> entries
 for prog in programs:
-    #print("🔑 Available keys:", list(prog.keys()))
-    #for key in prog.keys():
-        #print("×××××prog[", key, "]=", prog[key])
-    
     ch_id = str(prog["ChannelId"])
     start = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
     stop = datetime.fromisoformat(prog["EndDate"].replace("Z", "+00:00"))
