@@ -34,14 +34,14 @@ jobs:
 
       - uses: EndBug/add-and-commit@v9
         with:
-          add: file.xml file.m3u channels_count.txt
+          add: file.xml file.m3u count.txt
           message: "ci: update file.xml file.m3u"
 
-      - name: Check if channel count changed
+      - name: Check if count changed
         id: check
         run: |
-          if [ -f channel_count_changed.flag ]; then
-            echo "changed=$(cat channel_count_changed.flag)" >> $GITHUB_OUTPUT
+          if [ -f count_changed.flag ]; then
+            echo "changed=$(cat count_changed.flag)" >> $GITHUB_OUTPUT
           else
           echo "changed=0" >> $GITHUB_OUTPUT
           fi
@@ -49,5 +49,5 @@ jobs:
       - name: Fail intentionally to notify if changed
         if: steps.check.outputs.changed == '1'
         run: |
-          echo "Channel count changed. Triggering GitHub alert by failing."
+          echo "Count changed. Triggering GitHub alert by failing."
           exit 1
