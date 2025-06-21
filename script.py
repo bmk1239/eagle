@@ -69,8 +69,8 @@ params = {
     "ImageTypeLimit": 1,
     "SortBy": "StartDate",
     "EnableTotalRecordCount": "false",
-    #"EnableUserData": "false",
-    #"EnableImages": "false"
+    "EnableUserData": "false",
+    "EnableImages": "false"
 }
 r = requests.get(f"{BASE}/emby/LiveTv/Programs",
                  params=params,
@@ -96,8 +96,8 @@ for ch_id, ch_name in channels.items():
 # <programme> entries
 for prog in programs:
     #print("🔑 Available keys:", list(prog.keys()))
-    for key in prog.keys():
-        print("×××××prog[", key, "]=", prog[key])
+    #for key in prog.keys():
+        #print("×××××prog[", key, "]=", prog[key])
     
     ch_id = str(prog["ChannelId"])
     start = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
