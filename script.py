@@ -62,7 +62,7 @@ except Exception as e:
     print("✅ Using cached token")
 
 headers = {
-    "X-Emby-Token": token,
+    #"X-Emby-Token": token,
     "X-Emby-Client": "Emby Web",
     "X-Emby-Device-Name": "PythonScript",
     "X-Emby-Device-Id": "script-1234",
