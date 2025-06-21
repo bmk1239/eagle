@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-merge_epg.py  –  create a proper XMLTV file (file1.xml) from two .xml.gz sources
+merge_epg.py  – create a correct XMLTV file1.xml from two .xml.gz sources
 """
 import gzip
 import io
@@ -8,79 +8,77 @@ import requests
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-# ----- URLs in the required order -----
+# ---------- source files (order matters) ----------
 URLS = [
     "https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz",
     "https://www.open-epg.com/files/israel1.xml.gz",
 ]
 
-# ---------- helpers -----------------------------------------------------------
+# ---------- helper functions ----------------------
 
-def download_and_parse(url: str) -> ET.Element:
-    """Return the <tv> root element of the remote .xml.gz document."""
-    r = requests.get(url, timeout=60)
-    r.raise_for_status()
-    xml_bytes = gzip.decompress(r.content)
-    # ElementTree needs a bytes-stream or str.  Use BytesIO so we keep UTF-8 exactly.
+def fetch_root(url: str) -> ET.Element:
+    """Download .xml.gz and return its <tv> root element."""
+    rsp = requests.get(url, timeout=60)
+    rsp.raise_for_status()
+    xml_bytes = gzip.decompress(rsp.content)
     return ET.parse(io.BytesIO(xml_bytes)).getroot()
 
-def indent(elem: ET.Element, level: int = 0) -> None:
-    """In-place pretty-printer for ElementTree (no extra blank lines)."""
-    i = "\n" + "  " * level
-    if len(elem):
-        if not elem.text or not elem.text.strip():
-            elem.text = i + "  "
-        for child in elem:
-            indent(child, level + 1)
+def pretty(element: ET.Element, level: int = 0) -> None:
+    """Minimal in-place pretty-printer (works on Py-3.8+)."""
+    indent = "\n" + "  " * level
+    if len(element):
+        if not element.text or not element.text.strip():
+            element.text = indent + "  "
+        for child in element:
+            pretty(child, level + 1)
         if not child.tail or not child.tail.strip():
-            child.tail = i
-    if level and (not elem.tail or not elem.tail.strip()):
-        elem.tail = i
+            child.tail = indent
+    if level and (not element.tail or not element.tail.strip()):
+        element.tail = indent
 
-# ---------- merge logic -------------------------------------------------------
+# ---------- main merge routine --------------------
 
 def main() -> None:
-    kept_ids: set[str] = set()       # ids we keep
-    pruned_ids: set[str] = set()     # duplicate ids we skip
-    first_group: list[ET.Element] = []
-    second_group: list[ET.Element] = []
+    kept_ids: set[str] = set()
+    dup_ids:  set[str] = set()
+    part_a:   list[ET.Element] = []   # kept <channel> elements
+    part_b:   list[ET.Element] = []   # kept <programme> elements
 
-    # pass 1 – collect unique <channel> equivalents
+    # pass-1  – gather unique channel-like elements
     for url in URLS:
-        root = download_and_parse(url)
+        root = fetch_root(url)
         for node in root:
-            if node.tag == "channel":
+            if node.tag == "channel":           # tag lookup only
                 cid = node.get("id")
                 if cid in kept_ids:
-                    pruned_ids.add(cid)
+                    dup_ids.add(cid)
                 else:
                     kept_ids.add(cid)
-                    first_group.append(node)
+                    part_a.append(node)
 
-    # pass 2 – collect programme elements whose channel is kept
+    # pass-2  – gather programme elements only for kept ids
     for url in URLS:
-        root = download_and_parse(url)
+        root = fetch_root(url)
         for node in root:
             if node.tag == "programme":
-                if node.get("channel") in kept_ids and node.get("channel") not in pruned_ids:
-                    second_group.append(node)
+                if node.get("channel") in kept_ids and node.get("channel") not in dup_ids:
+                    part_b.append(node)
 
-    # build unified tree
+    # assemble new tree
     out_root = ET.Element("tv")
-    out_root.extend(first_group)
-    out_root.extend(second_group)
+    out_root.extend(part_a)
+    out_root.extend(part_b)
+    pretty(out_root)
 
-    # pretty-print
-    indent(out_root)
-
-    # write with UTF-8, LF, no BOM
+    # write (UTF-8, LF, no BOM) ------------------------------------------------
     out_path = Path("file1.xml")
     with out_path.open("w", encoding="utf-8", newline="\n") as fh:
         fh.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         ET.ElementTree(out_root).write(fh, encoding="unicode")
 
-    # sanity-check: try to re-parse what we wrote
+    # final sanity-check – abort if not valid XML
     ET.parse(out_path)
+    print("file1.xml written and validated → OK")
 
 if __name__ == "__main__":
     main()
