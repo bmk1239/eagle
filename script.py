@@ -59,6 +59,61 @@ except Exception as e:
         sys.exit("❌ No valid cached token available")
     print("✅ Using cached token")
 
+headers = {
+    "X-Emby-Token": token,
+    "X-Emby-Client": "Emby Web",
+    "X-Emby-Device-Name": "PythonScript",
+    "X-Emby-Device-Id": "script-1234",
+    "X-Emby-Client-Version": "4.9.0.42"
+}
+
+m3u_lines = ['#EXTM3U']
+
+# Step 1: Get channels
+channels_url = f"{BASE}/emby/LiveTv/Channels"
+params = {
+    "userId": user_id,
+    "IsAiring": "true",
+    "EnableUserData": "false",
+    "Fields": "PrimaryImageAspectRatio",
+    "ImageTypeLimit": "1",
+    "EnableImageTypes": "Primary",
+    "Limit": 100,
+    "SortBy": "SortName"
+}
+response = requests.get(channels_url, headers=headers, params=params)
+channels = response.json().get("Items", [])
+
+# Step 2: Process each channel
+for ch in channels:
+    channel_id = ch["Id"]
+    channel_name = ch["Name"]
+    image_tag = ch.get("ImageTags", {}).get("Primary")
+
+    if not image_tag:
+        continue  # skip if no image
+
+    # Icon URL
+    logo_url = f"{BASE}/emby/Items/{channel_id}/Images/Primary?tag={image_tag}&X-Emby-Token={token}"
+
+    # M3U8 URL (this works if the server is configured properly)
+    m3u8_url = (
+        f"{BASE}/emby/videos/{channel_id}/master.m3u8?"
+        f"UserId={user_id}&IsPlayback=true&AutoOpenLiveStream=true&"
+        f"MaxStreamingBitrate=3000000&X-Emby-Token={token}&MediaSourceId={channel_id}&Static=true"
+    )
+
+    # Write M3U line
+    extinf = f'#EXTINF:-1 tvg-id="{channel_id}" tvg-name="{channel_name}" tvg-logo="{logo_url}",{channel_name}'
+    m3u_lines.append(extinf)
+    m3u_lines.append(m3u8_url)
+
+# Step 3: Output to file
+with open("playlist.m3u", "w", encoding="utf-8") as f:
+    f.write("\n".join(m3u_lines))
+
+print("✅ M3U playlist saved as playlist.m3u")
+
 # Fetch programmes
 now = datetime.now(timezone.utc)
 later = now + timedelta(hours=24)
