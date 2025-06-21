@@ -129,9 +129,6 @@
   <channel id="2299429">
     <display-name>Channel 2299429</display-name>
   </channel>
-  <channel id="2299438">
-    <display-name>Channel 2299438</display-name>
-  </channel>
   <channel id="2299436">
     <display-name>Channel 2299436</display-name>
   </channel>
@@ -153,17 +150,11 @@
   <channel id="2299430">
     <display-name>Channel 2299430</display-name>
   </channel>
-  <channel id="2299434">
-    <display-name>Channel 2299434</display-name>
-  </channel>
   <channel id="2299428">
     <display-name>Channel 2299428</display-name>
   </channel>
   <channel id="2299423">
     <display-name>Channel 2299423</display-name>
-  </channel>
-  <channel id="2299425">
-    <display-name>Channel 2299425</display-name>
   </channel>
   <channel id="2305576">
     <display-name>Channel 2305576</display-name>
@@ -179,6 +170,15 @@
   </channel>
   <channel id="2299448">
     <display-name>Channel 2299448</display-name>
+  </channel>
+  <channel id="2299425">
+    <display-name>Channel 2299425</display-name>
+  </channel>
+  <channel id="2299434">
+    <display-name>Channel 2299434</display-name>
+  </channel>
+  <channel id="2299438">
+    <display-name>Channel 2299438</display-name>
   </channel>
   <programme channel="2436645" start="20250621080000 +0000" stop="20250621120000 +0000">
     <title lang="he">האח הגדול</title>
@@ -309,9 +309,6 @@
   <programme channel="2299429" start="20250621110900 +0000" stop="20250621131400 +0000">
     <title lang="he">הכפיל</title>
   </programme>
-  <programme channel="2299438" start="20250621111100 +0000" stop="20250621115400 +0000">
-    <title lang="he">FBI International - עונה 4</title>
-  </programme>
   <programme channel="2299436" start="20250621112000 +0000" stop="20250621120500 +0000">
     <title lang="he">המלונות המדהימים בעולם 2</title>
   </programme>
@@ -333,17 +330,11 @@
   <programme channel="2299430" start="20250621113100 +0000" stop="20250621125800 +0000">
     <title lang="he">בראש מורם - דווין ג&amp;#x27;ונסון</title>
   </programme>
-  <programme channel="2299434" start="20250621113100 +0000" stop="20250621115300 +0000">
-    <title lang="he">שני גברים וחצי 5</title>
-  </programme>
   <programme channel="2299428" start="20250621113300 +0000" stop="20250621122100 +0000">
     <title lang="he">סיפורי EDGEsport</title>
   </programme>
   <programme channel="2299423" start="20250621113500 +0000" stop="20250621121000 +0000">
     <title lang="he">כתבות מן העבר, פרק 16</title>
-  </programme>
-  <programme channel="2299425" start="20250621113500 +0000" stop="20250621115100 +0000">
-    <title lang="he">תוצרת איטליה - קליארי</title>
   </programme>
   <programme channel="2305576" start="20250621114000 +0000" stop="20250621120700 +0000">
     <title lang="he">כראמל</title>
