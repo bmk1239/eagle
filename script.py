@@ -78,8 +78,8 @@ params = {
     "Fields": "PrimaryImageAspectRatio",
     "ImageTypeLimit": "1",
     "EnableImageTypes": "Primary",
-    "Limit": 100,
-    "SortBy": "SortName"
+    #"Limit": 100,
+    #"SortBy": "SortName"
 }
 response = requests.get(channels_url, headers=headers, params=params)
 channels = response.json().get("Items", [])
@@ -94,13 +94,11 @@ for ch in channels:
         continue  # skip if no image
 
     # Icon URL
-    logo_url = f"{BASE}/emby/Items/{channel_id}/Images/Primary?tag={image_tag}&X-Emby-Token={token}"
+    logo_url = f"{BASE}/emby/Items/{channel_id}/Images/Primary?tag={image_tag}"#&X-Emby-Token={token}"
 
     # M3U8 URL (this works if the server is configured properly)
     m3u8_url = (
-        f"{BASE}/emby/videos/{channel_id}/master.m3u8?"
-        f"UserId={user_id}&IsPlayback=true&AutoOpenLiveStream=true&"
-        f"MaxStreamingBitrate=3000000&X-Emby-Token={token}&MediaSourceId={channel_id}&Static=true"
+        f"{BASE}/emby/videos/{channel_id}/master.m3u8"
     )
 
     # Write M3U line
