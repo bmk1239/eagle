@@ -8,10 +8,10 @@ URLS = [
 ]
 
 def get_inner_tv_content(xml_text):
-    m = re.search(r"<tv[^>]*>(.*)</tv>", xml_text, flags=re.S)
-    if not m:
-        raise ValueError("Invalid XML: missing <tv> tags")
-    return m.group(1)
+    match = re.search(r"<tv[^>]*>(.*)</tv>", xml_text, flags=re.S)
+    if not match:
+        raise ValueError("Missing <tv> root element")
+    return match.group(1)
 
 def main():
     seen_ids = set()
@@ -19,16 +19,13 @@ def main():
     channels = []
     programmes = []
 
+    # First pass: collect channels and track duplicates
     for url in URLS:
-        response = requests.get(url)
-        response.raise_for_status()
-        decompressed = gzip.decompress(response.content).decode("utf-8")
+        data = gzip.decompress(requests.get(url).content).decode("utf-8")
+        inner = get_inner_tv_content(data)
 
-        inner = get_inner_tv_content(decompressed)
-
-        # Extract channels
-        channel_blocks = re.findall(r"(<channel\b[^>]*>.*?</channel>)", inner, flags=re.S)
-        for block in channel_blocks:
+        blocks = re.findall(r"(<channel\b[^>]*?>.*?</channel>)", inner, flags=re.S)
+        for block in blocks:
             id_match = re.search(r'id="([^"]+)"', block)
             if not id_match:
                 continue
@@ -39,32 +36,27 @@ def main():
                 seen_ids.add(cid)
                 channels.append(block)
 
-    # Now process programmes, ignoring any whose channel is a duplicate id
+    # Second pass: collect programmes only for kept channels
     for url in URLS:
-        response = requests.get(url)
-        response.raise_for_status()
-        decompressed = gzip.decompress(response.content).decode("utf-8")
+        data = gzip.decompress(requests.get(url).content).decode("utf-8")
+        inner = get_inner_tv_content(data)
 
-        inner = get_inner_tv_content(decompressed)
-        programme_blocks = re.findall(r"(<programme\b[^>]*>.*?</programme>)", inner, flags=re.S)
-        for pr in programme_blocks:
-            ch_match = re.search(r'channel="([^"]+)"', pr)
-            if not ch_match:
-                continue
-            ch_id = ch_match.group(1)
-            if ch_id not in duplicate_ids:
-                programmes.append(pr)
+        prog_blocks = re.findall(r"(<programme\b[^>]*?>.*?</programme>)", inner, flags=re.S)
+        for block in prog_blocks:
+            ch_id_match = re.search(r'channel="([^"]+)"', block)
+            if ch_id_match:
+                ch_id = ch_id_match.group(1)
+                if ch_id not in duplicate_ids:
+                    programmes.append(block)
 
-    # Write merged output
-    with open("file1.xml", "w", encoding="utf-8") as f:
+    # Final output with LF line endings and UTF-8 (no BOM)
+    with open("file1.xml", "w", encoding="utf-8", newline="\n") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write("<tv>\n")
         for ch in channels:
-            f.write(ch)
-            f.write("\n")
+            f.write(ch + "\n")
         for pr in programmes:
-            f.write(pr)
-            f.write("\n")
+            f.write(pr + "\n")
         f.write("</tv>\n")
 
 if __name__ == "__main__":
