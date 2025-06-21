@@ -86,7 +86,7 @@ response = requests.get(channels_url, headers=headers, params=params)
 channels = response.json().get("Items", []) 
 
 # Count check
-current_count = len(channels)
+current_count = len(channels) - 1
 try:
     previous_count = int(COUNT_FILE.read_text().strip())
 except Exception:
