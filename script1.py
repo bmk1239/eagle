@@ -3,8 +3,8 @@ import requests
 import xml.etree.ElementTree as ET
 
 URLS = [
-    "https://www.open-epg.com/files/israel1.xml.gz",
     "https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz",
+    "https://www.open-epg.com/files/israel1.xml.gz",
 ]
 
 def download_and_parse(url):
@@ -15,21 +15,41 @@ def download_and_parse(url):
     return root
 
 def main():
-    trees = []
+    seen_channel_ids = set()
+    all_channels = []
+    all_programmes = []
+
     for url in URLS:
         root = download_and_parse(url)
-        trees.append(root)
 
-    # Assuming root.tag == 'tv'
-    unified_root = ET.Element("tv")
+        # Extract channels and programmes separately
+        channels = [ch for ch in root.findall('channel')]
+        programmes = [pr for pr in root.findall('programme')]
 
-    # To unify, combine <channel> and <programme> from both trees
-    for tree in trees:
-        for child in tree:
-            unified_root.append(child)
+        # Add channels if not duplicate id
+        for ch in channels:
+            ch_id = ch.attrib.get('id')
+            if ch_id and ch_id not in seen_channel_ids:
+                seen_channel_ids.add(ch_id)
+                all_channels.append(ch)
 
-    unified_tree = ET.ElementTree(unified_root)
-    unified_tree.write("file1.xml", encoding='utf-8', xml_declaration=True)
+        # Add all programmes (no deduplication)
+        all_programmes.extend(programmes)
+
+    # Build unified root
+    unified_root = ET.Element('tv')
+
+    # Append all unique channels first
+    for ch in all_channels:
+        unified_root.append(ch)
+
+    # Then append all programmes
+    for pr in all_programmes:
+        unified_root.append(pr)
+
+    # Write output file with XML declaration and UTF-8 encoding
+    tree = ET.ElementTree(unified_root)
+    tree.write("unified_epg.xml", encoding='utf-8', xml_declaration=True)
 
 if __name__ == "__main__":
     main()
