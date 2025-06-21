@@ -72,7 +72,7 @@ m3u_lines = ['#EXTM3U']
 # Step 1: Get channels
 channels_url = f"{BASE}/emby/LiveTv/Channels"
 params = {
-    "userId": user_id,
+    #"userId": user_id,
     "IsAiring": "true",
     "EnableUserData": "false",
     "Fields": "PrimaryImageAspectRatio",
@@ -109,10 +109,10 @@ for ch in channels:
     m3u_lines.append(m3u8_url)
 
 # Step 3: Output to file
-with open("playlist.m3u", "w", encoding="utf-8") as f:
+with open("file.m3u", "w", encoding="utf-8") as f:
     f.write("\n".join(m3u_lines))
 
-print("✅ M3U playlist saved as playlist.m3u")
+print("✅ M3U playlist saved as file.m3u")
 
 # Fetch programmes
 now = datetime.now(timezone.utc)
