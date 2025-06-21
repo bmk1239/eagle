@@ -20,6 +20,7 @@ def load_cached_token():
             data = json.load(f)
             return data.get("AccessToken"), data.get("UserId")
     except:
+        print("×××××××××××××333")
         return None, None
 
 # Save cache
