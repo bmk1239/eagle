@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, sys, requests
+import os, sys, json, requests
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 import html
@@ -8,27 +8,56 @@ from xml.dom import minidom
 BASE = os.getenv("MY_BASE")
 USERNAME = os.getenv("MY_USER")
 PASSWORD = os.getenv("MY_PASS")
+CACHE_FILE = os.getenv("EMBY_TOKEN_CACHE", "token_cache.json")
 
 if not BASE or not USERNAME or not PASSWORD:
     sys.exit("❌ Missing MY_BASE / MY_USER / MY_PASS")
+
+# Read cache
+def load_cached_token():
+    try:
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data.get("AccessToken"), data.get("UserId")
+    except:
+        return None, None
+
+# Save cache
+def save_cached_token(token, user_id):
+    try:
+        with open(CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump({"AccessToken": token, "UserId": user_id}, f)
+    except Exception as e:
+        print(f"⚠️ Failed to save token cache: {e}")
 
 # Authenticate
 auth_hdr = (
     'MediaBrowser Client="GitHubAction", Device="CI", '
     'DeviceId="gh-epg", Version="4.9.0.42"'
 )
-resp = requests.post(
-    f"{BASE}/emby/Users/AuthenticateByName",
-    headers={"Content-Type": "application/json",
-             "X-Emby-Authorization": auth_hdr},
-    json={"Username": USERNAME, "Pw": PASSWORD},
-    timeout=20
-)
-resp.raise_for_status()
-login = resp.json()
-token = login["AccessToken"]
-user_id = login["User"]["Id"]
-print("✅ Logged in")
+
+try:
+    resp = requests.post(
+        f"{BASE}/emby/Users/AuthenticateByName",
+        headers={
+            "Content-Type": "application/json",
+            "X-Emby-Authorization": auth_hdr
+        },
+        json={"Username": USERNAME, "Pw": PASSWORD},
+        timeout=20
+    )
+    resp.raise_for_status()
+    login = resp.json()
+    token = login["AccessToken"]
+    user_id = login["User"]["Id"]
+    save_cached_token(token, user_id)
+    print("✅ Logged in")
+except Exception as e:
+    print(f"⚠️ Authentication failed: {e}")
+    token, user_id = load_cached_token()
+    if not token or not user_id:
+        sys.exit("❌ No valid cached token available")
+    print("✅ Using cached token")
 
 # Fetch programmes
 now = datetime.now(timezone.utc)
