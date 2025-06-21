@@ -78,6 +78,8 @@ params = {
     "Fields": "PrimaryImageAspectRatio",
     "ImageTypeLimit": "1",
     "EnableImageTypes": "Primary",
+    "SortBy": "ChannelNumber",  # ← sort here
+    "SortOrder": "Ascending"
     #"Limit": 100,
     #"SortBy": "SortName"
 }
