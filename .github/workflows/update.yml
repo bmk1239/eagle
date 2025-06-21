@@ -29,5 +29,5 @@ jobs:
       - run: python script.py
       - uses: EndBug/add-and-commit@v9
         with:
-          add: file.xml playlist.m3u
-          message: "ci: update file.xml, playlist.m3u"
+          add: file.xml file.m3u
+          message: "ci: update file.xml file.m3u"
