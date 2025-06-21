@@ -156,9 +156,6 @@
   <channel id="2299449">
     <display-name>Channel 2299449</display-name>
   </channel>
-  <channel id="2299409">
-    <display-name>Channel 2299409</display-name>
-  </channel>
   <channel id="2305576">
     <display-name>Channel 2305576</display-name>
   </channel>
@@ -173,6 +170,9 @@
   </channel>
   <channel id="2299425">
     <display-name>Channel 2299425</display-name>
+  </channel>
+  <channel id="2299409">
+    <display-name>Channel 2299409</display-name>
   </channel>
   <channel id="2299434">
     <display-name>Channel 2299434</display-name>
@@ -335,9 +335,6 @@
   </programme>
   <programme channel="2299449" start="20250621005753 +0000" stop="20250621024523 +0000">
     <title lang="he">אביבה אהובתי</title>
-  </programme>
-  <programme channel="2299409" start="20250621010000 +0000" stop="20250621010500 +0000">
-    <title lang="he">מבזק חדשות</title>
   </programme>
   <programme channel="2305576" start="20250621010000 +0000" stop="20250621012300 +0000">
     <title lang="he">חדש! מלון הוטל 2</title>
