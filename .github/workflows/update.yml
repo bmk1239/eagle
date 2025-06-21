@@ -22,12 +22,32 @@ jobs:
           key: emby-token-cache-${{ runner.os }}
           restore-keys: |
             emby-token-cache-
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+
       - run: pip install requests
-      - run: python script.py
+
+      - name: Run playlist generator
+        run: python script.py
+
       - uses: EndBug/add-and-commit@v9
         with:
-          add: file.xml file.m3u
+          add: file.xml file.m3u channels_count.txt
           message: "ci: update file.xml file.m3u"
+
+      - name: Check if channel count changed
+        id: check
+        run: |
+          if [ -f channel_count_changed.flag ]; then
+            echo "changed=$(cat channel_count_changed.flag)" >> $GITHUB_OUTPUT
+          else
+          echo "changed=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Fail intentionally to notify if changed
+        if: steps.check.outputs.changed == '1'
+        run: |
+          echo "Channel count changed. Triggering GitHub alert by failing."
+          exit 1
