@@ -102,9 +102,6 @@
   <channel id="2299449">
     <display-name>Channel 2299449</display-name>
   </channel>
-  <channel id="2299421">
-    <display-name>Channel 2299421</display-name>
-  </channel>
   <channel id="2299451">
     <display-name>Channel 2299451</display-name>
   </channel>
@@ -144,9 +141,6 @@
   <channel id="2299438">
     <display-name>Channel 2299438</display-name>
   </channel>
-  <channel id="2305576">
-    <display-name>Channel 2305576</display-name>
-  </channel>
   <channel id="2299436">
     <display-name>Channel 2299436</display-name>
   </channel>
@@ -179,6 +173,12 @@
   </channel>
   <channel id="2299425">
     <display-name>Channel 2299425</display-name>
+  </channel>
+  <channel id="2305576">
+    <display-name>Channel 2305576</display-name>
+  </channel>
+  <channel id="2299421">
+    <display-name>Channel 2299421</display-name>
   </channel>
   <programme channel="2436645" start="20250621080000 +0000" stop="20250621120000 +0000">
     <title lang="he">האח הגדול</title>
@@ -282,9 +282,6 @@
   <programme channel="2299449" start="20250621104111 +0000" stop="20250621121436 +0000">
     <title lang="he">לבנון</title>
   </programme>
-  <programme channel="2299421" start="20250621104500 +0000" stop="20250621114000 +0000">
-    <title lang="he">ישיר! איטליה, דירוג מוטו 3</title>
-  </programme>
   <programme channel="2299451" start="20250621104750 +0000" stop="20250621122052 +0000">
     <title lang="he">אולי חתונה</title>
   </programme>
@@ -323,9 +320,6 @@
   </programme>
   <programme channel="2299438" start="20250621111100 +0000" stop="20250621115400 +0000">
     <title lang="he">FBI International - עונה 4</title>
-  </programme>
-  <programme channel="2305576" start="20250621111200 +0000" stop="20250621114000 +0000">
-    <title lang="he">כראמל</title>
   </programme>
   <programme channel="2299436" start="20250621112000 +0000" stop="20250621120500 +0000">
     <title lang="he">המלונות המדהימים בעולם 2</title>
