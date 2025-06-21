@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
 <tv>
-  <channel id="2299423">
-    <display-name>Channel 2299423</display-name>
-  </channel>
   <channel id="2299425">
     <display-name>Channel 2299425</display-name>
   </channel>
@@ -12,32 +9,17 @@
   <channel id="2350798">
     <display-name>Channel 2350798</display-name>
   </channel>
-  <channel id="2305579">
-    <display-name>Channel 2305579</display-name>
-  </channel>
   <channel id="2299414">
     <display-name>Channel 2299414</display-name>
   </channel>
   <channel id="2299422">
     <display-name>Channel 2299422</display-name>
   </channel>
-  <channel id="2299451">
-    <display-name>Channel 2299451</display-name>
-  </channel>
   <channel id="2299419">
     <display-name>Channel 2299419</display-name>
   </channel>
-  <channel id="2299416">
-    <display-name>Channel 2299416</display-name>
-  </channel>
   <channel id="2299432">
     <display-name>Channel 2299432</display-name>
-  </channel>
-  <channel id="2299437">
-    <display-name>Channel 2299437</display-name>
-  </channel>
-  <channel id="2299449">
-    <display-name>Channel 2299449</display-name>
   </channel>
   <channel id="2299450">
     <display-name>Channel 2299450</display-name>
@@ -48,14 +30,8 @@
   <channel id="2299417">
     <display-name>Channel 2299417</display-name>
   </channel>
-  <channel id="2299435">
-    <display-name>Channel 2299435</display-name>
-  </channel>
   <channel id="2299429">
     <display-name>Channel 2299429</display-name>
-  </channel>
-  <channel id="2299438">
-    <display-name>Channel 2299438</display-name>
   </channel>
   <channel id="2299430">
     <display-name>Channel 2299430</display-name>
@@ -123,9 +99,6 @@
   <channel id="2305578">
     <display-name>Channel 2305578</display-name>
   </channel>
-  <channel id="2299420">
-    <display-name>Channel 2299420</display-name>
-  </channel>
   <channel id="2299421">
     <display-name>Channel 2299421</display-name>
   </channel>
@@ -135,29 +108,11 @@
   <channel id="2299427">
     <display-name>Channel 2299427</display-name>
   </channel>
-  <channel id="2299409">
-    <display-name>Channel 2299409</display-name>
-  </channel>
-  <channel id="2299447">
-    <display-name>Channel 2299447</display-name>
-  </channel>
-  <channel id="2299428">
-    <display-name>Channel 2299428</display-name>
-  </channel>
-  <channel id="2305576">
-    <display-name>Channel 2305576</display-name>
-  </channel>
   <channel id="2299436">
     <display-name>Channel 2299436</display-name>
   </channel>
-  <channel id="2299448">
-    <display-name>Channel 2299448</display-name>
-  </channel>
   <channel id="2299431">
     <display-name>Channel 2299431</display-name>
-  </channel>
-  <channel id="2299411">
-    <display-name>Channel 2299411</display-name>
   </channel>
   <channel id="2299413">
     <display-name>Channel 2299413</display-name>
@@ -174,15 +129,57 @@
   <channel id="2299446">
     <display-name>Channel 2299446</display-name>
   </channel>
+  <channel id="2299435">
+    <display-name>Channel 2299435</display-name>
+  </channel>
+  <channel id="2299448">
+    <display-name>Channel 2299448</display-name>
+  </channel>
+  <channel id="2299409">
+    <display-name>Channel 2299409</display-name>
+  </channel>
+  <channel id="2305576">
+    <display-name>Channel 2305576</display-name>
+  </channel>
+  <channel id="2299423">
+    <display-name>Channel 2299423</display-name>
+  </channel>
+  <channel id="2299428">
+    <display-name>Channel 2299428</display-name>
+  </channel>
+  <channel id="2299438">
+    <display-name>Channel 2299438</display-name>
+  </channel>
+  <channel id="2305579">
+    <display-name>Channel 2305579</display-name>
+  </channel>
+  <channel id="2299420">
+    <display-name>Channel 2299420</display-name>
+  </channel>
+  <channel id="2299447">
+    <display-name>Channel 2299447</display-name>
+  </channel>
+  <channel id="2299437">
+    <display-name>Channel 2299437</display-name>
+  </channel>
+  <channel id="2299416">
+    <display-name>Channel 2299416</display-name>
+  </channel>
+  <channel id="2299411">
+    <display-name>Channel 2299411</display-name>
+  </channel>
+  <channel id="2299451">
+    <display-name>Channel 2299451</display-name>
+  </channel>
+  <channel id="2299449">
+    <display-name>Channel 2299449</display-name>
+  </channel>
   <channel id="2299434">
     <display-name>Channel 2299434</display-name>
   </channel>
   <channel id="2299433">
     <display-name>Channel 2299433</display-name>
   </channel>
-  <programme channel="2299423" start="20250620213500 +0000" stop="20250621003500 +0000">
-    <title lang="he">מיטב קרבות ה-UFC</title>
-  </programme>
   <programme channel="2299425" start="20250620214700 +0000" stop="20250621010300 +0000">
     <title lang="he">One Championship - FIGHT NIGHT 32</title>
   </programme>
@@ -192,32 +189,17 @@
   <programme channel="2350798" start="20250620225000 +0000" stop="20250621023000 +0000">
     <title lang="he">ATP 500: טורניר קווינס, ר&amp;#x27; גמר</title>
   </programme>
-  <programme channel="2305579" start="20250620225400 +0000" stop="20250621004300 +0000">
-    <title lang="he">אימפריות עתיקות - פרק 2</title>
-  </programme>
   <programme channel="2299414" start="20250620230000 +0000" stop="20250621030000 +0000">
     <title lang="he">מלחמה עם איראן - משדר מיוחד</title>
   </programme>
   <programme channel="2299422" start="20250620230000 +0000" stop="20250621020000 +0000">
     <title lang="he">ישיר! ניו יורק יאנקיס - בולטימור</title>
   </programme>
-  <programme channel="2299451" start="20250620230543 +0000" stop="20250621005545 +0000">
-    <title lang="he">שאלוהים יעזור לה</title>
-  </programme>
   <programme channel="2299419" start="20250620231500 +0000" stop="20250621011500 +0000">
     <title lang="he">צפון מקדוניה - ישראל</title>
   </programme>
-  <programme channel="2299416" start="20250620232000 +0000" stop="20250621005500 +0000">
-    <title lang="he">בשירות פוד מלכותו (האנגלים הגדולים)</title>
-  </programme>
   <programme channel="2299432" start="20250620232300 +0000" stop="20250621011900 +0000">
     <title lang="he">הרעיון שהוא אתה</title>
-  </programme>
-  <programme channel="2299437" start="20250620232700 +0000" stop="20250621005300 +0000">
-    <title lang="he">מחווה לפשנל</title>
-  </programme>
-  <programme channel="2299449" start="20250620233358 +0000" stop="20250621005753 +0000">
-    <title lang="he">אילוף הגוררת</title>
   </programme>
   <programme channel="2299450" start="20250620233415 +0000" stop="20250621011403 +0000">
     <title lang="he">הנוקם</title>
@@ -228,14 +210,8 @@
   <programme channel="2299417" start="20250620234000 +0000" stop="20250621013000 +0000">
     <title lang="he">הולנד - אנגליה</title>
   </programme>
-  <programme channel="2299435" start="20250620234500 +0000" stop="20250621003300 +0000">
-    <title lang="he">פשוט ככה 3</title>
-  </programme>
   <programme channel="2299429" start="20250620235400 +0000" stop="20250621020700 +0000">
     <title lang="he">לחישות מלחמה - ניקולס קייג&amp;#x27;</title>
-  </programme>
-  <programme channel="2299438" start="20250620235400 +0000" stop="20250621003500 +0000">
-    <title lang="he">שיקגו Fire, עונה 12</title>
   </programme>
   <programme channel="2299430" start="20250620235600 +0000" stop="20250621013900 +0000">
     <title lang="he">משימה קטלנית - ואן דאם</title>
@@ -303,9 +279,6 @@
   <programme channel="2305578" start="20250621000000 +0000" stop="20250621010000 +0000">
     <title lang="he">נשוב לשדר במוצאי שבת</title>
   </programme>
-  <programme channel="2299420" start="20250621000000 +0000" stop="20250621004500 +0000">
-    <title lang="he">ישיר! ב. מינכן - בוקה ג&amp;#x27;וניורס, חי מהמגר</title>
-  </programme>
   <programme channel="2299421" start="20250621000000 +0000" stop="20250621031500 +0000">
     <title lang="he">ישיר! מונדיאל המועדונים - כמו במגרש</title>
   </programme>
@@ -315,29 +288,11 @@
   <programme channel="2299427" start="20250621000000 +0000" stop="20250621010000 +0000">
     <title lang="he">פורמולה E</title>
   </programme>
-  <programme channel="2299409" start="20250621000500 +0000" stop="20250621003400 +0000">
-    <title lang="he">פסטיבל הפסנתר 2023 - אסף אמדורסקי</title>
-  </programme>
-  <programme channel="2299447" start="20250621000616 +0000" stop="20250621004941 +0000">
-    <title lang="he">כפולים  3 - חשוד חדש</title>
-  </programme>
-  <programme channel="2299428" start="20250621000800 +0000" stop="20250621003500 +0000">
-    <title lang="he">ספורט מסביב לעולם - מהדורה מיוחדת</title>
-  </programme>
-  <programme channel="2305576" start="20250621001000 +0000" stop="20250621003500 +0000">
-    <title lang="he">עשרים פלוס</title>
-  </programme>
   <programme channel="2299436" start="20250621001000 +0000" stop="20250621011400 +0000">
     <title lang="he">ספי</title>
   </programme>
-  <programme channel="2299448" start="20250621001045 +0000" stop="20250621003340 +0000">
-    <title lang="he">1 - ביפ קומדי האוס</title>
-  </programme>
   <programme channel="2299431" start="20250621001900 +0000" stop="20250621014900 +0000">
     <title lang="he">סלסט וג&amp;#x27;סי לנצח - ראשידה ג&amp;#x27;ונס</title>
-  </programme>
-  <programme channel="2299411" start="20250621002800 +0000" stop="20250621005500 +0000">
-    <title lang="he">מכתוב עם אילון בן יוסף</title>
   </programme>
   <programme channel="2299413" start="20250621003000 +0000" stop="20250621010000 +0000">
     <title lang="he">משדר מיוחד</title>
