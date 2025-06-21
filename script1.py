@@ -10,9 +10,7 @@ URLS = [
 def download_and_parse(url):
     response = requests.get(url)
     response.raise_for_status()
-    with gzip.decompress(response.content) as decompressed:
-        # gzip.decompress returns bytes, decode for XML parser
-        xml_content = gzip.decompress(response.content).decode('utf-8')
+    xml_content = gzip.decompress(response.content).decode('utf-8')
     root = ET.fromstring(xml_content)
     return root
 
