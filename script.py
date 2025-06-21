@@ -20,7 +20,6 @@ def load_cached_token():
             data = json.load(f)
             return data.get("AccessToken"), data.get("UserId")
     except:
-        print("×××××××××××××333")
         return None, None
 
 # Save cache
@@ -44,7 +43,7 @@ try:
             "Content-Type": "application/json",
             "X-Emby-Authorization": auth_hdr
         },
-        json={"Username": "username", "Pw": PASSWORD},
+        json={"Username": USERNAME, "Pw": PASSWORD},
         timeout=20
     )
     resp.raise_for_status()
