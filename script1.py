@@ -31,7 +31,7 @@ def main():
             unified_root.append(child)
 
     unified_tree = ET.ElementTree(unified_root)
-    unified_tree.write("unified_epg.xml", encoding='utf-8', xml_declaration=True)
+    unified_tree.write("file1.xml", encoding='utf-8', xml_declaration=True)
 
 if __name__ == "__main__":
     main()
