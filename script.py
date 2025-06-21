@@ -92,9 +92,12 @@ for prog in programs:
 for ch_id, ch_name in channels.items():
     ch = ET.SubElement(tv, "channel", {"id": ch_id})
     ET.SubElement(ch, "display-name").text = ch_name
-
+foo = true
 # <programme> entries
 for prog in programs:
+    if(foo):
+        print("🔑 Available keys:", list(prog.keys()))
+        foo = false
     ch_id = str(prog["ChannelId"])
     start = datetime.fromisoformat(prog["StartDate"].replace("Z", "+00:00"))
     stop = datetime.fromisoformat(prog["EndDate"].replace("Z", "+00:00"))
