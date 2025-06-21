@@ -17,19 +17,19 @@ $response | Format-List
 $accessToken = $response.AccessToken
 $userId = $response.User.Id
 
-
-
+# Step 2: Create permanent token
 $tokenUrl = "https://play.embyil.tv/emby/Users/$userId/AccessTokens"
 
-$headers = @{
+$tokenHeaders = @{
     "X-Emby-Token" = $accessToken
     "Content-Type" = "application/json"
 }
 
 $tokenBody = @{
-    Name = "My Permanent Token"
-} | ConvertTo-Json
+    Name = "MyPermanentPowerShellToken"
+} | ConvertTo-Json -Compress
 
-$newToken = Invoke-RestMethod -Uri $tokenUrl -Method Post -Headers $headers -Body $tokenBody
+$tokenResponse = Invoke-RestMethod -Uri $tokenUrl -Method Post -Headers $tokenHeaders -Body $tokenBody
 
-$newToken | Format-List
+Write-Host "`n✅ Permanent token created!"
+$tokenResponse | Format-List
