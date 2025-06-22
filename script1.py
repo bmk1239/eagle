@@ -25,7 +25,7 @@ URLS = [
     "https://www.open-epg.com/files/israel1.xml.gz",
 ]
 
-CSV_MAP = Path("id_to_tvgid.csv")          # mapping file (channel_id,tvg-id)
+CSV_MAP = Path("file.csv")          # mapping file (channel_id,tvg-id)
 OUT_XML = Path("file1.xml")                # Unified EPG that we generate
 REQUEST_TIMEOUT = 60                       # seconds
 # --------------------------------------------------------------------------- #
@@ -42,7 +42,7 @@ def load_mapping(csv_path: Path) -> Dict[str, str]:
     with csv_path.open(encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
         for row in reader:
-            src = row["channel_id"].strip()
+            src = row["channel-id"].strip()
             dst = row["tvg-id"].strip()
             if src and dst:
                 mapping[src] = dst
