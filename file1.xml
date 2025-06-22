@@ -4,7 +4,7 @@
     <display-name lang="he">Eurosport</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2299442">
+  <channel id="הוט.בידור.ישראלי.il">
     <display-name lang="he">הוט בידור ישראלי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
@@ -12,15 +12,15 @@
     <display-name lang="he">ניקלודיאון שידור חי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2299423">
+  <channel id="ספורט.5.גולד.il">
     <display-name lang="he">ספורט 5 גולד</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2299421">
+  <channel id="ספורט.5.לייב.il">
     <display-name lang="he">ספורט 5 לייב</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2350798">
+  <channel id="ספורט.5.פלוס.il">
     <display-name lang="he">ספורט 5 פלוס</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
@@ -36,19 +36,19 @@
     <display-name lang="he">ערוץ 12 שידור חי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2299412">
+  <channel id="ערוץ.14.שידור.חי.il">
     <display-name lang="he">ערוץ 14 שידור חי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2305577">
+  <channel id="ערוץ.24.בשידור.חי.il">
     <display-name lang="he">ערוץ 24 בשידור חי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2299435">
+  <channel id="ערוץ.3.שידור.חי.il">
     <display-name lang="he">ערוץ 3 שידור חי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="2299436">
+  <channel id="ערוץ.8.שידור.חי.il">
     <display-name lang="he">ערוץ 8 שידור חי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
@@ -365,445 +365,445 @@
   <programme start="20250625223000 +0300" stop="20250625233000 +0300" channel="2299426">
     <title lang="he">סנוקר</title>
   </programme>
-  <programme start="20250622000300 +0300" stop="20250622003500 +0300" channel="2299442">
+  <programme start="20250622000300 +0300" stop="20250622003500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">סמולטוק</title>
   </programme>
-  <programme start="20250622003500 +0300" stop="20250622005800 +0300" channel="2299442">
+  <programme start="20250622003500 +0300" stop="20250622005800 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">פולמון 2 פרק 43</title>
   </programme>
-  <programme start="20250622005800 +0300" stop="20250622012100 +0300" channel="2299442">
+  <programme start="20250622005800 +0300" stop="20250622012100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">פולמון 2 פרק 44</title>
   </programme>
-  <programme start="20250622012100 +0300" stop="20250622014600 +0300" channel="2299442">
+  <programme start="20250622012100 +0300" stop="20250622014600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">פולמון 2 פרק 45</title>
   </programme>
-  <programme start="20250622014600 +0300" stop="20250622022000 +0300" channel="2299442">
+  <programme start="20250622014600 +0300" stop="20250622022000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 1</title>
   </programme>
-  <programme start="20250622022000 +0300" stop="20250622025100 +0300" channel="2299442">
+  <programme start="20250622022000 +0300" stop="20250622025100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 2</title>
   </programme>
-  <programme start="20250622025100 +0300" stop="20250622031500 +0300" channel="2299442">
+  <programme start="20250622025100 +0300" stop="20250622031500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 3</title>
   </programme>
-  <programme start="20250622031500 +0300" stop="20250622033600 +0300" channel="2299442">
+  <programme start="20250622031500 +0300" stop="20250622033600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 4</title>
   </programme>
-  <programme start="20250622033600 +0300" stop="20250622040000 +0300" channel="2299442">
+  <programme start="20250622033600 +0300" stop="20250622040000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 5</title>
   </programme>
-  <programme start="20250622040000 +0300" stop="20250622060000 +0300" channel="2299442">
+  <programme start="20250622040000 +0300" stop="20250622060000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250622060000 +0300" stop="20250622080000 +0300" channel="2299442">
+  <programme start="20250622060000 +0300" stop="20250622080000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250622080000 +0300" stop="20250622082400 +0300" channel="2299442">
+  <programme start="20250622080000 +0300" stop="20250622082400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250622082400 +0300" stop="20250622085400 +0300" channel="2299442">
+  <programme start="20250622082400 +0300" stop="20250622085400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 15</title>
   </programme>
-  <programme start="20250622085400 +0300" stop="20250622092100 +0300" channel="2299442">
+  <programme start="20250622085400 +0300" stop="20250622092100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי פרק 7</title>
   </programme>
-  <programme start="20250622092100 +0300" stop="20250622094900 +0300" channel="2299442">
+  <programme start="20250622092100 +0300" stop="20250622094900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 5</title>
   </programme>
-  <programme start="20250622094900 +0300" stop="20250622103500 +0300" channel="2299442">
+  <programme start="20250622094900 +0300" stop="20250622103500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 90</title>
   </programme>
-  <programme start="20250622112300 +0300" stop="20250622115600 +0300" channel="2299442">
+  <programme start="20250622112300 +0300" stop="20250622115600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250622115600 +0300" stop="20250622122200 +0300" channel="2299442">
+  <programme start="20250622115600 +0300" stop="20250622122200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 9. חזל''ש פרק 9</title>
   </programme>
-  <programme start="20250622122200 +0300" stop="20250622124600 +0300" channel="2299442">
+  <programme start="20250622122200 +0300" stop="20250622124600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 6</title>
   </programme>
-  <programme start="20250622124600 +0300" stop="20250622131400 +0300" channel="2299442">
+  <programme start="20250622124600 +0300" stop="20250622131400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 5</title>
   </programme>
-  <programme start="20250622131400 +0300" stop="20250622140000 +0300" channel="2299442">
+  <programme start="20250622131400 +0300" stop="20250622140000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 90</title>
   </programme>
-  <programme start="20250622140000 +0300" stop="20250622144600 +0300" channel="2299442">
+  <programme start="20250622140000 +0300" stop="20250622144600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 38</title>
   </programme>
-  <programme start="20250622144600 +0300" stop="20250622151900 +0300" channel="2299442">
+  <programme start="20250622144600 +0300" stop="20250622151900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250622151900 +0300" stop="20250622154700 +0300" channel="2299442">
+  <programme start="20250622151900 +0300" stop="20250622154700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250622154700 +0300" stop="20250622161200 +0300" channel="2299442">
+  <programme start="20250622154700 +0300" stop="20250622161200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 16</title>
   </programme>
-  <programme start="20250622161200 +0300" stop="20250622164200 +0300" channel="2299442">
+  <programme start="20250622161200 +0300" stop="20250622164200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250622164200 +0300" stop="20250622170700 +0300" channel="2299442">
+  <programme start="20250622164200 +0300" stop="20250622170700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 5</title>
   </programme>
-  <programme start="20250622170700 +0300" stop="20250622175600 +0300" channel="2299442">
+  <programme start="20250622170700 +0300" stop="20250622175600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 90</title>
   </programme>
-  <programme start="20250622175600 +0300" stop="20250622184100 +0300" channel="2299442">
+  <programme start="20250622175600 +0300" stop="20250622184100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 38</title>
   </programme>
-  <programme start="20250622184100 +0300" stop="20250622191500 +0300" channel="2299442">
+  <programme start="20250622184100 +0300" stop="20250622191500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250622191500 +0300" stop="20250622194000 +0300" channel="2299442">
+  <programme start="20250622191500 +0300" stop="20250622194000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 10. יום שכזה פרק 10</title>
   </programme>
-  <programme start="20250622194000 +0300" stop="20250622200900 +0300" channel="2299442">
+  <programme start="20250622194000 +0300" stop="20250622200900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250622200900 +0300" stop="20250622205400 +0300" channel="2299442">
+  <programme start="20250622200900 +0300" stop="20250622205400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250622205400 +0300" stop="20250622214000 +0300" channel="2299442">
+  <programme start="20250622205400 +0300" stop="20250622214000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250622214000 +0300" stop="20250622221300 +0300" channel="2299442">
+  <programme start="20250622214000 +0300" stop="20250622221300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250622221300 +0300" stop="20250622224200 +0300" channel="2299442">
+  <programme start="20250622221300 +0300" stop="20250622224200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250622224200 +0300" stop="20250622230900 +0300" channel="2299442">
+  <programme start="20250622224200 +0300" stop="20250622230900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 7</title>
   </programme>
-  <programme start="20250622230900 +0300" stop="20250622235600 +0300" channel="2299442">
+  <programme start="20250622230900 +0300" stop="20250622235600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250622235600 +0300" stop="20250623004100 +0300" channel="2299442">
+  <programme start="20250622235600 +0300" stop="20250623004100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250623004100 +0300" stop="20250623011600 +0300" channel="2299442">
+  <programme start="20250623004100 +0300" stop="20250623011600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250623011600 +0300" stop="20250623014100 +0300" channel="2299442">
+  <programme start="20250623011600 +0300" stop="20250623014100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 10. יום שכזה פרק 10</title>
   </programme>
-  <programme start="20250623014100 +0300" stop="20250623021300 +0300" channel="2299442">
+  <programme start="20250623014100 +0300" stop="20250623021300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250623021300 +0300" stop="20250623023700 +0300" channel="2299442">
+  <programme start="20250623021300 +0300" stop="20250623023700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250623023700 +0300" stop="20250623030600 +0300" channel="2299442">
+  <programme start="20250623023700 +0300" stop="20250623030600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 16</title>
   </programme>
-  <programme start="20250623030600 +0300" stop="20250623033300 +0300" channel="2299442">
+  <programme start="20250623030600 +0300" stop="20250623033300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250623033300 +0300" stop="20250623040000 +0300" channel="2299442">
+  <programme start="20250623033300 +0300" stop="20250623040000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 7</title>
   </programme>
-  <programme start="20250623040000 +0300" stop="20250623060000 +0300" channel="2299442">
+  <programme start="20250623040000 +0300" stop="20250623060000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250623060000 +0300" stop="20250623080000 +0300" channel="2299442">
+  <programme start="20250623060000 +0300" stop="20250623080000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250623080000 +0300" stop="20250623082400 +0300" channel="2299442">
+  <programme start="20250623080000 +0300" stop="20250623082400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250623082400 +0300" stop="20250623085300 +0300" channel="2299442">
+  <programme start="20250623082400 +0300" stop="20250623085300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 16</title>
   </programme>
-  <programme start="20250623085300 +0300" stop="20250623092000 +0300" channel="2299442">
+  <programme start="20250623085300 +0300" stop="20250623092000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250623092000 +0300" stop="20250623095200 +0300" channel="2299442">
+  <programme start="20250623092000 +0300" stop="20250623095200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250623095200 +0300" stop="20250623103700 +0300" channel="2299442">
+  <programme start="20250623095200 +0300" stop="20250623103700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250623103700 +0300" stop="20250623112600 +0300" channel="2299442">
+  <programme start="20250623103700 +0300" stop="20250623112600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250623112600 +0300" stop="20250623115900 +0300" channel="2299442">
+  <programme start="20250623112600 +0300" stop="20250623115900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250623115900 +0300" stop="20250623122500 +0300" channel="2299442">
+  <programme start="20250623115900 +0300" stop="20250623122500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 10. יום שכזה פרק 10</title>
   </programme>
-  <programme start="20250623122500 +0300" stop="20250623125100 +0300" channel="2299442">
+  <programme start="20250623122500 +0300" stop="20250623125100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 7</title>
   </programme>
-  <programme start="20250623125100 +0300" stop="20250623132100 +0300" channel="2299442">
+  <programme start="20250623125100 +0300" stop="20250623132100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250623132100 +0300" stop="20250623140600 +0300" channel="2299442">
+  <programme start="20250623132100 +0300" stop="20250623140600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250623140600 +0300" stop="20250623145200 +0300" channel="2299442">
+  <programme start="20250623140600 +0300" stop="20250623145200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250623145200 +0300" stop="20250623152500 +0300" channel="2299442">
+  <programme start="20250623145200 +0300" stop="20250623152500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250623152500 +0300" stop="20250623154900 +0300" channel="2299442">
+  <programme start="20250623152500 +0300" stop="20250623154900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250623154900 +0300" stop="20250623161700 +0300" channel="2299442">
+  <programme start="20250623154900 +0300" stop="20250623161700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסוכנים פרק 1</title>
   </programme>
-  <programme start="20250623161700 +0300" stop="20250623164600 +0300" channel="2299442">
+  <programme start="20250623161700 +0300" stop="20250623164600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250623164600 +0300" stop="20250623171400 +0300" channel="2299442">
+  <programme start="20250623164600 +0300" stop="20250623171400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250623171400 +0300" stop="20250623180000 +0300" channel="2299442">
+  <programme start="20250623171400 +0300" stop="20250623180000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250623180000 +0300" stop="20250623184600 +0300" channel="2299442">
+  <programme start="20250623180000 +0300" stop="20250623184600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250623184600 +0300" stop="20250623192000 +0300" channel="2299442">
+  <programme start="20250623184600 +0300" stop="20250623192000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250623192000 +0300" stop="20250623194400 +0300" channel="2299442">
+  <programme start="20250623192000 +0300" stop="20250623194400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 11. 200k פרק 11</title>
   </programme>
-  <programme start="20250623194400 +0300" stop="20250623200900 +0300" channel="2299442">
+  <programme start="20250623194400 +0300" stop="20250623200900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 7</title>
   </programme>
-  <programme start="20250623200900 +0300" stop="20250623205400 +0300" channel="2299442">
+  <programme start="20250623200900 +0300" stop="20250623205400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 92</title>
   </programme>
-  <programme start="20250623205400 +0300" stop="20250623214000 +0300" channel="2299442">
+  <programme start="20250623205400 +0300" stop="20250623214000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 40</title>
   </programme>
-  <programme start="20250623214000 +0300" stop="20250623221200 +0300" channel="2299442">
+  <programme start="20250623214000 +0300" stop="20250623221200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250623221200 +0300" stop="20250623223700 +0300" channel="2299442">
+  <programme start="20250623221200 +0300" stop="20250623223700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 7</title>
   </programme>
-  <programme start="20250623223700 +0300" stop="20250623230300 +0300" channel="2299442">
+  <programme start="20250623223700 +0300" stop="20250623230300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 8</title>
   </programme>
-  <programme start="20250624004100 +0300" stop="20250624011600 +0300" channel="2299442">
+  <programme start="20250624004100 +0300" stop="20250624011600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250624011600 +0300" stop="20250624014100 +0300" channel="2299442">
+  <programme start="20250624011600 +0300" stop="20250624014100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 10. יום שכזה פרק 10</title>
   </programme>
-  <programme start="20250624014100 +0300" stop="20250624021300 +0300" channel="2299442">
+  <programme start="20250624014100 +0300" stop="20250624021300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250624021300 +0300" stop="20250624023700 +0300" channel="2299442">
+  <programme start="20250624021300 +0300" stop="20250624023700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250624023700 +0300" stop="20250624030600 +0300" channel="2299442">
+  <programme start="20250624023700 +0300" stop="20250624030600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 16</title>
   </programme>
-  <programme start="20250624030600 +0300" stop="20250624033300 +0300" channel="2299442">
+  <programme start="20250624030600 +0300" stop="20250624033300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250624033300 +0300" stop="20250624040000 +0300" channel="2299442">
+  <programme start="20250624033300 +0300" stop="20250624040000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 7</title>
   </programme>
-  <programme start="20250624040000 +0300" stop="20250624060000 +0300" channel="2299442">
+  <programme start="20250624040000 +0300" stop="20250624060000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250624060000 +0300" stop="20250624080000 +0300" channel="2299442">
+  <programme start="20250624060000 +0300" stop="20250624080000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250624080000 +0300" stop="20250624082400 +0300" channel="2299442">
+  <programme start="20250624080000 +0300" stop="20250624082400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250624082400 +0300" stop="20250624085300 +0300" channel="2299442">
+  <programme start="20250624082400 +0300" stop="20250624085300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 16</title>
   </programme>
-  <programme start="20250624085300 +0300" stop="20250624092000 +0300" channel="2299442">
+  <programme start="20250624085300 +0300" stop="20250624092000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250624092000 +0300" stop="20250624095200 +0300" channel="2299442">
+  <programme start="20250624092000 +0300" stop="20250624095200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250624095200 +0300" stop="20250624103700 +0300" channel="2299442">
+  <programme start="20250624095200 +0300" stop="20250624103700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250624103700 +0300" stop="20250624112600 +0300" channel="2299442">
+  <programme start="20250624103700 +0300" stop="20250624112600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250624112600 +0300" stop="20250624115900 +0300" channel="2299442">
+  <programme start="20250624112600 +0300" stop="20250624115900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250624115900 +0300" stop="20250624122500 +0300" channel="2299442">
+  <programme start="20250624115900 +0300" stop="20250624122500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 10. יום שכזה פרק 10</title>
   </programme>
-  <programme start="20250624122500 +0300" stop="20250624125100 +0300" channel="2299442">
+  <programme start="20250624122500 +0300" stop="20250624125100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 7</title>
   </programme>
-  <programme start="20250624125100 +0300" stop="20250624132100 +0300" channel="2299442">
+  <programme start="20250624125100 +0300" stop="20250624132100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250624132100 +0300" stop="20250624140600 +0300" channel="2299442">
+  <programme start="20250624132100 +0300" stop="20250624140600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250624140600 +0300" stop="20250624145200 +0300" channel="2299442">
+  <programme start="20250624140600 +0300" stop="20250624145200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250624145200 +0300" stop="20250624152500 +0300" channel="2299442">
+  <programme start="20250624145200 +0300" stop="20250624152500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250624152500 +0300" stop="20250624154900 +0300" channel="2299442">
+  <programme start="20250624152500 +0300" stop="20250624154900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250624154900 +0300" stop="20250624161700 +0300" channel="2299442">
+  <programme start="20250624154900 +0300" stop="20250624161700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסוכנים פרק 1</title>
   </programme>
-  <programme start="20250624161700 +0300" stop="20250624164600 +0300" channel="2299442">
+  <programme start="20250624161700 +0300" stop="20250624164600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250624164600 +0300" stop="20250624171400 +0300" channel="2299442">
+  <programme start="20250624164600 +0300" stop="20250624171400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250624171400 +0300" stop="20250624180000 +0300" channel="2299442">
+  <programme start="20250624171400 +0300" stop="20250624180000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250624180000 +0300" stop="20250624184600 +0300" channel="2299442">
+  <programme start="20250624180000 +0300" stop="20250624184600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250624184600 +0300" stop="20250624192000 +0300" channel="2299442">
+  <programme start="20250624184600 +0300" stop="20250624192000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250624192000 +0300" stop="20250624194400 +0300" channel="2299442">
+  <programme start="20250624192000 +0300" stop="20250624194400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 11. 200k פרק 11</title>
   </programme>
-  <programme start="20250624194400 +0300" stop="20250624200900 +0300" channel="2299442">
+  <programme start="20250624194400 +0300" stop="20250624200900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 7</title>
   </programme>
-  <programme start="20250624200900 +0300" stop="20250624205400 +0300" channel="2299442">
+  <programme start="20250624200900 +0300" stop="20250624205400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 92</title>
   </programme>
-  <programme start="20250624205400 +0300" stop="20250624214000 +0300" channel="2299442">
+  <programme start="20250624205400 +0300" stop="20250624214000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 40</title>
   </programme>
-  <programme start="20250624214000 +0300" stop="20250624221200 +0300" channel="2299442">
+  <programme start="20250624214000 +0300" stop="20250624221200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250624221200 +0300" stop="20250624223700 +0300" channel="2299442">
+  <programme start="20250624221200 +0300" stop="20250624223700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 7</title>
   </programme>
-  <programme start="20250624223700 +0300" stop="20250624230300 +0300" channel="2299442">
+  <programme start="20250624223700 +0300" stop="20250624230300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 8</title>
   </programme>
-  <programme start="20250625004100 +0300" stop="20250625011600 +0300" channel="2299442">
+  <programme start="20250625004100 +0300" stop="20250625011600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250625011600 +0300" stop="20250625014100 +0300" channel="2299442">
+  <programme start="20250625011600 +0300" stop="20250625014100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 10. יום שכזה פרק 10</title>
   </programme>
-  <programme start="20250625014100 +0300" stop="20250625021300 +0300" channel="2299442">
+  <programme start="20250625014100 +0300" stop="20250625021300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250625021300 +0300" stop="20250625023700 +0300" channel="2299442">
+  <programme start="20250625021300 +0300" stop="20250625023700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250625023700 +0300" stop="20250625030600 +0300" channel="2299442">
+  <programme start="20250625023700 +0300" stop="20250625030600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 16</title>
   </programme>
-  <programme start="20250625030600 +0300" stop="20250625033300 +0300" channel="2299442">
+  <programme start="20250625030600 +0300" stop="20250625033300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250625033300 +0300" stop="20250625040000 +0300" channel="2299442">
+  <programme start="20250625033300 +0300" stop="20250625040000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 7</title>
   </programme>
-  <programme start="20250625040000 +0300" stop="20250625060000 +0300" channel="2299442">
+  <programme start="20250625040000 +0300" stop="20250625060000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250625060000 +0300" stop="20250625080000 +0300" channel="2299442">
+  <programme start="20250625060000 +0300" stop="20250625080000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">נשוב לשדר ב-0800</title>
   </programme>
-  <programme start="20250625080000 +0300" stop="20250625082400 +0300" channel="2299442">
+  <programme start="20250625080000 +0300" stop="20250625082400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250625082400 +0300" stop="20250625085300 +0300" channel="2299442">
+  <programme start="20250625082400 +0300" stop="20250625085300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שדרג את הסלב 2 פרק 16</title>
   </programme>
-  <programme start="20250625085300 +0300" stop="20250625092000 +0300" channel="2299442">
+  <programme start="20250625085300 +0300" stop="20250625092000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250625092000 +0300" stop="20250625095200 +0300" channel="2299442">
+  <programme start="20250625092000 +0300" stop="20250625095200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250625095200 +0300" stop="20250625103700 +0300" channel="2299442">
+  <programme start="20250625095200 +0300" stop="20250625103700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250625103700 +0300" stop="20250625112600 +0300" channel="2299442">
+  <programme start="20250625103700 +0300" stop="20250625112600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250625112600 +0300" stop="20250625115900 +0300" channel="2299442">
+  <programme start="20250625112600 +0300" stop="20250625115900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250625115900 +0300" stop="20250625122500 +0300" channel="2299442">
+  <programme start="20250625115900 +0300" stop="20250625122500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 10. יום שכזה פרק 10</title>
   </programme>
-  <programme start="20250625122500 +0300" stop="20250625125100 +0300" channel="2299442">
+  <programme start="20250625122500 +0300" stop="20250625125100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 7</title>
   </programme>
-  <programme start="20250625125100 +0300" stop="20250625132100 +0300" channel="2299442">
+  <programme start="20250625125100 +0300" stop="20250625132100 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250625132100 +0300" stop="20250625140600 +0300" channel="2299442">
+  <programme start="20250625132100 +0300" stop="20250625140600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250625140600 +0300" stop="20250625145200 +0300" channel="2299442">
+  <programme start="20250625140600 +0300" stop="20250625145200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250625145200 +0300" stop="20250625152500 +0300" channel="2299442">
+  <programme start="20250625145200 +0300" stop="20250625152500 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250625152500 +0300" stop="20250625154900 +0300" channel="2299442">
+  <programme start="20250625152500 +0300" stop="20250625154900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">שניים</title>
   </programme>
-  <programme start="20250625154900 +0300" stop="20250625161700 +0300" channel="2299442">
+  <programme start="20250625154900 +0300" stop="20250625161700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסוכנים פרק 1</title>
   </programme>
-  <programme start="20250625161700 +0300" stop="20250625164600 +0300" channel="2299442">
+  <programme start="20250625161700 +0300" stop="20250625164600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">הסיפור מאחורי</title>
   </programme>
-  <programme start="20250625164600 +0300" stop="20250625171400 +0300" channel="2299442">
+  <programme start="20250625164600 +0300" stop="20250625171400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 6</title>
   </programme>
-  <programme start="20250625171400 +0300" stop="20250625180000 +0300" channel="2299442">
+  <programme start="20250625171400 +0300" stop="20250625180000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 91</title>
   </programme>
-  <programme start="20250625180000 +0300" stop="20250625184600 +0300" channel="2299442">
+  <programme start="20250625180000 +0300" stop="20250625184600 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 39</title>
   </programme>
-  <programme start="20250625184600 +0300" stop="20250625192000 +0300" channel="2299442">
+  <programme start="20250625184600 +0300" stop="20250625192000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250625192000 +0300" stop="20250625194400 +0300" channel="2299442">
+  <programme start="20250625192000 +0300" stop="20250625194400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">קוקה בע''מ, עונה 1 - 11. 200k פרק 11</title>
   </programme>
-  <programme start="20250625194400 +0300" stop="20250625200900 +0300" channel="2299442">
+  <programme start="20250625194400 +0300" stop="20250625200900 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 7</title>
   </programme>
-  <programme start="20250625200900 +0300" stop="20250625205400 +0300" channel="2299442">
+  <programme start="20250625200900 +0300" stop="20250625205400 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">לחיי האהבה פרק 92</title>
   </programme>
-  <programme start="20250625205400 +0300" stop="20250625214000 +0300" channel="2299442">
+  <programme start="20250625205400 +0300" stop="20250625214000 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">משחק החיים פרק 40</title>
   </programme>
-  <programme start="20250625214000 +0300" stop="20250625221200 +0300" channel="2299442">
+  <programme start="20250625214000 +0300" stop="20250625221200 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">אהבה מעבר לפינה</title>
   </programme>
-  <programme start="20250625221200 +0300" stop="20250625223700 +0300" channel="2299442">
+  <programme start="20250625221200 +0300" stop="20250625223700 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">מגדלים פרק 7</title>
   </programme>
-  <programme start="20250625223700 +0300" stop="20250625230300 +0300" channel="2299442">
+  <programme start="20250625223700 +0300" stop="20250625230300 +0300" channel="הוט.בידור.ישראלי.il">
     <title lang="he">בעלת החלומות 2 פרק 8</title>
   </programme>
   <programme start="20250622000500 +0300" stop="20250622002800 +0300" channel="2299480">
@@ -1496,223 +1496,223 @@
   <programme start="20250625223900 +0300" stop="20250625230100 +0300" channel="2299480">
     <title lang="he">בובספוג 8 פרק 155</title>
   </programme>
-  <programme start="20250622000000 +0300" stop="20250622003500 +0300" channel="2299423">
+  <programme start="20250622000000 +0300" stop="20250622003500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250622003500 +0300" stop="20250622023500 +0300" channel="2299423">
+  <programme start="20250622003500 +0300" stop="20250622023500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250622023500 +0300" stop="20250622033000 +0300" channel="2299423">
+  <programme start="20250622023500 +0300" stop="20250622033000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250622033000 +0300" stop="20250622040000 +0300" channel="2299423">
+  <programme start="20250622033000 +0300" stop="20250622040000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250622040000 +0300" stop="20250622050000 +0300" channel="2299423">
+  <programme start="20250622040000 +0300" stop="20250622050000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250622050000 +0300" stop="20250622053500 +0300" channel="2299423">
+  <programme start="20250622050000 +0300" stop="20250622053500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250623000000 +0300" stop="20250623003500 +0300" channel="2299423">
+  <programme start="20250623000000 +0300" stop="20250623003500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250623003500 +0300" stop="20250623023500 +0300" channel="2299423">
+  <programme start="20250623003500 +0300" stop="20250623023500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250623023500 +0300" stop="20250623033000 +0300" channel="2299423">
+  <programme start="20250623023500 +0300" stop="20250623033000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250623033000 +0300" stop="20250623040000 +0300" channel="2299423">
+  <programme start="20250623033000 +0300" stop="20250623040000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250623040000 +0300" stop="20250623050000 +0300" channel="2299423">
+  <programme start="20250623040000 +0300" stop="20250623050000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250623050000 +0300" stop="20250623053500 +0300" channel="2299423">
+  <programme start="20250623050000 +0300" stop="20250623053500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250624000000 +0300" stop="20250624003500 +0300" channel="2299423">
+  <programme start="20250624000000 +0300" stop="20250624003500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250624003500 +0300" stop="20250624023500 +0300" channel="2299423">
+  <programme start="20250624003500 +0300" stop="20250624023500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250624023500 +0300" stop="20250624033000 +0300" channel="2299423">
+  <programme start="20250624023500 +0300" stop="20250624033000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250624033000 +0300" stop="20250624040000 +0300" channel="2299423">
+  <programme start="20250624033000 +0300" stop="20250624040000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250624040000 +0300" stop="20250624050000 +0300" channel="2299423">
+  <programme start="20250624040000 +0300" stop="20250624050000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250624050000 +0300" stop="20250624053500 +0300" channel="2299423">
+  <programme start="20250624050000 +0300" stop="20250624053500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250625000000 +0300" stop="20250625003500 +0300" channel="2299423">
+  <programme start="20250625000000 +0300" stop="20250625003500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250625003500 +0300" stop="20250625023500 +0300" channel="2299423">
+  <programme start="20250625003500 +0300" stop="20250625023500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250625023500 +0300" stop="20250625033000 +0300" channel="2299423">
+  <programme start="20250625023500 +0300" stop="20250625033000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250625033000 +0300" stop="20250625040000 +0300" channel="2299423">
+  <programme start="20250625033000 +0300" stop="20250625040000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250625040000 +0300" stop="20250625050000 +0300" channel="2299423">
+  <programme start="20250625040000 +0300" stop="20250625050000 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250625050000 +0300" stop="20250625053500 +0300" channel="2299423">
+  <programme start="20250625050000 +0300" stop="20250625053500 +0300" channel="ספורט.5.גולד.il">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250622011500 +0300" stop="20250622020000 +0300" channel="2299421">
+  <programme start="20250622011500 +0300" stop="20250622020000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622020000 +0300" stop="20250622050000 +0300" channel="2299421">
+  <programme start="20250622020000 +0300" stop="20250622050000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">MLB</title>
   </programme>
-  <programme start="20250622050000 +0300" stop="20250622061000 +0300" channel="2299421">
+  <programme start="20250622050000 +0300" stop="20250622061000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">MLB</title>
   </programme>
-  <programme start="20250622061000 +0300" stop="20250622065500 +0300" channel="2299421">
+  <programme start="20250622061000 +0300" stop="20250622065500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622065500 +0300" stop="20250622075000 +0300" channel="2299421">
+  <programme start="20250622065500 +0300" stop="20250622075000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622075000 +0300" stop="20250622083500 +0300" channel="2299421">
+  <programme start="20250622075000 +0300" stop="20250622083500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622083500 +0300" stop="20250622093500 +0300" channel="2299421">
+  <programme start="20250622083500 +0300" stop="20250622093500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622112000 +0300" stop="20250622114500 +0300" channel="2299421">
+  <programme start="20250622112000 +0300" stop="20250622114500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">NBA אקשן מגזין סיכום שבועי פרק 35</title>
   </programme>
-  <programme start="20250622114500 +0300" stop="20250622131500 +0300" channel="2299421">
+  <programme start="20250622114500 +0300" stop="20250622131500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622131500 +0300" stop="20250622150000 +0300" channel="2299421">
+  <programme start="20250622131500 +0300" stop="20250622150000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622150000 +0300" stop="20250622160000 +0300" channel="2299421">
+  <programme start="20250622150000 +0300" stop="20250622160000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622160000 +0300" stop="20250622180500 +0300" channel="2299421">
+  <programme start="20250622160000 +0300" stop="20250622180500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס פרק 422</title>
   </programme>
-  <programme start="20250622180500 +0300" stop="20250622190000 +0300" channel="2299421">
+  <programme start="20250622180500 +0300" stop="20250622190000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מגזין ליגת האלופות</title>
   </programme>
-  <programme start="20250622190000 +0300" stop="20250622210000 +0300" channel="2299421">
+  <programme start="20250622190000 +0300" stop="20250622210000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250622210000 +0300" stop="20250623000000 +0300" channel="2299421">
+  <programme start="20250622210000 +0300" stop="20250623000000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623000000 +0300" stop="20250623030000 +0300" channel="2299421">
+  <programme start="20250623000000 +0300" stop="20250623030000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623030000 +0300" stop="20250623061000 +0300" channel="2299421">
+  <programme start="20250623030000 +0300" stop="20250623061000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623061000 +0300" stop="20250623075500 +0300" channel="2299421">
+  <programme start="20250623061000 +0300" stop="20250623075500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623075500 +0300" stop="20250623091500 +0300" channel="2299421">
+  <programme start="20250623075500 +0300" stop="20250623091500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250623091500 +0300" stop="20250623110000 +0300" channel="2299421">
+  <programme start="20250623091500 +0300" stop="20250623110000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250623110000 +0300" stop="20250623121500 +0300" channel="2299421">
+  <programme start="20250623110000 +0300" stop="20250623121500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250623121500 +0300" stop="20250623140000 +0300" channel="2299421">
+  <programme start="20250623121500 +0300" stop="20250623140000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623140000 +0300" stop="20250623160500 +0300" channel="2299421">
+  <programme start="20250623140000 +0300" stop="20250623160500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250623160500 +0300" stop="20250623163000 +0300" channel="2299421">
+  <programme start="20250623160500 +0300" stop="20250623163000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">NBA אקשן מגזין סיכום שבועי פרק 35</title>
   </programme>
-  <programme start="20250623163000 +0300" stop="20250623183500 +0300" channel="2299421">
+  <programme start="20250623163000 +0300" stop="20250623183500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250623183500 +0300" stop="20250623190000 +0300" channel="2299421">
+  <programme start="20250623183500 +0300" stop="20250623190000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623190000 +0300" stop="20250623210000 +0300" channel="2299421">
+  <programme start="20250623190000 +0300" stop="20250623210000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250623210000 +0300" stop="20250624001500 +0300" channel="2299421">
+  <programme start="20250623210000 +0300" stop="20250624001500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625000000 +0300" stop="20250625030000 +0300" channel="2299421">
+  <programme start="20250625000000 +0300" stop="20250625030000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625030000 +0300" stop="20250625061000 +0300" channel="2299421">
+  <programme start="20250625030000 +0300" stop="20250625061000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625061000 +0300" stop="20250625075500 +0300" channel="2299421">
+  <programme start="20250625061000 +0300" stop="20250625075500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625075500 +0300" stop="20250625091500 +0300" channel="2299421">
+  <programme start="20250625075500 +0300" stop="20250625091500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250625091500 +0300" stop="20250625110000 +0300" channel="2299421">
+  <programme start="20250625091500 +0300" stop="20250625110000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250625110000 +0300" stop="20250625121500 +0300" channel="2299421">
+  <programme start="20250625110000 +0300" stop="20250625121500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250625121500 +0300" stop="20250625140000 +0300" channel="2299421">
+  <programme start="20250625121500 +0300" stop="20250625140000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625140000 +0300" stop="20250625160500 +0300" channel="2299421">
+  <programme start="20250625140000 +0300" stop="20250625160500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250625160500 +0300" stop="20250625163000 +0300" channel="2299421">
+  <programme start="20250625160500 +0300" stop="20250625163000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">NBA אקשן מגזין סיכום שבועי פרק 35</title>
   </programme>
-  <programme start="20250625163000 +0300" stop="20250625183500 +0300" channel="2299421">
+  <programme start="20250625163000 +0300" stop="20250625183500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250625183500 +0300" stop="20250625190000 +0300" channel="2299421">
+  <programme start="20250625183500 +0300" stop="20250625190000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625190000 +0300" stop="20250625210000 +0300" channel="2299421">
+  <programme start="20250625190000 +0300" stop="20250625210000 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250625210000 +0300" stop="20250626001500 +0300" channel="2299421">
+  <programme start="20250625210000 +0300" stop="20250626001500 +0300" channel="ספורט.5.לייב.il">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250622000000 +0300" stop="20250622040000 +0300" channel="2350798">
+  <programme start="20250622000000 +0300" stop="20250622040000 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250622040000 +0300" stop="20250622040500 +0300" channel="2350798">
+  <programme start="20250622040000 +0300" stop="20250622040500 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250623000000 +0300" stop="20250623040000 +0300" channel="2350798">
+  <programme start="20250623000000 +0300" stop="20250623040000 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250623040000 +0300" stop="20250623040500 +0300" channel="2350798">
+  <programme start="20250623040000 +0300" stop="20250623040500 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250624000000 +0300" stop="20250624040000 +0300" channel="2350798">
+  <programme start="20250624000000 +0300" stop="20250624040000 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250624040000 +0300" stop="20250624040500 +0300" channel="2350798">
+  <programme start="20250624040000 +0300" stop="20250624040500 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250625000000 +0300" stop="20250625040000 +0300" channel="2350798">
+  <programme start="20250625000000 +0300" stop="20250625040000 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250625040000 +0300" stop="20250625040500 +0300" channel="2350798">
+  <programme start="20250625040000 +0300" stop="20250625040500 +0300" channel="ספורט.5.פלוס.il">
     <title lang="he">טניס פרק 335</title>
   </programme>
   <programme start="20250622000000 +0300" stop="20250622004500 +0300" channel="2299420">
@@ -2435,1276 +2435,1276 @@
   <programme start="20250625213000 +0300" stop="20250625231500 +0300" channel="2299410">
     <title lang="he">פרטים יפורסמו בהמשך</title>
   </programme>
-  <programme start="20250622000000 +0300" stop="20250622020000 +0300" channel="2299412">
+  <programme start="20250622000000 +0300" stop="20250622020000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">חדשות הלילה</title>
   </programme>
-  <programme start="20250622020000 +0300" stop="20250622040000 +0300" channel="2299412">
+  <programme start="20250622020000 +0300" stop="20250622040000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">משדר מיוחד</title>
   </programme>
-  <programme start="20250622040000 +0300" stop="20250622060000 +0300" channel="2299412">
+  <programme start="20250622040000 +0300" stop="20250622060000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">משדר מיוחד</title>
   </programme>
-  <programme start="20250622060000 +0300" stop="20250622060500 +0300" channel="2299412">
+  <programme start="20250622060000 +0300" stop="20250622060500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250622060500 +0300" stop="20250622070000 +0300" channel="2299412">
+  <programme start="20250622060500 +0300" stop="20250622070000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">כותרות הבוקר</title>
   </programme>
-  <programme start="20250622070000 +0300" stop="20250622070500 +0300" channel="2299412">
+  <programme start="20250622070000 +0300" stop="20250622070500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250622070500 +0300" stop="20250622093000 +0300" channel="2299412">
+  <programme start="20250622070500 +0300" stop="20250622093000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ישראל הבוקר</title>
   </programme>
-  <programme start="20250622120000 +0300" stop="20250622120500 +0300" channel="2299412">
+  <programme start="20250622120000 +0300" stop="20250622120500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250622120500 +0300" stop="20250622140000 +0300" channel="2299412">
+  <programme start="20250622120500 +0300" stop="20250622140000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">יומן צהריים</title>
   </programme>
-  <programme start="20250622140000 +0300" stop="20250622160000 +0300" channel="2299412">
+  <programme start="20250622140000 +0300" stop="20250622160000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">האולפן הפתוח</title>
   </programme>
-  <programme start="20250622160000 +0300" stop="20250622170000 +0300" channel="2299412">
+  <programme start="20250622160000 +0300" stop="20250622170000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ארבע</title>
   </programme>
-  <programme start="20250622170000 +0300" stop="20250622180000 +0300" channel="2299412">
+  <programme start="20250622170000 +0300" stop="20250622180000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">המהדורה המוקדמת</title>
   </programme>
-  <programme start="20250622180000 +0300" stop="20250622190000 +0300" channel="2299412">
+  <programme start="20250622180000 +0300" stop="20250622190000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ריקלין ושות'</title>
   </programme>
-  <programme start="20250622190000 +0300" stop="20250622195000 +0300" channel="2299412">
+  <programme start="20250622190000 +0300" stop="20250622195000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">שבע</title>
   </programme>
-  <programme start="20250622195000 +0300" stop="20250622210000 +0300" channel="2299412">
+  <programme start="20250622195000 +0300" stop="20250622210000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">החדשות</title>
   </programme>
-  <programme start="20250622210000 +0300" stop="20250622223000 +0300" channel="2299412">
+  <programme start="20250622210000 +0300" stop="20250622223000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">הפטריוטים</title>
   </programme>
-  <programme start="20250622223000 +0300" stop="20250622230000 +0300" channel="2299412">
+  <programme start="20250622223000 +0300" stop="20250622230000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250622230000 +0300" stop="20250622234500 +0300" channel="2299412">
+  <programme start="20250622230000 +0300" stop="20250622234500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">סטורי לילה</title>
   </programme>
-  <programme start="20250622234500 +0300" stop="20250623001500 +0300" channel="2299412">
+  <programme start="20250622234500 +0300" stop="20250623001500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250623001500 +0300" stop="20250623003600 +0300" channel="2299412">
+  <programme start="20250623001500 +0300" stop="20250623003600 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250623003600 +0300" stop="20250623010000 +0300" channel="2299412">
+  <programme start="20250623003600 +0300" stop="20250623010000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250623010000 +0300" stop="20250623014000 +0300" channel="2299412">
+  <programme start="20250623010000 +0300" stop="20250623014000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מחוץ לפרוטוקול</title>
   </programme>
-  <programme start="20250623014000 +0300" stop="20250623020000 +0300" channel="2299412">
+  <programme start="20250623014000 +0300" stop="20250623020000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">לגדל גיבור עם דנה ורון פרק 3</title>
   </programme>
-  <programme start="20250623020000 +0300" stop="20250623033000 +0300" channel="2299412">
+  <programme start="20250623020000 +0300" stop="20250623033000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">הפטריוטים</title>
   </programme>
-  <programme start="20250623033000 +0300" stop="20250623040000 +0300" channel="2299412">
+  <programme start="20250623033000 +0300" stop="20250623040000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">טעמים של שבת</title>
   </programme>
-  <programme start="20250623040000 +0300" stop="20250623044500 +0300" channel="2299412">
+  <programme start="20250623040000 +0300" stop="20250623044500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ג'אסוס המרגל מטהרן</title>
   </programme>
-  <programme start="20250623044500 +0300" stop="20250623053000 +0300" channel="2299412">
+  <programme start="20250623044500 +0300" stop="20250623053000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">סטורי לילה</title>
   </programme>
-  <programme start="20250623053000 +0300" stop="20250623060000 +0300" channel="2299412">
+  <programme start="20250623053000 +0300" stop="20250623060000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250623060000 +0300" stop="20250623060500 +0300" channel="2299412">
+  <programme start="20250623060000 +0300" stop="20250623060500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250623060500 +0300" stop="20250623070000 +0300" channel="2299412">
+  <programme start="20250623060500 +0300" stop="20250623070000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">כותרות הבוקר</title>
   </programme>
-  <programme start="20250623070000 +0300" stop="20250623070500 +0300" channel="2299412">
+  <programme start="20250623070000 +0300" stop="20250623070500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250623070500 +0300" stop="20250623093000 +0300" channel="2299412">
+  <programme start="20250623070500 +0300" stop="20250623093000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ישראל הבוקר</title>
   </programme>
-  <programme start="20250623093000 +0300" stop="20250623120000 +0300" channel="2299412">
+  <programme start="20250623093000 +0300" stop="20250623120000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250623120000 +0300" stop="20250623120500 +0300" channel="2299412">
+  <programme start="20250623120000 +0300" stop="20250623120500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250623120500 +0300" stop="20250623140000 +0300" channel="2299412">
+  <programme start="20250623120500 +0300" stop="20250623140000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">יומן צהריים</title>
   </programme>
-  <programme start="20250623140000 +0300" stop="20250623160000 +0300" channel="2299412">
+  <programme start="20250623140000 +0300" stop="20250623160000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">האולפן הפתוח</title>
   </programme>
-  <programme start="20250623160000 +0300" stop="20250623170000 +0300" channel="2299412">
+  <programme start="20250623160000 +0300" stop="20250623170000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ארבע</title>
   </programme>
-  <programme start="20250623170000 +0300" stop="20250623180000 +0300" channel="2299412">
+  <programme start="20250623170000 +0300" stop="20250623180000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">המהדורה המוקדמת</title>
   </programme>
-  <programme start="20250623180000 +0300" stop="20250623190000 +0300" channel="2299412">
+  <programme start="20250623180000 +0300" stop="20250623190000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ריקלין ושות'</title>
   </programme>
-  <programme start="20250623190000 +0300" stop="20250623195000 +0300" channel="2299412">
+  <programme start="20250623190000 +0300" stop="20250623195000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">שבע</title>
   </programme>
-  <programme start="20250623195000 +0300" stop="20250623210000 +0300" channel="2299412">
+  <programme start="20250623195000 +0300" stop="20250623210000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">החדשות</title>
   </programme>
-  <programme start="20250623210000 +0300" stop="20250623223000 +0300" channel="2299412">
+  <programme start="20250623210000 +0300" stop="20250623223000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">הפטריוטים</title>
   </programme>
-  <programme start="20250623223000 +0300" stop="20250623230000 +0300" channel="2299412">
+  <programme start="20250623223000 +0300" stop="20250623230000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250624001500 +0300" stop="20250624003600 +0300" channel="2299412">
+  <programme start="20250624001500 +0300" stop="20250624003600 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250624003600 +0300" stop="20250624010000 +0300" channel="2299412">
+  <programme start="20250624003600 +0300" stop="20250624010000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250624010000 +0300" stop="20250624014000 +0300" channel="2299412">
+  <programme start="20250624010000 +0300" stop="20250624014000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מחוץ לפרוטוקול</title>
   </programme>
-  <programme start="20250624014000 +0300" stop="20250624020000 +0300" channel="2299412">
+  <programme start="20250624014000 +0300" stop="20250624020000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">לגדל גיבור עם דנה ורון פרק 3</title>
   </programme>
-  <programme start="20250624020000 +0300" stop="20250624033000 +0300" channel="2299412">
+  <programme start="20250624020000 +0300" stop="20250624033000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">הפטריוטים</title>
   </programme>
-  <programme start="20250624033000 +0300" stop="20250624040000 +0300" channel="2299412">
+  <programme start="20250624033000 +0300" stop="20250624040000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">טעמים של שבת</title>
   </programme>
-  <programme start="20250624040000 +0300" stop="20250624044500 +0300" channel="2299412">
+  <programme start="20250624040000 +0300" stop="20250624044500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ג'אסוס המרגל מטהרן</title>
   </programme>
-  <programme start="20250624044500 +0300" stop="20250624053000 +0300" channel="2299412">
+  <programme start="20250624044500 +0300" stop="20250624053000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">סטורי לילה</title>
   </programme>
-  <programme start="20250624053000 +0300" stop="20250624060000 +0300" channel="2299412">
+  <programme start="20250624053000 +0300" stop="20250624060000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250624060000 +0300" stop="20250624060500 +0300" channel="2299412">
+  <programme start="20250624060000 +0300" stop="20250624060500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250624060500 +0300" stop="20250624070000 +0300" channel="2299412">
+  <programme start="20250624060500 +0300" stop="20250624070000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">כותרות הבוקר</title>
   </programme>
-  <programme start="20250624070000 +0300" stop="20250624070500 +0300" channel="2299412">
+  <programme start="20250624070000 +0300" stop="20250624070500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250624070500 +0300" stop="20250624093000 +0300" channel="2299412">
+  <programme start="20250624070500 +0300" stop="20250624093000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ישראל הבוקר</title>
   </programme>
-  <programme start="20250624093000 +0300" stop="20250624120000 +0300" channel="2299412">
+  <programme start="20250624093000 +0300" stop="20250624120000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250624120000 +0300" stop="20250624120500 +0300" channel="2299412">
+  <programme start="20250624120000 +0300" stop="20250624120500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250624120500 +0300" stop="20250624140000 +0300" channel="2299412">
+  <programme start="20250624120500 +0300" stop="20250624140000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">יומן צהריים</title>
   </programme>
-  <programme start="20250624140000 +0300" stop="20250624160000 +0300" channel="2299412">
+  <programme start="20250624140000 +0300" stop="20250624160000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">האולפן הפתוח</title>
   </programme>
-  <programme start="20250624160000 +0300" stop="20250624170000 +0300" channel="2299412">
+  <programme start="20250624160000 +0300" stop="20250624170000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ארבע</title>
   </programme>
-  <programme start="20250624170000 +0300" stop="20250624180000 +0300" channel="2299412">
+  <programme start="20250624170000 +0300" stop="20250624180000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">המהדורה המוקדמת</title>
   </programme>
-  <programme start="20250624180000 +0300" stop="20250624190000 +0300" channel="2299412">
+  <programme start="20250624180000 +0300" stop="20250624190000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ריקלין ושות'</title>
   </programme>
-  <programme start="20250624190000 +0300" stop="20250624195000 +0300" channel="2299412">
+  <programme start="20250624190000 +0300" stop="20250624195000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">שבע</title>
   </programme>
-  <programme start="20250624195000 +0300" stop="20250624210000 +0300" channel="2299412">
+  <programme start="20250624195000 +0300" stop="20250624210000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">החדשות</title>
   </programme>
-  <programme start="20250624210000 +0300" stop="20250624223000 +0300" channel="2299412">
+  <programme start="20250624210000 +0300" stop="20250624223000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">הפטריוטים</title>
   </programme>
-  <programme start="20250624223000 +0300" stop="20250624230000 +0300" channel="2299412">
+  <programme start="20250624223000 +0300" stop="20250624230000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250625001500 +0300" stop="20250625003600 +0300" channel="2299412">
+  <programme start="20250625001500 +0300" stop="20250625003600 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250625003600 +0300" stop="20250625010000 +0300" channel="2299412">
+  <programme start="20250625003600 +0300" stop="20250625010000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250625010000 +0300" stop="20250625014000 +0300" channel="2299412">
+  <programme start="20250625010000 +0300" stop="20250625014000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מחוץ לפרוטוקול</title>
   </programme>
-  <programme start="20250625014000 +0300" stop="20250625020000 +0300" channel="2299412">
+  <programme start="20250625014000 +0300" stop="20250625020000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">לגדל גיבור עם דנה ורון פרק 3</title>
   </programme>
-  <programme start="20250625020000 +0300" stop="20250625033000 +0300" channel="2299412">
+  <programme start="20250625020000 +0300" stop="20250625033000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">הפטריוטים</title>
   </programme>
-  <programme start="20250625033000 +0300" stop="20250625040000 +0300" channel="2299412">
+  <programme start="20250625033000 +0300" stop="20250625040000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">טעמים של שבת</title>
   </programme>
-  <programme start="20250625040000 +0300" stop="20250625044500 +0300" channel="2299412">
+  <programme start="20250625040000 +0300" stop="20250625044500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ג'אסוס המרגל מטהרן</title>
   </programme>
-  <programme start="20250625044500 +0300" stop="20250625053000 +0300" channel="2299412">
+  <programme start="20250625044500 +0300" stop="20250625053000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">סטורי לילה</title>
   </programme>
-  <programme start="20250625053000 +0300" stop="20250625060000 +0300" channel="2299412">
+  <programme start="20250625053000 +0300" stop="20250625060000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250625060000 +0300" stop="20250625060500 +0300" channel="2299412">
+  <programme start="20250625060000 +0300" stop="20250625060500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250625060500 +0300" stop="20250625070000 +0300" channel="2299412">
+  <programme start="20250625060500 +0300" stop="20250625070000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">כותרות הבוקר</title>
   </programme>
-  <programme start="20250625070000 +0300" stop="20250625070500 +0300" channel="2299412">
+  <programme start="20250625070000 +0300" stop="20250625070500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250625070500 +0300" stop="20250625093000 +0300" channel="2299412">
+  <programme start="20250625070500 +0300" stop="20250625093000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ישראל הבוקר</title>
   </programme>
-  <programme start="20250625093000 +0300" stop="20250625120000 +0300" channel="2299412">
+  <programme start="20250625093000 +0300" stop="20250625120000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250625120000 +0300" stop="20250625120500 +0300" channel="2299412">
+  <programme start="20250625120000 +0300" stop="20250625120500 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">מבזק</title>
   </programme>
-  <programme start="20250625120500 +0300" stop="20250625140000 +0300" channel="2299412">
+  <programme start="20250625120500 +0300" stop="20250625140000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">יומן צהריים</title>
   </programme>
-  <programme start="20250625140000 +0300" stop="20250625160000 +0300" channel="2299412">
+  <programme start="20250625140000 +0300" stop="20250625160000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">האולפן הפתוח</title>
   </programme>
-  <programme start="20250625160000 +0300" stop="20250625170000 +0300" channel="2299412">
+  <programme start="20250625160000 +0300" stop="20250625170000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ארבע</title>
   </programme>
-  <programme start="20250625170000 +0300" stop="20250625180000 +0300" channel="2299412">
+  <programme start="20250625170000 +0300" stop="20250625180000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">המהדורה המוקדמת</title>
   </programme>
-  <programme start="20250625180000 +0300" stop="20250625190000 +0300" channel="2299412">
+  <programme start="20250625180000 +0300" stop="20250625190000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">ריקלין ושות'</title>
   </programme>
-  <programme start="20250625190000 +0300" stop="20250625195000 +0300" channel="2299412">
+  <programme start="20250625190000 +0300" stop="20250625195000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">שבע</title>
   </programme>
-  <programme start="20250625195000 +0300" stop="20250625210000 +0300" channel="2299412">
+  <programme start="20250625195000 +0300" stop="20250625210000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">החדשות</title>
   </programme>
-  <programme start="20250625210000 +0300" stop="20250625223000 +0300" channel="2299412">
+  <programme start="20250625210000 +0300" stop="20250625223000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">הפטריוטים</title>
   </programme>
-  <programme start="20250625223000 +0300" stop="20250625230000 +0300" channel="2299412">
+  <programme start="20250625223000 +0300" stop="20250625230000 +0300" channel="ערוץ.14.שידור.חי.il">
     <title lang="he">פתחי את שי</title>
   </programme>
-  <programme start="20250622023500 +0300" stop="20250622033000 +0300" channel="2305577">
+  <programme start="20250622023500 +0300" stop="20250622033000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מגזין הקולנוע של TVE</title>
   </programme>
-  <programme start="20250622033000 +0300" stop="20250622040000 +0300" channel="2305577">
+  <programme start="20250622033000 +0300" stop="20250622040000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">זמן יצירה</title>
   </programme>
-  <programme start="20250622040000 +0300" stop="20250622043000 +0300" channel="2305577">
+  <programme start="20250622040000 +0300" stop="20250622043000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות מהרחוב</title>
   </programme>
-  <programme start="20250622043000 +0300" stop="20250622052000 +0300" channel="2305577">
+  <programme start="20250622043000 +0300" stop="20250622052000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">קרוב לזירה</title>
   </programme>
-  <programme start="20250622052000 +0300" stop="20250622070000 +0300" channel="2305577">
+  <programme start="20250622052000 +0300" stop="20250622070000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות 24 שעות</title>
   </programme>
-  <programme start="20250622070000 +0300" stop="20250622080000 +0300" channel="2305577">
+  <programme start="20250622070000 +0300" stop="20250622080000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות 24 שעות</title>
   </programme>
-  <programme start="20250622080000 +0300" stop="20250622081500 +0300" channel="2305577">
+  <programme start="20250622080000 +0300" stop="20250622081500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות טובות</title>
   </programme>
-  <programme start="20250622081500 +0300" stop="20250622083000 +0300" channel="2305577">
+  <programme start="20250622081500 +0300" stop="20250622083000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">שלום</title>
   </programme>
-  <programme start="20250622083000 +0300" stop="20250622084500 +0300" channel="2305577">
+  <programme start="20250622083000 +0300" stop="20250622084500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מדינה ב-TVE</title>
   </programme>
-  <programme start="20250622084500 +0300" stop="20250622091000 +0300" channel="2305577">
+  <programme start="20250622084500 +0300" stop="20250622091000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">שאלות אחרונות</title>
   </programme>
-  <programme start="20250622091000 +0300" stop="20250622091500 +0300" channel="2305577">
+  <programme start="20250622091000 +0300" stop="20250622091500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">וידוי</title>
   </programme>
-  <programme start="20250622091500 +0300" stop="20250622094500 +0300" channel="2305577">
+  <programme start="20250622091500 +0300" stop="20250622094500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">אנשי האלוהים</title>
   </programme>
-  <programme start="20250622094500 +0300" stop="20250622101500 +0300" channel="2305577">
+  <programme start="20250622094500 +0300" stop="20250622101500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">החיפושית הירוקה</title>
   </programme>
-  <programme start="20250622111000 +0300" stop="20250622114000 +0300" channel="2305577">
+  <programme start="20250622111000 +0300" stop="20250622114000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">משי וברזל</title>
   </programme>
-  <programme start="20250622114000 +0300" stop="20250622121500 +0300" channel="2305577">
+  <programme start="20250622114000 +0300" stop="20250622121500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">לדעת לחיות</title>
   </programme>
-  <programme start="20250622121500 +0300" stop="20250622131500 +0300" channel="2305577">
+  <programme start="20250622121500 +0300" stop="20250622131500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">קסם של מדינה</title>
   </programme>
-  <programme start="20250622131500 +0300" stop="20250622135000 +0300" channel="2305577">
+  <programme start="20250622131500 +0300" stop="20250622135000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">תיירות כפרית בעולם</title>
   </programme>
-  <programme start="20250622135000 +0300" stop="20250622142000 +0300" channel="2305577">
+  <programme start="20250622135000 +0300" stop="20250622142000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">אופנת פלאש</title>
   </programme>
-  <programme start="20250622142000 +0300" stop="20250622145500 +0300" channel="2305577">
+  <programme start="20250622142000 +0300" stop="20250622145500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מספרים ואותיות</title>
   </programme>
-  <programme start="20250622145500 +0300" stop="20250622160000 +0300" channel="2305577">
+  <programme start="20250622145500 +0300" stop="20250622160000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">לב</title>
   </programme>
-  <programme start="20250622160000 +0300" stop="20250622164500 +0300" channel="2305577">
+  <programme start="20250622160000 +0300" stop="20250622164500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250622164500 +0300" stop="20250622165000 +0300" channel="2305577">
+  <programme start="20250622164500 +0300" stop="20250622165000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250622165000 +0300" stop="20250622173500 +0300" channel="2305577">
+  <programme start="20250622165000 +0300" stop="20250622173500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">לדעת ולנצח</title>
   </programme>
-  <programme start="20250622173500 +0300" stop="20250622192000 +0300" channel="2305577">
+  <programme start="20250622173500 +0300" stop="20250622192000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">עמק פראי</title>
   </programme>
-  <programme start="20250622192000 +0300" stop="20250622203500 +0300" channel="2305577">
+  <programme start="20250622192000 +0300" stop="20250622203500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">הרצפה</title>
   </programme>
-  <programme start="20250622203500 +0300" stop="20250622210000 +0300" channel="2305577">
+  <programme start="20250622203500 +0300" stop="20250622210000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מגמות</title>
   </programme>
-  <programme start="20250622210000 +0300" stop="20250622213000 +0300" channel="2305577">
+  <programme start="20250622210000 +0300" stop="20250622213000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">זהו פני ספרד</title>
   </programme>
-  <programme start="20250622213000 +0300" stop="20250622220000 +0300" channel="2305577">
+  <programme start="20250622213000 +0300" stop="20250622220000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">כאן כדור הארץ</title>
   </programme>
-  <programme start="20250622220000 +0300" stop="20250622225000 +0300" channel="2305577">
+  <programme start="20250622220000 +0300" stop="20250622225000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250622225000 +0300" stop="20250622225500 +0300" channel="2305577">
+  <programme start="20250622225000 +0300" stop="20250622225500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250622225500 +0300" stop="20250622235500 +0300" channel="2305577">
+  <programme start="20250622225500 +0300" stop="20250622235500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">אנשים חיוניים</title>
   </programme>
-  <programme start="20250622235500 +0300" stop="20250623005000 +0300" channel="2305577">
+  <programme start="20250622235500 +0300" stop="20250623005000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">אקטואליה</title>
   </programme>
-  <programme start="20250623013500 +0300" stop="20250623021000 +0300" channel="2305577">
+  <programme start="20250623013500 +0300" stop="20250623021000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">במישור הכללי</title>
   </programme>
-  <programme start="20250623021000 +0300" stop="20250623031000 +0300" channel="2305577">
+  <programme start="20250623021000 +0300" stop="20250623031000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">תעודה</title>
   </programme>
-  <programme start="20250623031000 +0300" stop="20250623040000 +0300" channel="2305577">
+  <programme start="20250623031000 +0300" stop="20250623040000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">שבילים עם חואן ומיגאס</title>
   </programme>
-  <programme start="20250623040000 +0300" stop="20250623050000 +0300" channel="2305577">
+  <programme start="20250623040000 +0300" stop="20250623050000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">קסם של מדינה</title>
   </programme>
-  <programme start="20250623050000 +0300" stop="20250623053500 +0300" channel="2305577">
+  <programme start="20250623050000 +0300" stop="20250623053500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מטרופוליס</title>
   </programme>
-  <programme start="20250623053500 +0300" stop="20250623063000 +0300" channel="2305577">
+  <programme start="20250623053500 +0300" stop="20250623063000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות 24 שעות</title>
   </programme>
-  <programme start="20250623063000 +0300" stop="20250623073000 +0300" channel="2305577">
+  <programme start="20250623063000 +0300" stop="20250623073000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">ההרפתקה שבידע</title>
   </programme>
-  <programme start="20250623073000 +0300" stop="20250623085000 +0300" channel="2305577">
+  <programme start="20250623073000 +0300" stop="20250623085000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות הבוקר TVE</title>
   </programme>
-  <programme start="20250623085000 +0300" stop="20250623113500 +0300" channel="2305577">
+  <programme start="20250623085000 +0300" stop="20250623113500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">השעה הראשונה</title>
   </programme>
-  <programme start="20250623113500 +0300" stop="20250623152000 +0300" channel="2305577">
+  <programme start="20250623113500 +0300" stop="20250623152000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">בוקר ב-360</title>
   </programme>
-  <programme start="20250623152000 +0300" stop="20250623160000 +0300" channel="2305577">
+  <programme start="20250623152000 +0300" stop="20250623160000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">בוקר ב-360</title>
   </programme>
-  <programme start="20250623160000 +0300" stop="20250623163500 +0300" channel="2305577">
+  <programme start="20250623160000 +0300" stop="20250623163500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250623163500 +0300" stop="20250623164000 +0300" channel="2305577">
+  <programme start="20250623163500 +0300" stop="20250623164000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250623164000 +0300" stop="20250623164500 +0300" channel="2305577">
+  <programme start="20250623164000 +0300" stop="20250623164500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">תחזית מזג האוויר TVE</title>
   </programme>
-  <programme start="20250623164500 +0300" stop="20250623174000 +0300" channel="2305577">
+  <programme start="20250623164500 +0300" stop="20250623174000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">לדעת ולנצח</title>
   </programme>
-  <programme start="20250623174000 +0300" stop="20250623180000 +0300" channel="2305577">
+  <programme start="20250623174000 +0300" stop="20250623180000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מספרים ואותיות</title>
   </programme>
-  <programme start="20250623180000 +0300" stop="20250623192000 +0300" channel="2305577">
+  <programme start="20250623180000 +0300" stop="20250623192000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">טלוויזיה משפחתית</title>
   </programme>
-  <programme start="20250623192000 +0300" stop="20250623202000 +0300" channel="2305577">
+  <programme start="20250623192000 +0300" stop="20250623202000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">ההבטחה</title>
   </programme>
-  <programme start="20250623202000 +0300" stop="20250623203500 +0300" channel="2305577">
+  <programme start="20250623202000 +0300" stop="20250623203500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מגמות</title>
   </programme>
-  <programme start="20250623203500 +0300" stop="20250623213000 +0300" channel="2305577">
+  <programme start="20250623203500 +0300" stop="20250623213000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">צייד הכוכבים</title>
   </programme>
-  <programme start="20250623213000 +0300" stop="20250623220000 +0300" channel="2305577">
+  <programme start="20250623213000 +0300" stop="20250623220000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">כאן כדור הארץ</title>
   </programme>
-  <programme start="20250623220000 +0300" stop="20250623223500 +0300" channel="2305577">
+  <programme start="20250623220000 +0300" stop="20250623223500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250623223500 +0300" stop="20250623224000 +0300" channel="2305577">
+  <programme start="20250623223500 +0300" stop="20250623224000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250623224000 +0300" stop="20250624000000 +0300" channel="2305577">
+  <programme start="20250623224000 +0300" stop="20250624000000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">המרד</title>
   </programme>
-  <programme start="20250624013500 +0300" stop="20250624021000 +0300" channel="2305577">
+  <programme start="20250624013500 +0300" stop="20250624021000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">במישור הכללי</title>
   </programme>
-  <programme start="20250624021000 +0300" stop="20250624031000 +0300" channel="2305577">
+  <programme start="20250624021000 +0300" stop="20250624031000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">תעודה</title>
   </programme>
-  <programme start="20250624031000 +0300" stop="20250624040000 +0300" channel="2305577">
+  <programme start="20250624031000 +0300" stop="20250624040000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">שבילים עם חואן ומיגאס</title>
   </programme>
-  <programme start="20250624040000 +0300" stop="20250624050000 +0300" channel="2305577">
+  <programme start="20250624040000 +0300" stop="20250624050000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">קסם של מדינה</title>
   </programme>
-  <programme start="20250624050000 +0300" stop="20250624053500 +0300" channel="2305577">
+  <programme start="20250624050000 +0300" stop="20250624053500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מטרופוליס</title>
   </programme>
-  <programme start="20250624053500 +0300" stop="20250624063000 +0300" channel="2305577">
+  <programme start="20250624053500 +0300" stop="20250624063000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות 24 שעות</title>
   </programme>
-  <programme start="20250624063000 +0300" stop="20250624073000 +0300" channel="2305577">
+  <programme start="20250624063000 +0300" stop="20250624073000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">ההרפתקה שבידע</title>
   </programme>
-  <programme start="20250624073000 +0300" stop="20250624085000 +0300" channel="2305577">
+  <programme start="20250624073000 +0300" stop="20250624085000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות הבוקר TVE</title>
   </programme>
-  <programme start="20250624085000 +0300" stop="20250624113500 +0300" channel="2305577">
+  <programme start="20250624085000 +0300" stop="20250624113500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">השעה הראשונה</title>
   </programme>
-  <programme start="20250624113500 +0300" stop="20250624152000 +0300" channel="2305577">
+  <programme start="20250624113500 +0300" stop="20250624152000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">בוקר ב-360</title>
   </programme>
-  <programme start="20250624152000 +0300" stop="20250624160000 +0300" channel="2305577">
+  <programme start="20250624152000 +0300" stop="20250624160000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">בוקר ב-360</title>
   </programme>
-  <programme start="20250624160000 +0300" stop="20250624163500 +0300" channel="2305577">
+  <programme start="20250624160000 +0300" stop="20250624163500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250624163500 +0300" stop="20250624164000 +0300" channel="2305577">
+  <programme start="20250624163500 +0300" stop="20250624164000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250624164000 +0300" stop="20250624164500 +0300" channel="2305577">
+  <programme start="20250624164000 +0300" stop="20250624164500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">תחזית מזג האוויר TVE</title>
   </programme>
-  <programme start="20250624164500 +0300" stop="20250624174000 +0300" channel="2305577">
+  <programme start="20250624164500 +0300" stop="20250624174000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">לדעת ולנצח</title>
   </programme>
-  <programme start="20250624174000 +0300" stop="20250624180000 +0300" channel="2305577">
+  <programme start="20250624174000 +0300" stop="20250624180000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מספרים ואותיות</title>
   </programme>
-  <programme start="20250624180000 +0300" stop="20250624192000 +0300" channel="2305577">
+  <programme start="20250624180000 +0300" stop="20250624192000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">טלוויזיה משפחתית</title>
   </programme>
-  <programme start="20250624192000 +0300" stop="20250624202000 +0300" channel="2305577">
+  <programme start="20250624192000 +0300" stop="20250624202000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">ההבטחה</title>
   </programme>
-  <programme start="20250624202000 +0300" stop="20250624203500 +0300" channel="2305577">
+  <programme start="20250624202000 +0300" stop="20250624203500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מגמות</title>
   </programme>
-  <programme start="20250624203500 +0300" stop="20250624213000 +0300" channel="2305577">
+  <programme start="20250624203500 +0300" stop="20250624213000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">צייד הכוכבים</title>
   </programme>
-  <programme start="20250624213000 +0300" stop="20250624220000 +0300" channel="2305577">
+  <programme start="20250624213000 +0300" stop="20250624220000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">כאן כדור הארץ</title>
   </programme>
-  <programme start="20250624220000 +0300" stop="20250624223500 +0300" channel="2305577">
+  <programme start="20250624220000 +0300" stop="20250624223500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250624223500 +0300" stop="20250624224000 +0300" channel="2305577">
+  <programme start="20250624223500 +0300" stop="20250624224000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250624224000 +0300" stop="20250625000000 +0300" channel="2305577">
+  <programme start="20250624224000 +0300" stop="20250625000000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">המרד</title>
   </programme>
-  <programme start="20250625013500 +0300" stop="20250625021000 +0300" channel="2305577">
+  <programme start="20250625013500 +0300" stop="20250625021000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">במישור הכללי</title>
   </programme>
-  <programme start="20250625021000 +0300" stop="20250625031000 +0300" channel="2305577">
+  <programme start="20250625021000 +0300" stop="20250625031000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">תעודה</title>
   </programme>
-  <programme start="20250625031000 +0300" stop="20250625040000 +0300" channel="2305577">
+  <programme start="20250625031000 +0300" stop="20250625040000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">שבילים עם חואן ומיגאס</title>
   </programme>
-  <programme start="20250625040000 +0300" stop="20250625050000 +0300" channel="2305577">
+  <programme start="20250625040000 +0300" stop="20250625050000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">קסם של מדינה</title>
   </programme>
-  <programme start="20250625050000 +0300" stop="20250625053500 +0300" channel="2305577">
+  <programme start="20250625050000 +0300" stop="20250625053500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מטרופוליס</title>
   </programme>
-  <programme start="20250625053500 +0300" stop="20250625063000 +0300" channel="2305577">
+  <programme start="20250625053500 +0300" stop="20250625063000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות 24 שעות</title>
   </programme>
-  <programme start="20250625063000 +0300" stop="20250625073000 +0300" channel="2305577">
+  <programme start="20250625063000 +0300" stop="20250625073000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">ההרפתקה שבידע</title>
   </programme>
-  <programme start="20250625073000 +0300" stop="20250625085000 +0300" channel="2305577">
+  <programme start="20250625073000 +0300" stop="20250625085000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות הבוקר TVE</title>
   </programme>
-  <programme start="20250625085000 +0300" stop="20250625113500 +0300" channel="2305577">
+  <programme start="20250625085000 +0300" stop="20250625113500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">השעה הראשונה</title>
   </programme>
-  <programme start="20250625113500 +0300" stop="20250625152000 +0300" channel="2305577">
+  <programme start="20250625113500 +0300" stop="20250625152000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">בוקר ב-360</title>
   </programme>
-  <programme start="20250625152000 +0300" stop="20250625160000 +0300" channel="2305577">
+  <programme start="20250625152000 +0300" stop="20250625160000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">בוקר ב-360</title>
   </programme>
-  <programme start="20250625160000 +0300" stop="20250625163500 +0300" channel="2305577">
+  <programme start="20250625160000 +0300" stop="20250625163500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250625163500 +0300" stop="20250625164000 +0300" channel="2305577">
+  <programme start="20250625163500 +0300" stop="20250625164000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250625164000 +0300" stop="20250625164500 +0300" channel="2305577">
+  <programme start="20250625164000 +0300" stop="20250625164500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">תחזית מזג האוויר TVE</title>
   </programme>
-  <programme start="20250625164500 +0300" stop="20250625174000 +0300" channel="2305577">
+  <programme start="20250625164500 +0300" stop="20250625174000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">לדעת ולנצח</title>
   </programme>
-  <programme start="20250625174000 +0300" stop="20250625180000 +0300" channel="2305577">
+  <programme start="20250625174000 +0300" stop="20250625180000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מספרים ואותיות</title>
   </programme>
-  <programme start="20250625180000 +0300" stop="20250625192000 +0300" channel="2305577">
+  <programme start="20250625180000 +0300" stop="20250625192000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">טלוויזיה משפחתית</title>
   </programme>
-  <programme start="20250625192000 +0300" stop="20250625202000 +0300" channel="2305577">
+  <programme start="20250625192000 +0300" stop="20250625202000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">ההבטחה</title>
   </programme>
-  <programme start="20250625202000 +0300" stop="20250625203500 +0300" channel="2305577">
+  <programme start="20250625202000 +0300" stop="20250625203500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">מגמות</title>
   </programme>
-  <programme start="20250625203500 +0300" stop="20250625213000 +0300" channel="2305577">
+  <programme start="20250625203500 +0300" stop="20250625213000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">צייד הכוכבים</title>
   </programme>
-  <programme start="20250625213000 +0300" stop="20250625220000 +0300" channel="2305577">
+  <programme start="20250625213000 +0300" stop="20250625220000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">כאן כדור הארץ</title>
   </programme>
-  <programme start="20250625220000 +0300" stop="20250625223500 +0300" channel="2305577">
+  <programme start="20250625220000 +0300" stop="20250625223500 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">יומן חדשות TVE</title>
   </programme>
-  <programme start="20250625223500 +0300" stop="20250625224000 +0300" channel="2305577">
+  <programme start="20250625223500 +0300" stop="20250625224000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">חדשות ספורט</title>
   </programme>
-  <programme start="20250625224000 +0300" stop="20250626000000 +0300" channel="2305577">
+  <programme start="20250625224000 +0300" stop="20250626000000 +0300" channel="ערוץ.24.בשידור.חי.il">
     <title lang="he">המרד</title>
   </programme>
-  <programme start="20250622000300 +0300" stop="20250622010200 +0300" channel="2299435">
+  <programme start="20250622000300 +0300" stop="20250622010200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נחמה (רשף לוי) פרק 4</title>
   </programme>
-  <programme start="20250622010200 +0300" stop="20250622015100 +0300" channel="2299435">
+  <programme start="20250622010200 +0300" stop="20250622015100 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט להרוג פרק 3</title>
   </programme>
-  <programme start="20250622015100 +0300" stop="20250622023400 +0300" channel="2299435">
+  <programme start="20250622015100 +0300" stop="20250622023400 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">רק רוצחים בגינה פרק 12</title>
   </programme>
-  <programme start="20250622023400 +0300" stop="20250622031700 +0300" channel="2299435">
+  <programme start="20250622023400 +0300" stop="20250622031700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits לוס אנג'לס פרק 12</title>
   </programme>
-  <programme start="20250622031700 +0300" stop="20250622040100 +0300" channel="2299435">
+  <programme start="20250622031700 +0300" stop="20250622040100 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">לא רציונלי 2 פרק 14</title>
   </programme>
-  <programme start="20250622040100 +0300" stop="20250622044500 +0300" channel="2299435">
+  <programme start="20250622040100 +0300" stop="20250622044500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נוכלת בשירות החוק 2 פרק 12</title>
   </programme>
-  <programme start="20250622044500 +0300" stop="20250622053000 +0300" channel="2299435">
+  <programme start="20250622044500 +0300" stop="20250622053000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">גחליליות פרק 3</title>
   </programme>
-  <programme start="20250622053000 +0300" stop="20250622061200 +0300" channel="2299435">
+  <programme start="20250622053000 +0300" stop="20250622061200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 3</title>
   </programme>
-  <programme start="20250622061200 +0300" stop="20250622084000 +0300" channel="2299435">
+  <programme start="20250622061200 +0300" stop="20250622084000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נשוב לשדר ב-0840</title>
   </programme>
-  <programme start="20250622084000 +0300" stop="20250622092400 +0300" channel="2299435">
+  <programme start="20250622084000 +0300" stop="20250622092400 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נוכלת בשירות החוק 2 פרק 12</title>
   </programme>
-  <programme start="20250622092400 +0300" stop="20250622095600 +0300" channel="2299435">
+  <programme start="20250622092400 +0300" stop="20250622095600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 26</title>
   </programme>
-  <programme start="20250622095600 +0300" stop="20250622104100 +0300" channel="2299435">
+  <programme start="20250622095600 +0300" stop="20250622104100 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250622112700 +0300" stop="20250622121200 +0300" channel="2299435">
+  <programme start="20250622112700 +0300" stop="20250622121200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נוכלת בשירות החוק 2 פרק 12</title>
   </programme>
-  <programme start="20250622121200 +0300" stop="20250622125800 +0300" channel="2299435">
+  <programme start="20250622121200 +0300" stop="20250622125800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 2</title>
   </programme>
-  <programme start="20250622125800 +0300" stop="20250622134400 +0300" channel="2299435">
+  <programme start="20250622125800 +0300" stop="20250622134400 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 5</title>
   </programme>
-  <programme start="20250622134400 +0300" stop="20250622141600 +0300" channel="2299435">
+  <programme start="20250622134400 +0300" stop="20250622141600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 26</title>
   </programme>
-  <programme start="20250622141600 +0300" stop="20250622150000 +0300" channel="2299435">
+  <programme start="20250622141600 +0300" stop="20250622150000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250622150000 +0300" stop="20250622154000 +0300" channel="2299435">
+  <programme start="20250622150000 +0300" stop="20250622154000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250622154000 +0300" stop="20250622161700 +0300" channel="2299435">
+  <programme start="20250622154000 +0300" stop="20250622161700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250622161700 +0300" stop="20250622163900 +0300" channel="2299435">
+  <programme start="20250622161700 +0300" stop="20250622163900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250622163900 +0300" stop="20250622170200 +0300" channel="2299435">
+  <programme start="20250622163900 +0300" stop="20250622170200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250622170200 +0300" stop="20250622174000 +0300" channel="2299435">
+  <programme start="20250622170200 +0300" stop="20250622174000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250622174000 +0300" stop="20250622181800 +0300" channel="2299435">
+  <programme start="20250622174000 +0300" stop="20250622181800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250622181800 +0300" stop="20250622185000 +0300" channel="2299435">
+  <programme start="20250622181800 +0300" stop="20250622185000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 26</title>
   </programme>
-  <programme start="20250622185000 +0300" stop="20250622193600 +0300" channel="2299435">
+  <programme start="20250622185000 +0300" stop="20250622193600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נוכלת בשירות החוק 2 פרק 12</title>
   </programme>
-  <programme start="20250622193600 +0300" stop="20250622202300 +0300" channel="2299435">
+  <programme start="20250622193600 +0300" stop="20250622202300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 5</title>
   </programme>
-  <programme start="20250622202300 +0300" stop="20250622211600 +0300" channel="2299435">
+  <programme start="20250622202300 +0300" stop="20250622211600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250622211600 +0300" stop="20250622220000 +0300" channel="2299435">
+  <programme start="20250622211600 +0300" stop="20250622220000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 3</title>
   </programme>
-  <programme start="20250622220000 +0300" stop="20250622224800 +0300" channel="2299435">
+  <programme start="20250622220000 +0300" stop="20250622224800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 4</title>
   </programme>
-  <programme start="20250622224800 +0300" stop="20250622233300 +0300" channel="2299435">
+  <programme start="20250622224800 +0300" stop="20250622233300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">גחליליות פרק 3</title>
   </programme>
-  <programme start="20250622233300 +0300" stop="20250623000100 +0300" channel="2299435">
+  <programme start="20250622233300 +0300" stop="20250623000100 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">אוסטין פרק 5</title>
   </programme>
-  <programme start="20250623000100 +0300" stop="20250623004600 +0300" channel="2299435">
+  <programme start="20250623000100 +0300" stop="20250623004600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250623004600 +0300" stop="20250623013900 +0300" channel="2299435">
+  <programme start="20250623004600 +0300" stop="20250623013900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250623013900 +0300" stop="20250623020900 +0300" channel="2299435">
+  <programme start="20250623013900 +0300" stop="20250623020900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 26</title>
   </programme>
-  <programme start="20250623020900 +0300" stop="20250623025600 +0300" channel="2299435">
+  <programme start="20250623020900 +0300" stop="20250623025600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 4</title>
   </programme>
-  <programme start="20250623025600 +0300" stop="20250623032500 +0300" channel="2299435">
+  <programme start="20250623025600 +0300" stop="20250623032500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">אוסטין פרק 5</title>
   </programme>
-  <programme start="20250623032500 +0300" stop="20250623041000 +0300" channel="2299435">
+  <programme start="20250623032500 +0300" stop="20250623041000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250623041000 +0300" stop="20250623050300 +0300" channel="2299435">
+  <programme start="20250623041000 +0300" stop="20250623050300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250623050300 +0300" stop="20250623054600 +0300" channel="2299435">
+  <programme start="20250623050300 +0300" stop="20250623054600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 4</title>
   </programme>
-  <programme start="20250623054600 +0300" stop="20250623082500 +0300" channel="2299435">
+  <programme start="20250623054600 +0300" stop="20250623082500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נשוב לשדר ב-0825</title>
   </programme>
-  <programme start="20250623082500 +0300" stop="20250623091700 +0300" channel="2299435">
+  <programme start="20250623082500 +0300" stop="20250623091700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250623091700 +0300" stop="20250623095300 +0300" channel="2299435">
+  <programme start="20250623091700 +0300" stop="20250623095300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 27</title>
   </programme>
-  <programme start="20250623095300 +0300" stop="20250623103700 +0300" channel="2299435">
+  <programme start="20250623095300 +0300" stop="20250623103700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250623103700 +0300" stop="20250623112200 +0300" channel="2299435">
+  <programme start="20250623103700 +0300" stop="20250623112200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250623112200 +0300" stop="20250623121500 +0300" channel="2299435">
+  <programme start="20250623112200 +0300" stop="20250623121500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250623121500 +0300" stop="20250623125900 +0300" channel="2299435">
+  <programme start="20250623121500 +0300" stop="20250623125900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 3</title>
   </programme>
-  <programme start="20250623125900 +0300" stop="20250623134300 +0300" channel="2299435">
+  <programme start="20250623125900 +0300" stop="20250623134300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250623134300 +0300" stop="20250623141900 +0300" channel="2299435">
+  <programme start="20250623134300 +0300" stop="20250623141900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 27</title>
   </programme>
-  <programme start="20250623141900 +0300" stop="20250623150200 +0300" channel="2299435">
+  <programme start="20250623141900 +0300" stop="20250623150200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250623150200 +0300" stop="20250623154000 +0300" channel="2299435">
+  <programme start="20250623150200 +0300" stop="20250623154000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250623154000 +0300" stop="20250623161700 +0300" channel="2299435">
+  <programme start="20250623154000 +0300" stop="20250623161700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250623161700 +0300" stop="20250623163900 +0300" channel="2299435">
+  <programme start="20250623161700 +0300" stop="20250623163900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250623163900 +0300" stop="20250623170100 +0300" channel="2299435">
+  <programme start="20250623163900 +0300" stop="20250623170100 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250623170100 +0300" stop="20250623173900 +0300" channel="2299435">
+  <programme start="20250623170100 +0300" stop="20250623173900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250623173900 +0300" stop="20250623181600 +0300" channel="2299435">
+  <programme start="20250623173900 +0300" stop="20250623181600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250623181600 +0300" stop="20250623185800 +0300" channel="2299435">
+  <programme start="20250623181600 +0300" stop="20250623185800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 3</title>
   </programme>
-  <programme start="20250623185800 +0300" stop="20250623194900 +0300" channel="2299435">
+  <programme start="20250623185800 +0300" stop="20250623194900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250623194900 +0300" stop="20250623203200 +0300" channel="2299435">
+  <programme start="20250623194900 +0300" stop="20250623203200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250623203200 +0300" stop="20250623211500 +0300" channel="2299435">
+  <programme start="20250623203200 +0300" stop="20250623211500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">רק רוצחים בגינה פרק 13</title>
   </programme>
-  <programme start="20250623211500 +0300" stop="20250623215800 +0300" channel="2299435">
+  <programme start="20250623211500 +0300" stop="20250623215800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 4</title>
   </programme>
-  <programme start="20250623215800 +0300" stop="20250623222700 +0300" channel="2299435">
+  <programme start="20250623215800 +0300" stop="20250623222700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">אוסטין פרק 6</title>
   </programme>
-  <programme start="20250623222700 +0300" stop="20250623231200 +0300" channel="2299435">
+  <programme start="20250623222700 +0300" stop="20250623231200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250624000100 +0300" stop="20250624004600 +0300" channel="2299435">
+  <programme start="20250624000100 +0300" stop="20250624004600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250624004600 +0300" stop="20250624013900 +0300" channel="2299435">
+  <programme start="20250624004600 +0300" stop="20250624013900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250624013900 +0300" stop="20250624020900 +0300" channel="2299435">
+  <programme start="20250624013900 +0300" stop="20250624020900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 26</title>
   </programme>
-  <programme start="20250624020900 +0300" stop="20250624025600 +0300" channel="2299435">
+  <programme start="20250624020900 +0300" stop="20250624025600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 4</title>
   </programme>
-  <programme start="20250624025600 +0300" stop="20250624032500 +0300" channel="2299435">
+  <programme start="20250624025600 +0300" stop="20250624032500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">אוסטין פרק 5</title>
   </programme>
-  <programme start="20250624032500 +0300" stop="20250624041000 +0300" channel="2299435">
+  <programme start="20250624032500 +0300" stop="20250624041000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250624041000 +0300" stop="20250624050300 +0300" channel="2299435">
+  <programme start="20250624041000 +0300" stop="20250624050300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250624050300 +0300" stop="20250624054600 +0300" channel="2299435">
+  <programme start="20250624050300 +0300" stop="20250624054600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 4</title>
   </programme>
-  <programme start="20250624054600 +0300" stop="20250624082500 +0300" channel="2299435">
+  <programme start="20250624054600 +0300" stop="20250624082500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נשוב לשדר ב-0825</title>
   </programme>
-  <programme start="20250624082500 +0300" stop="20250624091700 +0300" channel="2299435">
+  <programme start="20250624082500 +0300" stop="20250624091700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250624091700 +0300" stop="20250624095300 +0300" channel="2299435">
+  <programme start="20250624091700 +0300" stop="20250624095300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 27</title>
   </programme>
-  <programme start="20250624095300 +0300" stop="20250624103700 +0300" channel="2299435">
+  <programme start="20250624095300 +0300" stop="20250624103700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250624103700 +0300" stop="20250624112200 +0300" channel="2299435">
+  <programme start="20250624103700 +0300" stop="20250624112200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250624112200 +0300" stop="20250624121500 +0300" channel="2299435">
+  <programme start="20250624112200 +0300" stop="20250624121500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250624121500 +0300" stop="20250624125900 +0300" channel="2299435">
+  <programme start="20250624121500 +0300" stop="20250624125900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 3</title>
   </programme>
-  <programme start="20250624125900 +0300" stop="20250624134300 +0300" channel="2299435">
+  <programme start="20250624125900 +0300" stop="20250624134300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250624134300 +0300" stop="20250624141900 +0300" channel="2299435">
+  <programme start="20250624134300 +0300" stop="20250624141900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 27</title>
   </programme>
-  <programme start="20250624141900 +0300" stop="20250624150200 +0300" channel="2299435">
+  <programme start="20250624141900 +0300" stop="20250624150200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250624150200 +0300" stop="20250624154000 +0300" channel="2299435">
+  <programme start="20250624150200 +0300" stop="20250624154000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250624154000 +0300" stop="20250624161700 +0300" channel="2299435">
+  <programme start="20250624154000 +0300" stop="20250624161700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250624161700 +0300" stop="20250624163900 +0300" channel="2299435">
+  <programme start="20250624161700 +0300" stop="20250624163900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250624163900 +0300" stop="20250624170100 +0300" channel="2299435">
+  <programme start="20250624163900 +0300" stop="20250624170100 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250624170100 +0300" stop="20250624173900 +0300" channel="2299435">
+  <programme start="20250624170100 +0300" stop="20250624173900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250624173900 +0300" stop="20250624181600 +0300" channel="2299435">
+  <programme start="20250624173900 +0300" stop="20250624181600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250624181600 +0300" stop="20250624185800 +0300" channel="2299435">
+  <programme start="20250624181600 +0300" stop="20250624185800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 3</title>
   </programme>
-  <programme start="20250624185800 +0300" stop="20250624194900 +0300" channel="2299435">
+  <programme start="20250624185800 +0300" stop="20250624194900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250624194900 +0300" stop="20250624203200 +0300" channel="2299435">
+  <programme start="20250624194900 +0300" stop="20250624203200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250624203200 +0300" stop="20250624211500 +0300" channel="2299435">
+  <programme start="20250624203200 +0300" stop="20250624211500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">רק רוצחים בגינה פרק 13</title>
   </programme>
-  <programme start="20250624211500 +0300" stop="20250624215800 +0300" channel="2299435">
+  <programme start="20250624211500 +0300" stop="20250624215800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 4</title>
   </programme>
-  <programme start="20250624215800 +0300" stop="20250624222700 +0300" channel="2299435">
+  <programme start="20250624215800 +0300" stop="20250624222700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">אוסטין פרק 6</title>
   </programme>
-  <programme start="20250624222700 +0300" stop="20250624231200 +0300" channel="2299435">
+  <programme start="20250624222700 +0300" stop="20250624231200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250625000100 +0300" stop="20250625004600 +0300" channel="2299435">
+  <programme start="20250625000100 +0300" stop="20250625004600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250625004600 +0300" stop="20250625013900 +0300" channel="2299435">
+  <programme start="20250625004600 +0300" stop="20250625013900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250625013900 +0300" stop="20250625020900 +0300" channel="2299435">
+  <programme start="20250625013900 +0300" stop="20250625020900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 26</title>
   </programme>
-  <programme start="20250625020900 +0300" stop="20250625025600 +0300" channel="2299435">
+  <programme start="20250625020900 +0300" stop="20250625025600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 4</title>
   </programme>
-  <programme start="20250625025600 +0300" stop="20250625032500 +0300" channel="2299435">
+  <programme start="20250625025600 +0300" stop="20250625032500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">אוסטין פרק 5</title>
   </programme>
-  <programme start="20250625032500 +0300" stop="20250625041000 +0300" channel="2299435">
+  <programme start="20250625032500 +0300" stop="20250625041000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 3</title>
   </programme>
-  <programme start="20250625041000 +0300" stop="20250625050300 +0300" channel="2299435">
+  <programme start="20250625041000 +0300" stop="20250625050300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250625050300 +0300" stop="20250625054600 +0300" channel="2299435">
+  <programme start="20250625050300 +0300" stop="20250625054600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">פשוט ככה 3 פרק 4</title>
   </programme>
-  <programme start="20250625054600 +0300" stop="20250625082500 +0300" channel="2299435">
+  <programme start="20250625054600 +0300" stop="20250625082500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">נשוב לשדר ב-0825</title>
   </programme>
-  <programme start="20250625082500 +0300" stop="20250625091700 +0300" channel="2299435">
+  <programme start="20250625082500 +0300" stop="20250625091700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250625091700 +0300" stop="20250625095300 +0300" channel="2299435">
+  <programme start="20250625091700 +0300" stop="20250625095300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 27</title>
   </programme>
-  <programme start="20250625095300 +0300" stop="20250625103700 +0300" channel="2299435">
+  <programme start="20250625095300 +0300" stop="20250625103700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250625103700 +0300" stop="20250625112200 +0300" channel="2299435">
+  <programme start="20250625103700 +0300" stop="20250625112200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250625112200 +0300" stop="20250625121500 +0300" channel="2299435">
+  <programme start="20250625112200 +0300" stop="20250625121500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250625121500 +0300" stop="20250625125900 +0300" channel="2299435">
+  <programme start="20250625121500 +0300" stop="20250625125900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 3</title>
   </programme>
-  <programme start="20250625125900 +0300" stop="20250625134300 +0300" channel="2299435">
+  <programme start="20250625125900 +0300" stop="20250625134300 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250625134300 +0300" stop="20250625141900 +0300" channel="2299435">
+  <programme start="20250625134300 +0300" stop="20250625141900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">שלטון הצללים פרק 27</title>
   </programme>
-  <programme start="20250625141900 +0300" stop="20250625150200 +0300" channel="2299435">
+  <programme start="20250625141900 +0300" stop="20250625150200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250625150200 +0300" stop="20250625154000 +0300" channel="2299435">
+  <programme start="20250625150200 +0300" stop="20250625154000 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250625154000 +0300" stop="20250625161700 +0300" channel="2299435">
+  <programme start="20250625154000 +0300" stop="20250625161700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250625161700 +0300" stop="20250625163900 +0300" channel="2299435">
+  <programme start="20250625161700 +0300" stop="20250625163900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250625163900 +0300" stop="20250625170100 +0300" channel="2299435">
+  <programme start="20250625163900 +0300" stop="20250625170100 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">היפים והאמיצים</title>
   </programme>
-  <programme start="20250625170100 +0300" stop="20250625173900 +0300" channel="2299435">
+  <programme start="20250625170100 +0300" stop="20250625173900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">ימי חיינו, חדש!</title>
   </programme>
-  <programme start="20250625173900 +0300" stop="20250625181600 +0300" channel="2299435">
+  <programme start="20250625173900 +0300" stop="20250625181600 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
   </programme>
-  <programme start="20250625181600 +0300" stop="20250625185800 +0300" channel="2299435">
+  <programme start="20250625181600 +0300" stop="20250625185800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 3</title>
   </programme>
-  <programme start="20250625185800 +0300" stop="20250625194900 +0300" channel="2299435">
+  <programme start="20250625185800 +0300" stop="20250625194900 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">הקיסרית סיסי 4 פרק 1</title>
   </programme>
-  <programme start="20250625194900 +0300" stop="20250625203200 +0300" channel="2299435">
+  <programme start="20250625194900 +0300" stop="20250625203200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">מקום בלב 2 פרק 6</title>
   </programme>
-  <programme start="20250625203200 +0300" stop="20250625211500 +0300" channel="2299435">
+  <programme start="20250625203200 +0300" stop="20250625211500 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">רק רוצחים בגינה פרק 13</title>
   </programme>
-  <programme start="20250625211500 +0300" stop="20250625215800 +0300" channel="2299435">
+  <programme start="20250625211500 +0300" stop="20250625215800 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">Suits 9 פרק 4</title>
   </programme>
-  <programme start="20250625215800 +0300" stop="20250625222700 +0300" channel="2299435">
+  <programme start="20250625215800 +0300" stop="20250625222700 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">אוסטין פרק 6</title>
   </programme>
-  <programme start="20250625222700 +0300" stop="20250625231200 +0300" channel="2299435">
+  <programme start="20250625222700 +0300" stop="20250625231200 +0300" channel="ערוץ.3.שידור.חי.il">
     <title lang="he">דוק פרק 4</title>
   </programme>
-  <programme start="20250622003000 +0300" stop="20250622010500 +0300" channel="2299436">
+  <programme start="20250622003000 +0300" stop="20250622010500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מושלמים פרק 2</title>
   </programme>
-  <programme start="20250622010500 +0300" stop="20250622013500 +0300" channel="2299436">
+  <programme start="20250622010500 +0300" stop="20250622013500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מושלמים פרק 3</title>
   </programme>
-  <programme start="20250622013500 +0300" stop="20250622022000 +0300" channel="2299436">
+  <programme start="20250622013500 +0300" stop="20250622022000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">האם תסבול מדמנציה?</title>
   </programme>
-  <programme start="20250622022000 +0300" stop="20250622034000 +0300" channel="2299436">
+  <programme start="20250622022000 +0300" stop="20250622034000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">דליה פרידלנד - זיכרון של מסטיק</title>
   </programme>
-  <programme start="20250622034000 +0300" stop="20250622042700 +0300" channel="2299436">
+  <programme start="20250622034000 +0300" stop="20250622042700 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">זיגפריד ורוי</title>
   </programme>
-  <programme start="20250622042700 +0300" stop="20250622045900 +0300" channel="2299436">
+  <programme start="20250622042700 +0300" stop="20250622045900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מושלמים פרק 1</title>
   </programme>
-  <programme start="20250622045900 +0300" stop="20250622053400 +0300" channel="2299436">
+  <programme start="20250622045900 +0300" stop="20250622053400 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מושלמים פרק 2</title>
   </programme>
-  <programme start="20250622053400 +0300" stop="20250622060200 +0300" channel="2299436">
+  <programme start="20250622053400 +0300" stop="20250622060200 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מושלמים פרק 3</title>
   </programme>
-  <programme start="20250622060200 +0300" stop="20250622072000 +0300" channel="2299436">
+  <programme start="20250622060200 +0300" stop="20250622072000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">דליה פרידלנד - זיכרון של מסטיק</title>
   </programme>
-  <programme start="20250622072000 +0300" stop="20250622080500 +0300" channel="2299436">
+  <programme start="20250622072000 +0300" stop="20250622080500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">זיגפריד ורוי</title>
   </programme>
-  <programme start="20250622080500 +0300" stop="20250622085000 +0300" channel="2299436">
+  <programme start="20250622080500 +0300" stop="20250622085000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 1</title>
   </programme>
-  <programme start="20250622085000 +0300" stop="20250622093600 +0300" channel="2299436">
+  <programme start="20250622085000 +0300" stop="20250622093600 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 1</title>
   </programme>
-  <programme start="20250622093600 +0300" stop="20250622102000 +0300" channel="2299436">
+  <programme start="20250622093600 +0300" stop="20250622102000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 6</title>
   </programme>
-  <programme start="20250622110500 +0300" stop="20250622122500 +0300" channel="2299436">
+  <programme start="20250622110500 +0300" stop="20250622122500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">דליה פרידלנד - זיכרון של מסטיק</title>
   </programme>
-  <programme start="20250622122500 +0300" stop="20250622131000 +0300" channel="2299436">
+  <programme start="20250622122500 +0300" stop="20250622131000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 1</title>
   </programme>
-  <programme start="20250622131000 +0300" stop="20250622140000 +0300" channel="2299436">
+  <programme start="20250622131000 +0300" stop="20250622140000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 1</title>
   </programme>
-  <programme start="20250622140000 +0300" stop="20250622144500 +0300" channel="2299436">
+  <programme start="20250622140000 +0300" stop="20250622144500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 6</title>
   </programme>
-  <programme start="20250622144500 +0300" stop="20250622153500 +0300" channel="2299436">
+  <programme start="20250622144500 +0300" stop="20250622153500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">האם תסבול מדמנציה?</title>
   </programme>
-  <programme start="20250622153500 +0300" stop="20250622165500 +0300" channel="2299436">
+  <programme start="20250622153500 +0300" stop="20250622165500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">דליה פרידלנד - זיכרון של מסטיק</title>
   </programme>
-  <programme start="20250622165500 +0300" stop="20250622174000 +0300" channel="2299436">
+  <programme start="20250622165500 +0300" stop="20250622174000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 6</title>
   </programme>
-  <programme start="20250622174000 +0300" stop="20250622182500 +0300" channel="2299436">
+  <programme start="20250622174000 +0300" stop="20250622182500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 1</title>
   </programme>
-  <programme start="20250622182500 +0300" stop="20250622191100 +0300" channel="2299436">
+  <programme start="20250622182500 +0300" stop="20250622191100 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">האם תסבול מדמנציה?</title>
   </programme>
-  <programme start="20250622191100 +0300" stop="20250622202900 +0300" channel="2299436">
+  <programme start="20250622191100 +0300" stop="20250622202900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">דליה פרידלנד - זיכרון של מסטיק</title>
   </programme>
-  <programme start="20250622202900 +0300" stop="20250622211500 +0300" channel="2299436">
+  <programme start="20250622202900 +0300" stop="20250622211500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 1</title>
   </programme>
-  <programme start="20250622211500 +0300" stop="20250622222000 +0300" channel="2299436">
+  <programme start="20250622211500 +0300" stop="20250622222000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250622222000 +0300" stop="20250622235500 +0300" channel="2299436">
+  <programme start="20250622222000 +0300" stop="20250622235500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הסם הטוב</title>
   </programme>
-  <programme start="20250622235500 +0300" stop="20250623004500 +0300" channel="2299436">
+  <programme start="20250622235500 +0300" stop="20250623004500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250623004500 +0300" stop="20250623015000 +0300" channel="2299436">
+  <programme start="20250623004500 +0300" stop="20250623015000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250623015000 +0300" stop="20250623032500 +0300" channel="2299436">
+  <programme start="20250623015000 +0300" stop="20250623032500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הסם הטוב</title>
   </programme>
-  <programme start="20250623032500 +0300" stop="20250623041500 +0300" channel="2299436">
+  <programme start="20250623032500 +0300" stop="20250623041500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250623041500 +0300" stop="20250623051800 +0300" channel="2299436">
+  <programme start="20250623041500 +0300" stop="20250623051800 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250623051800 +0300" stop="20250623055600 +0300" channel="2299436">
+  <programme start="20250623051800 +0300" stop="20250623055600 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 1</title>
   </programme>
-  <programme start="20250623055600 +0300" stop="20250623060200 +0300" channel="2299436">
+  <programme start="20250623055600 +0300" stop="20250623060200 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">שידורינו יתחדשו בשעות הבוקר</title>
   </programme>
-  <programme start="20250623060200 +0300" stop="20250623070500 +0300" channel="2299436">
+  <programme start="20250623060200 +0300" stop="20250623070500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250623070500 +0300" stop="20250623075500 +0300" channel="2299436">
+  <programme start="20250623070500 +0300" stop="20250623075500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250623075500 +0300" stop="20250623084000 +0300" channel="2299436">
+  <programme start="20250623075500 +0300" stop="20250623084000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250623084000 +0300" stop="20250623092900 +0300" channel="2299436">
+  <programme start="20250623084000 +0300" stop="20250623092900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250623092900 +0300" stop="20250623101500 +0300" channel="2299436">
+  <programme start="20250623092900 +0300" stop="20250623101500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250623101500 +0300" stop="20250623112000 +0300" channel="2299436">
+  <programme start="20250623101500 +0300" stop="20250623112000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250623112000 +0300" stop="20250623121000 +0300" channel="2299436">
+  <programme start="20250623112000 +0300" stop="20250623121000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250623121000 +0300" stop="20250623125500 +0300" channel="2299436">
+  <programme start="20250623121000 +0300" stop="20250623125500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250623125500 +0300" stop="20250623134500 +0300" channel="2299436">
+  <programme start="20250623125500 +0300" stop="20250623134500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250623134500 +0300" stop="20250623143100 +0300" channel="2299436">
+  <programme start="20250623134500 +0300" stop="20250623143100 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250623143100 +0300" stop="20250623150400 +0300" channel="2299436">
+  <programme start="20250623143100 +0300" stop="20250623150400 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">שיחת נפש 7 פרק 4</title>
   </programme>
-  <programme start="20250623150400 +0300" stop="20250623160900 +0300" channel="2299436">
+  <programme start="20250623150400 +0300" stop="20250623160900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250623160900 +0300" stop="20250623170000 +0300" channel="2299436">
+  <programme start="20250623160900 +0300" stop="20250623170000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250623170000 +0300" stop="20250623174500 +0300" channel="2299436">
+  <programme start="20250623170000 +0300" stop="20250623174500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250623174500 +0300" stop="20250623183000 +0300" channel="2299436">
+  <programme start="20250623174500 +0300" stop="20250623183000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250623183000 +0300" stop="20250623192000 +0300" channel="2299436">
+  <programme start="20250623183000 +0300" stop="20250623192000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250623192000 +0300" stop="20250623202500 +0300" channel="2299436">
+  <programme start="20250623192000 +0300" stop="20250623202500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250623202500 +0300" stop="20250623211500 +0300" channel="2299436">
+  <programme start="20250623202500 +0300" stop="20250623211500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250623211500 +0300" stop="20250623221900 +0300" channel="2299436">
+  <programme start="20250623211500 +0300" stop="20250623221900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מלכי הקסטות האחים ראובני פרק 1</title>
   </programme>
-  <programme start="20250623221900 +0300" stop="20250623232400 +0300" channel="2299436">
+  <programme start="20250623221900 +0300" stop="20250623232400 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מלכי הקסטות האחים ראובני פרק 2</title>
   </programme>
-  <programme start="20250624004500 +0300" stop="20250624015000 +0300" channel="2299436">
+  <programme start="20250624004500 +0300" stop="20250624015000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250624015000 +0300" stop="20250624032500 +0300" channel="2299436">
+  <programme start="20250624015000 +0300" stop="20250624032500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הסם הטוב</title>
   </programme>
-  <programme start="20250624032500 +0300" stop="20250624041500 +0300" channel="2299436">
+  <programme start="20250624032500 +0300" stop="20250624041500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250624041500 +0300" stop="20250624051800 +0300" channel="2299436">
+  <programme start="20250624041500 +0300" stop="20250624051800 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250624051800 +0300" stop="20250624055600 +0300" channel="2299436">
+  <programme start="20250624051800 +0300" stop="20250624055600 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 1</title>
   </programme>
-  <programme start="20250624055600 +0300" stop="20250624060200 +0300" channel="2299436">
+  <programme start="20250624055600 +0300" stop="20250624060200 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">שידורינו יתחדשו בשעות הבוקר</title>
   </programme>
-  <programme start="20250624060200 +0300" stop="20250624070500 +0300" channel="2299436">
+  <programme start="20250624060200 +0300" stop="20250624070500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250624070500 +0300" stop="20250624075500 +0300" channel="2299436">
+  <programme start="20250624070500 +0300" stop="20250624075500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250624075500 +0300" stop="20250624084000 +0300" channel="2299436">
+  <programme start="20250624075500 +0300" stop="20250624084000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250624084000 +0300" stop="20250624092900 +0300" channel="2299436">
+  <programme start="20250624084000 +0300" stop="20250624092900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250624092900 +0300" stop="20250624101500 +0300" channel="2299436">
+  <programme start="20250624092900 +0300" stop="20250624101500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250624101500 +0300" stop="20250624112000 +0300" channel="2299436">
+  <programme start="20250624101500 +0300" stop="20250624112000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250624112000 +0300" stop="20250624121000 +0300" channel="2299436">
+  <programme start="20250624112000 +0300" stop="20250624121000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250624121000 +0300" stop="20250624125500 +0300" channel="2299436">
+  <programme start="20250624121000 +0300" stop="20250624125500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250624125500 +0300" stop="20250624134500 +0300" channel="2299436">
+  <programme start="20250624125500 +0300" stop="20250624134500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250624134500 +0300" stop="20250624143100 +0300" channel="2299436">
+  <programme start="20250624134500 +0300" stop="20250624143100 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250624143100 +0300" stop="20250624150400 +0300" channel="2299436">
+  <programme start="20250624143100 +0300" stop="20250624150400 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">שיחת נפש 7 פרק 4</title>
   </programme>
-  <programme start="20250624150400 +0300" stop="20250624160900 +0300" channel="2299436">
+  <programme start="20250624150400 +0300" stop="20250624160900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250624160900 +0300" stop="20250624170000 +0300" channel="2299436">
+  <programme start="20250624160900 +0300" stop="20250624170000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250624170000 +0300" stop="20250624174500 +0300" channel="2299436">
+  <programme start="20250624170000 +0300" stop="20250624174500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250624174500 +0300" stop="20250624183000 +0300" channel="2299436">
+  <programme start="20250624174500 +0300" stop="20250624183000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250624183000 +0300" stop="20250624192000 +0300" channel="2299436">
+  <programme start="20250624183000 +0300" stop="20250624192000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250624192000 +0300" stop="20250624202500 +0300" channel="2299436">
+  <programme start="20250624192000 +0300" stop="20250624202500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250624202500 +0300" stop="20250624211500 +0300" channel="2299436">
+  <programme start="20250624202500 +0300" stop="20250624211500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250624211500 +0300" stop="20250624221900 +0300" channel="2299436">
+  <programme start="20250624211500 +0300" stop="20250624221900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מלכי הקסטות האחים ראובני פרק 1</title>
   </programme>
-  <programme start="20250624221900 +0300" stop="20250624232400 +0300" channel="2299436">
+  <programme start="20250624221900 +0300" stop="20250624232400 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מלכי הקסטות האחים ראובני פרק 2</title>
   </programme>
-  <programme start="20250625004500 +0300" stop="20250625015000 +0300" channel="2299436">
+  <programme start="20250625004500 +0300" stop="20250625015000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250625015000 +0300" stop="20250625032500 +0300" channel="2299436">
+  <programme start="20250625015000 +0300" stop="20250625032500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הסם הטוב</title>
   </programme>
-  <programme start="20250625032500 +0300" stop="20250625041500 +0300" channel="2299436">
+  <programme start="20250625032500 +0300" stop="20250625041500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250625041500 +0300" stop="20250625051800 +0300" channel="2299436">
+  <programme start="20250625041500 +0300" stop="20250625051800 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250625051800 +0300" stop="20250625055600 +0300" channel="2299436">
+  <programme start="20250625051800 +0300" stop="20250625055600 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 1</title>
   </programme>
-  <programme start="20250625055600 +0300" stop="20250625060200 +0300" channel="2299436">
+  <programme start="20250625055600 +0300" stop="20250625060200 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">שידורינו יתחדשו בשעות הבוקר</title>
   </programme>
-  <programme start="20250625060200 +0300" stop="20250625070500 +0300" channel="2299436">
+  <programme start="20250625060200 +0300" stop="20250625070500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250625070500 +0300" stop="20250625075500 +0300" channel="2299436">
+  <programme start="20250625070500 +0300" stop="20250625075500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250625075500 +0300" stop="20250625084000 +0300" channel="2299436">
+  <programme start="20250625075500 +0300" stop="20250625084000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250625084000 +0300" stop="20250625092900 +0300" channel="2299436">
+  <programme start="20250625084000 +0300" stop="20250625092900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250625092900 +0300" stop="20250625101500 +0300" channel="2299436">
+  <programme start="20250625092900 +0300" stop="20250625101500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250625101500 +0300" stop="20250625112000 +0300" channel="2299436">
+  <programme start="20250625101500 +0300" stop="20250625112000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250625112000 +0300" stop="20250625121000 +0300" channel="2299436">
+  <programme start="20250625112000 +0300" stop="20250625121000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250625121000 +0300" stop="20250625125500 +0300" channel="2299436">
+  <programme start="20250625121000 +0300" stop="20250625125500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250625125500 +0300" stop="20250625134500 +0300" channel="2299436">
+  <programme start="20250625125500 +0300" stop="20250625134500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250625134500 +0300" stop="20250625143100 +0300" channel="2299436">
+  <programme start="20250625134500 +0300" stop="20250625143100 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250625143100 +0300" stop="20250625150400 +0300" channel="2299436">
+  <programme start="20250625143100 +0300" stop="20250625150400 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">שיחת נפש 7 פרק 4</title>
   </programme>
-  <programme start="20250625150400 +0300" stop="20250625160900 +0300" channel="2299436">
+  <programme start="20250625150400 +0300" stop="20250625160900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250625160900 +0300" stop="20250625170000 +0300" channel="2299436">
+  <programme start="20250625160900 +0300" stop="20250625170000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250625170000 +0300" stop="20250625174500 +0300" channel="2299436">
+  <programme start="20250625170000 +0300" stop="20250625174500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המלונות המדהימים בעולם 2 פרק 7</title>
   </programme>
-  <programme start="20250625174500 +0300" stop="20250625183000 +0300" channel="2299436">
+  <programme start="20250625174500 +0300" stop="20250625183000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הפוליטיקה של האוכל פרק 2</title>
   </programme>
-  <programme start="20250625183000 +0300" stop="20250625192000 +0300" channel="2299436">
+  <programme start="20250625183000 +0300" stop="20250625192000 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">המוות של דיאנה כל האמת</title>
   </programme>
-  <programme start="20250625192000 +0300" stop="20250625202500 +0300" channel="2299436">
+  <programme start="20250625192000 +0300" stop="20250625202500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">פלייבוי - הסיפור האמיתי</title>
   </programme>
-  <programme start="20250625202500 +0300" stop="20250625211500 +0300" channel="2299436">
+  <programme start="20250625202500 +0300" stop="20250625211500 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">הארי ומייגן עלייתם ונפילתם פרק 2</title>
   </programme>
-  <programme start="20250625211500 +0300" stop="20250625221900 +0300" channel="2299436">
+  <programme start="20250625211500 +0300" stop="20250625221900 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מלכי הקסטות האחים ראובני פרק 1</title>
   </programme>
-  <programme start="20250625221900 +0300" stop="20250625232400 +0300" channel="2299436">
+  <programme start="20250625221900 +0300" stop="20250625232400 +0300" channel="ערוץ.8.שידור.חי.il">
     <title lang="he">מלכי הקסטות האחים ראובני פרק 2</title>
   </programme>
   <programme start="20250622020000 +0300" stop="20250622060000 +0300" channel="2299414">
