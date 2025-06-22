@@ -77,25 +77,11 @@ def main() -> None:
     id_map = load_mapping(CSV_MAP)  # {old_id → tvg-id} or empty
 
     kept_ids: Set[str] = set()      # ids kept in the final EPG
+    dup_ids: Set[str] = set()       # ids seen more than once (after mapping)
     part_channels: List[ET.Element] = []   # <channel> nodes
     part_programmes: List[ET.Element] = [] # <programme> nodes
 
     # ── PASS 1: keep first occurrence of every (mapped) id ────────────────── #
-    for url in URLS:
-        root = fetch_root(url)
-        for node in root:
-            if node.tag != "programme":
-                continue
-
-            old_chan = node.get("channel")
-            new_chan = id_map.get(old_chan, old_chan)
-            node.set("channel", new_chan)  # rewrite reference
-
-            if not new_chan in kept_ids:
-                kept_ids.add(new_chan)
-                part_programmes.append(node)
-
-    # ── PASS 2: keep <channel>s only if their (mapped) channel id is unique ── #
     for url in URLS:
         root = fetch_root(url)
         for node in root:
@@ -107,8 +93,24 @@ def main() -> None:
             node.set("id", new_id)  # rewrite in-place so later writes are easy
 
             if new_id in kept_ids:
+                dup_ids.add(new_id)
+            else:
+                kept_ids.add(new_id)
                 part_channels.append(node)
-            
+
+    # ── PASS 2: keep <programme>s only if their (mapped) channel id is unique ── #
+    for url in URLS:
+        root = fetch_root(url)
+        for node in root:
+            if node.tag != "programme":
+                continue
+
+            old_chan = node.get("channel")
+            new_chan = id_map.get(old_chan, old_chan)
+            node.set("channel", new_chan)  # rewrite reference
+
+            if new_chan in kept_ids and new_chan not in dup_ids:
+                part_programmes.append(node)
 
     # ── assemble output tree ─────────────────────────────────────────────── #
     out_root = ET.Element("tv")
