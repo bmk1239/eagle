@@ -92,7 +92,7 @@ def main() -> None:
             node.set("channel", new_chan)  # rewrite reference
 
             if not new_chan in kept_ids:
-                kept_ids.add(new_id)
+                kept_ids.add(new_chan)
                 part_programmes.append(node)
 
     # ── PASS 2: keep <programme>s only if their (mapped) channel id is unique ── #
