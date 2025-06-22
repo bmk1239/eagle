@@ -1,7 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tv>
+  <channel id="2299426">
+    <display-name lang="he">Eurosport</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299442">
+    <display-name lang="he">הוט בידור ישראלי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299480">
+    <display-name lang="he">ניקלודיאון שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299423">
+    <display-name lang="he">ספורט 5 גולד</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299421">
+    <display-name lang="he">ספורט 5 לייב</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2350798">
+    <display-name lang="he">ספורט 5 פלוס</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299420">
+    <display-name lang="he">ספורט 5 שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299409">
+    <display-name lang="he">ערוץ 11 כאן שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299410">
+    <display-name lang="he">ערוץ 12 שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299412">
+    <display-name lang="he">ערוץ 14 שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2305577">
+    <display-name lang="he">ערוץ 24 בשידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299435">
+    <display-name lang="he">ערוץ 3 שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299436">
+    <display-name lang="he">ערוץ 8 שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299414">
+    <display-name lang="he">ערוץ 9 שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299482">
+    <display-name lang="he">ערוץ TeenNick</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2299424">
+    <display-name lang="he">ערוץ one שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
   <channel id="ערוץ.אגו.שידור.חי.il">
     <display-name lang="he">ערוץ אגו שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2305580">
+    <display-name lang="he">ערוץ דיסקברי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
   <channel id="ערוץ.האופנה.FTV.שידור.חי.il">
@@ -16,8 +84,22 @@
     <display-name lang="he">ערוץ הטיולים</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
+  <channel id="2299477">
+    <display-name lang="he">ערוץ ויוה שידור חי</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
+  <channel id="2305581">
+    <display-name lang="he">ערוץ נשיונל גיאוגרפיק</display-name>
+    <url>http://www.isramedia.net</url>
+  </channel>
   <channel id="E ערוץ הבידור.il">
     <display-name>E ערוץ הבידור.il</display-name>
+  </channel>
+  <channel id="2299426">
+    <display-name>Eurosport.il</display-name>
+  </channel>
+  <channel id="2299413">
+    <display-name>i24news בעברית.il</display-name>
   </channel>
   <channel id="MTV.il">
     <display-name>MTV.il</display-name>
@@ -25,17 +107,83 @@
   <channel id="אל גזירה.il">
     <display-name>אל גזירה.il</display-name>
   </channel>
+  <channel id="2299442">
+    <display-name>הוט בידור ישראלי.il</display-name>
+  </channel>
   <channel id="הוט סינמה 1.il">
     <display-name>הוט סינמה 1.il</display-name>
+  </channel>
+  <channel id="2299430">
+    <display-name>הוט סינמה 2.il</display-name>
+  </channel>
+  <channel id="2299431">
+    <display-name>הוט סינמה 3.il</display-name>
   </channel>
   <channel id="ישראל 33.il">
     <display-name>ישראל 33.il</display-name>
   </channel>
+  <channel id="2305576">
+    <display-name>כאן חינוכית.il</display-name>
+  </channel>
+  <channel id="2305581">
+    <display-name>נשיונל גיאוגרפיק.il</display-name>
+  </channel>
+  <channel id="2299416">
+    <display-name>ספורט 1.il</display-name>
+  </channel>
+  <channel id="2299417">
+    <display-name>ספורט 2.il</display-name>
+  </channel>
+  <channel id="2299418">
+    <display-name>ספורט 3.il</display-name>
+  </channel>
+  <channel id="2299419">
+    <display-name>ספורט 4.il</display-name>
+  </channel>
+  <channel id="2299423">
+    <display-name>ספורט 5 גולד.il</display-name>
+  </channel>
+  <channel id="2299421">
+    <display-name>ספורט 5 פלוס לייב.il</display-name>
+  </channel>
+  <channel id="2350798">
+    <display-name>ספורט 5 פלוס.il</display-name>
+  </channel>
+  <channel id="2299420">
+    <display-name>ספורט 5.il</display-name>
+  </channel>
+  <channel id="2299409">
+    <display-name>ערוץ 11.il</display-name>
+  </channel>
+  <channel id="2299410">
+    <display-name>ערוץ 12.il</display-name>
+  </channel>
+  <channel id="2299411">
+    <display-name>ערוץ 13.il</display-name>
+  </channel>
+  <channel id="2299412">
+    <display-name>ערוץ 14.il</display-name>
+  </channel>
+  <channel id="2305577">
+    <display-name>ערוץ 24.il</display-name>
+  </channel>
+  <channel id="2299435">
+    <display-name>ערוץ 3.il</display-name>
+  </channel>
   <channel id="ערוץ 8.il">
     <display-name>ערוץ 8.il</display-name>
   </channel>
+  <channel id="2299414">
+    <display-name>ערוץ 9.il</display-name>
+  </channel>
+  <channel id="2299424">
+    <display-name>ערוץ One.il</display-name>
+  </channel>
   <channel id="ערוץ אגו.il">
     <display-name>ערוץ אגו.il</display-name>
+  </channel>
+  <channel id="2305580">
+    <display-name>ערוץ דיסקברי.il</display-name>
   </channel>
   <channel id="ערוץ האוכל.il">
     <display-name>ערוץ האוכל.il</display-name>
@@ -45,6 +193,18 @@
   </channel>
   <channel id="ערוץ הטיולים.il">
     <display-name>ערוץ הטיולים.il</display-name>
+  </channel>
+  <channel id="2299415">
+    <display-name>ערוץ הכנסת.il</display-name>
+  </channel>
+  <channel id="2299477">
+    <display-name>ערוץ ויוה.il</display-name>
+  </channel>
+  <channel id="2299482">
+    <display-name>ערוץ טין ניק.il</display-name>
+  </channel>
+  <channel id="2299480">
+    <display-name>ערוץ ניקלודיאון.il</display-name>
   </channel>
   <programme start="20250622010000 +0300" stop="20250622030000 +0300" channel="2299426">
     <title lang="he">רכיבת סוסים</title>
