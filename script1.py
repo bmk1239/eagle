@@ -109,7 +109,7 @@ def main() -> None:
             new_id = id_map.get(old_id, old_id)
             node.set("id", new_id)  # rewrite in-place so later writes are easy
 
-            if new_id in kept_ids:
+            if old_id in kept_ids:
                 part_channels.append(node)
             
 
