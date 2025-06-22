@@ -95,7 +95,7 @@ def main() -> None:
                 kept_ids.add(new_chan)
                 part_programmes.append(node)
 
-    # ── PASS 2: keep <programme>s only if their (mapped) channel id is unique ── #
+    # ── PASS 2: keep <channel>s only if their (mapped) channel id is unique ── #
     for url in URLS:
         root = fetch_root(url)
         for node in root:
