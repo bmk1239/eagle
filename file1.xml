@@ -296,7 +296,7 @@
   <channel id="2299442">
     <display-name>הוט בידור ישראלי.il</display-name>
   </channel>
-  <channel id="הוט סינמה 1.il">
+  <channel id="2299429">
     <display-name>הוט סינמה 1.il</display-name>
   </channel>
   <channel id="2299430">
@@ -356,7 +356,7 @@
   <channel id="2299435">
     <display-name>ערוץ 3.il</display-name>
   </channel>
-  <channel id="ערוץ 8.il">
+  <channel id="2299436">
     <display-name>ערוץ 8.il</display-name>
   </channel>
   <channel id="2299414">
@@ -477,7 +477,7 @@
     <title>הערוץ סיים את שידוריו</title>
     <desc>הערוץ סיים את שידוריו.</desc>
   </programme>
-  <programme start="20250621212900 +0000" stop="20250621234000 +0000" channel="הוט סינמה 1.il">
+  <programme start="20250621212900 +0000" stop="20250621234000 +0000" channel="2299429">
     <title>נקודת שוויון - דנזל וושינגטון</title>
     <desc>פעולה. סוכן סי.איי.איי לשעבר, שזייף את מותו כדי לפרוש לחיים שקטים, חוזר לשטח כדי להציל נערה צעירה הנשלטת בידי המאפיה הרוסית. עם דנזל וושינגטון, מרטון סוקאס. בימוי אנטואן פוקואה (ארהב, 2014).</desc>
   </programme>
@@ -516,10 +516,6 @@
   <programme start="20250621210000 +0000" stop="20250621210500 +0000" channel="2299411">
     <title>מבזק חדשות</title>
     <desc>שידור חי! מבזק חדשות ערוץ 13. כ סמ.</desc>
-  </programme>
-  <programme start="20250621213000 +0000" stop="20250621220500 +0000" channel="ערוץ 8.il">
-    <title>מושלמים פרק 2</title>
-    <desc>מושלמים עוסקת בחייהם של הנכים. אסף גרינבוים, נכה בחצי גופו השמאלי, יוצא למסע בו הוא פוגש אנשים בעלי מוגבלות שמדברים על עצמם. הפרק איך נראים דייטים של נכים, איך מתנהל הסקס. כ עב. ישראל 2019 (שח)</desc>
   </programme>
   <programme start="20250621212000 +0000" stop="20250621215300 +0000" channel="ערוץ אגו.il">
     <title>מאחורי הסדינים 3 פרק 33</title>
