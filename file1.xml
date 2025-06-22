@@ -12,15 +12,15 @@
     <display-name lang="he">ניקלודיאון שידור חי</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="ספורט.5.גולד.il">
+  <channel id="2299423">
     <display-name lang="he">ספורט 5 גולד</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="ספורט.5.לייב.il">
+  <channel id="2299421">
     <display-name lang="he">ספורט 5 לייב</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
-  <channel id="ספורט.5.פלוס.il">
+  <channel id="2350798">
     <display-name lang="he">ספורט 5 פלוס</display-name>
     <url>http://www.isramedia.net</url>
   </channel>
@@ -136,15 +136,6 @@
   </channel>
   <channel id="2299419">
     <display-name>ספורט 4.il</display-name>
-  </channel>
-  <channel id="2299423">
-    <display-name>ספורט 5 גולד.il</display-name>
-  </channel>
-  <channel id="2299421">
-    <display-name>ספורט 5 פלוס לייב.il</display-name>
-  </channel>
-  <channel id="2350798">
-    <display-name>ספורט 5 פלוס.il</display-name>
   </channel>
   <channel id="2299409">
     <display-name>ערוץ 11.il</display-name>
@@ -1469,223 +1460,223 @@
   <programme start="20250625223900 +0300" stop="20250625230100 +0300" channel="2299480">
     <title lang="he">בובספוג 8 פרק 155</title>
   </programme>
-  <programme start="20250622000000 +0300" stop="20250622003500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250622000000 +0300" stop="20250622003500 +0300" channel="2299423">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250622003500 +0300" stop="20250622023500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250622003500 +0300" stop="20250622023500 +0300" channel="2299423">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250622023500 +0300" stop="20250622033000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250622023500 +0300" stop="20250622033000 +0300" channel="2299423">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250622033000 +0300" stop="20250622040000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250622033000 +0300" stop="20250622040000 +0300" channel="2299423">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250622040000 +0300" stop="20250622050000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250622040000 +0300" stop="20250622050000 +0300" channel="2299423">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250622050000 +0300" stop="20250622053500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250622050000 +0300" stop="20250622053500 +0300" channel="2299423">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250623000000 +0300" stop="20250623003500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250623000000 +0300" stop="20250623003500 +0300" channel="2299423">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250623003500 +0300" stop="20250623023500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250623003500 +0300" stop="20250623023500 +0300" channel="2299423">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250623023500 +0300" stop="20250623033000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250623023500 +0300" stop="20250623033000 +0300" channel="2299423">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250623033000 +0300" stop="20250623040000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250623033000 +0300" stop="20250623040000 +0300" channel="2299423">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250623040000 +0300" stop="20250623050000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250623040000 +0300" stop="20250623050000 +0300" channel="2299423">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250623050000 +0300" stop="20250623053500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250623050000 +0300" stop="20250623053500 +0300" channel="2299423">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250624000000 +0300" stop="20250624003500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250624000000 +0300" stop="20250624003500 +0300" channel="2299423">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250624003500 +0300" stop="20250624023500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250624003500 +0300" stop="20250624023500 +0300" channel="2299423">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250624023500 +0300" stop="20250624033000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250624023500 +0300" stop="20250624033000 +0300" channel="2299423">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250624033000 +0300" stop="20250624040000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250624033000 +0300" stop="20250624040000 +0300" channel="2299423">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250624040000 +0300" stop="20250624050000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250624040000 +0300" stop="20250624050000 +0300" channel="2299423">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250624050000 +0300" stop="20250624053500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250624050000 +0300" stop="20250624053500 +0300" channel="2299423">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250625000000 +0300" stop="20250625003500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250625000000 +0300" stop="20250625003500 +0300" channel="2299423">
     <title lang="he">כך היינו</title>
   </programme>
-  <programme start="20250625003500 +0300" stop="20250625023500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250625003500 +0300" stop="20250625023500 +0300" channel="2299423">
     <title lang="he">מיטב קרבות ה-UFC</title>
   </programme>
-  <programme start="20250625023500 +0300" stop="20250625033000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250625023500 +0300" stop="20250625033000 +0300" channel="2299423">
     <title lang="he">30 על 30, עונה 2</title>
   </programme>
-  <programme start="20250625033000 +0300" stop="20250625040000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250625033000 +0300" stop="20250625040000 +0300" channel="2299423">
     <title lang="he">1X1 דני ענבר עם</title>
   </programme>
-  <programme start="20250625040000 +0300" stop="20250625050000 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250625040000 +0300" stop="20250625050000 +0300" channel="2299423">
     <title lang="he">דוקו GOLD</title>
   </programme>
-  <programme start="20250625050000 +0300" stop="20250625053500 +0300" channel="ספורט.5.גולד.il">
+  <programme start="20250625050000 +0300" stop="20250625053500 +0300" channel="2299423">
     <title lang="he">מלכי הכדורגל</title>
   </programme>
-  <programme start="20250622011500 +0300" stop="20250622020000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622011500 +0300" stop="20250622020000 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622020000 +0300" stop="20250622050000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622020000 +0300" stop="20250622050000 +0300" channel="2299421">
     <title lang="he">MLB</title>
   </programme>
-  <programme start="20250622050000 +0300" stop="20250622061000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622050000 +0300" stop="20250622061000 +0300" channel="2299421">
     <title lang="he">MLB</title>
   </programme>
-  <programme start="20250622061000 +0300" stop="20250622065500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622061000 +0300" stop="20250622065500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622065500 +0300" stop="20250622075000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622065500 +0300" stop="20250622075000 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622075000 +0300" stop="20250622083500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622075000 +0300" stop="20250622083500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622083500 +0300" stop="20250622093500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622083500 +0300" stop="20250622093500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622112000 +0300" stop="20250622114500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622112000 +0300" stop="20250622114500 +0300" channel="2299421">
     <title lang="he">NBA אקשן מגזין סיכום שבועי פרק 35</title>
   </programme>
-  <programme start="20250622114500 +0300" stop="20250622131500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622114500 +0300" stop="20250622131500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622131500 +0300" stop="20250622150000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622131500 +0300" stop="20250622150000 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622150000 +0300" stop="20250622160000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622150000 +0300" stop="20250622160000 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250622160000 +0300" stop="20250622180500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622160000 +0300" stop="20250622180500 +0300" channel="2299421">
     <title lang="he">טניס פרק 422</title>
   </programme>
-  <programme start="20250622180500 +0300" stop="20250622190000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622180500 +0300" stop="20250622190000 +0300" channel="2299421">
     <title lang="he">מגזין ליגת האלופות</title>
   </programme>
-  <programme start="20250622190000 +0300" stop="20250622210000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622190000 +0300" stop="20250622210000 +0300" channel="2299421">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250622210000 +0300" stop="20250623000000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250622210000 +0300" stop="20250623000000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623000000 +0300" stop="20250623030000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623000000 +0300" stop="20250623030000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623030000 +0300" stop="20250623061000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623030000 +0300" stop="20250623061000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623061000 +0300" stop="20250623075500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623061000 +0300" stop="20250623075500 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623075500 +0300" stop="20250623091500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623075500 +0300" stop="20250623091500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250623091500 +0300" stop="20250623110000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623091500 +0300" stop="20250623110000 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250623110000 +0300" stop="20250623121500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623110000 +0300" stop="20250623121500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250623121500 +0300" stop="20250623140000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623121500 +0300" stop="20250623140000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623140000 +0300" stop="20250623160500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623140000 +0300" stop="20250623160500 +0300" channel="2299421">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250623160500 +0300" stop="20250623163000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623160500 +0300" stop="20250623163000 +0300" channel="2299421">
     <title lang="he">NBA אקשן מגזין סיכום שבועי פרק 35</title>
   </programme>
-  <programme start="20250623163000 +0300" stop="20250623183500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623163000 +0300" stop="20250623183500 +0300" channel="2299421">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250623183500 +0300" stop="20250623190000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623183500 +0300" stop="20250623190000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250623190000 +0300" stop="20250623210000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623190000 +0300" stop="20250623210000 +0300" channel="2299421">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250623210000 +0300" stop="20250624001500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250623210000 +0300" stop="20250624001500 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625000000 +0300" stop="20250625030000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625000000 +0300" stop="20250625030000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625030000 +0300" stop="20250625061000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625030000 +0300" stop="20250625061000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625061000 +0300" stop="20250625075500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625061000 +0300" stop="20250625075500 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625075500 +0300" stop="20250625091500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625075500 +0300" stop="20250625091500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250625091500 +0300" stop="20250625110000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625091500 +0300" stop="20250625110000 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250625110000 +0300" stop="20250625121500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625110000 +0300" stop="20250625121500 +0300" channel="2299421">
     <title lang="he">מוטו ג'י. פי.</title>
   </programme>
-  <programme start="20250625121500 +0300" stop="20250625140000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625121500 +0300" stop="20250625140000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625140000 +0300" stop="20250625160500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625140000 +0300" stop="20250625160500 +0300" channel="2299421">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250625160500 +0300" stop="20250625163000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625160500 +0300" stop="20250625163000 +0300" channel="2299421">
     <title lang="he">NBA אקשן מגזין סיכום שבועי פרק 35</title>
   </programme>
-  <programme start="20250625163000 +0300" stop="20250625183500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625163000 +0300" stop="20250625183500 +0300" channel="2299421">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250625183500 +0300" stop="20250625190000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625183500 +0300" stop="20250625190000 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250625190000 +0300" stop="20250625210000 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625190000 +0300" stop="20250625210000 +0300" channel="2299421">
     <title lang="he">טניס</title>
   </programme>
-  <programme start="20250625210000 +0300" stop="20250626001500 +0300" channel="ספורט.5.לייב.il">
+  <programme start="20250625210000 +0300" stop="20250626001500 +0300" channel="2299421">
     <title lang="he">מונדיאל המועדונים</title>
   </programme>
-  <programme start="20250622000000 +0300" stop="20250622040000 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250622000000 +0300" stop="20250622040000 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250622040000 +0300" stop="20250622040500 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250622040000 +0300" stop="20250622040500 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250623000000 +0300" stop="20250623040000 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250623000000 +0300" stop="20250623040000 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250623040000 +0300" stop="20250623040500 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250623040000 +0300" stop="20250623040500 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250624000000 +0300" stop="20250624040000 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250624000000 +0300" stop="20250624040000 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250624040000 +0300" stop="20250624040500 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250624040000 +0300" stop="20250624040500 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250625000000 +0300" stop="20250625040000 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250625000000 +0300" stop="20250625040000 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
-  <programme start="20250625040000 +0300" stop="20250625040500 +0300" channel="ספורט.5.פלוס.il">
+  <programme start="20250625040000 +0300" stop="20250625040500 +0300" channel="2350798">
     <title lang="he">טניס פרק 335</title>
   </programme>
   <programme start="20250622000000 +0300" stop="20250622004500 +0300" channel="2299420">
@@ -8875,154 +8866,6 @@
   <programme start="20250623013000 +0000" stop="20250623015000 +0000" channel="2299419">
     <title>יום בחיי - קפרן תוראם</title>
     <desc>כדורגל. החיים באיטליה, סגנון המשחק, הקשר עם האוהדים והאהבה לכדורגל. יום בחיי קשר יובנטוס, קפרן תוראם. (שח)</desc>
-  </programme>
-  <programme start="20250621210000 +0000" stop="20250621213500 +0000" channel="2299423">
-    <title>כך היינו</title>
-    <desc>הפועל רג לוקחת גביע, בני לם ממציא הפאלש, איברהים דורו, אחי נצרת, סיפורו של דרור קשטן, משה אוננה, אליפות מרגשת למכבי תא ומערכון ריצארד נילסן.</desc>
-  </programme>
-  <programme start="20250621213500 +0000" stop="20250621233500 +0000" channel="2299423">
-    <title>מיטב קרבות ה-UFC</title>
-    <desc>אמנויות לחימה. אירוע 140, גונס - מאצידה, דצמבר 2011. ערוץ ה-GOLD חוזר לערבי הקרבות המוצלחים ביותר בתולדות ה-UFC, עם השמות החמים ביותר בכל הזמנים.</desc>
-  </programme>
-  <programme start="20250621233500 +0000" stop="20250622003000 +0000" channel="2299423">
-    <title>30 על 30, עונה 2</title>
-    <desc>סיפור מרגש על הגוקי כריס אנטלי שכבר היה מותש פיזית ומנטלית ונחשב לרוכב שסיים את הקריירה. הזדמנות שנייה לא צפויה, גרמה לו להיאבק על הכתר המשלוש ולהגיע במקביל לנקודות קיצון.</desc>
-  </programme>
-  <programme start="20250622003000 +0000" stop="20250622010000 +0000" channel="2299423">
-    <title>1X1 דני ענבר עם</title>
-    <desc>דני ענבר מארח את מישל פלאטיני, 2006. שיחה עם אחד משחקני הכדורגל הגדולים והאהובים בתולדות המשחק. כל זאת, לפני הפיכתו לאחד המנהלים החשובים בכדורגל העולמי. שיחה פתוחה ומצחיקה בניחוח צרפתי.</desc>
-  </programme>
-  <programme start="20250622010000 +0000" stop="20250622020000 +0000" channel="2299423">
-    <title>דוקו GOLD</title>
-    <desc>בגיל 24 סטיוארט מנגן עבר תאונה בזמן משחק ראגבי. למרות המכשולים, סטיוארט היה נחוש להמשיך בחייו. סרט מלא רגש מבית היוצר של ה-BBC.</desc>
-  </programme>
-  <programme start="20250622020000 +0000" stop="20250622023500 +0000" channel="2299423">
-    <title>מלכי הכדורגל</title>
-    <desc>פאביו קאפלו סדרת ראיונות בהפקה איטלקית המתמקדת בכוכבים הגדולים של הכדורגל האירופאי.</desc>
-  </programme>
-  <programme start="20250621221500 +0000" stop="20250621230000 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה דירוג מוטו GP. (שח)</desc>
-  </programme>
-  <programme start="20250621230000 +0000" stop="20250622020000 +0000" channel="2299421">
-    <title>MLB</title>
-    <desc>שידור חי! בייסבול. ליגת ה-MLB סן דייגו פאדרס מארחת את קנזס סיטי רויאלס.</desc>
-  </programme>
-  <programme start="20250622020000 +0000" stop="20250622031000 +0000" channel="2299421">
-    <title>MLB</title>
-    <desc>שידור חי! בייסבול. ליגת ה-MLB לוס אנגלס דודגרס מארחת את וושינגטון נשיונלס.</desc>
-  </programme>
-  <programme start="20250622031000 +0000" stop="20250622035500 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה דירוג מוטו GP. (שח)</desc>
-  </programme>
-  <programme start="20250622035500 +0000" stop="20250622045000 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה דירוג מוטו 3. (שח)</desc>
-  </programme>
-  <programme start="20250622045000 +0000" stop="20250622053500 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה דירוג מוטו 2. (שח)</desc>
-  </programme>
-  <programme start="20250622053500 +0000" stop="20250622063500 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה מירוץ ספרינט מוטו GP. (שח)</desc>
-  </programme>
-  <programme start="20250622063500 +0000" stop="20250622082000 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>כדורגל. באיירן מינכן נגד בוקה גוניורס, מונדיאל המועדונים, שלב הבתים. קרב ישיר על ראשות הבית. באיירן הביסה 010 את אוקלנד במשחק הגדול של הטורניר אבל בוקה גוניורס שחייבת נקודות היא סיפור אחר לגמרי. (שח)</desc>
-  </programme>
-  <programme start="20250622082000 +0000" stop="20250622084500 +0000" channel="2299421">
-    <title>NBA אקשן מגזין סיכום שבועי פרק 35</title>
-    <desc>NBA אקשן - מגזין שבועי קצבי ותמציתי לסיכום הליגה הטובה בעולם, הכולל סקירה של המשחקים המרכזיים, ראיונות עם כדורסלנים ומאמנים, וכמובן את עשרת המבצעים היפים של השבוע החולף ב-NBA. (שח)</desc>
-  </programme>
-  <programme start="20250622084500 +0000" stop="20250622101500 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>שידור חי! מירוצים. מוטו GP במוגלו, איטליה מירוץ מוטו 3.</desc>
-  </programme>
-  <programme start="20250622101500 +0000" stop="20250622120000 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>שידור חי! מירוצים. מוטו GP במוגלו, איטליה מירוץ מוטו 2.</desc>
-  </programme>
-  <programme start="20250622120000 +0000" stop="20250622130000 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>שידור חי! מירוצים. מוטו GP במוגלו, איטליה מירוץ מוטו GP. אליפות מירוצי האופנועים, המוטו GP, מגיעה לעמק המוטורי של איטליה, לאחד ממסלולי המירוצים המרהיבים והמהירים בעולם - מסלול מוגלו.</desc>
-  </programme>
-  <programme start="20250622130000 +0000" stop="20250622150500 +0000" channel="2299421">
-    <title>טניס פרק 422</title>
-    <desc>שידור חי! טניס. סבב ה-ATP 500 טורניר האלה, משחק הגמר. טורניר הדשא הוותיק בגרמניה כהכנה לטורניר ווימבלדון. אחרי גמר אייקוני, יאניק סינר חוזר לטורניר על מנת לשמור על התואר שלו.</desc>
-  </programme>
-  <programme start="20250622150500 +0000" stop="20250622160000 +0000" channel="2299421">
-    <title>מגזין ליגת האלופות</title>
-    <desc>כדורגל. מגזין ליגת האלופות, עונת 2024/25 סיכום העונה. (שח)</desc>
-  </programme>
-  <programme start="20250622160000 +0000" stop="20250622180000 +0000" channel="2299421">
-    <title>טניס</title>
-    <desc>שידור חי! טניס. ATP 250 טורניר מיורקה 2025, סיבוב 1.</desc>
-  </programme>
-  <programme start="20250622180000 +0000" stop="20250622210000 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>שידור חי! כדורגל. שידור ישיר של מונדיאל המועדונים - חברו את הטלוויזיה למערכת השמע ותהנו כמו במגרש. ריאל מדריד נגד פאצוקה (מקסיקו), שלב הבתים.</desc>
-  </programme>
-  <programme start="20250622210000 +0000" stop="20250623000000 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>שידור חי! כדורגל. שידור ישיר של מונדיאל המועדונים - חברו את הטלוויזיה למערכת השמע ותהנו כמו במגרש. זלצבורג נגד אל הילאל (ערב הסעודית), שלב בתים.</desc>
-  </programme>
-  <programme start="20250623000000 +0000" stop="20250623031000 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>שידור חי! כדורגל. שידור ישיר של מונדיאל המועדונים - חברו את הטלוויזיה למערכת השמע ותהנו כמו במגרש. מנצסטר סיטי נגד אל עין (איחוד האמירויות), שלב הבתים.</desc>
-  </programme>
-  <programme start="20250623031000 +0000" stop="20250623045500 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>כדורגל. ריאל מדריד נגד פאצוקה (מקסיקו), מונדיאל המועדונים, שלב הבתים. (שח)</desc>
-  </programme>
-  <programme start="20250623045500 +0000" stop="20250623061500 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה מירוץ מוטו 3. (שח)</desc>
-  </programme>
-  <programme start="20250623061500 +0000" stop="20250623080000 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה מירוץ מוטו 2. (שח)</desc>
-  </programme>
-  <programme start="20250623080000 +0000" stop="20250623091500 +0000" channel="2299421">
-    <title>מוטו גי. פי.</title>
-    <desc>מירוצים. מוטו GP במוגלו, איטליה מירוץ מוטו GP. אליפות מירוצי האופנועים, המוטו GP, מגיעה לעמק המוטורי של איטליה, לאחד ממסלולי המירוצים המרהיבים והמהירים בעולם - מסלול מוגלו. (שח)</desc>
-  </programme>
-  <programme start="20250623091500 +0000" stop="20250623110000 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>כדורגל. מנצסטר סיטי נגד אל עין (איחוד האמירויות), מונדיאל המועדונים, שלב הבתים. (שח)</desc>
-  </programme>
-  <programme start="20250623110000 +0000" stop="20250623130500 +0000" channel="2299421">
-    <title>טניס</title>
-    <desc>שידור חי! טניס. ATP 250 טורניר מיורקה 2025, סיבוב 1.</desc>
-  </programme>
-  <programme start="20250623130500 +0000" stop="20250623133000 +0000" channel="2299421">
-    <title>NBA אקשן מגזין סיכום שבועי פרק 35</title>
-    <desc>NBA אקשן - מגזין שבועי קצבי ותמציתי לסיכום הליגה הטובה בעולם, הכולל סקירה של המשחקים המרכזיים, ראיונות עם כדורסלנים ומאמנים, וכמובן את עשרת המבצעים היפים של השבוע החולף ב-NBA. (שח)</desc>
-  </programme>
-  <programme start="20250623133000 +0000" stop="20250623153500 +0000" channel="2299421">
-    <title>טניס</title>
-    <desc>שידור חי! טניס. ATP 250 טורניר מיורקה 2025, סיבוב 1.</desc>
-  </programme>
-  <programme start="20250623153500 +0000" stop="20250623160000 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>כדורגל. ריאל מדריד נגד פאצוקה (מקסיקו), מונדיאל המועדונים, שלב הבתים. (שח)</desc>
-  </programme>
-  <programme start="20250623160000 +0000" stop="20250623180000 +0000" channel="2299421">
-    <title>טניס</title>
-    <desc>שידור חי! טניס. ATP 250 טורניר מיורקה 2025, סיבוב 1.</desc>
-  </programme>
-  <programme start="20250623180000 +0000" stop="20250623211500 +0000" channel="2299421">
-    <title>מונדיאל המועדונים</title>
-    <desc>שידור חי! כדורגל. שידור ישיר של מונדיאל המועדונים - חברו את הטלוויזיה למערכת השמע ותהנו כמו במגרש. סיאטל סאונדרס נגד פריס סן זרמן, שלב הבתים.</desc>
-  </programme>
-  <programme start="20250621210000 +0000" stop="20250622010000 +0000" channel="2350798">
-    <title>טניס פרק 335</title>
-    <desc>טניס. סבב ה-ATP 500 טורניר האלה, חצי גמר. טורניר הדשא הוותיק בגרמניה כהכנה לטורניר ווימבלדון. אחרי גמר אייקוני, יאניק סינר חוזר לטורניר על מנת לשמור על התואר שלו. (שח)</desc>
-  </programme>
-  <programme start="20250622010000 +0000" stop="20250622010500 +0000" channel="2350798">
-    <title>טניס פרק 335</title>
-    <desc>טניס. סבב ה-ATP 500 טורניר האלה, חצי גמר. טורניר הדשא הוותיק בגרמניה כהכנה לטורניר ווימבלדון. אחרי גמר אייקוני, יאניק סינר חוזר לטורניר על מנת לשמור על התואר שלו. (שח)</desc>
   </programme>
   <programme start="20250621213500 +0000" stop="20250621220800 +0000" channel="2299409">
     <title>אתה חייב לקרוא את זה! פרק 5</title>
