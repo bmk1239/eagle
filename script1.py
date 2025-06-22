@@ -95,8 +95,7 @@ def main() -> None:
             if old_chan in kept_ids or not new_chan in dup_ids:
                 kept_ids.add(old_chan)
                 part_programmes.append(node)
-            else:
-                dup_ids.add(new_chan)
+            dup_ids.add(new_chan)
 
     # ── PASS 2: keep <channel>s only if their (mapped) channel id is unique ── #
     for url in URLS:
