@@ -28,7 +28,7 @@ jobs:
       - name: Installing Python dependencies
         run: python -m pip install -r filter/requirements.txt
       - name: Getting the channels ID
-        run: python filter/scripts/filter.py --channels database/data/channels.csv --feeds database/data/feeds.csv --language="heb" --minify channels.json
+        run: python filter/scripts/filter.py --channels database/data/channels.csv --feeds database/data/feeds.csv --country="IL" --minify channels.json
       - name: Downloading the EPG fetchers
         uses: actions/checkout@v4
         with:
