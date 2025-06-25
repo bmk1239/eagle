@@ -26,15 +26,14 @@ jobs:
     - name: Run script1
       run: python script1.py
 
-    - name: blah
-      run: |
-        git clone --depth 1 -b master https://github.com/iptv-org/epg.git
-        cd epg
-        npm install
-        npm run channels:parse --- --config=./sites/yes.co.il/yes.co.il.config.js --output=./sites/yes.co.il/yes.co.il.channels.xml
-        npm run grab --- --site=yes.co.il
-        mv guide.xml ..
-        rm -rf epg
+    # - name: blah
+    #   run: |
+    #     git clone --depth 1 -b master https://github.com/iptv-org/epg.git
+    #     cd epg
+    #     npm install
+    #     npm run grab --- --site=yes.co.il
+    #     mv guide.xml ..
+    #     rm -rf epg
 
     - name: Commit and push updated file1.xml
       run: |
