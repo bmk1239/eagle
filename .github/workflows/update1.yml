@@ -39,17 +39,11 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt upgrade
-        sudo apt-get install mono-complete
-        echo "************************************1**************************************************"
+        sudo apt-get install -y dotnet-runtime-7.0
         wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.1_install.tar.gz 
-        echo "************************************2**************************************************"
         tar -zxvf WebGrabPlus_V5.1_install.tar.gz
-        echo "************************************3**************************************************"
         cd .wg++
-        ls
-        echo "************************************4**************************************************"
         ./install.sh
-        echo "************************************5**************************************************"
         ./run.net.sh
         
 
