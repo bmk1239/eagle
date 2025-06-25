@@ -37,8 +37,6 @@ jobs:
 
     - name: blah1
       run: |
-        ping -c 4 8.8.8.8
-        ping -c 4 google.com
         curl -I https://www.google.com
         # sudo apt-get update
         # sudo apt upgrade
