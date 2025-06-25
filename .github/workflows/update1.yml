@@ -37,11 +37,11 @@ jobs:
 
     - name: blah1
       run: |
-        sudo apt-get update
-        sudo apt upgrade
-        sudo apt-get install -y dotnet-runtime-8.0
-        wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.2_install.tar.gz 
-        tar -zxvf WebGrabPlus_V5.2_install.tar.gz
+        # sudo apt-get update
+        # sudo apt upgrade
+        # sudo apt-get install -y dotnet-runtime-8.0
+        wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.3_install.tar.gz 
+        tar -zxvf WebGrabPlus_V5.3_install.tar.gz
         cd .wg++
         ./install.sh
         ./run.net.sh
