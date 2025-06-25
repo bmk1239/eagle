@@ -27,7 +27,7 @@ URLS = [
     "https://github.com/Fazzani/grab/raw/refs/heads/master/merge.xml.gz"
 ]
 
-CSV_MAP = Path("file.csv")          # mapping file (channel_id,tvg-id)
+CSV_MAP = Path("file1.csv")          # mapping file (channel_id,tvg-id)
 OUT_XML = Path("file1.xml")                # Unified EPG that we generate
 REQUEST_TIMEOUT = 60                       # seconds
 # --------------------------------------------------------------------------- #
@@ -94,6 +94,9 @@ def main() -> None:
                 continue
 
             old_chan = node.get("channel")
+            if not old_chan in id_map:
+                continue
+              
             new_chan = id_map.get(old_chan, old_chan)
             node.set("channel", new_chan)  # rewrite reference
 
@@ -110,10 +113,9 @@ def main() -> None:
                 continue
 
             old_id = node.get("id")
-            new_id = id_map.get(old_id, old_id)
-            node.set("id", new_id)  # rewrite in-place so later writes are easy
-
             if old_id in kept_ids:
+                new_id = id_map.get(old_id, old_id)
+                node.set("id", new_id)  # rewrite in-place so later writes are easy
                 part_channels.append(node)
             
 
