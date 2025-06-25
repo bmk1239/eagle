@@ -96,19 +96,19 @@ def main() -> None:
             old_chan = node.get("channel")
             if not old_chan in id_map:
                 continue
-              for attr in ["start", "stop"]:
-        time_val = node.get(attr)
-        if not time_val:
-            continue
-        # Extract timestamp and original offset
-        timestamp, _ = time_val[:14], time_val[15:]
-        dt = datetime.strptime(timestamp, "%Y%m%d%H%M%S")
-        dt -= offset  # subtract 2 hours
-        # Set new value with +0000
-        node.set(attr, dt.strftime("%Y%m%d%H%M%S") + " +0000")
+            for attr in ["start", "stop"]:
+                time_val = node.get(attr)
+                if not time_val:
+                  continue
+                # Extract timestamp and original offset
+                timestamp, _ = time_val[:14], time_val[15:]
+                dt = datetime.strptime(timestamp, "%Y%m%d%H%M%S")
+                #dt -= offset  # subtract 2 hours
+                # Set new value with +0000
+                node.set(attr, dt.strftime("%Y%m%d%H%M%S") + " +0000")
+            
             new_chan = id_map.get(old_chan, old_chan)
             node.set("channel", new_chan)  # rewrite reference
-
             if old_chan in kept_ids or not new_chan in dup_ids:
                 kept_ids.add(old_chan)
                 part_programmes.append(node)
