@@ -99,12 +99,12 @@ def main() -> None:
                 continue
             for attr in ["start", "stop"]:
                 time_val = node.get(attr)
-                if not time_val:
+                if not time_val or not time_val.endswith(" +0200"):
                   continue
                 # Extract timestamp and original offset
                 timestamp, _ = time_val[:14], time_val[15:]
                 dt = datetime.strptime(timestamp, "%Y%m%d%H%M%S")
-                #dt -= offset  # subtract 2 hours
+                dt -= offset  # subtract 2 hours
                 # Set new value with +0000
                 node.set(attr, dt.strftime("%Y%m%d%H%M%S") + " +0000")
             
