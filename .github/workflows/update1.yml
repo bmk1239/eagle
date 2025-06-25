@@ -26,31 +26,6 @@ jobs:
     - name: Run script1
       run: python script1.py
 
-    # - name: blah
-    #   run: |
-    #     git clone --depth 1 -b master https://github.com/iptv-org/epg.git
-    #     cd epg
-    #     npm install
-    #     npm run grab --- --site=yes.co.il
-    #     mv guide.xml ..
-    #     rm -rf epg
-
-    - name: blah1
-      run: |
-        curl -I https://www.google.com
-        # sudo apt-get update
-        # sudo apt upgrade
-        # sudo apt-get install -y dotnet-runtime-8.0
-        # wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz
-        # tar -zxvf WebGrabPlus_V5.3_install.tar.gz
-        # cd .wg++
-        # ./install.sh
-        # ./run.net.sh
-        # cp guide.xml ..
-        # cd ..
-        # rm -rf .wg++
-        
-
     - name: Commit and push updated file1.xml
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
