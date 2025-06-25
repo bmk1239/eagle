@@ -31,7 +31,7 @@ jobs:
         git clone --depth 1 -b master https://github.com/iptv-org/epg.git
         cd epg
         npm install
-        npm run grab --site yes.co.il --days 1
+        npm run grab --- --site=yes.co.il --days 1
 
     - name: Commit and push updated file1.xml
       run: |
