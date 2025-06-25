@@ -37,14 +37,20 @@ jobs:
 
     - name: blah1
       run: |
+        ping -c 4 8.8.8.8
+        ping -c 4 google.com
+        curl -I https://www.google.com
         # sudo apt-get update
         # sudo apt upgrade
         # sudo apt-get install -y dotnet-runtime-8.0
-        wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz
-        tar -zxvf WebGrabPlus_V5.3_install.tar.gz
-        cd .wg++
-        ./install.sh
-        ./run.net.sh
+        # wget https://webgrabplus.com/sites/default/files/download/SW/V5.3.0/WebGrabPlus_V5.3_install.tar.gz
+        # tar -zxvf WebGrabPlus_V5.3_install.tar.gz
+        # cd .wg++
+        # ./install.sh
+        # ./run.net.sh
+        # cp guide.xml ..
+        # cd ..
+        # rm -rf .wg++
         
 
     - name: Commit and push updated file1.xml
