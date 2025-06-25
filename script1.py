@@ -24,7 +24,7 @@ URLS = [
     "https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz",
     "https://www.open-epg.com/files/israel1.xml.gz",
     "https://github.com/EPGIL/epg-all/blob/main/epg.xml",
-    "https://github.com/Fazzani/grab/blob/master/merge.xml.gz?raw=true"
+    "https://github.com/Fazzani/grab/blob/master/merge.xml.gz"
 ]
 
 CSV_MAP = Path("file.csv")          # mapping file (channel_id,tvg-id)
@@ -52,6 +52,7 @@ def load_mapping(csv_path: Path) -> Dict[str, str]:
 
 
 def fetch_root(url: str) -> ET.Element:
+    print(f"*************************** url: {url}")
     r = requests.get(url, timeout=REQUEST_TIMEOUT)
     r.raise_for_status()
     xml_data = r.content;
