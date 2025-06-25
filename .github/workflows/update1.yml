@@ -26,13 +26,20 @@ jobs:
     - name: Run script1
       run: python script1.py
 
+    - name: blah
+      run: |
+        git clone --depth 1 -b master https://github.com/iptv-org/epg.git
+        cd epg
+        npm install
+        npm run grab --lang heb --days 1
+
     - name: Commit and push updated file1.xml
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add file1.xml
+        git add file1.xml guide.xml
         if ! git diff --cached --quiet; then
-          git commit -m "Update file1"
+          git commit -m "Update file1 guide.xml"
           git push
         else
           echo "No changes to commit"
