@@ -40,10 +40,15 @@ jobs:
         # sudo apt-get update
         # sudo apt upgrade
         # sudo apt-get install mono-complete
+        echo mono --version 
         wget http://webgrabplus.com/sites/default/files/download/SW/V5.1.0/WebGrabPlus_V5.1_install.tar.gz 
+        echo "************************************1**************************************************"
         tar -zxvf WebGrabPlus_V5.1_install.tar.gz
+        echo "************************************1**************************************************"
         cd ~/.wg++
+        echo "************************************2**************************************************"
         ./install.sh
+        echo "************************************3**************************************************"
         ~/.wg++/run.sh
         
 
