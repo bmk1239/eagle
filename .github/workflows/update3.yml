@@ -22,11 +22,11 @@ jobs:
           tar -xzf WebGrabPlus_V5.3_install.tar.gz
       - name: Run WG++
         run: |
-          cd wgpp
-          dotnet ./WebGrabPlus.dll
+          cd .wg++
+          dotnet bin.net/WebGrab+Plus.dll
     
       - name: Upload XMLTV output
         uses: actions/upload-artifact@v4
         with:
           name: xmltv
-          path: wgpp/guide.xml
+          path: .wg++/guide.xml
