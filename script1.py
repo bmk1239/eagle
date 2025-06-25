@@ -23,8 +23,8 @@ from typing import Dict, Set, List
 URLS = [
     "https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz",
     "https://www.open-epg.com/files/israel1.xml.gz",
-    "https://github.com/EPGIL/epg-all/blob/main/epg.xml",
-    "https://github.com/Fazzani/grab/blob/master/merge.xml.gz"
+    "https://raw.githubusercontent.com/EPGIL/epg-all/refs/heads/main/epg.xml",
+    "https://github.com/Fazzani/grab/raw/refs/heads/master/merge.xml.gz"
 ]
 
 CSV_MAP = Path("file.csv")          # mapping file (channel_id,tvg-id)
