@@ -88,6 +88,7 @@ def main() -> None:
     part_programmes: List[ET.Element] = [] # <programme> nodes
 
     # ── PASS 1: keep first occurrence of every (mapped) id ────────────────── #
+    offset = timedelta(hours=2)
     for url in URLS:
         root = fetch_root(url)
         for node in root:
