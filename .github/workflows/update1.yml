@@ -31,8 +31,9 @@ jobs:
         git clone --depth 1 -b master https://github.com/iptv-org/epg.git
         cd epg
         npm install
-        npm run grab --- --site=tv.sfr.fr
-        #npm run grab --- --site=yes.co.il
+        npm run grab --- --site=yes.co.il
+        mv guide.xml ..
+        rm -rf epg
 
     - name: Commit and push updated file1.xml
       run: |
