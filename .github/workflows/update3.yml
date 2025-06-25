@@ -23,7 +23,8 @@ jobs:
       - name: Run WG++
         run: |
           cd .wg++
-          dotnet bin.net/WebGrab+Plus.dll
+          cp WebGrab++.config.example.xml WebGrab++.config.xml
+          dotnet bin.net/WebGrab+Plus.dll .
     
       - name: Upload XMLTV output
         uses: actions/upload-artifact@v4
