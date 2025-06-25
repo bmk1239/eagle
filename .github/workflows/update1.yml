@@ -35,6 +35,17 @@ jobs:
     #     mv guide.xml ..
     #     rm -rf epg
 
+    - name: blah1
+      run: |
+        sudo apt-get update
+        sudo apt upgrade
+        sudo apt-get install mono-complete
+        tar -zxvf WebGrabPlus_V5.1_install.tar.gz
+        cd ~/.wg++
+        ./install.sh
+        ~/.wg++/run.sh
+        
+
     - name: Commit and push updated file1.xml
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
