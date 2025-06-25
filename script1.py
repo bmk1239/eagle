@@ -54,7 +54,9 @@ def load_mapping(csv_path: Path) -> Dict[str, str]:
 def fetch_root(url: str) -> ET.Element:
     r = requests.get(url, timeout=REQUEST_TIMEOUT)
     r.raise_for_status()
-    xml_data = url.endswith(".xml") ? r.content : gzip.decompress(r.content)
+    xml_data = r.content;
+    if not url.endswith(".xml"):
+      xml_data = gzip.decompress(xml_data)
     return ET.parse(io.BytesIO(xml_data)).getroot()  # <tv> element
 
 
