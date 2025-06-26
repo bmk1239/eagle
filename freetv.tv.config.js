@@ -63,42 +63,41 @@ module.exports = {
     console.log('▶️  URL', url)
     return url
   },
-/* Parse the JSON payload into EPG items */
-parser ({ content }) {
-  // ── 1) Normalise ────────────────────────────────────────────────
-  let data
-  if (typeof content === 'string') {
-    // we got a JSON string → parse it
-    try {
-      data = JSON.parse(content)
-    } catch (e) {
-      console.error('❌ JSON parse failed:', e.message)
-      return []                 // bail out on bad JSON
-    }
-  } else if (content && typeof content === 'object') {
-    // epg-grabber (or the proxy layer) already parsed it for us
-    data = content
-  } else {
-    return []                   // anything else is unusable
-  }
-
-  // ── 2) Convert records into EPG items ───────────────────────────
-  return data.flatMap(item => {
-    const start = parseDate(item.since)
-    const stop  = parseDate(item.till)
-    if (!start.isValid() || !stop.isValid()) return []
-
-    return {
-      title:       item.title,
-      description: item.description || item.lead || '',
-      image:       getImageUrl(item),
-      icon:        getImageUrl(item),
-      start,
-      stop
-    }
-  })
-}
   
+  /* Parse the JSON payload into EPG items */
+  parser ({ content }) {
+    // ── 1) Normalise ────────────────────────────────────────────────
+    let data
+    if (typeof content === 'string') {
+      // we got a JSON string → parse it
+      try {
+        data = JSON.parse(content)
+      } catch (e) {
+        console.error('❌ JSON parse failed:', e.message)
+        return []                 // bail out on bad JSON
+      }
+    } else if (content && typeof content === 'object') {
+      // epg-grabber (or the proxy layer) already parsed it for us
+      data = content
+    } else {
+      return []                   // anything else is unusable
+    }
+
+    // ── 2) Convert records into EPG items ───────────────────────────
+    return data.flatMap(item => {
+      const start = parseDate(item.since)
+      const stop  = parseDate(item.till)
+      if (!start.isValid() || !stop.isValid()) return []
+
+      return {
+        title:       item.title,
+        description: item.description || item.lead || '',
+        image:       getImageUrl(item),
+        icon:        getImageUrl(item),
+        start,
+        stop
+      }
+    })
   }
 }
 
