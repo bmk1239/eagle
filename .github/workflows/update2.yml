@@ -46,7 +46,7 @@ jobs:
           # cache: npm
       - name: Show runner IP/ country
         run: |
-          curl --proxy http://213.151.53.41:80 -s https://ipinfo.io/json
+          curl -s https://ipinfo.io/json
       
       - name: test
         run: |
