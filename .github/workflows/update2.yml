@@ -52,6 +52,7 @@ jobs:
         run: |
           cd epg
           # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
+          cp ../freetv.tv.config.js sites/freetv.tv/freetv.tv.config.js
           NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
       - name: Fixing the document
         run: python filter/scripts/fix.py --input guide.xml guide.xml
