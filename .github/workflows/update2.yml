@@ -60,34 +60,33 @@ jobs:
           cd epg
           npm install
 
-      - name: Patch Buffer.from crash in whatever path epg-grabber lives
+      - name: Patch epg-grabber Buffer bug
         run: |
-         cd epg
-         set -e
+          cd epg
+          set -e
 
-         # 1️⃣  Ask Node where epg-grabber’s main file is
-         EPGB=$(node - <<'NODE'
-         const path = require('path');
-         const p = require.resolve('epg-grabber');         // full path to main entry
-         console.log(path.dirname(p));                     // folder we need
-         NODE
-         )
+          # Dynamically find the install path of epg-grabber
+          EPGB=$(node - <<'NODE'
+            const path = require('path');
+            const p = require.resolve('epg-grabber');
+            console.log(path.join(path.dirname(p), 'src'));
+            NODE
+          )
 
-         FILE="$EPGB/request.js"          # request.js sits next to the main file
-         echo "Patching $FILE"
+          FILE="$EPGB/request.js"
+          echo "Patching $FILE"
 
-         # 2️⃣  Verify the file exists
-         if [ ! -f "$FILE" ]; then
-          echo "::error ::Cannot find request.js in $FILE"
-          exit 1
-         fi
+          if [ ! -f "$FILE" ]; then
+            echo "::error ::Cannot find request.js in $FILE"
+            exit 1
+           fi
 
-         # 3️⃣  Replace the Buffer.from line safely
-         sed -i -E 's/Buffer\.from([^)]+)/(() => { const $$d = \1; return Buffer.from(typeof $$d === "object" ? JSON.stringify($$d) : $$d) })()/g' "$FILE"
+          # Patch Buffer.from line to prevent object error
+          sed -i -E 's/Buffer\.from([^)]+)/(() => { const $$d = \1; return Buffer.from(typeof $$d === "object" ? JSON.stringify($$d) : $$d) })()/g' "$FILE"
 
-         # 4️⃣  Show the patched lines for sanity
-         grep -n -A2 -B2 "Buffer.from" "$FILE"
-          
+          # Show result
+          grep -n -A2 -B2 "Buffer.from" "$FILE"
+    
       - name: Fetching the programs data
         run: |
           cd epg
