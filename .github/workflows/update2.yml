@@ -33,9 +33,10 @@ jobs:
     # 5 – quick proxy test
     - name: Test proxy connectivity
       run: |
-        curl -s -I \
-        -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36" \
-        "https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER" --proxy "$IL_PROXY"
+        # 1 — Ask curl to print the peer certificate
+        curl -v --proxy "$IL_PROXY" \
+        --connect-timeout 10 https://web.freetv.tv/ 2>&1 | \
+        grep -A4 "Server certificate"
 
     - name: Test FreeTV API via proxy
       run: |
