@@ -35,6 +35,15 @@ jobs:
       run: |
         curl -s --max-time 8 --proxy "$IL_PROXY" -I https://web.freetv.tv/ | head
 
+    - name: Test FreeTV API via proxy
+      run: |
+        curl --proxy "$IL_PROXY" -s -m 8 \
+        -H 'Origin: https://web.freetv.tv' \
+        -H 'Referer: https://web.freetv.tv/' \
+        -A 'Mozilla/5.0' \
+        -I 'https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04:00+0300&till=2025-06-27T04:00+0300&lang=HEB&platform=BROWSER' \
+        | head -n 1
+
     # 6 – install JS deps
     - name: Install JavaScript dependencies
       run: |
