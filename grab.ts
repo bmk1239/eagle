@@ -1,14 +1,14 @@
-console.log("************************************************************************MFFFF***********************************")
+console.log("************************************************************************MFFF3333F***********************************")
 
-import axios from 'axios';
-
-// Intercept responses globally, force string/Buffer for all data
-axios.interceptors.response.use(response => {
-  if (response.data && typeof response.data === 'object' && !Buffer.isBuffer(response.data)) {
-    response.data = JSON.stringify(response.data);
+/* ── Global Buffer.from safeguard ─────────────────────────────── */
+const _bufFrom = Buffer.from;
+(Buffer as any).from = function (data: any, ...args: any[]) {
+  if (typeof data === 'object' && !ArrayBuffer.isView(data) && !(data instanceof ArrayBuffer)) {
+    return _bufFrom.call(Buffer, JSON.stringify(data), ...args);
   }
-  return response;
-});
+  return _bufFrom.call(Buffer, data, ...args);
+};
+/* ──────────────────────────────────────────────────────────────── */
 
 import { Logger, Timer, Storage, Collection } from '@freearhey/core'
 import { Option, program } from 'commander'
