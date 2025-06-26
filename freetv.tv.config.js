@@ -11,10 +11,11 @@ module.exports = {
   site: 'freetv.tv',
   days: 2,
 
-  delay: 1200,
+  /* 1 request at a time, 1.2 s apart */
   concurrency: 1,
+  delay: 1200,
 
-  // ← plain object — NOT a function
+  /* ⇣ THESE HEADERS ARE THE KEY ⇣ */
   request: {
     method: 'GET',
     headers: {
@@ -22,12 +23,15 @@ module.exports = {
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
         '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
       'Accept': 'application/json, text/plain, */*',
+      'Accept-Language': 'he-IL,he;q=0.9,en;q=0.8',
+      'Accept-Encoding': 'gzip, deflate, br',
       'Origin':  'https://web.freetv.tv',
       'Referer': 'https://web.freetv.tv/'
     },
-    timeout: 20000         // matches your CLI flag
+    timeout: 20000          // 20 s per request
   },
 
+  /* build the 04:00→04:00 window URL */
   url ({ channel, date }) {
     const start = dayjs(date).tz(TZ).startOf('day').add(4, 'hour')
     const since = start.format(ISO)
@@ -38,18 +42,19 @@ module.exports = {
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
   },
 
+  /* parse JSON whether it arrives as Buffer, string, or object */
   parser ({ content }) {
-    let data
+    let arr
     try {
       const raw = Buffer.isBuffer(content)
         ? content.toString()
         : typeof content === 'string'
         ? content
         : JSON.stringify(content)
-      data = JSON.parse(raw)
+      arr = JSON.parse(raw)
     } catch { return [] }
 
-    return data.flatMap(item => {
+    return arr.flatMap(item => {
       const start = parse(item.since)
       const stop  = parse(item.till)
       if (!start?.isValid() || !stop?.isValid()) return []
