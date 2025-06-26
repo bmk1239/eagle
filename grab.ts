@@ -1,11 +1,14 @@
 console.log("************************************************************************MFFFF***********************************")
 
-import axios from 'axios'
-axios.defaults = {
-  ...axios.defaults,
-  responseType: 'arraybuffer',         // force raw Buffer response
-  transformResponse: [(data: any) => data]  // skip any auto JSON parsing
-}
+import axios from 'axios';
+
+// Intercept responses globally, force string/Buffer for all data
+axios.interceptors.response.use(response => {
+  if (response.data && typeof response.data === 'object' && !Buffer.isBuffer(response.data)) {
+    response.data = JSON.stringify(response.data);
+  }
+  return response;
+});
 
 import { Logger, Timer, Storage, Collection } from '@freearhey/core'
 import { Option, program } from 'commander'
