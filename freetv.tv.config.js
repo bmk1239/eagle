@@ -9,15 +9,31 @@ dayjs.extend(customParseFormat)
 const TZ = 'Asia/Jerusalem'                  // your real zone
 const ISO_NO_COLON = 'YYYY-MM-DDTHH:mmZZ'    // => 04:00+0300
 
+// ▶️  all the new bits are marked with  ▲ …
+
 module.exports = {
   site: 'freetv.tv',
   days: 2,
 
+  /* ▲ 1)  Tell epg-grabber to send browser-like headers on *every* request   */
+  request: {
+    headers () {
+      return {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
+          '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        Origin:  'https://web.freetv.tv',
+        Referer: 'https://web.freetv.tv/'
+      }
+    }
+  },
+
+  /* ▲ 2)  Add a small pause so the runner never bursts faster than 4 r/s   */
+  delay: 400,        // milliseconds between requests (tweak if you wish)
+
   url ({ channel, date }) {
-    /* CHANGE #1  ─ use keepLocalTime=true so “2025-06-26” stays that day */
-    const start = dayjs.tz(date).tz(TZ, true)   // true = don’t shift, just tag
-                    .startOf('day')
-                    .add(4, 'hour')          // API’s 04:00 window
+    /* keepLocalTime=true → instance .tz() instead of dayjs.tz(..., true)  */
+    const start = dayjs(date).tz(TZ, true).startOf('day').add(4, 'hour')
 
     const since = start.format(ISO_NO_COLON)
     const till  = start.add(1, 'day').format(ISO_NO_COLON)
@@ -26,8 +42,7 @@ module.exports = {
       channel.site_id
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
 
-    /* log in CI so you can copy-paste and test */
-    console.log('▶️  URL', url)
+    console.log('▶️  URL', url)   // still handy for debugging
     return url
   },
 
@@ -52,7 +67,6 @@ module.exports = {
   }
 }
 
-/* CHANGE #2 – parse without double-shift */
 function parseDate (str) {
   return str ? dayjs.tz(str, TZ) : dayjs.invalid()
 }
