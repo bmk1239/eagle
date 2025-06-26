@@ -1,3 +1,8 @@
+/* --- global Axios patch: return raw text/Buffer everywhere --- */
+import axios from 'axios';
+axios.defaults.transformResponse = [(data: any) => data];  // identity — no JSON.parse
+/* ------------------------------------------------------------- */
+
 import { Logger, Timer, Storage, Collection } from '@freearhey/core'
 import { Option, program } from 'commander'
 import { QueueCreator, Job, ChannelsParser } from '../../core'
