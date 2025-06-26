@@ -48,6 +48,11 @@ module.exports = {
 
   /* robust parser: handles string, Buffer, or already-parsed object */
   parser ({ content }) {
+    console.log('📦 parser called with:', {
+      type: typeof content,
+      isBuffer: Buffer.isBuffer(content),
+      keys: content && typeof content === 'object' ? Object.keys(content).slice(0, 3) : null
+    })
     let data
 
     if (Buffer.isBuffer(content)) {
