@@ -15,7 +15,7 @@ module.exports = {
 
   url ({ channel, date }) {
     /* CHANGE #1  ─ use keepLocalTime=true so “2025-06-26” stays that day */
-    const start = dayjs.tz(date, TZ, true)   // true = don’t shift, just tag
+    const start = dayjs.tz(date).tz(TZ, true)   // true = don’t shift, just tag
                     .startOf('day')
                     .add(4, 'hour')          // API’s 04:00 window
 
