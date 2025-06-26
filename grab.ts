@@ -1,14 +1,12 @@
-/* ── Buffer.from wrapper – prevents crash if data is already an object ── */
+/* ---- Patch Buffer.from so it never crashes on plain objects ---- */
 const _origFrom = Buffer.from as any;
-(Buffer as any).from = function (data: any, ...rest: any[]) {
-  if (typeof data === 'object' && !ArrayBuffer.isView(data) && !(data instanceof ArrayBuffer)) {
-    return _origFrom.call(Buffer, JSON.stringify(data), ...rest);
-  }
-  return _origFrom.call(Buffer, data, ...rest);
+(Buffer as any).from = function (d:any, ...r:any[]) {
+  return _origFrom.call(Buffer,
+    (typeof d === 'object' && !ArrayBuffer.isView(d) && !(d instanceof ArrayBuffer))
+      ? JSON.stringify(d) : d,
+    ...r);
 };
-/* ─────────────────────────────────────────────────────────────────────── */
-
-import axios from 'axios';               // ← rest of your normal imports
+/* ---------------------------------------------------------------- */
 
 import { Logger, Timer, Storage, Collection } from '@freearhey/core'
 import { Option, program } from 'commander'
