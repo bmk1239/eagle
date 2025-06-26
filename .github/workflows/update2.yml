@@ -61,13 +61,19 @@ jobs:
 
       - name: Fetching the programs data
         run: |
-          cd epg
-          rm sites/freetv.tv/freetv.tv.config.js
-          cp ../freetv.tv.config.js sites/freetv.tv/
-          rm scripts/commands/epg/grab.ts
-          cp ../grab.ts scripts/commands/epg/
-          # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
-          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml" --proxy "$IL_PROXY"
+         cd epg
+         rm sites/freetv.tv/freetv.tv.config.js
+         cp ../freetv.tv.config.js sites/freetv.tv/
+         rm scripts/commands/epg/grab.ts
+         cp ../grab.ts scripts/commands/epg/
+
+         NODE_OPTIONS=--max-old-space-size=5000 npx tsx scripts/commands/epg/grab.ts \
+         --channels=../channels.xml \
+         --maxConnections=1 \
+         --delay=1200 \
+         --timeout=20000 \
+         --output="../guide.xml" \
+         --proxy "$IL_PROXY"
       
       # - name: Fixing the document
       #   run: python filter/scripts/fix.py --input guide.xml guide.xml
