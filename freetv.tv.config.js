@@ -1,74 +1,55 @@
-const dayjs             = require('dayjs')
-const utc                = require('dayjs/plugin/utc')
-const timezone           = require('dayjs/plugin/timezone')
-const customParseFormat  = require('dayjs/plugin/customParseFormat')
+const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc')
+const tz  = require('dayjs/plugin/timezone')
 dayjs.extend(utc)
-dayjs.extend(timezone)
-dayjs.extend(customParseFormat)
+dayjs.extend(tz)
 
-const TZ           = 'Asia/Jerusalem'
-const ISO_NO_COLON = 'YYYY-MM-DDTHH:mmZZ'   // 04:00+0300
+const TZ = 'Asia/Jerusalem'
+const ISO = 'YYYY-MM-DDTHH:mmZZ'
 
 module.exports = {
   site: 'freetv.tv',
   days: 2,
 
-  /* gentle throttle so FreeTV doesn’t rate-limit */
-  delay:       1200,
+  delay: 1200,
   concurrency: 1,
 
-  /* Axios options + headers merged into every request */
+  /* ← plain object, not a function */
   request: {
-    headers () {
-      return {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
-          '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        Origin:  'https://web.freetv.tv',
-        Referer: 'https://web.freetv.tv/'
-      }
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+      Origin:  'https://web.freetv.tv',
+      Referer: 'https://web.freetv.tv/'
     },
-
-    /* 🔑 stop Axios from auto-parsing JSON */
-    responseType: 'arraybuffer',        // always gives us a Buffer
-    transformResponse: data => data     // identity transform
+    /* this is the key that stops auto-JSON */
+    responseType: 'arraybuffer'   // always returns Buffer
   },
 
-  /* URL for a 24 h window 04:00→04:00 IL time */
   url ({ channel, date }) {
-    const local = dayjs(date).tz(TZ)
-    const since = local.startOf('day').format(ISO_NO_COLON)
-    const till  = local.add(1, 'day').startOf('day').format(ISO_NO_COLON)
-
+    const d   = dayjs(date).tz(TZ)
+    const since = d.startOf('day').format(ISO)
+    const till  = d.add(1, 'day').startOf('day').format(ISO)
     return `https://web.freetv.tv/api/products/lives/programmes?liveId[]=${
       channel.site_id
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
   },
 
-  /* Robust parser */
   parser ({ content }) {
-    let items
+    /* content is now ALWAYS Buffer or string */
+    let arr
+    try {
+      arr = JSON.parse(Buffer.isBuffer(content) ? content.toString() : content)
+    } catch { return [] }
 
-    if (Buffer.isBuffer(content)) {
-      try { items = JSON.parse(content.toString('utf8')) } catch { return [] }
-    } else if (typeof content === 'string') {
-      try { items = JSON.parse(content) } catch { return [] }
-    } else if (content && typeof content === 'object') {
-      items = content
-    } else {
-      return []
-    }
-
-    return items.flatMap(item => {
+    return arr.flatMap(item => {
       const start = parseDate(item.since)
       const stop  = parseDate(item.till)
       if (!start?.isValid() || !stop?.isValid()) return []
-
       return {
-        title:       item.title,
+        title: item.title,
         description: item.description || item.lead || '',
-        image:       getImageUrl(item),
-        icon:        getImageUrl(item),
+        image: getImg(item),
+        icon:  getImg(item),
         start,
         stop
       }
