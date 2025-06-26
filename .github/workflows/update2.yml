@@ -62,6 +62,7 @@ jobs:
 
       - name: Patch Buffer.from crash in whatever path epg-grabber lives
         run: |
+         cd epg
          set -e
 
          # 1️⃣  Ask Node where epg-grabber’s main file is
