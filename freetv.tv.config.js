@@ -14,6 +14,16 @@ module.exports = {
   delay: 1200,
   concurrency: 1,
 
+  request: {
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
+        '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      'Origin':  'https://web.freetv.tv',
+      'Referer': 'https://web.freetv.tv/'
+    }
+  },
+
   url ({ channel, date }) {
     const start = dayjs(date).tz(TZ).startOf('day').add(4, 'hour')
     const since = start.format(ISO)
@@ -24,7 +34,6 @@ module.exports = {
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
   },
 
-  /* robust parser: handles Buffer, string, or already-parsed object */
   parser ({ content }) {
     let items
     try {
@@ -32,7 +41,7 @@ module.exports = {
         ? content.toString()
         : typeof content === 'string'
         ? content
-        : JSON.stringify(content)       // object → string
+        : JSON.stringify(content)
       items = JSON.parse(raw)
     } catch { return [] }
 
@@ -54,4 +63,4 @@ module.exports = {
 }
 
 function parse (s) { return s ? dayjs.utc(s).tz(TZ) : null }
-function img (o)   { const u=o?.images?.['16x9']?.[0]?.url; return u?`https:${u}`:null }
+function img (o)   { const u=o?.images?.['16x9']?.[0]?.url; return u ? `https:${u}` : null }
