@@ -63,7 +63,6 @@ jobs:
       - name: Patch Buffer.from crash in whatever path epg-grabber lives
         shell: bash
         run: |
-          cd epg
           set -e
 
           # 1️⃣  Get real install dir of epg-grabber → add /src for your build
