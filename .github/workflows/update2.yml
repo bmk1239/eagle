@@ -59,6 +59,7 @@ jobs:
         run: |
           cd epg
           npm install
+          grep -R "Buffer.from(" node_modules/epg-grabber/
       - name: Fetching the programs data
         run: |
           cd epg
