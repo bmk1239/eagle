@@ -29,9 +29,13 @@ module.exports = {
     const since = start.format(ISO)
     const till  = start.add(1, 'day').format(ISO)
 
-    return `https://web.freetv.tv/api/products/lives/programmes?liveId[]=${
+    const url = `https://web.freetv.tv/api/products/lives/programmes?liveId[]=${
       channel.site_id
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
+
+    console.log(url)
+    
+    return url
   },
 
   parser ({ content }) {
