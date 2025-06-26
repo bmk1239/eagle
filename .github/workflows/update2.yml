@@ -54,6 +54,28 @@ jobs:
         run: |
           curl -v --max-time 8 --proxy "$IL_PROXY" -I https://web.freetv.tv/ 2>&1 | head	
      
+      - name: Pick a live Israeli proxy
+        id: pickproxy
+        shell: bash
+        run: |
+         set -e
+         echo "Fetching fresh IL proxy list…"
+         list=$(curl -sf https://proxyscrape.com/free-proxy-list/israel?protocol=http \
+            | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]+' \
+            | head -20)
+
+         for p in $list; do
+           echo "Testing $p"
+           if curl --proxy "http://$p" -s -m 8 -I https://web.freetv.tv/ | grep -q '200 OK'; then
+             echo "✅  $p works"
+             echo "proxy=$p" >> $GITHUB_OUTPUT
+             exit 0
+           fi
+         done
+
+         echo "::error ::No live Israeli proxy found"
+         exit 1
+          
       - name: Installing JavaScript dependencies
         run: |
           cd epg
@@ -67,7 +89,7 @@ jobs:
           rm scripts/commands/epg/grab.ts
           cp ../grab.ts scripts/commands/epg/
           # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
-          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml" --proxy "$IL_PROXY"
+          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml" --proxy "http://${{ steps.pickproxy.outputs.proxy }}"
       
       # - name: Fixing the document
       #   run: python filter/scripts/fix.py --input guide.xml guide.xml
