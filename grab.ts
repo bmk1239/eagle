@@ -1,10 +1,35 @@
 /* ---- Patch Buffer.from so it never crashes on plain objects ---- */
 const _origFrom = Buffer.from as any;
-(Buffer as any).from = function (d:any, ...r:any[]) {
-  return _origFrom.call(Buffer,
-    (typeof d === 'object' && !ArrayBuffer.isView(d) && !(d instanceof ArrayBuffer))
-      ? JSON.stringify(d) : d,
-    ...r);
+
+(Buffer as any).from = function (data: any, ...rest: any[]) {
+  const isPlainObject =
+    typeof data === 'object' &&
+    data !== null &&
+    !ArrayBuffer.isView(data) &&
+    !(data instanceof ArrayBuffer);
+
+  // --- DEBUG ----------------------------------------------------
+  if (isPlainObject) {
+    console.debug(
+      '[Buffer.from patch] Plain object detected → will stringify:',
+      data
+    );
+  } else {
+    console.debug('[Buffer.from patch] Input:', data);
+  }
+  // -------------------------------------------------------------
+
+  const transformed = isPlainObject ? JSON.stringify(data) : data;
+  const buf = _origFrom.call(Buffer, transformed, ...rest);
+
+  // --- DEBUG ----------------------------------------------------
+  console.debug(
+    `[Buffer.from patch] Returning Buffer (length=${buf.length})`,
+    buf
+  );
+  // -------------------------------------------------------------
+
+  return buf;
 };
 /* ---------------------------------------------------------------- */
 
