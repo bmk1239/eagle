@@ -61,21 +61,32 @@ jobs:
           npm install
 
       - name: Patch epg-grabber lib/request.js to fix Buffer.from error
+      - name: Patch Buffer.from crash in whatever path epg-grabber lives
         run: |
-          cd epg
-          ls node_modules
-          ls node_modules/epg-grabber
-          ls node_modules/epg-grabber/lib
-          FILE=node_modules/epg-grabber/lib/request.js
-          # Backup original file just in case
-          cp $FILE $FILE.bak
+         set -e
 
-          # Use sed or perl to replace the Buffer.from line:
-          # Replace line containing "Buffer.from(response.data)" with safe stringify code
-          sed -i '/Buffer\.from(response\.data)/c\
-          const rawData = (typeof response.data === "object") ? JSON.stringify(response.data) : response.data;\
-          const body = Buffer.from(rawData);
-          ' $FILE
+         # 1️⃣  Ask Node where epg-grabber’s main file is
+         EPGB=$(node - <<'NODE'
+         const path = require('path');
+         const p = require.resolve('epg-grabber');         // full path to main entry
+         console.log(path.dirname(p));                     // folder we need
+         NODE
+         )
+
+         FILE="$EPGB/request.js"          # request.js sits next to the main file
+         echo "Patching $FILE"
+
+         # 2️⃣  Verify the file exists
+         if [ ! -f "$FILE" ]; then
+          echo "::error ::Cannot find request.js in $FILE"
+          exit 1
+         fi
+
+         # 3️⃣  Replace the Buffer.from line safely
+         sed -i -E 's/Buffer\.from([^)]+)/(() => { const $$d = \1; return Buffer.from(typeof $$d === "object" ? JSON.stringify($$d) : $$d) })()/g' "$FILE"
+
+         # 4️⃣  Show the patched lines for sanity
+         grep -n -A2 -B2 "Buffer.from" "$FILE"
           
       - name: Fetching the programs data
         run: |
