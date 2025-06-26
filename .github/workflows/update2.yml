@@ -29,41 +29,7 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 21.7.3
-
-    - name: Pick a live Israeli proxy
-      id: pickproxy
-      shell: bash
-      run: |
-       set -e
-       ua='Mozilla/5.0'
-       echo "Pulling IL proxy lists…"
-       list=$(
-       {
-        curl -sA "$ua" 'https://proxyscrape.com/free-proxy-list/israel?protocol=http';
-        curl -sA "$ua" 'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/https.txt';
-        curl -sA "$ua" 'https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt';
-       } | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+' | sort -u | head -60
-       )
-
-       echo "Testing proxies…"
-       for p in $list; do
-        printf "  %-21s " "$p"
-        if curl --proxy "http://$p" -A "$ua" -s -m 8 \
-         -H 'Origin: https://web.freetv.tv' \
-         -H 'Referer: https://web.freetv.tv/' \
-         -I 'https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04:00+0300&till=2025-06-27T04:00+0300&lang=HEB&platform=BROWSER' \
-         | grep -q 'HTTP/1.1 200'; then
-        echo "✅"
-        echo "proxy=$p" >> "$GITHUB_OUTPUT"
-        exit 0
-       else
-        echo "fail"
-       fi
-       done
-
-       echo "::error ::No live IL proxy found"
-       exit 1
-       
+    
     # 5 – quick proxy test
     - name: Test proxy connectivity
       run: |
@@ -71,7 +37,7 @@ jobs:
 
     - name: Test FreeTV API via proxy
       run: |
-        curl --proxy "http://${{ steps.pickproxy.outputs.proxy }}" -s -m 8 \
+        curl --proxy "$IL_PROXY" -s -m 8 \
         -H 'Origin: https://web.freetv.tv' \
         -H 'Referer: https://web.freetv.tv/' \
         -A 'Mozilla/5.0' \
@@ -104,7 +70,7 @@ jobs:
           --maxConnections=1 \
           --timeout=20000 \
           --output=../guide.xml \
-          --proxy "http://${{ steps.pickproxy.outputs.proxy }}"
+          --proxy "$IL_PROXY"
       env:
         IL_PROXY: ${{ secrets.IL_PROXY }}
 
