@@ -1,4 +1,3 @@
-/*  FreeTV grabber — minimal, stable  */
 const dayjs             = require('dayjs')
 const utc                = require('dayjs/plugin/utc')
 const timezone           = require('dayjs/plugin/timezone')
@@ -7,18 +6,18 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
 
-const TZ = 'Asia/Jerusalem'
-const ISO_NO_COLON = 'YYYY-MM-DDTHH:mmZZ'
+const TZ           = 'Asia/Jerusalem'
+const ISO_NO_COLON = 'YYYY-MM-DDTHH:mmZZ'   // 04:00+0300
 
 module.exports = {
   site: 'freetv.tv',
   days: 2,
 
-  /* gentle throttle so FreeTV doesn’t ban the proxy IP */
-  delay:       1200,   // ms between requests
-  concurrency: 1,      // one socket at a time
+  /* gentle throttle so FreeTV doesn’t rate-limit */
+  delay:       1200,
+  concurrency: 1,
 
-  /* headers that make the request look like a browser tab */
+  /* Axios options + headers merged into every request */
   request: {
     headers () {
       return {
@@ -28,10 +27,14 @@ module.exports = {
         Origin:  'https://web.freetv.tv',
         Referer: 'https://web.freetv.tv/'
       }
-    }
+    },
+
+    /* 🔑 stop Axios from auto-parsing JSON */
+    responseType: 'arraybuffer',        // always gives us a Buffer
+    transformResponse: data => data     // identity transform
   },
 
-  /* same URL logic you had before */
+  /* URL for a 24 h window 04:00→04:00 IL time */
   url ({ channel, date }) {
     const local = dayjs(date).tz(TZ)
     const since = local.startOf('day').format(ISO_NO_COLON)
@@ -42,7 +45,7 @@ module.exports = {
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
   },
 
-  /* robust parser: accepts Buffer, string, or object */
+  /* Robust parser */
   parser ({ content }) {
     let items
 
