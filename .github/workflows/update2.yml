@@ -50,7 +50,7 @@ jobs:
       
       - name: test
         run: |
-          curl --proxy http://213.151.53.41:80 \
+          curl --proxy  http://81.218.86.226:8080 \
           -I https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER
           
       # - name: Installing JavaScript dependencies
