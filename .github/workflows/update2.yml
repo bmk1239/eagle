@@ -13,12 +13,23 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Allow expired Fortinet leaf (⚠ temporary)
+    - name: Allow expired Fortinet leaf  ⚠️ TEMPORARY
       run: |
-        echo "NODE_TLS_REJECT_UNAUTHORIZED=0" >> $GITHUB_ENV
-        echo 'curl --proxy "$IL_PROXY" --proxy-insecure "$@"' > $HOME/bin/curl
-        chmod +x $HOME/bin/curl
-        echo "$HOME/bin" >> $GITHUB_PATH
+         # 0️⃣  Trust *nothing* – disable TLS checks (Node & curl)
+         echo "NODE_TLS_REJECT_UNAUTHORIZED=0" >> "$GITHUB_ENV"
+  
+         # 1️⃣  Make sure $HOME/bin exists
+         mkdir -p "$HOME/bin"
+
+         # 2️⃣  Drop a tiny wrapper that always adds --proxy and --proxy-insecure
+         cat > "$HOME/bin/curl" <<'WRAP'
+         #!/usr/bin/env bash
+         exec /usr/bin/curl --proxy "$IL_PROXY" --proxy-insecure "$@"
+         WRAP
+         chmod +x "$HOME/bin/curl"
+
+          # 3️⃣  Prepend $HOME/bin to PATH so our wrapper is found first
+          echo "$HOME/bin" >> "$GITHUB_PATH"
     
     # 2 – python (kept for future use)
     - uses: actions/setup-python@v5
