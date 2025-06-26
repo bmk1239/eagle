@@ -60,30 +60,32 @@ jobs:
           cd epg
           npm install
 
-      - name: Patch Buffer.from crash in whatever path epg-grabber lives
+      - name: Patch epg-grabber Buffer bug (search & replace)
         shell: bash
         run: |
-          cd epg
-          set -e
+         cd epg
+         set -e
 
-          # 1️⃣  Get real install dir of epg-grabber → add /src for your build
-          EPGB_DIR=$(node -e "const p=require('path');console.log(p.join(p.dirname(require.resolve('epg-grabber')), 'src'))")
+         # 1️⃣  Locate the epg-grabber package root
+         BASE_DIR=$(node -p "require('path').dirname(require.resolve('epg-grabber'))")
 
-          FILE=\"$EPGB_DIR/request.js\"
-          echo "Patching $FILE"
+         # 2️⃣  Find the first JS file that contains Buffer.from(response.data)
+         TARGET=$(grep -R --include="*.js" -l "Buffer.from(response.data)" "$BASE_DIR" | head -n 1)
 
-          if [ ! -f $FILE ]; then
-            echo "::error ::Cannot find request.js at $FILE"
-            exit 1
-          fi
+         if [ -z "$TARGET" ]; then
+           echo "::error ::Buffer.from(response.data) not found under $BASE_DIR"
+           exit 1
+         fi
 
-          # 2️⃣  Replace Buffer.from(response.data) with a safe version
-          sed -i \
-          "s|Buffer\.from(response\.data)|Buffer.from(typeof response.data === 'object' ? JSON.stringify(response.data) : response.data)|" \
-          $FILE
+         echo "Patching $TARGET"
 
-          # 3️⃣  Show patched line for sanity
-          grep -n -m1 "Buffer.from" $FILE
+         # 3️⃣  Replace the unsafe call with a safe version
+         sed -i -E \
+         "s|Buffer\.fromresponse\.data|(() => { const d = response.data; return Buffer.from(typeof d === 'object' ? JSON.stringify(d) : d); })()|g" \
+         "$TARGET"
+
+         # 4️⃣  Show the patched line for confirmation
+         grep -n -m1 "Buffer.from" "$TARGET"
       
       - name: Fetching the programs data
         run: |
