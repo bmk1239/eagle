@@ -34,7 +34,7 @@ jobs:
     - name: Test proxy connectivity
       run: |
         # 1 — Ask curl to print the peer certificate
-        curl -v --proxy "$IL_PROXY" \
+        curl -k -v --proxy "$IL_PROXY" \
         --connect-timeout 10 https://web.freetv.tv/ 2>&1 | \
         grep -A4 "Server certificate"
 
