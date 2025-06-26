@@ -62,6 +62,7 @@ jobs:
 
       - name: Patch epg-grabber lib/request.js to fix Buffer.from error
         run: |
+          cd epg
           FILE=node_modules/epg-grabber/lib/request.js
           # Backup original file just in case
           cp $FILE $FILE.bak
