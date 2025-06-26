@@ -50,10 +50,10 @@ jobs:
       #   run: |
       #     curl -s https://ipinfo.io/json
       
-       - name: test
-         run: |
-           curl --proxy  "$IL_PROXY" \
-           -I https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER
+      - name: test
+        run: |
+          curl --proxy  "$IL_PROXY" \
+          -I https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER
           
       - name: Installing JavaScript dependencies
         run: |
