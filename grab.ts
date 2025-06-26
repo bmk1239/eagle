@@ -1,11 +1,11 @@
-console.log("************************************************************************MFFFF2333***********************************")
+console.log("************************************************************************MFFFF***********************************")
 
-/* --- Axios global patch: always raw Buffer ------------------------ */
 import axios from 'axios'
-axios.defaults = { ...axios.defaults,
-  responseType: 'arraybuffer',
-  transformResponse: [(d:any)=>d] }
-/* ------------------------------------------------------------------ */
+axios.defaults = {
+  ...axios.defaults,
+  responseType: 'arraybuffer',         // force raw Buffer response
+  transformResponse: [(data: any) => data]  // skip any auto JSON parsing
+}
 
 import { Logger, Timer, Storage, Collection } from '@freearhey/core'
 import { Option, program } from 'commander'
