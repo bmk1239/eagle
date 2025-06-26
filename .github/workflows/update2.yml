@@ -60,7 +60,6 @@ jobs:
           cd epg
           npm install
 
-      - name: Patch epg-grabber lib/request.js to fix Buffer.from error
       - name: Patch Buffer.from crash in whatever path epg-grabber lives
         run: |
          set -e
