@@ -10,12 +10,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Downloading the filter
-        uses: actions/checkout@v4
-        with:
-          repository: "Animenosekai/japanterebi-xmltv"
-          # Relative path under $GITHUB_WORKSPACE to place the repository
-          path: "filter"
+      # - name: Downloading the filter
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: "Animenosekai/japanterebi-xmltv"
+      #     # Relative path under $GITHUB_WORKSPACE to place the repository
+      #     path: "filter"
       # - name: Downloading the channels database
       #   uses: actions/checkout@v4
       #   with:
@@ -25,8 +25,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Installing Python dependencies
-        run: python -m pip install -r filter/requirements.txt
+      # - name: Installing Python dependencies
+      #   run: python -m pip install -r filter/requirements.txt
       # - name: Getting the channels ID
       #   run: python filter/scripts/filter.py --channels database/data/channels.csv --feeds database/data/feeds.csv --country="IL" --minify channels.json
       - name: Downloading the EPG fetchers
@@ -44,6 +44,10 @@ jobs:
           node-version: "21.7.3"
           # `package-lock.json` is not here yet
           # cache: npm
+      - name: Show runner IP/ country
+        run: |
+          curl -s https://ipinfo.io/json
+          
       - name: Installing JavaScript dependencies
         run: |
           cd epg
@@ -55,28 +59,28 @@ jobs:
           rm sites/freetv.tv/freetv.tv.config.js
           cp ../freetv.tv.config.js sites/freetv.tv/
           NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
-      - name: Fixing the document
-        run: python filter/scripts/fix.py --input guide.xml guide.xml
-      - name: Merging redundant programs
-        run: python filter/scripts/merger.py --input guide.xml guide.xml
-      - name: Minify XML
-        run: python filter/scripts/minify.py --input guide.xml guide.xml
+      # - name: Fixing the document
+      #   run: python filter/scripts/fix.py --input guide.xml guide.xml
+      # - name: Merging redundant programs
+      #   run: python filter/scripts/merger.py --input guide.xml guide.xml
+      # - name: Minify XML
+      #   run: python filter/scripts/minify.py --input guide.xml guide.xml
       - name: Remove the downloaded repositories
         run: |
-          echo "Removing 'filter'"
-          rm -r filter
+          # echo "Removing 'filter'"
+          # rm -r filter
           # echo "Removing 'database'"
           # rm -r database
           echo "Removing 'epg'"
           rm -r epg
-      - name: Committing the new data
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add guide.xml
-          if ! git diff --cached --quiet; then
-            git commit -m "Update file1"
-            git push
-          else
-            echo "No changes to commit"
-          fi
+      # - name: Committing the new data
+      #   run: |
+      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git add guide.xml
+      #     if ! git diff --cached --quiet; then
+      #       git commit -m "Update file1"
+      #       git push
+      #     else
+      #       echo "No changes to commit"
+      #     fi
