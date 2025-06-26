@@ -1,3 +1,5 @@
+console.log(' freetv.tv.js LOADED - checksum 20250626');
+
 const dayjs            = require('dayjs')
 const utc               = require('dayjs/plugin/utc')
 const timezone          = require('dayjs/plugin/timezone')
