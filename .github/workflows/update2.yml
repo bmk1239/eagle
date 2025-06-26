@@ -16,27 +16,27 @@ jobs:
           repository: "Animenosekai/japanterebi-xmltv"
           # Relative path under $GITHUB_WORKSPACE to place the repository
           path: "filter"
-      - name: Downloading the channels database
-        uses: actions/checkout@v4
-        with:
-          repository: "iptv-org/database"
-          # Relative path under $GITHUB_WORKSPACE to place the repository
-          path: "database"
+      # - name: Downloading the channels database
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: "iptv-org/database"
+      #     # Relative path under $GITHUB_WORKSPACE to place the repository
+      #     path: "database"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - name: Installing Python dependencies
         run: python -m pip install -r filter/requirements.txt
-      - name: Getting the channels ID
-        run: python filter/scripts/filter.py --channels database/data/channels.csv --feeds database/data/feeds.csv --country="IL" --minify channels.json
+      # - name: Getting the channels ID
+      #   run: python filter/scripts/filter.py --channels database/data/channels.csv --feeds database/data/feeds.csv --country="IL" --minify channels.json
       - name: Downloading the EPG fetchers
         uses: actions/checkout@v4
         with:
           repository: "iptv-org/epg"
           # Relative path under $GITHUB_WORKSPACE to place the repository
           path: "epg"
-      - name: Filtering the channels
-        run: python filter/scripts/fetcher.py --input channels.json --sites epg/sites israel.channels.xml
+      # - name: Filtering the channels
+      #   run: python filter/scripts/fetcher.py --input channels.json --sites epg/sites israel.channels.xml
       - uses: actions/setup-node@v4
         with:
           # node-version: latest
@@ -51,7 +51,8 @@ jobs:
       - name: Fetching the programs data
         run: |
           cd epg
-          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
+          # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
+          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
       - name: Fixing the document
         run: python filter/scripts/fix.py --input guide.xml guide.xml
       - name: Merging redundant programs
@@ -62,15 +63,15 @@ jobs:
         run: |
           echo "Removing 'filter'"
           rm -r filter
-          echo "Removing 'database'"
-          rm -r database
+          # echo "Removing 'database'"
+          # rm -r database
           echo "Removing 'epg'"
           rm -r epg
       - name: Committing the new data
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add guide.xml israel.channels.xml
+          git add guide.xml
           if ! git diff --cached --quiet; then
             git commit -m "Update file1"
             git push
