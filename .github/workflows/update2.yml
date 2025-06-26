@@ -13,6 +13,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Allow expired Fortinet leaf (⚠ temporary)
+      run: |
+        echo "NODE_TLS_REJECT_UNAUTHORIZED=0" >> $GITHUB_ENV
+        echo 'curl --proxy "$IL_PROXY" --proxy-insecure "$@"' > $HOME/bin/curl
+        chmod +x $HOME/bin/curl
+        echo "$HOME/bin" >> $GITHUB_PATH
+    
     # 2 – python (kept for future use)
     - uses: actions/setup-python@v5
       with:
