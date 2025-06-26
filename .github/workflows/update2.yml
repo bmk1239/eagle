@@ -59,12 +59,25 @@ jobs:
         run: |
           cd epg
           npm install
+
+      - name: Patch epg-grabber lib/request.js to fix Buffer.from error
+        run: |
+          FILE=node_modules/epg-grabber/lib/request.js
+          # Backup original file just in case
+          cp $FILE $FILE.bak
+
+          # Use sed or perl to replace the Buffer.from line:
+          # Replace line containing "Buffer.from(response.data)" with safe stringify code
+          sed -i '/Buffer\.from(response\.data)/c\
+          const rawData = (typeof response.data === "object") ? JSON.stringify(response.data) : response.data;\
+          const body = Buffer.from(rawData);
+          ' $FILE
+          
       - name: Fetching the programs data
         run: |
           cd epg
-          rm sites/freetv.tv/freetv.tv.config.js scripts/commands/epg/grab.ts
+          rm sites/freetv.tv/freetv.tv.config.js
           cp ../freetv.tv.config.js sites/freetv.tv/
-          cp ../grab.ts scripts/commands/epg/
           # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
           NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml" --proxy "$IL_PROXY"
       
