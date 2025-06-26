@@ -6,6 +6,8 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:  
+      IL_PROXY: ${{ secrets.IL_PROXY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -44,26 +46,26 @@ jobs:
           node-version: "21.7.3"
           # `package-lock.json` is not here yet
           # cache: npm
-      - name: Show runner IP/ country
-        run: |
-          curl -s https://ipinfo.io/json
+      # - name: Show runner IP/ country
+      #   run: |
+      #     curl -s https://ipinfo.io/json
       
-      - name: test
-        run: |
-          curl --proxy  http://81.218.86.226:8080 \
-          -I https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER
+      # - name: test
+      #   run: |
+      #     curl --proxy  http://81.218.86.226:8080 \
+      #     -I https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER
           
-      # - name: Installing JavaScript dependencies
-      #   run: |
-      #     cd epg
-      #     npm install
-      # - name: Fetching the programs data
-      #   run: |
-      #     cd epg
-      #     # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
-      #     rm sites/freetv.tv/freetv.tv.config.js
-      #     cp ../freetv.tv.config.js sites/freetv.tv/
-      #     NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
+      - name: Installing JavaScript dependencies
+        run: |
+          cd epg
+          npm install
+      - name: Fetching the programs data
+        run: |
+          cd epg
+          # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
+          rm sites/freetv.tv/freetv.tv.config.js
+          cp ../freetv.tv.config.js sites/freetv.tv/
+          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml" --proxy "$IL_PROXY"
       
       # - name: Fixing the document
       #   run: python filter/scripts/fix.py --input guide.xml guide.xml
@@ -79,14 +81,14 @@ jobs:
           # rm -r database
           echo "Removing 'epg'"
           rm -r epg
-      # - name: Committing the new data
-      #   run: |
-      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     git add guide.xml
-      #     if ! git diff --cached --quiet; then
-      #       git commit -m "Update file1"
-      #       git push
-      #     else
-      #       echo "No changes to commit"
-      #     fi
+      - name: Committing the new data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add guide.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Update file1"
+            git push
+          else
+            echo "No changes to commit"
+          fi
