@@ -15,12 +15,15 @@ module.exports = {
   concurrency: 1,
 
   request: {
-    headers: {
-      'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
-        '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-      'Origin':  'https://web.freetv.tv',
-      'Referer': 'https://web.freetv.tv/'
+    /* ❶  this MUST be a function */
+    headers () {
+      return {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
+          '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Origin':  'https://web.freetv.tv',
+        'Referer': 'https://web.freetv.tv/'
+      }
     }
   },
 
@@ -29,13 +32,9 @@ module.exports = {
     const since = start.format(ISO)
     const till  = start.add(1, 'day').format(ISO)
 
-    const url = `https://web.freetv.tv/api/products/lives/programmes?liveId[]=${
+    return `https://web.freetv.tv/api/products/lives/programmes?liveId[]=${
       channel.site_id
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
-
-    console.log(url)
-    
-    return url
   },
 
   parser ({ content }) {
