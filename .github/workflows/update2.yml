@@ -47,18 +47,23 @@ jobs:
       - name: Show runner IP/ country
         run: |
           curl -s https://ipinfo.io/json
+      
+      - name: test
+        run: |
+          curl -s https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER
           
-      - name: Installing JavaScript dependencies
-        run: |
-          cd epg
-          npm install
-      - name: Fetching the programs data
-        run: |
-          cd epg
-          # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
-          rm sites/freetv.tv/freetv.tv.config.js
-          cp ../freetv.tv.config.js sites/freetv.tv/
-          NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
+      # - name: Installing JavaScript dependencies
+      #   run: |
+      #     cd epg
+      #     npm install
+      # - name: Fetching the programs data
+      #   run: |
+      #     cd epg
+      #     # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
+      #     rm sites/freetv.tv/freetv.tv.config.js
+      #     cp ../freetv.tv.config.js sites/freetv.tv/
+      #     NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml"
+      
       # - name: Fixing the document
       #   run: python filter/scripts/fix.py --input guide.xml guide.xml
       # - name: Merging redundant programs
