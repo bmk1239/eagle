@@ -1,39 +1,56 @@
-const dayjs = require('dayjs')
-const utc = require('dayjs/plugin/utc')
-const timezone = require('dayjs/plugin/timezone')
-const customParseFormat = require('dayjs/plugin/customParseFormat')
+//  ──────────────────────────────────────────────────────────────────────
+//  FreeTV EPG grabber for epg-grabber v3+
+//  • Keeps local Israel time with dayjs.tz(keepLocalTime=true)
+//  • Sends browser-style headers so FreeTV’s edge lets us in
+//  • Throttles to one request every 1.2 s to avoid burst bans
+//  • Works both locally and in CI (if the runner has an IL IP)
+//  ──────────────────────────────────────────────────────────────────────
+
+const dayjs             = require('dayjs')
+const utc                = require('dayjs/plugin/utc')
+const timezone           = require('dayjs/plugin/timezone')
+const customParseFormat  = require('dayjs/plugin/customParseFormat')
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
 
-const TZ = 'Asia/Jerusalem'                  // your real zone
-const ISO_NO_COLON = 'YYYY-MM-DDTHH:mmZZ'    // => 04:00+0300
+// ── Constants ───────────────────────────────────────────────────────────
 
-// ▶️  all the new bits are marked with  ▲ …
+const TZ            = 'Asia/Jerusalem'
+const ISO_NO_COLON  = 'YYYY-MM-DDTHH:mmZZ'      // 04:00+0300
+
+// ── Exported grabber spec ───────────────────────────────────────────────
 
 module.exports = {
-  site: 'freetv.tv',
-  days: 2,
+  site:  'freetv.tv',
+  days:  2,
 
-  /* ▲ 1)  Tell epg-grabber to send browser-like headers on *every* request   */
+  /* Throttle & single worker keep us below FreeTV’s rate-limit */
+  delay:       1200,   // ms between requests  (≈0 .8 req/s)
+  concurrency: 1,      // never more than one open request
+
+  /* Browser-like headers: pass Cloudflare / Akamai checks */
   request: {
     headers () {
       return {
         'User-Agent':
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
           '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        Origin:  'https://web.freetv.tv',
-        Referer: 'https://web.freetv.tv/'
+        'Accept':           'application/json, text/plain, */*',
+        'Accept-Language':  'he-IL,he;q=0.9,en;q=0.8',
+        'Origin':           'https://web.freetv.tv',
+        'Referer':          'https://web.freetv.tv/'
       }
     }
   },
 
-  /* ▲ 2)  Add a small pause so the runner never bursts faster than 4 r/s   */
-  delay: 400,        // milliseconds between requests (tweak if you wish)
-
+  /* Build one-day window that matches FreeTV’s 04:00→04:00 schedule */
   url ({ channel, date }) {
-    /* keepLocalTime=true → instance .tz() instead of dayjs.tz(..., true)  */
-    const start = dayjs(date).tz(TZ, true).startOf('day').add(4, 'hour')
+    // keepLocalTime=true by using instance .tz(zone, true)
+    const start = dayjs(date)
+      .tz(TZ, true)           // tag 2025-06-26 as Israel time, no shift
+      .startOf('day')         // 00:00 local
+      .add(4, 'hour')         // API wants 04:00 → next-day 04:00
 
     const since = start.format(ISO_NO_COLON)
     const till  = start.add(1, 'day').format(ISO_NO_COLON)
@@ -42,10 +59,12 @@ module.exports = {
       channel.site_id
     }&since=${encodeURIComponent(since)}&till=${encodeURIComponent(till)}&lang=HEB&platform=BROWSER`
 
-    console.log('▶️  URL', url)   // still handy for debugging
+    /* Handy for debugging in CI */
+    console.log('▶️  URL', url)
     return url
   },
 
+  /* Parse the JSON payload into EPG items */
   parser ({ content }) {
     let items
     try { items = JSON.parse(content) } catch { return [] }
@@ -66,6 +85,8 @@ module.exports = {
     })
   }
 }
+
+// ── Helpers ─────────────────────────────────────────────────────────────
 
 function parseDate (str) {
   return str ? dayjs.tz(str, TZ) : dayjs.invalid()
