@@ -1,14 +1,3 @@
-console.log("************************************************************************MFFF3333F***********************************")
-
-/* ── Global Buffer.from safeguard ─────────────────────────────── */
-const _bufFrom = Buffer.from;
-(Buffer as any).from = function (data: any, ...args: any[]) {
-  if (typeof data === 'object' && !ArrayBuffer.isView(data) && !(data instanceof ArrayBuffer)) {
-    return _bufFrom.call(Buffer, JSON.stringify(data), ...args);
-  }
-  return _bufFrom.call(Buffer, data, ...args);
-};
-/* ──────────────────────────────────────────────────────────────── */
 
 import { Logger, Timer, Storage, Collection } from '@freearhey/core'
 import { Option, program } from 'commander'
