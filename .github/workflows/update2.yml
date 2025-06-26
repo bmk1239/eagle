@@ -60,38 +60,13 @@ jobs:
           cd epg
           npm install
 
-      - name: Patch epg-grabber Buffer bug (search & replace)
-        shell: bash
-        run: |
-         cd epg
-         set -e
-
-         # 1️⃣  Locate the epg-grabber package root
-         BASE_DIR=$(node -p "require('path').dirname(require.resolve('epg-grabber'))")
-
-         # 2️⃣  Find the first JS file that contains Buffer.from(response.data)
-         TARGET=$(grep -R --include="*.js" -l "Buffer.from(response.data)" "$BASE_DIR" | head -n 1)
-
-         if [ -z "$TARGET" ]; then
-           echo "::error ::Buffer.from(response.data) not found under $BASE_DIR"
-           exit 1
-         fi
-
-         echo "Patching $TARGET"
-
-         # 3️⃣  Replace the unsafe call with a safe version
-         sed -i -E \
-         "s|Buffer\.fromresponse\.data|(() => { const d = response.data; return Buffer.from(typeof d === 'object' ? JSON.stringify(d) : d); })()|g" \
-         "$TARGET"
-
-         # 4️⃣  Show the patched line for confirmation
-         grep -n -m1 "Buffer.from" "$TARGET"
-      
       - name: Fetching the programs data
         run: |
           cd epg
           rm sites/freetv.tv/freetv.tv.config.js
           cp ../freetv.tv.config.js sites/freetv.tv/
+          rm scripts/commands/epg/grab.ts
+          cp ../grab.ts scripts/commands/epg/
           # NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../israel.channels.xml --maxConnections=10 --output="../guide.xml"
           NODE_OPTIONS=--max-old-space-size=5000 npm run grab -- --channels=../channels.xml --maxConnections=10 --output="../guide.xml" --proxy "$IL_PROXY"
       
