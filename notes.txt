@@ -1,69 +1,53 @@
-# -------------------------------------------
-#  Install stealth support on top of puppeteer-core
-# -------------------------------------------
-- name: Install stealth plugin
-  run: |
-    npm install --no-save --silent \
-      puppeteer-extra \
-      puppeteer-extra-plugin-stealth
+name: FreeTV EPG
 
-- name: Harvest FreeTV cookies
-  env:
-    CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-    IL_PROXY   : ${{ env.IL_PROXY }}
-  run: |
-    node <<'EOF'
-    const fs              = require('fs');
-    const { addExtra }    = require('puppeteer-extra');
-    const StealthPlugin   = require('puppeteer-extra-plugin-stealth');
-    const puppeteerCore   = require('puppeteer-core');
-    const puppeteer       = addExtra(puppeteerCore);   // ⬅ core + stealth
-    puppeteer.use(StealthPlugin());
+on:
+  schedule:
+    - cron:  '0 23 * * *'          # every day 02:00 IL
+  workflow_dispatch:
 
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
+jobs:
+  grab:
+    runs-on: ubuntu-latest
+    env:
+      IL_PROXY: ${{ secrets.IL_PROXY }}   # http://user:pass@host:port
+    steps:
 
-    (async () => {
-      const browser = await puppeteer.launch({
-        executablePath: process.env.CHROME_PATH,
-        headless: 'new',
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--ignore-certificate-errors',
-          `--proxy-server=${process.env.IL_PROXY}`
-        ]
-      });
+    - uses: actions/checkout@v4
 
-      const page = await browser.newPage();
-      await page.setUserAgent(
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
-        'AppleWebKit/537.36 (KHTML, like Gecko) '   +
-        'Chrome/137.0.0.0 Safari/537.36'
-      );
-      await page.goto('https://web.freetv.tv/', { waitUntil: 'domcontentloaded' });
+    # 1️⃣ Chrome (matching puppeteer 22.x) —  fast, no extra download
+    - name: Setup Chrome
+      id: chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: stable
 
-      // wait until Cloudflare sets cf_clearance (max 40 s)
-      const client = await page.target().createCDPSession();
-      let cookieStr = '';
-      for (let i = 0; i < 20; i++) {
-        const { cookies } = await client.send('Network.getAllCookies');
-        cookieStr = cookies
-          .filter(c => c.domain.endsWith('freetv.tv'))
-          .map(c => `${c.name}=${c.value}`)
-          .join('; ');
-        if (cookieStr.includes('cf_clearance')) break;
-        await sleep(2000);
-      }
+    # 2️⃣ Node deps (core puppeteer + stealth plugin + your grabber deps)
+    - name: Install deps
+      run: |
+        npm ci
+        npm install --no-save puppeteer-core puppeteer-extra puppeteer-extra-plugin-stealth
 
-      if (!cookieStr.includes('cf_clearance')) {
-        console.error('❌  Cloudflare challenge not solved after 40 s');
-        process.exit(1);
-      }
+    # 3️⃣ Harvest fresh cookie (writes .env.ftv)
+    - name: Harvest FreeTV cookie
+      run: |
+        node tools/harvest-ftv-cookie.mjs \
+          "${{ steps.chrome.outputs.chrome-path }}" \
+          "$IL_PROXY"
+        cat .env.ftv >> $GITHUB_ENV
 
-      console.log('::add-mask::' + cookieStr);
-      fs.appendFileSync(process.env.GITHUB_ENV,
-        `FREETV_COOKIE_HARVESTED=${cookieStr}\n`);
+    # 4️⃣ Run your existing grab script (reads FREETV_COOKIE automatically)
+    - name: Grab EPG JSON
+      run: |
+        NODE_OPTIONS="--max-old-space-size=4000" \
+        npx tsx scripts/commands/epg/grab.ts \
+          --channels=channels.xml \
+          --maxConnections=1 \
+          --timeout=20000 \
+          --output=guide.xml \
+          --proxy "$IL_PROXY"
 
-      await browser.close();
-    })();
-    EOF
+    # 5️⃣ Commit the fresh XMLTV
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "ci(epg): daily FreeTV update"
+        file_pattern: guide.xml
