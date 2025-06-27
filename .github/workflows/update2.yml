@@ -39,17 +39,14 @@ jobs:
 
     - name: Install Node deps
       run: |
-        cd epg
-        # 1 . grab project deps (works whether lock file exists or not)
-        npm install --no-fund --no-audit
-
-        # 2 . add headless-browser packages we need for the harvest
+        mkdir -p harvest && cd harvest
+        npm init -y --silent
         npm install --no-save puppeteer-core puppeteer-extra puppeteer-extra-plugin-stealth
     
     # 3️⃣ Harvest fresh cookie (writes .env.ftv)
     - name: Harvest FreeTV cookie
       run: |
-        cd epg
+        cd harvest
         node tools/harvest-ftv-cookie.mjs \
           "${{ steps.chrome.outputs.chrome-path }}" \
           "$IL_PROXY"
