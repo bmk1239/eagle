@@ -1,10 +1,11 @@
-# Chrome is already set up earlier
-- name: Install puppeteer-extra w/ stealth plugin
+# -------------------------------------------
+#  Install stealth support on top of puppeteer-core
+# -------------------------------------------
+- name: Install stealth plugin
   run: |
-    CHROME_MAJOR=$(echo "${{ steps.chrome.outputs.chrome-version }}" | cut -d'.' -f1)
     npm install --no-save --silent \
-      "puppeteer-extra@$CHROME_MAJOR" \
-      "puppeteer-extra-plugin-stealth"
+      puppeteer-extra \
+      puppeteer-extra-plugin-stealth
 
 - name: Harvest FreeTV cookies
   env:
@@ -13,17 +14,18 @@
   run: |
     node <<'EOF'
     const fs              = require('fs');
-    const puppeteer       = require('puppeteer-extra');
+    const { addExtra }    = require('puppeteer-extra');
     const StealthPlugin   = require('puppeteer-extra-plugin-stealth');
+    const puppeteerCore   = require('puppeteer-core');
+    const puppeteer       = addExtra(puppeteerCore);   // ⬅ core + stealth
     puppeteer.use(StealthPlugin());
 
     const sleep = ms => new Promise(r => setTimeout(r, ms));
 
     (async () => {
-      /* ── 1. Launch Chrome (stealth) ────────────────────────────────── */
       const browser = await puppeteer.launch({
         executablePath: process.env.CHROME_PATH,
-        headless: 'new',                          // headless OK w/ stealth
+        headless: 'new',
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
@@ -32,7 +34,6 @@
         ]
       });
 
-      /* ── 2. Navigate & wait until Cloudflare sets cf_clearance ─────── */
       const page = await browser.newPage();
       await page.setUserAgent(
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
@@ -41,7 +42,7 @@
       );
       await page.goto('https://web.freetv.tv/', { waitUntil: 'domcontentloaded' });
 
-      // Poll Chrome DevTools cookies every 2 s for up to 40 s
+      // wait until Cloudflare sets cf_clearance (max 40 s)
       const client = await page.target().createCDPSession();
       let cookieStr = '';
       for (let i = 0; i < 20; i++) {
@@ -59,7 +60,6 @@
         process.exit(1);
       }
 
-      /* ── 3. Mask & export for later steps ──────────────────────────── */
       console.log('::add-mask::' + cookieStr);
       fs.appendFileSync(process.env.GITHUB_ENV,
         `FREETV_COOKIE_HARVESTED=${cookieStr}\n`);
