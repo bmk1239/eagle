@@ -23,6 +23,23 @@ from requests.exceptions import HTTPError
 import warnings, urllib3
 # ...
 
+import ssl
+from urllib3.util.ssl_ import create_urllib3_context
+from requests.adapters import HTTPAdapter
+
+class InsecureTunnel(HTTPAdapter):
+    """FOR *testing* ONLY – turns off all cert checks."""
+    def _new_ctx(self):
+        ctx = create_urllib3_context()
+        ctx.check_hostname = False          # 1️⃣ order matters
+        ctx.verify_mode    = ssl.CERT_NONE  # 2️⃣
+        return ctx
+    def init_poolmanager(self, *a, **kw):
+        kw["ssl_context"] = self._new_ctx()
+        return super().init_poolmanager(*a, **kw)
+    def proxy_manager_for(self, *a, **kw):
+        kw["ssl_context"] = self._new_ctx()
+        return super().proxy_manager_for(*a, **kw)
 
 # ────────────────────────── constants ───────────────────────────
 API_URL   = "https://web.freetv.tv/api/products/lives/programmes"
@@ -50,6 +67,7 @@ def configure_session():
     """Create a cloudscraper session routed through IL proxy.
        TLS validation is skipped if IL_PROXY_INSECURE=true."""
     sess = cloudscraper.create_scraper()
+    sess.mount("https://", InsecureTunnel())
     sess.headers.update(BASE_HEADERS)
 
     # ---- proxy (required) ----------------------------------
