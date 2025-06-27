@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<tv source-info-name="FreeTV" generator-info-name="FreeTV-EPG-script">
+<tv source-info-name="FreeTV" generator-info-name="FreeTV-EPG (proxy-CA)">
   <channel id="ערוץ 9">
     <display-name lang="he">ערוץ 9</display-name>
   </channel>
