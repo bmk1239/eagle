@@ -26,10 +26,7 @@ const ISO  = 'YYYY-MM-DDTHH:mmZZ';
 //    • The string must include BOTH cookies exactly as copied in DevTools.
 // ────────────────────────────────────────────────────────────────────────────
 const SESSION_COOKIE = process.env.FREETV_COOKIE || (
-  'AWSALB=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/' +
-  'YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+; ' +
-  'AWSALBCORS=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/' +
-  'YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+'
+  'AWSALB=DphR7wa11nsFOuqr1JL6nZfqJP/a0jSiRpYjd2UxZ8IrTs52EK1iekW5FvzNilYvm0l1yNmBQORvKrkj2KeldIogNDTDjKtEdHQKl2eBgE+KqMWLzUeL+/kYrjP7; AWSALBCORS=DphR7wa11nsFOuqr1JL6nZfqJP/a0jSiRpYjd2UxZ8IrTs52EK1iekW5FvzNilYvm0l1yNmBQORvKrkj2KeldIogNDTDjKtEdHQKl2eBgE+KqMWLzUeL+/kYrjP7'
 );
 
 module.exports = {
