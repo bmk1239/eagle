@@ -47,7 +47,7 @@ jobs:
     - name: Harvest FreeTV cookie
       run: |
         cd harvest
-        node tools/harvest-ftv-cookie.mjs \
+        node ../tools/harvest-ftv-cookie.mjs \
           "${{ steps.chrome.outputs.chrome-path }}" \
           "$IL_PROXY"
         cat .env.ftv >> $GITHUB_ENV    
