@@ -25,7 +25,8 @@ URLS = [
     "https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz",
     "https://www.open-epg.com/files/israel1.xml.gz",
     "https://raw.githubusercontent.com/EPGIL/epg-all/refs/heads/main/epg.xml",
-    "https://github.com/Fazzani/grab/raw/refs/heads/master/merge.xml.gz"
+    "https://github.com/Fazzani/grab/raw/refs/heads/master/merge.xml.gz",
+    "https://raw.githubusercontent.com/bmk1239/eagle/refs/heads/main/file.xml"
 ]
 
 CSV_MAP = Path("file1.csv")          # mapping file (channel_id,tvg-id)
