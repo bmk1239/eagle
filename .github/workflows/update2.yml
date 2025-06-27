@@ -11,6 +11,7 @@ jobs:
     env:
       IL_PROXY:        ${{ secrets.IL_PROXY }}
       IL_PROXY_CA_B64: ${{ secrets.IL_PROXY_CA_B64 }}
+      IL_PROXY_INSECURE: ${{ secrets.IL_PROXY_INSECURE }}
 
     steps:
     - uses: actions/checkout@v4
