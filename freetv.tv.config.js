@@ -1,14 +1,9 @@
 // epg/sites/freetv.tv/freetv.tv.config.js
 // ---------------------------------------------------------------------------
-// FreeTV – programme guide grabber
-// Works from GitHub Actions behind an IL proxy (Fortinet MITM cert) and
-// avoids Cloudflare’s 403 by:
-//   • sending *exactly* the same header set the browser uses
-//   • shipping the AWSALB / AWSALBCORS cookie you pasted
-//   • falling back to env-vars so you can rotate the cookie without a commit
-//
-// If you still see 403, run the built-in “DEBUG=epg:* npm run grab:ftv” task
-// once – it prints the full response and first 400 bytes of the body.
+// FreeTV EPG grabber – June 2025 version
+//   * works behind a Fortinet MITM proxy (GitHub Actions “IL_PROXY”)
+//   * passes Cloudflare WAF rules 1-4 (see README)
+//   * cookie can be rotated via FREETV_COOKIE secret
 // ---------------------------------------------------------------------------
 
 const dayjs  = require('dayjs');
@@ -17,38 +12,35 @@ const tz     = require('dayjs/plugin/timezone');
 dayjs.extend(utc);
 dayjs.extend(tz);
 
-const TZ   = 'Asia/Jerusalem';
-const ISO  = 'YYYY-MM-DDTHH:mmZZ';
+const TZ  = 'Asia/Jerusalem';
+const ISO = 'YYYY-MM-DDTHH:mmZZ';
 
-// ────────────────────────────────────────────────────────────────────────────
-// 1.  Session cookie – keep it *fresh*!  FreeTV rotates the pair ~weekly.
-//    • Set FREETV_COOKIE in GitHub Secrets to override the hard-coded value.
-//    • The string must include BOTH cookies exactly as copied in DevTools.
-// ────────────────────────────────────────────────────────────────────────────
+/*───────────────────────────────────────────────────────────────────────────*/
+/*  Cookie – override in GitHub Secrets to avoid committing new values      */
+/*───────────────────────────────────────────────────────────────────────────*/
 const SESSION_COOKIE = process.env.FREETV_COOKIE || (
-  'AWSALB=DphR7wa11nsFOuqr1JL6nZfqJP/a0jSiRpYjd2UxZ8IrTs52EK1iekW5FvzNilYvm0l1yNmBQORvKrkj2KeldIogNDTDjKtEdHQKl2eBgE+KqMWLzUeL+/kYrjP7; AWSALBCORS=DphR7wa11nsFOuqr1JL6nZfqJP/a0jSiRpYjd2UxZ8IrTs52EK1iekW5FvzNilYvm0l1yNmBQORvKrkj2KeldIogNDTDjKtEdHQKl2eBgE+KqMWLzUeL+/kYrjP7'
+  'AWSALB=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/' +
+  'YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+; ' +
+  'AWSALBCORS=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/' +
+  'YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+'
 );
 
 module.exports = {
   site : 'freetv.tv',
   days : 2,
 
-  // Cloudflare rate-limit  ⚠️  1 request / 1.5 s is the sweet spot
-  delay      : 1500,
+  delay      : 1500,   // 1 req / 1.5 s keeps us under CF’s rate-limit
   concurrency: 1,
 
-  // GitHub runner calls us via “grab.ts … --proxy $IL_PROXY”
   request: {
     headers : buildHeaders(),
-    timeout : 20_000      // 20 s
+    timeout : 20_000
   },
 
-  /* ─────────── Build the API URL ─────────── */
-  url({ channel, date }) {
-    const start = dayjs(date).tz(TZ).startOf('day').add(4, 'hour'); // 04:00 local
+  url ({ channel, date }) {
+    const start = dayjs(date).tz(TZ).startOf('day').add(4, 'hour'); // 04:00
     const since = start.format(ISO);
     const till  = start.add(1, 'day').format(ISO);
-
     return (
       'https://web.freetv.tv/api/products/lives/programmes' +
       `?liveId[]=${channel.site_id}` +
@@ -58,8 +50,7 @@ module.exports = {
     );
   },
 
-  /* ─────────── Parse the JSON response ─────────── */
-  parser({ content }) {
+  parser ({ content }) {
     const raw = Buffer.isBuffer(content)
       ? content.toString()
       : typeof content === 'string'
@@ -67,15 +58,13 @@ module.exports = {
       : JSON.stringify(content);
 
     if (raw.trim().startsWith('<')) {
-      console.warn('[freetv.tv] ⚠  HTML instead of JSON – body starts:',
-        raw.slice(0, 400));
+      console.warn('[freetv.tv] ⚠ HTML instead of JSON:', raw.slice(0, 200));
       return [];
     }
 
     let data;
-    try { data = JSON.parse(raw); }
-    catch (e) {
-      console.error('[freetv.tv] JSON parse failed:', e);
+    try { data = JSON.parse(raw); } catch (e) {
+      console.error('[freetv.tv] JSON parse error:', e);
       return [];
     }
 
@@ -96,39 +85,32 @@ module.exports = {
   }
 };
 
-/* ─────────── Helpers ─────────── */
-function buildHeaders() {
+/*───────────────────────── Helpers ─────────────────────────*/
+function buildHeaders () {
   return {
-    // full Chrome UA – Cloudflare “browser integrity check” likes it
+    // Browser UA so CF “Browser Integrity Check” passes
     'User-Agent':
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
       '(KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
 
-    // use *exactly* what DevTools shows (yes, HTML types first!)
-    'Accept':
-      'text/html,application/xhtml+xml,application/xml;q=0.9,' +
-      'image/avif,image/webp,image/apng,*/*;q=0.8,' +
-      'application/signed-exchange;v=b3;q=0.7',
+    // RULE #3 – *must* ask for JSON
+    'Accept': 'application/json, text/plain, */*',
 
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Cache-Control'  : 'no-cache',
-    'Pragma'         : 'no-cache',
-
-    // Chrome’s client-hints (optional but quietens some WAF rules)
-    'Sec-CH-UA':
-      '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
-    'Sec-CH-UA-Mobile': '?0',
-    'Sec-CH-UA-Platform': '"Windows"',
+    // RULE #1 – these three + X-Requested-With mimic fetch() exactly
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-origin',
+    'X-Requested-With': 'XMLHttpRequest',
 
     // CORS
     'Origin' : 'https://web.freetv.tv',
     'Referer': 'https://web.freetv.tv/',
 
-    // **Auth / Stickiness**
-    Cookie: SESSION_COOKIE
+    // Sticky-session & auth
+    'Cookie': SESSION_COOKIE
   };
 }
 
-function parse(s) { return s ? dayjs.utc(s).tz(TZ) : null; }
-function img(o)   { return o?.images?.['16x9']?.[0]?.url
-                        ? `https:${o.images['16x9'][0].url}` : null; }
+const parse = s => (s ? dayjs.utc(s).tz(TZ) : null);
+const img   = o => o?.images?.['16x9']?.[0]?.url
+                 ? `https:${o.images['16x9'][0].url}` : null;
