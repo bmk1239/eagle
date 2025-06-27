@@ -1,7 +1,61 @@
-- name: Install Node deps
-  run: |
-    # 1 . grab project deps (works whether lock file exists or not)
-    npm install --no-fund --no-audit
+name: FreeTV EPG (Cloudscraper)
 
-    # 2 . add headless-browser packages we need for the harvest
-    npm install --no-save puppeteer-core puppeteer-extra puppeteer-extra-plugin-stealth
+on:
+  schedule:
+    # Every day 01:55 UTC = 04:55 Israel  → gives you fresh schedule by 05:00
+    - cron:  '55 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  grab:
+    runs-on: ubuntu-latest
+
+    # Provide your Israeli proxy URL (with or without auth) in repo-secrets
+    env:
+      IL_PROXY: ${{ secrets.IL_PROXY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ---- 1. Install ONLY the deps we need (cloudscraper + dayjs) ----
+      - name: Install Node deps
+        run: |
+          npm init -y --silent
+          npm install --silent cloudscraper@6 dayjs
+
+      # ---- 2. Fetch two days of FreeTV JSON and save it --------------
+      - name: Download FreeTV JSON
+        run: |
+          node scripts/freetv-fetch.mjs 3359448 > freetv.json
+
+      # ---- 3. (optional) Convert to XMLTV and save as guide.xml -------
+      - name: Convert to XMLTV
+        run: |
+          npm install --silent xmltv-writer
+          node - <<'NODE'
+            import fs from 'fs';
+            import dayjs from 'dayjs';
+            import { createXMLTV } from 'xmltv-writer';
+
+            const programmes = JSON.parse(fs.readFileSync('freetv.json'));
+            const feed = createXMLTV({ sourceInfoName: 'FreeTV API' });
+
+            programmes.forEach(p => {
+              feed.addProgramme({
+                channel : 'freetv.' + p.channelId,
+                start   : new Date(p.start),
+                stop    : new Date(p.stop),
+                title   : { lang: 'heb', value: p.title },
+                desc    : { lang: 'heb', value: p.description || '' },
+                icon    : p.icon ? [{ src: p.icon }] : []
+              });
+            });
+            fs.writeFileSync('guide.xml', feed.toString());
+          NODE
+
+      # ---- 4. Commit XMLTV back to main branch -----------------------
+      - name: Commit EPG
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ci(epg): daily FreeTV update"
+          file_pattern: guide.xml
