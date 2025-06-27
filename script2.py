@@ -19,6 +19,10 @@ import xml.etree.ElementTree as ET
 
 import cloudscraper
 from requests.exceptions import HTTPError
+# top of the file
+import warnings, urllib3
+# ...
+
 
 # ────────────────────────── constants ───────────────────────────
 API_URL   = "https://web.freetv.tv/api/products/lives/programmes"
@@ -42,31 +46,27 @@ def day_window(now_il: dt.datetime) -> tuple[dt.datetime, dt.datetime]:
     start = dt.datetime.combine(now_il.date(), dt.time.min, tzinfo=IL_TZ)
     return start, start + dt.timedelta(days=1)
 
-
 def configure_session():
-    """Create a cloudscraper session with proxy + custom CA."""
+    """Create a cloudscraper session routed through IL proxy.
+       TLS validation is skipped if IL_PROXY_INSECURE=true."""
     sess = cloudscraper.create_scraper()
     sess.headers.update(BASE_HEADERS)
 
-    # ---- proxy -------------------------------------------------
+    # ---- proxy (required) ----------------------------------
     proxy = os.getenv("IL_PROXY")
     if not proxy:
         raise RuntimeError("IL_PROXY secret is missing!")
     sess.proxies = {"http": proxy, "https": proxy}
     print("[info] Using Israel proxy")
 
-    # ---- custom CA from secret ---------------------------------
-    b64_pem = os.getenv("IL_PROXY_CA_B64")
-    if not b64_pem:
-        raise RuntimeError("IL_PROXY_CA_B64 secret is missing!")
+    # ---- Disable TLS checks if flag present ----------------
+    if os.getenv("IL_PROXY_INSECURE", "").lower() in ("1", "true", "yes"):
+        sess.verify = False
+        warnings.filterwarnings("ignore",
+                                category=urllib3.exceptions.InsecureRequestWarning)
+        print("[warn] SSL verification DISABLED (IL_PROXY_INSECURE)")
 
-    pem_bytes = base64.b64decode(b64_pem, validate=True)
-    ca_file = Path(tempfile.gettempdir()) / "proxy_root_ca.pem"
-    ca_file.write_bytes(pem_bytes)
-    sess.verify = str(ca_file)
-    print(f"[info] Loaded custom CA → {ca_file}")
-
-    # ---- optional login cookies (geo-blocked channels) ---------
+    # ---- Optional login cookies ----------------------------
     if coco := os.getenv("IL_FTV_COOKIES"):
         sess.headers["Cookie"] = coco
         print("[info] Injected user cookies")
