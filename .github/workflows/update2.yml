@@ -93,6 +93,7 @@ jobs:
               args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
+                '--ignore-certificate-errors',          // <─ NEW
                 `--proxy-server=${process.env.IL_PROXY}`
               ]
             });
@@ -102,10 +103,8 @@ jobs:
             const cookies = (await page.cookies())
               .map(c => `${c.name}=${c.value}`).join('; ');
 
-            // hide cookie value in raw logs
-            console.log('::add-mask::' + cookies);
-            // expose to later steps
-            console.log(`FREETV_COOKIE_HARVESTED=${cookies}`);
+            console.log('::add-mask::' + cookies);           // hide
+            console.log(`FREETV_COOKIE_HARVESTED=${cookies}`); // export
             await browser.close();
           })();
         JS
