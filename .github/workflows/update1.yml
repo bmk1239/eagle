@@ -2,7 +2,7 @@ name: update1
 
 on:
   schedule:
-    - cron: '30 3 * * *'  # every day at 6:30
+    - cron: '0 4 * * *'  # every day at 7:00
   workflow_dispatch:    # also allow manual trigger
 
 jobs:
