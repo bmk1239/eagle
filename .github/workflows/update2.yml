@@ -48,41 +48,65 @@ jobs:
       with:
         node-version: 21.7.3
 
-    # --- Harvest fresh Cloudflare cookie --------------------------
+    # -------------------------------------------
+    #  🥐 1. Install a Chrome that the runner can launch
+    # -------------------------------------------
     - name: Set up Google Chrome
       id: chrome
-      uses: browser-actions/setup-chrome@v1          # ≈10-15 s
+      uses: browser-actions/setup-chrome@v1            # ≈ 10 s
+      with:
+        chrome-version: latest
 
-    # 👇 NEW: pull puppeteer-core (tiny; no Chromium download)
+    # -------------------------------------------
+    #  🥐 2. Pull puppeteer-core that matches that Chrome
+    #     (Chrome major 137  →  puppeteer-core@137)
+    # -------------------------------------------
     - name: Install puppeteer-core
-      run: npm install puppeteer-core@21 --no-save --silent
+      run: |
+        CHROME_MAJOR=$(echo "${{ steps.chrome.outputs.chrome-version }}" | cut -d'.' -f1)
+        npm install --no-save --silent "puppeteer-core@$CHROME_MAJOR"
 
-    # Run the inline script that grabs cf_clearance + AWSALB*
+    # -------------------------------------------
+    #  🥐 3. Launch Chrome headless, let Cloudflare run, grab cookies
+    # -------------------------------------------
     - name: Harvest FreeTV cookies
       id: harvest
+      env:
+        CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        IL_PROXY   : ${{ env.IL_PROXY }}
       run: |
         node - <<'JS'
-        const puppeteer = require('puppeteer-core');
-        (async () => {
-          const browser = await puppeteer.launch({
-            executablePath: '${{ steps.chrome.outputs.chrome-path }}',
-            headless: 'new'
-          });
-          const page = await browser.newPage();
-          await page.goto('https://web.freetv.tv/', { waitUntil: 'networkidle2' });
-          const cookies = (await page.cookies())
-            .map(c => `${c.name}=${c.value}`).join('; ');
-          // mask so secrets don’t show in raw logs
-          console.log('::add-mask::' + cookies);
-          // expose to later steps
-          console.log(`FREETV_COOKIE_HARVESTED=${cookies}`);
-          await browser.close();
-        })();
+          const puppeteer = require('puppeteer-core');
+          (async () => {
+            const browser = await puppeteer.launch({
+              executablePath: process.env.CHROME_PATH,
+              headless: 'new',
+              args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                `--proxy-server=${process.env.IL_PROXY}`
+              ]
+            });
+            const page = await browser.newPage();
+            await page.goto('https://web.freetv.tv/', { waitUntil: 'networkidle2' });
+
+            const cookies = (await page.cookies())
+              .map(c => `${c.name}=${c.value}`).join('; ');
+
+            // hide cookie value in raw logs
+            console.log('::add-mask::' + cookies);
+            // expose to later steps
+            console.log(`FREETV_COOKIE_HARVESTED=${cookies}`);
+            await browser.close();
+          })();
         JS
 
-    # Make the variable available to the grabber job
+    # -------------------------------------------
+    #  🥐 4. Export the freshly harvested cookie so the grab step sees it
+    # -------------------------------------------
     - name: Export harvested cookie
-      run: echo "FREETV_COOKIE_HARVESTED=${{ steps.harvest.outputs.FREETV_COOKIE_HARVESTED }}" >> $GITHUB_ENV
+      run: |
+        echo "FREETV_COOKIE_HARVESTED=${{ steps.harvest.outputs.FREETV_COOKIE_HARVESTED }}" >> "$GITHUB_ENV"
     
     # 5 – quick proxy test
     - name: Test proxy connectivity
