@@ -1,4 +1,4 @@
-name: Generate FreeTV EPG
+name: upadte2
 
 on:
   schedule:
