@@ -21,7 +21,7 @@ fetch("https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&sinc
 });
 
 
-# -------------------------------------------
+# -------------------------------------# -------------------------------------------
 #  🥐 2. Install a Puppeteer version that exists
 #     • Use the same major as Chrome *if* it’s on NPM
 #     • Otherwise fall back to the latest published tag
