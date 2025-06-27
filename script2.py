@@ -70,18 +70,14 @@ def configure_session() -> requests.Session:
     sess = requests.Session()
     sess.headers.update(BASE_HEADERS)
 
-    # ---------- proxy ----------
     if proxy := os.getenv("IL_PROXY"):
         sess.proxies = {"http": proxy, "https": proxy}
         print("[info] Using Israel proxy")
 
-    # ---------- custom CA bundle ----------
-    if b64 := os.getenv("IL_PROXY_CA_B64"):
-        pem_bytes = base64.b64decode(b64)
-        ca_path = Path(tempfile.gettempdir()) / "proxy_root_ca.pem"
-        ca_path.write_bytes(pem_bytes)
-        sess.verify = str(ca_path)
-        print(f"[info] Loaded custom CA ➜ {ca_path}")
+    # ⇣ NEW – skip SSL if flag set
+    if os.getenv("IL_PROXY_INSECURE", "").lower() in ("1", "true", "yes"):
+        sess.verify = False
+        print("[warn] SSL verification DISABLED (IL_PROXY_INSECURE)")
 
     return sess
 
