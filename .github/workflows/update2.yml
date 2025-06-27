@@ -1,8 +1,8 @@
-name: upadte2
+name: update2
 
 on:
+  # 06:00 Asia/Jerusalem == 03:00 UTC when Israel is on daylight-saving time
   schedule:
-    # 06:00 Asia/Jerusalem == 03:00 UTC while Israel is on DST
     - cron:  '0 3 * * *'
   workflow_dispatch:
 
@@ -10,8 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # Make the Israel-proxy secret available to the job and every step
+    env:
+      IL_PROXY: ${{ secrets.IL_PROXY }}
+
     steps:
-    - name: 📥 Check out repository
+    - name: 🏗️ Check out repository
       uses: actions/checkout@v4
 
     - name: 🐍 Set up Python
@@ -24,12 +28,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests 'backports.zoneinfo;python_version<"3.9"'
 
-    - name: 📺 Generate EPG
-      run: python script2.py
+    - name: 📺 Generate EPG (via Israel proxy)
+      run: |
+        # Export proxy for any subprocess that might be spawned
+        export HTTP_PROXY="$IL_PROXY"
+        export HTTPS_PROXY="$IL_PROXY"
+        python script.py
 
     - name: 📤 Commit & push if updated
       env:
-        TZ: UTC  # ensure commit timestamp in UTC
+        TZ: UTC   # ensure consistent commit timestamp
       run: |
         git config user.name  "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
