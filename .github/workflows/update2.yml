@@ -13,24 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Allow expired Fortinet leaf  ⚠️ TEMPORARY
-      run: |
-         # 0️⃣  Trust *nothing* – disable TLS checks (Node & curl)
-         echo "NODE_TLS_REJECT_UNAUTHORIZED=0" >> "$GITHUB_ENV"
-  
-         # 1️⃣  Make sure $HOME/bin exists
-         mkdir -p "$HOME/bin"
-
-         # 2️⃣  Drop a tiny wrapper that always adds --proxy and --proxy-insecure
-         cat > "$HOME/bin/curl" <<'WRAP'
-         #!/usr/bin/env bash
-         exec /usr/bin/curl --proxy "$IL_PROXY" --proxy-insecure "$@"
-         WRAP
-         chmod +x "$HOME/bin/curl"
-
-          # 3️⃣  Prepend $HOME/bin to PATH so our wrapper is found first
-          echo "$HOME/bin" >> "$GITHUB_PATH"
-    
     # 2 – python (kept for future use)
     - uses: actions/setup-python@v5
       with:
@@ -48,103 +30,26 @@ jobs:
       with:
         node-version: 21.7.3
 
-    # -------------------------------------------
-    #  🥐 1. Install a Chrome that the runner can launch
-    # -------------------------------------------
-    - name: Set up Google Chrome
+    # 1️⃣ Chrome (matching puppeteer 22.x) —  fast, no extra download
+    - name: Setup Chrome
       id: chrome
-      uses: browser-actions/setup-chrome@v1            # ≈ 10 s
+      uses: browser-actions/setup-chrome@v1
       with:
-        chrome-version: latest
+        chrome-version: stable
 
-    # -------------------------------------# -------------------------------------------
-    #  🥐 2. Install a Puppeteer version that exists
-    #     • Use the same major as Chrome *if* it’s on NPM
-    #     • Otherwise fall back to the latest published tag
-    # -------------------------------------------
-    - name: Install puppeteer-core
+    # 2️⃣ Node deps (core puppeteer + stealth plugin + your grabber deps)
+    - name: Install deps
       run: |
-        set -e
-        CHROME_MAJOR=$(echo "${{ steps.chrome.outputs.chrome-version }}" | cut -d'.' -f1)
-        echo "Chrome major: $CHROME_MAJOR"
-        if npm view "puppeteer-core@$CHROME_MAJOR" version >/dev/null 2>&1; then
-          echo "→ Installing puppeteer-core@$CHROME_MAJOR"
-          npm install --no-save --silent "puppeteer-core@$CHROME_MAJOR"
-        else
-          echo "→ puppeteer-core@$CHROME_MAJOR not yet published – falling back to latest"
-          npm install --no-save --silent puppeteer-core@latest
-        fi
+        npm ci
+        npm install --no-save puppeteer-core puppeteer-extra puppeteer-extra-plugin-stealth
 
-    # -------------------------------------------
-    #  Install stealth support on top of puppeteer-core
-    # -------------------------------------------
-    - name: Harvest FreeTV cookies
-      env:
-        CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        IL_PROXY   : ${{ env.IL_PROXY }}
+    # 3️⃣ Harvest fresh cookie (writes .env.ftv)
+    - name: Harvest FreeTV cookie
       run: |
-        node <<'EOF'
-        const fs              = require('fs');
-        const { addExtra }    = require('puppeteer-extra');
-        const StealthPlugin   = require('puppeteer-extra-plugin-stealth');
-        const puppeteerCore   = require('puppeteer-core');
-        const puppeteer       = addExtra(puppeteerCore);   // ⬅ core + stealth
-        puppeteer.use(StealthPlugin());
-
-        const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-        (async () => {
-          const browser = await puppeteer.launch({
-            executablePath: process.env.CHROME_PATH,
-            headless: 'new',
-            args: [
-              '--no-sandbox',
-              '--disable-setuid-sandbox',
-              '--ignore-certificate-errors',
-              `--proxy-server=${process.env.IL_PROXY}`
-            ]
-          });
-
-          const page = await browser.newPage();
-          await page.setUserAgent(
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
-            'AppleWebKit/537.36 (KHTML, like Gecko) '   +
-            'Chrome/137.0.0.0 Safari/537.36'
-          );
-          await page.goto('https://web.freetv.tv/', { waitUntil: 'domcontentloaded' });
-
-          // wait until Cloudflare sets cf_clearance (max 40 s)
-          const client = await page.target().createCDPSession();
-          let cookieStr = '';
-          for (let i = 0; i < 20; i++) {
-            const { cookies } = await client.send('Network.getAllCookies');
-            cookieStr = cookies
-              .filter(c => c.domain.endsWith('freetv.tv'))
-              .map(c => `${c.name}=${c.value}`)
-              .join('; ');
-            if (cookieStr.includes('cf_clearance')) break;
-            await sleep(2000);
-          }
-  
-          if (!cookieStr.includes('cf_clearance')) {
-            console.error('❌  Cloudflare challenge not solved after 40 s');
-            process.exit(1);
-          }
-  
-          console.log('::add-mask::' + cookieStr);
-          fs.appendFileSync(process.env.GITHUB_ENV,
-            `FREETV_COOKIE_HARVESTED=${cookieStr}\n`);
-    
-          await browser.close();
-        })();
-        EOF
-
-    # -------------------------------------------
-    #  🥐 4. Export the freshly harvested cookie so the grab step sees it
-    # -------------------------------------------
-    - name: Export harvested cookie
-      run: |
-        echo "FREETV_COOKIE_HARVESTED=${{ steps.harvest.outputs.FREETV_COOKIE_HARVESTED }}" >> "$GITHUB_ENV"
+        node tools/harvest-ftv-cookie.mjs \
+          "${{ steps.chrome.outputs.chrome-path }}" \
+          "$IL_PROXY"
+        cat .env.ftv >> $GITHUB_ENV    
     
     # 5 – quick proxy test
     - name: Test proxy connectivity
