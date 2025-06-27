@@ -24,6 +24,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests 'backports.zoneinfo;python_version<"3.9"'
 
+    - name: 📦 Install deps
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests cloudscraper 'backports.zoneinfo;python_version<"3.9"'
+
     - name: Generate EPG
       run: python script2.py
 
