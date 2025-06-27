@@ -57,14 +57,23 @@ jobs:
       with:
         chrome-version: latest
 
-    # -------------------------------------------
-    #  🥐 2. Pull puppeteer-core that matches that Chrome
-    #     (Chrome major 137  →  puppeteer-core@137)
+    # -------------------------------------# -------------------------------------------
+    #  🥐 2. Install a Puppeteer version that exists
+    #     • Use the same major as Chrome *if* it’s on NPM
+    #     • Otherwise fall back to the latest published tag
     # -------------------------------------------
     - name: Install puppeteer-core
       run: |
+        set -e
         CHROME_MAJOR=$(echo "${{ steps.chrome.outputs.chrome-version }}" | cut -d'.' -f1)
-        npm install --no-save --silent "puppeteer-core@$CHROME_MAJOR"
+        echo "Chrome major: $CHROME_MAJOR"
+        if npm view "puppeteer-core@$CHROME_MAJOR" version >/dev/null 2>&1; then
+          echo "→ Installing puppeteer-core@$CHROME_MAJOR"
+          npm install --no-save --silent "puppeteer-core@$CHROME_MAJOR"
+        else
+          echo "→ puppeteer-core@$CHROME_MAJOR not yet published – falling back to latest"
+          npm install --no-save --silent puppeteer-core@latest
+        fi
 
     # -------------------------------------------
     #  🥐 3. Launch Chrome headless, let Cloudflare run, grab cookies
