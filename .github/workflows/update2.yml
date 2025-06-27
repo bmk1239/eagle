@@ -39,6 +39,7 @@ jobs:
 
     - name: Install Node deps
       run: |
+        cd epg
         # 1 . grab project deps (works whether lock file exists or not)
         npm install --no-fund --no-audit
 
