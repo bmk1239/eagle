@@ -75,16 +75,8 @@ jobs:
           npm install --no-save --silent puppeteer-core@latest
         fi
 
-    # Chrome is already set up earlier
-    - name: Install puppeteer-extra w/ stealth plugin
-      run: |
-        CHROME_MAJOR=$(echo "${{ steps.chrome.outputs.chrome-version }}" | cut -d'.' -f1)
-        npm install --no-save --silent \
-          "puppeteer-extra@$CHROME_MAJOR" \
-          "puppeteer-extra-plugin-stealth"
-      
     # -------------------------------------------
-    #  🥐 3. Launch Chrome headless, let Cloudflare run, grab cookies
+    #  Install stealth support on top of puppeteer-core
     # -------------------------------------------
     - name: Harvest FreeTV cookies
       env:
@@ -93,17 +85,18 @@ jobs:
       run: |
         node <<'EOF'
         const fs              = require('fs');
-        const puppeteer       = require('puppeteer-extra');
+        const { addExtra }    = require('puppeteer-extra');
         const StealthPlugin   = require('puppeteer-extra-plugin-stealth');
+        const puppeteerCore   = require('puppeteer-core');
+        const puppeteer       = addExtra(puppeteerCore);   // ⬅ core + stealth
         puppeteer.use(StealthPlugin());
 
         const sleep = ms => new Promise(r => setTimeout(r, ms));
 
         (async () => {
-          /* ── 1. Launch Chrome (stealth) ────────────────────────────────── */
           const browser = await puppeteer.launch({
             executablePath: process.env.CHROME_PATH,
-            headless: 'new',                          // headless OK w/ stealth
+            headless: 'new',
             args: [
               '--no-sandbox',
               '--disable-setuid-sandbox',
@@ -112,7 +105,6 @@ jobs:
             ]
           });
 
-          /* ── 2. Navigate & wait until Cloudflare sets cf_clearance ─────── */
           const page = await browser.newPage();
           await page.setUserAgent(
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
@@ -121,7 +113,7 @@ jobs:
           );
           await page.goto('https://web.freetv.tv/', { waitUntil: 'domcontentloaded' });
 
-          // Poll Chrome DevTools cookies every 2 s for up to 40 s
+          // wait until Cloudflare sets cf_clearance (max 40 s)
           const client = await page.target().createCDPSession();
           let cookieStr = '';
           for (let i = 0; i < 20; i++) {
@@ -133,13 +125,12 @@ jobs:
             if (cookieStr.includes('cf_clearance')) break;
             await sleep(2000);
           }
-
+  
           if (!cookieStr.includes('cf_clearance')) {
             console.error('❌  Cloudflare challenge not solved after 40 s');
             process.exit(1);
           }
-
-          /* ── 3. Mask & export for later steps ──────────────────────────── */
+  
           console.log('::add-mask::' + cookieStr);
           fs.appendFileSync(process.env.GITHUB_ENV,
             `FREETV_COOKIE_HARVESTED=${cookieStr}\n`);
