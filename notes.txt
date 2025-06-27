@@ -1,53 +1,51 @@
-fetch("https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&since=2025-06-26T04%3A00%2B0300&till=2025-06-27T04%3A00%2B0300&lang=HEB&platform=BROWSER", {
-  "headers": {
-    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-    "accept-language": "en-US,en;q=0.9",
-    "cache-control": "no-cache",
-    "pragma": "no-cache",
-    "priority": "u=0, i",
-    "sec-ch-ua": "\"Google Chrome\";v=\"137\", \"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": "\"Windows\"",
-    "sec-fetch-dest": "document",
-    "sec-fetch-mode": "navigate",
-    "sec-fetch-site": "none",
-    "sec-fetch-user": "?1",
-    "upgrade-insecure-requests": "1",
-    "cookie": "AWSALB=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+; AWSALBCORS=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+"
-  },
-  "referrerPolicy": "strict-origin-when-cross-origin",
-  "body": null,
-  "method": "GET"
-});
-
-
+# -------------------------------------------------------------
+#  Harvest fresh Cloudflare + ALB cookies from web.freetv.tv
+# -------------------------------------------------------------
 - name: Harvest FreeTV cookies
-  id: harvest
   env:
-    CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-    IL_PROXY   : ${{ env.IL_PROXY }}
+    CHROME_PATH : ${{ steps.chrome.outputs.chrome-path }}
+    IL_PROXY    : ${{ env.IL_PROXY }}
   run: |
-    node - <<'JS'
+    node - <<'NODE'
       const puppeteer = require('puppeteer-core');
+      const fs = require('fs');
+
       (async () => {
+        /* ── 1. Launch headless Chrome behind the IL proxy ────────────── */
         const browser = await puppeteer.launch({
           executablePath: process.env.CHROME_PATH,
           headless: 'new',
           args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
-            '--ignore-certificate-errors',          // <─ NEW
+            '--ignore-certificate-errors',          // Fortinet MITM
             `--proxy-server=${process.env.IL_PROXY}`
           ]
         });
+
+        /* ── 2. Open the site and let Cloudflare challenge run ─────────── */
         const page = await browser.newPage();
-        await page.goto('https://web.freetv.tv/', { waitUntil: 'networkidle2' });
+        await page.goto('https://web.freetv.tv/', { waitUntil: 'domcontentloaded' });
+        await page.waitForTimeout(15000);           // 15 s → CF “managed” auto-passes
 
-        const cookies = (await page.cookies())
-          .map(c => `${c.name}=${c.value}`).join('; ');
+        /* ── 3. Grab *all* cookies via CDP (includes HttpOnly) ─────────── */
+        const client  = await page.target().createCDPSession();
+        const { cookies } = await client.send('Network.getAllCookies');
+        const cookieStr = cookies
+          .filter(c => c.domain.endsWith('freetv.tv'))
+          .map(c => `${c.name}=${c.value}`)
+          .join('; ');
 
-        console.log('::add-mask::' + cookies);           // hide
-        console.log(`FREETV_COOKIE_HARVESTED=${cookies}`); // export
+        if (!cookieStr.includes('cf_clearance')) {
+          console.error('❌  cf_clearance not found – Cloudflare still blocking');
+          process.exit(1);
+        }
+
+        /* ── 4. Mask in log & export to subsequent steps ───────────────── */
+        console.log('::add-mask::' + cookieStr);    // hides real value
+        fs.appendFileSync(process.env.GITHUB_ENV,
+          `FREETV_COOKIE_HARVESTED=${cookieStr}\n`);
+
         await browser.close();
       })();
-    JS
+NODE
