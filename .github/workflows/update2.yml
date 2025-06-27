@@ -33,7 +33,7 @@ jobs:
         # Export proxy for any subprocess that might be spawned
         export HTTP_PROXY="$IL_PROXY"
         export HTTPS_PROXY="$IL_PROXY"
-        python script.py
+        python script2.py
 
     - name: 📤 Commit & push if updated
       env:
