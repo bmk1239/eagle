@@ -27,6 +27,20 @@ import xml.etree.ElementTree as ET
 import cloudscraper                      # handles Cloudflare JS challenge
 from requests.exceptions import HTTPError
 
+
+# ONE command – produces ONE long line
+base64 -w0 proxy_root_ca.pem > ca.b64          # Linux/macOS
+# or PowerShell:
+# [Convert]::ToBase64String([IO.File]::ReadAllBytes("proxy_root_ca.pem")) > ca.b64
+python - <<'PY'
+import base64, sys
+b = open("ca.b64").read().strip()
+try:
+    base64.b64decode(b, validate=True)
+    print("✔ looks like valid base-64 (length:", len(b), ")")
+except Exception as e:
+    print("✘ not valid base-64:", e)
+PY
 # ──────────────────────────────────────────────────────────────────────────────
 API_URL   = "https://web.freetv.tv/api/products/lives/programmes"
 SITE_HOME = "https://web.freetv.tv/"
