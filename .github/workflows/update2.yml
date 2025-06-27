@@ -80,12 +80,14 @@ jobs:
     # -------------------------------------------
     - name: Harvest FreeTV cookies
       env:
-        CHROME_PATH : ${{ steps.chrome.outputs.chrome-path }}
-        IL_PROXY    : ${{ env.IL_PROXY }}
+        CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        IL_PROXY   : ${{ env.IL_PROXY }}
       run: |
-        node - <<'EOF'
+        node <<'EOF'
         const puppeteer = require('puppeteer-core');
         const fs = require('fs');
+
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
 
         (async () => {
           const browser = await puppeteer.launch({
@@ -94,14 +96,14 @@ jobs:
             args: [
               '--no-sandbox',
               '--disable-setuid-sandbox',
-              '--ignore-certificate-errors',          // Fortinet MITM
+              '--ignore-certificate-errors',
               `--proxy-server=${process.env.IL_PROXY}`
             ]
           });
 
           const page = await browser.newPage();
           await page.goto('https://web.freetv.tv/', { waitUntil: 'domcontentloaded' });
-          await page.waitForTimeout(15000);           // 15 s → CF “managed” auto-passes
+          await sleep(15000); // wait for Cloudflare
 
           const client  = await page.target().createCDPSession();
           const { cookies } = await client.send('Network.getAllCookies');
@@ -115,7 +117,7 @@ jobs:
             process.exit(1);
           }
 
-          console.log('::add-mask::' + cookieStr);    // hides real value
+          console.log('::add-mask::' + cookieStr);
           fs.appendFileSync(process.env.GITHUB_ENV,
             `FREETV_COOKIE_HARVESTED=${cookieStr}\n`);
 
