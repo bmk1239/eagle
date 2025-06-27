@@ -49,6 +49,7 @@ jobs:
     # 3️⃣ Harvest fresh cookie (writes .env.ftv)
     - name: Harvest FreeTV cookie
       run: |
+        cd epg
         node tools/harvest-ftv-cookie.mjs \
           "${{ steps.chrome.outputs.chrome-path }}" \
           "$IL_PROXY"
