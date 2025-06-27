@@ -52,7 +52,7 @@ jobs:
       id: harvest
       uses: browser-actions/setup-chrome@v1   #  ≈ 40 s
       with:
-      chrome-version: latest
+       chrome-version: latest
     - run: |
        node - <<'JS'
        const puppeteer = require('puppeteer-core');
@@ -72,10 +72,10 @@ jobs:
        JS
        shell: bash
    
-  - name: Export cookie for next steps
-     run: echo "FREETV_COOKIE_HARVESTED=${FREETV_COOKIE_HARVESTED}" >> $GITHUB_ENV
-     env:
-    FREETV_COOKIE_HARVESTED: ${{ steps.harvest.outputs.FREETV_COOKIE_HARVESTED }}
+    - name: Export cookie for next steps
+      run: echo "FREETV_COOKIE_HARVESTED=${FREETV_COOKIE_HARVESTED}" >> $GITHUB_ENV
+      env:
+       FREETV_COOKIE_HARVESTED: ${{ steps.harvest.outputs.FREETV_COOKIE_HARVESTED }}
     
     # 5 – quick proxy test
     - name: Test proxy connectivity
