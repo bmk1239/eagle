@@ -91,7 +91,7 @@ jobs:
           --maxConnections=1 \
           --timeout=20000 \
           --output=../guide.xml \
-          --proxy "$IL_PROXY"
+          # --proxy "$IL_PROXY"
       env:
         IL_PROXY: ${{ secrets.IL_PROXY }}
 
