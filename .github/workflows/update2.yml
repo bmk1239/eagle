@@ -15,16 +15,17 @@ jobs:
 
       # ---- 1. Install ONLY the deps we need (cloudscraper + dayjs) ----
       - name: Install Node deps (cloudscraper + dayjs)
-  env:
-    HTTPS_PROXY: ${{ env.IL_PROXY }}   # so npm itself uses the proxy
-    HTTP_PROXY:  ${{ env.IL_PROXY }}
-  run: |
-    npm init -y --silent
-    # ↓ make npm trust the Fortinet MITM cert (+ no audit chatter)
-    npm config set strict-ssl false
-    npm config set registry https://registry.npmjs.org/
-    npm install --no-audit --no-fund \
-      cloudscraper@6 dayjs
+        env:
+          HTTPS_PROXY: ${{ env.IL_PROXY }}   # so npm itself uses the proxy
+          HTTP_PROXY:  ${{ env.IL_PROXY }}
+        run: |
+          npm init -y --silent
+          # ↓ make npm trust the Fortinet MITM cert (+ no audit chatter)
+          npm config set strict-ssl false
+          npm config set registry https://registry.npmjs.org/
+          npm install --no-audit --no-fund \
+            cloudscraper@6 dayjs
+      
       # ---- 2. Fetch two days of FreeTV JSON and save it --------------
       - name: Download FreeTV JSON
         run: |
