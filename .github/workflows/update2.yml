@@ -9,11 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IL_PROXY:        ${{ secrets.IL_PROXY }}
-      IL_PROXY_CA_B64: ${{ secrets.IL_PROXY_CA_B64 }}
-      # optional – only if you need login cookies
-      # IL_FTV_COOKIES: ${{ secrets.IL_FTV_COOKIES }}
-
+      IL_PROXY:          ${{ secrets.IL_PROXY }}
+      IL_PROXY_INSECURE: ${{ secrets.IL_PROXY_INSECURE }}
+      # IL_FTV_COOKIES:  ${{ secrets.IL_FTV_COOKIES }}
+      
     steps:
     - uses: actions/checkout@v4
 
