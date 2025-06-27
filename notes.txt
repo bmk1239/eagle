@@ -19,3 +19,40 @@ fetch("https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&sinc
   "body": null,
   "method": "GET"
 });
+
+
+# --- Harvest fresh Cloudflare cookie --------------------------
+- name: Set up Google Chrome
+  id: chrome
+  uses: browser-actions/setup-chrome@v1          # ≈10-15 s
+
+# 👇 NEW: pull puppeteer-core (tiny; no Chromium download)
+- name: Install puppeteer-core
+  run: npm install puppeteer-core@21 --no-save --silent
+
+# Run the inline script that grabs cf_clearance + AWSALB*
+- name: Harvest FreeTV cookies
+  id: harvest
+  run: |
+    node - <<'JS'
+      const puppeteer = require('puppeteer-core');
+      (async () => {
+        const browser = await puppeteer.launch({
+          executablePath: '${{ steps.chrome.outputs.chrome-path }}',
+          headless: 'new'
+        });
+        const page = await browser.newPage();
+        await page.goto('https://web.freetv.tv/', { waitUntil: 'networkidle2' });
+        const cookies = (await page.cookies())
+          .map(c => `${c.name}=${c.value}`).join('; ');
+        // mask so secrets don’t show in raw logs
+        console.log('::add-mask::' + cookies);
+        // expose to later steps
+        console.log(`FREETV_COOKIE_HARVESTED=${cookies}`);
+        await browser.close();
+      })();
+    JS
+
+# Make the variable available to the grabber job
+- name: Export harvested cookie
+  run: echo "FREETV_COOKIE_HARVESTED=${{ steps.harvest.outputs.FREETV_COOKIE_HARVESTED }}" >> $GITHUB_ENV
