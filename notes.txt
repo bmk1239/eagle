@@ -21,20 +21,33 @@ fetch("https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&sinc
 });
 
 
-# -------------------------------------# -------------------------------------------
-#  🥐 2. Install a Puppeteer version that exists
-#     • Use the same major as Chrome *if* it’s on NPM
-#     • Otherwise fall back to the latest published tag
-# -------------------------------------------
-- name: Install puppeteer-core
+# -------------------------------------# -------------------------------------- name: Harvest FreeTV cookies
+  id: harvest
+  env:
+    CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+    IL_PROXY   : ${{ env.IL_PROXY }}
   run: |
-    set -e
-    CHROME_MAJOR=$(echo "${{ steps.chrome.outputs.chrome-version }}" | cut -d'.' -f1)
-    echo "Chrome major: $CHROME_MAJOR"
-    if npm view "puppeteer-core@$CHROME_MAJOR" version >/dev/null 2>&1; then
-      echo "→ Installing puppeteer-core@$CHROME_MAJOR"
-      npm install --no-save --silent "puppeteer-core@$CHROME_MAJOR"
-    else
-      echo "→ puppeteer-core@$CHROME_MAJOR not yet published – falling back to latest"
-      npm install --no-save --silent puppeteer-core@latest
-    fi
+    node - <<'JS'
+      const puppeteer = require('puppeteer-core');
+      (async () => {
+        const browser = await puppeteer.launch({
+          executablePath: process.env.CHROME_PATH,
+          headless: 'new',
+          args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--ignore-certificate-errors',          // <─ NEW
+            `--proxy-server=${process.env.IL_PROXY}`
+          ]
+        });
+        const page = await browser.newPage();
+        await page.goto('https://web.freetv.tv/', { waitUntil: 'networkidle2' });
+
+        const cookies = (await page.cookies())
+          .map(c => `${c.name}=${c.value}`).join('; ');
+
+        console.log('::add-mask::' + cookies);           // hide
+        console.log(`FREETV_COOKIE_HARVESTED=${cookies}`); // export
+        await browser.close();
+      })();
+    JS
