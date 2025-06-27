@@ -1,4 +1,9 @@
-// epg/sites/freetv.tv/freetv.tv.config.js  ----------------------------------
+// epg/sites/freetv.tv/freetv.tv.config.js
+// ---------------------------------------------------------------------------
+// Grab FreeTV programme listings and convert them into a Day.js-friendly
+// structure for your EPG pipeline.
+// ---------------------------------------------------------------------------
+
 const dayjs = require('dayjs');
 const utc   = require('dayjs/plugin/utc');
 const tz    = require('dayjs/plugin/timezone');
@@ -8,20 +13,28 @@ dayjs.extend(tz);
 const TZ  = 'Asia/Jerusalem';
 const ISO = 'YYYY-MM-DDTHH:mmZZ';
 
+/* -------------------------------------------------------------------------
+ * Hard-coded session cookie captured from DevTools (“Copy as fetch”)
+ * NOTE: renew this string whenever FreeTV rotates the AWSALB token
+ * ---------------------------------------------------------------------- */
+const SESSION_COOKIE =
+  'AWSALB=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+; ' +
+  'AWSALBCORS=MP190m8HtEDvXuwbvRwZNC8f7O8vg94OyVHKK6A1UopgfiBXQeg585/YG359GoiAcND/YAf5LP/nvTf+sa+O1jEXNgfCTiKuBQI6WC17rN7auKAzkz4Du4B2EDD+';
+
 module.exports = {
   site : 'freetv.tv',
   days : 2,
 
-  delay      : 1200,   // 1 request every 1.2 s
+  delay      : 1200,   // 1 request every 1.2 s (stay under Cloudflare radar)
   concurrency: 1,      // serial requests only
 
-  /* ------------ Cloudflare + auth headers -------------------------------- */
+  /* ------------ HTTP settings ------------------------------------------ */
   request: {
-    headers: buildHeaders(),
-    timeout: 20000      // 20 s per request
+    headers : buildHeaders(),
+    timeout : 20000     // 20 s per request
   },
 
-  /* ------------ Build the API URL --------------------------------------- */
+  /* ------------ Build the API URL ------------------------------------- */
   url({ channel, date }) {
     const start = dayjs(date).tz(TZ).startOf('day').add(4, 'hour'); // 04:00 local
     const since = start.format(ISO);
@@ -38,7 +51,7 @@ module.exports = {
     return url;
   },
 
-  /* ------------ Parse the JSON response --------------------------------- */
+  /* ------------ Parse the JSON response ------------------------------- */
   parser({ content }) {
     let raw;
     try {
@@ -74,34 +87,21 @@ module.exports = {
   }
 };
 
-/* ---------------- Helper functions --------------------------------------- */
+/* ---------------- Helper functions ------------------------------------- */
 function buildHeaders() {
-  const base = {
+  return {
     'User-Agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
-      '(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
-    Origin : 'https://web.freetv.tv',
-    Referer: 'https://web.freetv.tv/'
+      'Mozilla/5.0 (compatible; EPGGrabber/1.0; +https://github.com/yourrepo)',
+    // This single line forces the API to return JSON instead of an HTML shell
+    'Accept' : 'application/json',
+    'Origin' : 'https://web.freetv.tv',
+    'Referer': 'https://web.freetv.tv/',
+    'Cookie' : SESSION_COOKIE
   };
-
-  /* ---- OPTION A: reuse browser session cookie -------------------------- */
-  if (process.env.FREETV_COOKIE) {
-    base.Cookie = process.env.FREETV_COOKIE;
-  }
-
-  /* ---- OPTION B: HTTP basic-auth (if the API supports it) -------------- */
-  if (process.env.FREETV_USERNAME && process.env.FREETV_PASSWORD) {
-    const token = Buffer.from(
-      `${process.env.FREETV_USERNAME}:${process.env.FREETV_PASSWORD}`
-    ).toString('base64');
-    base.Authorization = `Basic ${token}`;
-  }
-
-  return base;
 }
 
-function parse(s)   { return s ? dayjs.utc(s).tz(TZ) : null; }
-function img(o)     {
+function parse(s) { return s ? dayjs.utc(s).tz(TZ) : null; }
+function img(o)   {
   const u = o?.images?.['16x9']?.[0]?.url;
   return u ? `https:${u}` : null;
 }
