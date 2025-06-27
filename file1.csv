@@ -28,39 +28,39 @@ tvg-id,tvg-name,channel-id
 2299430,HOT Cinema 2,HOTCinema2.il
 2299431,HOT Cinema 3,HOTCinema3.il
 2299432,HOT Cinema 4,HOTCinema4.il
-2299433,HOT סינמה ישראלי,
+2299433,HOT סינמה ישראלי,2299433
 2299434,HOT Comedy,HOTComedy.il
 2299435,HOT 3,ערוץ 3.il
 2299436,HOT 8,ערוץ 8.il
 2299437,HOT Senior,HOTSenior.il
 2299438,HOT Zone,HOTZone.il
 2299439,HOT Real,HOTReal.il
-2299440,HOT משפחה,
-2299441,HOT HBO,
+2299440,HOT משפחה,2299440
+2299441,HOT HBO,2299441
 2299442,HOT בידור,HotBidor.il
-2299443,HOT Buzz,
-2299444,Partner סרטים,
-2299445,Partner סדרות,
-2299446,Partner ילדים,
-2299447,FreeTV סדרות דרמה,
-2299448,FreeTV סדרות קומדיה,
-2299449,FreeTV Movies ישראלי,
-2299450,FreeTV Movies Action,
-2299451,FreeTV Movies Romantic,
-2299452,FreeTV Movies Drama,
-2299453,FreeTV Movies Comedy,
-2299454,FreeTV Movies אימה,
-2299455,FreeTV Series Global,
-2299456,Free Movies Family,
-2299457,FreeTV דוקו,
-2299458,FreeTV Lifestyle,
-2299459,FreeTV בישול,PT20
-2299460,ערוץ קריוקי,
-2299461,ערוץ הכוכב הבא,
-2299462,ערוץ חתונמי,
-2299463,סלקום סרטים,
-2299464,סלקום ישראלי,
-2299465,סלקום ילדים,
+2299443,HOT Buzz,2299443
+2299444,Partner סרטים,2299444
+2299445,Partner סדרות,2299445
+2299446,Partner ילדים,2299446
+2299447,FreeTV סדרות דרמה,2299447
+2299448,FreeTV סדרות קומדיה,2299448
+2299449,FreeTV Movies ישראלי,2299449
+2299450,FreeTV Movies Action,2299450
+2299451,FreeTV Movies Romantic,2299451
+2299452,FreeTV Movies Drama,2299452
+2299453,FreeTV Movies Comedy,2299453
+2299454,FreeTV Movies אימה,2299454
+2299455,FreeTV Series Global,2299455
+2299456,Free Movies Family,2299456
+2299457,FreeTV דוקו,2299457
+2299458,FreeTV Lifestyle,2299458
+2299459,FreeTV בישול,2299459
+2299460,ערוץ קריוקי,2299460
+2299461,ערוץ הכוכב הבא,2299461
+2299462,ערוץ חתונמי,2299462
+2299463,סלקום סרטים,2299463
+2299464,סלקום ישראלי,2299464
+2299465,סלקום ילדים,2299465
 2299466,ערוץ הדרמות הטורקיות+,CH70
 2299467,ערוץ הדרמות הטורקיות 2,CH80
 2299468,ערוץ הדרמות הטורקיות 3,CH77
@@ -81,7 +81,7 @@ tvg-id,tvg-name,channel-id
 2299480,ניקלודיאון,NK01
 2299481,ניק ג'וניור,PT69
 2299482,TeenNick,CH18
-2299483,לולי,
+2299483,לולי,2299483
 2299484,Junior,TA05
 2299485,הופ!,TV24
 2299486,בייבי,TA02
