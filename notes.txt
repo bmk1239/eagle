@@ -21,7 +21,7 @@ fetch("https://web.freetv.tv/api/products/lives/programmes?liveId[]=3359448&sinc
 });
 
 
-# -------------------------------------# -------------------------------------- name: Harvest FreeTV cookies
+- name: Harvest FreeTV cookies
   id: harvest
   env:
     CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
