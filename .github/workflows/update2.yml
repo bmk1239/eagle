@@ -47,6 +47,35 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 21.7.3
+
+    - name: Harvest fresh FreeTV cookies
+      id: harvest
+      uses: browser-actions/setup-chrome@v1   #  ≈ 40 s
+      with:
+      chrome-version: latest
+    - run: |
+       node - <<'JS'
+       const puppeteer = require('puppeteer-core');
+       (async () => {
+        const browser = await puppeteer.launch({
+          executablePath: process.env.CHROME_PATH,
+          headless: 'new'
+        });
+        const page = await browser.newPage();
+        await page.goto('https://web.freetv.tv/', { waitUntil: 'networkidle2' });
+        const cookies = (await page.cookies())
+          .map(c => `${c.name}=${c.value}`).join('; ');
+        console.log('::add-mask::' + cookies);      // hide in logs
+        console.log('FREETV_COOKIE_HARVESTED=' + cookies);
+        await browser.close();
+       })();
+       JS
+       shell: bash
+   
+  - name: Export cookie for next steps
+     run: echo "FREETV_COOKIE_HARVESTED=${FREETV_COOKIE_HARVESTED}" >> $GITHUB_ENV
+     env:
+    FREETV_COOKIE_HARVESTED: ${{ steps.harvest.outputs.FREETV_COOKIE_HARVESTED }}
     
     # 5 – quick proxy test
     - name: Test proxy connectivity
