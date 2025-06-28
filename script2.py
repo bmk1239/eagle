@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
 EPG builder for FreeTV, Cellcom, Partner, Yes **and HOT**.
-• Builds a single-day guide: 00:00 IL today → 00:00 IL tomorrow
-• HOT is fetched once (ChannelId=0) and split by channelID.
-• All <channel> nodes are written first; all <programme> nodes after.
-• Skips any <channel> entry whose xmltv_id is empty.
-• For duplicates, the first provider that replies with data “wins”.
+
+• One-day guide: IL today 00:00 ➜ IL tomorrow 00:00
+• HOT schedule is downloaded once (ChannelId=0) and split by channelID.
+• <channel> entries whose xmltv_id is empty are skipped.
+• If several lines map to the same logical channel, the first provider
+  that returns programme data “wins”.
+• All <channel> elements are written first, then all <programme>s.
 • Output file: file2.xml
 """
 
@@ -21,7 +23,6 @@ from urllib3.util.ssl_ import create_urllib3_context
 
 # ───────── proxy helper ─────────────────────────────────────────
 class InsecureTunnel(HTTPAdapter):
-    """Disable TLS checks toward the upstream proxy itself."""
     def _ctx(self):
         ctx = create_urllib3_context()
         ctx.check_hostname = False
@@ -65,19 +66,18 @@ HOT_HEADERS    = {"Content-Type":"application/json","Accept":"application/json, 
                   "Referer":"https://www.hot.net.il/heb/tv/tvguide/",
                   "User-Agent": UA}
 
-# ───────── tiny debug helper ────────────────────────────────────
+# ───────── debug helper ─────────────────────────────────────────
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG","1").lower() not in ("0","false","no")
 def dbg(site,*msg,flush=False):
     if _DBG:
         print(f"[DBG {site}]",*msg,flush=flush)
 
-# ───────── helpers ───────────────────────────────────────────────
+# ───────── helpers ──────────────────────────────────────────────
 _Z_RE, _SLASH_FMT = re.compile(r"Z$"), "%d/%m/%Y %H:%M"
 HOT_DT = "%Y/%m/%d %H:%M:%S"
 
 def to_dt(v):
-    """Parse unix-ts, ISO-8601 or DD/MM/YYYY HH:MM into IL-aware datetime."""
     if isinstance(v,(int,float)):
         return dt.datetime.fromtimestamp(int(v),tz=IL_TZ)
     if isinstance(v,str):
@@ -97,12 +97,11 @@ def new_session():
 
     proxy = os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
     s.proxies = {"http": proxy, "https": proxy}
-
     if os.getenv("IL_PROXY_INSECURE","").lower() in ("1","true","yes"):
         s.verify = False
     return s
 
-# ───────── FreeTV ───────────────────────────────────────────────
+# ───────── provider fetchers (unchanged for non-HOT) ───────────
 def fetch_freetv(sess,sid,since,till):
     p={"liveId[]":sid,"since":since.strftime("%Y-%m-%dT%H:%M%z"),
        "till":till.strftime("%Y-%m-%dT%H:%M%z"),"lang":"HEB","platform":"BROWSER"}
@@ -113,7 +112,6 @@ def fetch_freetv(sess,sid,since,till):
         r.raise_for_status(); data=r.json()
         return data.get("data",data) if isinstance(data,dict) else data
 
-# ───────── Cellcom ──────────────────────────────────────────────
 def _cell_req(sess,ks,chan,sts,ets,quoted):
     q="'" if quoted else ""
     ksql=f"(and epg_channel_id='{chan}' start_date>{q}{sts}{q} end_date<{q}{ets}{q} asset_type='epg')"
@@ -137,7 +135,6 @@ def fetch_cellcom(sess,site_id,since,till):
         return d.get("objects") or d.get("result",{}).get("objects",[])
     return []
 
-# ───────── Partner ─────────────────────────────────────────────
 def fetch_partner(sess,site_id,since,_):
     chan=site_id.strip()
     body={"_keys":["param"],"_values":[f"{chan}|{since:%Y-%m-%d}|UTC"],
@@ -147,13 +144,12 @@ def fetch_partner(sess,site_id,since,_):
         if ch.get("id")==chan: return ch.get("events",[])
     return []
 
-# ───────── Yes ────────────────────────────────────────────────
 def fetch_yes(sess,site_id,since,_):
     url=f"{YES_CH_BASE}/{site_id.strip()}?date={since:%Y-%m-%d}&ignorePastItems=false"
     r=sess.get(url,headers=YES_HEADERS,timeout=30); print(r.url,flush=True); r.raise_for_status()
     return r.json().get("items",[])
 
-# ───────── HOT (single cached request, no filtering) ───────────
+# ───────── HOT (single cached request) ─────────────────────────
 _HOT_CACHE: dict[str,list] | None = None
 def _collect_hot_day(sess,start):
     dbg("hot.net.il","collecting whole day once",flush=True)
@@ -183,28 +179,27 @@ def fetch_hot(sess,site_id,start,_):
 
 # ───────── build EPG ───────────────────────────────────────────
 def build_epg():
-    since,till=day_window(dt.datetime.now(IL_TZ))
-    sess=new_session()
+    since,till = day_window(dt.datetime.now(IL_TZ))
+    sess       = new_session()
 
     root=ET.Element("tv",{"source-info-name":"FreeTV+Cellcom+Partner+Yes+HOT (Day)",
                           "generator-info-name":"proxyEPG"})
 
-    # ---------- first pass: create channel list & decide winners ----------
-    grouped: dict[str,list[tuple[str,str,str]]] = {}
-    chosen: dict[str,tuple[str,list]] = {}      # xmltv_id → (provider, items)
-
+    # group by xmltv_id
+    variants: dict[str,list[tuple[str,str,str]]] = {}
     for ch in ET.parse(CHANNELS_FILE).findall("channel"):
         xmltv=(ch.attrib.get("xmltv_id") or "").strip()
         if not xmltv:
-            dbg("skip","empty xmltv_id",flush=True)
-            continue
-        site = ch.attrib.get("site","").lower()
-        raw  = ch.attrib["site_id"]
-        name = (ch.text or xmltv).strip()
-        grouped.setdefault(xmltv,[]).append((site,raw,name))
+            dbg("skip","empty xmltv_id",flush=True); continue
+        site=ch.attrib.get("site","").lower()
+        raw =ch.attrib["site_id"]
+        name=(ch.text or xmltv).strip()
+        variants.setdefault(xmltv,[]).append((site,raw,name))
 
-    for xmltv, variants in grouped.items():
-        for site,raw,name in variants:
+    # winner selection & channel list
+    chosen: dict[str,tuple[str,list,str]] = {}  # xmltv → (site,items,name)
+    for xmltv,opts in variants.items():
+        for site,raw,name in opts:
             try:
                 items=( fetch_freetv(sess,raw,since,till)  if site=="freetv.tv"  else
                         fetch_cellcom(sess,raw,since,till) if site=="cellcom.co.il" else
@@ -215,20 +210,16 @@ def build_epg():
                 dbg(site,"fetch error",xmltv,e,flush=True); items=[]
             dbg(site,f"{xmltv} → {len(items)} items",flush=True)
             if items:
-                chosen[xmltv]=(site,items)
+                chosen[xmltv]=(site,items,name)
                 break
 
-    # ---------- write <channel> list ----------
-    for xmltv, variants in grouped.items():
-        if xmltv not in chosen:
-            dbg("skip",f"{xmltv}: no data",flush=True); continue
-        # first variant's name becomes display-name
-        name=variants[0][2]
+    # write <channel> list first
+    for xmltv,(site,items,name) in sorted(chosen.items()):
         ch_el=ET.SubElement(root,"channel",id=xmltv)
         ET.SubElement(ch_el,"display-name",lang="he").text=name
 
-    # ---------- write <programme> elements ----------
-    for xmltv,(site,items) in chosen.items():
+    # then write all <programme>s
+    for xmltv,(site,items,_) in chosen.items():
         for it in items:
             try:
                 if site=="freetv.tv":
@@ -245,17 +236,17 @@ def build_epg():
                     e=dt.datetime.strptime(it["programEndTime"],  HOT_DT).replace(tzinfo=IL_TZ)
                     title=(it.get("programTitle") or it.get("programName") or it.get("programNameHe") or "")
                     desc =it.get("synopsis") or it.get("shortDescription") or ""
-                else:  # yes
+                else:   # yes
                     s,e=to_dt(it["starts"]),to_dt(it["ends"])
                     title=it["title"]; desc=it.get("description")
 
-                ET.SubElement(root,"programme",
-                              start=s.strftime("%Y%m%d%H%M%S %z"),
-                              stop =e.strftime("%Y%m%d%H%M%S %z"),
-                              channel=xmltv)\
-                  .append(ET.Element("title",{"lang":"he"},text=escape(title)))
+                prog=ET.SubElement(root,"programme",
+                                   start=s.strftime("%Y%m%d%H%M%S %z"),
+                                   stop =e.strftime("%Y%m%d%H%M%S %z"),
+                                   channel=xmltv)
+                ET.SubElement(prog,"title",lang="he").text = escape(title)
                 if desc:
-                    ET.SubElement(root[-1],"desc",lang="he").text=escape(desc)
+                    ET.SubElement(prog,"desc",lang="he").text  = escape(desc)
             except Exception as e:
                 dbg(site,"programme error",xmltv,e,flush=True)
 
