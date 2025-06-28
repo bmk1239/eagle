@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<tv source-info-name="Combined EPG" generator-info-name="FreeTV + Cellcom EPG (proxy)">
+<tv source-info-name="Combined FreeTV + Cellcom" generator-info-name="proxy-EPG-builder">
   <channel id="ערוץ 9">
     <display-name lang="he">ערוץ 9</display-name>
   </channel>
