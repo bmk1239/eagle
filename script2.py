@@ -169,40 +169,49 @@ def fetch_yes(sess, site_id, since, till):
     r.raise_for_status()
     return r.json().get("items", [])
 
-# ── HOT (hourly cache) ───────────────────────────────
-_hot_cache: dict[int, list[dict]] = {}        # hour (0-23) → list
+# ── HOT (hourly shared-cache) ───────────────────────────────────
+_hot_cache: dict[int, list[dict]] = {}          # {hour 0-23: [rows]}
 
-def _hot_fetch_hour(sess, day_start, hour):
-    if hour in _hot_cache:
+def _hot_fetch_hour(sess, day_start: dt.datetime, hour: int) -> list[dict]:
+    """Download (once) the full HOT grid for a single hour and cache it."""
+    if hour in _hot_cache:                       # reuse if already fetched
         return _hot_cache[hour]
 
-    st = (day_start + dt.timedelta(hours=hour)).strftime("%Y-%m-%dT%H:%M:%S")
-    et = (day_start + dt.timedelta(hours=hour+1)).strftime("%Y-%m-%dT%H:%M:%S")
+    block_start = day_start + dt.timedelta(hours=hour)
+    block_end   = block_start + dt.timedelta(hours=1)
+
     payload = {
-        "ChannelId": "0",          # server ignores it anyway
-        "ProgramsStartDateTime": st,
-        "ProgramsEndDateTime":   et,
+        # ChannelId=0 ⇒ server returns ALL channels for that hour
+        "ChannelId": 0,
+        "ProgramsStartDateTime": block_start.strftime("%Y-%m-%dT%H:%M:%S"),
+        "ProgramsEndDateTime":   block_end.strftime("%Y-%m-%dT%H:%M:%S"),
         "Hour": hour
     }
 
-    try:
-        r = sess.post(HOT_API, json=payload,
-                      headers=HOT_HEADERS, timeout=HOT_TIMEOUT)
-        dbg("hot.net.il", f"hour {hour:02d}", flush=True)
-        r.raise_for_status()
-        data = r.json()
-        _hot_cache[hour] = data.get("data", []) if data.get("isSuccess") else []
-    except requests.Timeout:
-        dbg("hot.net.il", f"hour {hour:02d} TIMEOUT", flush=True)
-        _hot_cache[hour] = []
+    dbg("hot.net.il", f"fetch hour {hour:02d}", flush=True)
+    r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=60)
+    print(r.url, flush=True)                     # one URL per hour
+    r.raise_for_status()
+
+    data = r.json()
+    _hot_cache[hour] = data.get("data", []) if data.get("isSuccess") else []
     return _hot_cache[hour]
 
-def fetch_hot(sess, site_id, since, till):
-    chan = site_id.lstrip("0") or "0"
+
+def fetch_hot(sess, site_id: str,
+              since: dt.datetime, till: dt.datetime) -> list[dict]:
+    """
+    Collect all rows whose 'channelID' matches site_id
+    over the 24 cached hourly blocks.
+    """
+    chan = site_id.zfill(3)                      # "71" → "071"
+    dbg("hot.net.il", f"channel {chan}", flush=True)
+
     items: list[dict] = []
     for hour in range(24):
-        items.extend([row for row in _hot_fetch_hour(sess, since, hour)
-                      if row.get("channelID") == chan])
+        for row in _hot_fetch_hour(sess, since, hour):
+            if row.get("channelID", "").zfill(3) == chan:
+                items.append(row)
     return items
 
 # ── main build ─────────────────────────────────────────
