@@ -25,14 +25,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests cloudscraper 'backports.zoneinfo;python_version<"3.9"'
 
-    - name: Show runner IP (no proxy)
-      run: curl -s https://ifconfig.me | head -c 100
-
-    - name: Show runner IP (via your proxy)
+    - name: Test proxy connectivity
       run: |
-        echo "Using proxy: $IL_PROXY"
-        curl -v -x "$IL_PROXY" https://ifconfig.me | head -c 100
-    
+        if curl -s --connect-timeout 10 -x "$IL_PROXY" https://www.google.com > /dev/null; then
+          echo "Proxy works"
+        else
+          echo "Proxy failed"
+        fi
+        
     - name: Generate EPG
       run: python script2.py
 
