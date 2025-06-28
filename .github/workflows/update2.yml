@@ -34,6 +34,7 @@ jobs:
           echo "Proxy works"
         else
           echo "Proxy failed"
+          exit(1)
         fi
         
     - name: Generate EPG
