@@ -189,7 +189,7 @@ def fetch_yes(sess, site_id, since, _):
     return r.json().get("items", [])
 
 # ───────────────────────── HOT helper ────────────────────────────
-_HOT_CACHE: dict[str, list] | None = None          # filled on first call
+_HOT_CACHE: dict[str, list] | None = None        # filled once per run
 
 def _hot_collect_day(sess, day_start: dt.datetime) -> dict[str, list]:
     dbg("hot.net.il", "collecting whole day once", flush=True)
@@ -199,7 +199,7 @@ def _hot_collect_day(sess, day_start: dt.datetime) -> dict[str, list]:
         st = (day_start + dt.timedelta(hours=hour)).strftime("%Y-%m-%dT%H:%M:%S")
         et = (day_start + dt.timedelta(hours=hour+1)).strftime("%Y-%m-%dT%H:%M:%S")
         payload = {
-            "ChannelId": "4",                      # any id works; server ignores it
+            "ChannelId": "0",                       # any id – API ignores it
             "ProgramsStartDateTime": st,
             "ProgramsEndDateTime":   et,
             "Hour": hour
@@ -207,28 +207,36 @@ def _hot_collect_day(sess, day_start: dt.datetime) -> dict[str, list]:
         r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=60)
         print(r.url, flush=True)
         r.raise_for_status()
-
         data = r.json()
+
         if data.get("isError"):
             continue
 
-        # ← NEW: every item is a JSON string – decode once
         for raw in data.get("data", []):
+            if not raw or not str(raw).strip():
+                continue                          # skip empty rows
             try:
                 item = json.loads(raw) if isinstance(raw, str) else raw
                 cid  = str(item.get("channelID", "")).zfill(3)
                 collected.setdefault(cid, []).append(item)
-            except Exception as exc:       # malformed rows are skipped
-                dbg("hot.net.il", "json decode error", exc, flush=True)
+            except Exception as exc:
+                dbg("hot.net.il", "bad row skipped", exc, flush=True)
 
     return collected
 
-def fetch_hot(sess, site_id, since, _):
+
+def fetch_hot(sess, site_id: str, since: dt.datetime, _till: dt.datetime):
+    """
+    Returns the list of programme dicts for a single HOT channel.
+    Data for the entire day is cached on the first call so subsequent
+    channels are instantaneous.
+    """
     global _HOT_CACHE
     if _HOT_CACHE is None:
         _HOT_CACHE = _hot_collect_day(sess, since)
     return _HOT_CACHE.get(site_id.zfill(3), [])
- 
+
+
 # ───────────────────────── Main build ────────────────────────────
 def build_epg():
     start, end = day_window(dt.datetime.now(IL_TZ))
