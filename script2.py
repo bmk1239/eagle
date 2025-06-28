@@ -167,24 +167,24 @@ def fetch_yes(sess, site_id, since, till):
     return r.json().get("items", [])
 
 # ── HOT ─────────────────────────────────────────────────────────
-def fetch_hot(sess, site_id, since, _):
+def fetch_hot(sess, site_id, since, till):
     chan = site_id.lstrip("0") or "0"
     dbg("hot.net.il", f"fetch {chan}")
-    items: list[dict] = []
-    for hour in range(24):
-        start = since + dt.timedelta(hours=hour)
-        end   = start + dt.timedelta(hours=1)
-        payload = {
-            "ChannelId": chan,
-            "ProgramsStartDateTime": start.strftime("%Y-%m-%dT%H:%M:%S"),
-            "ProgramsEndDateTime":   end.strftime("%Y-%m-%dT%H:%M:%S"),
-            "Hour": hour
-        }
+    payload = {
+        "ChannelId": chan,
+        "ProgramsStartDateTime": since.strftime("%Y-%m-%dT%H:%M:%S"),
+        "ProgramsEndDateTime": till.strftime("%Y-%m-%dT%H:%M:%S"),
+    }
+    try:
         r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=30)
         r.raise_for_status()
-        if r.json().get("isSuccess"):
-            items.extend(r.json().get("data", []))
-    return items
+        data = r.json()
+        if data.get("isSuccess"):
+            return data.get("data", [])
+        return []
+    except Exception as e:
+        dbg("hot.net.il", f"fetch error for channel {chan}: {e}")
+        return []    
 
 # ── main build ──────────────────────────────────────────────────
 def build_epg():
