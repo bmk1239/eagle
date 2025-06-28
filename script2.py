@@ -186,12 +186,12 @@ def fetch_hot(sess, site_id, since, till):
         r.raise_for_status()
         data = r.json()
         dbg("hot.net.il", f"Hour {hour} response keys: {list(data.keys())}", flush=True)
-        dbg("hot.net.il", f"Hour {hour} response isSuccess: {data.get('isSuccess')}", flush=True)
-        if data.get("isSuccess"):
+        dbg("hot.net.il", f"Hour {hour} response isError: {data.get('isError')}", flush=True)
+        if not data.get("isError", True):
             dbg("hot.net.il", f"Hour {hour} data length: {len(data.get('data', []))}", flush=True)
             items.extend(data.get("data", []))
         else:
-            dbg("hot.net.il", f"Hour {hour} returned failure or empty data", flush=True)
+            dbg("hot.net.il", f"Hour {hour} returned error or empty data", flush=True)
     dbg("hot.net.il", f"Total items fetched: {len(items)}", flush=True)
     return items
 
