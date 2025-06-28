@@ -70,7 +70,6 @@ def dbg(site,*m):
 # ───────── helpers ─────────────────────────────────────────────
 _Z_RE       = re.compile(r"Z$")
 _SLASH_FMT  = "%d/%m/%Y %H:%M"             # Partner “26/06/2025 23:30”
-_HOT_CACHE: dict[str,list] | None = None   # filled on first HOT call
 
 def to_dt(val):
     """unix-int, ISO-8601, or DD/MM/YYYY HH:MM ➜ aware IL datetime"""
@@ -139,38 +138,43 @@ def fetch_yes(sess,site_id,since,till):
     r=sess.get(url,headers=YES_HEADERS,timeout=30); print(r.url,flush=True); r.raise_for_status()
     return r.json().get("items",[])
 
-# ───────── HOT (single pass, cached) ───────────────────────────
-def _hot_collect_day(sess,day_start):
-    """Download 24 hourly blocks ONCE and split by channelID."""
-    dbg("hot.net.il","collecting whole day once")
-    day_map: dict[str,list] = {}
+# ───────── HOT (single pass, cached, keep leading-zeros) ────────
+_HOT_CACHE: dict[str, list] | None = None  # filled on first HOT call
+
+def _hot_collect_day(sess, day_start):
+    """Download 24 hourly blocks ONCE and split by channelID (with zeros)."""
+    dbg("hot.net.il", "collecting whole day once")
+    day_map: dict[str, list] = {}
+
     for hour in range(24):
         st = day_start + dt.timedelta(hours=hour)
         et = st + dt.timedelta(hours=1)
         payload = {
-            "ChannelId": "4",   # any number works – API ignores it
+            "ChannelId": "4",   # any value, server ignores it
             "ProgramsStartDateTime": st.strftime("%Y-%m-%dT%H:%M:%S"),
             "ProgramsEndDateTime":   et.strftime("%Y-%m-%dT%H:%M:%S"),
             "Hour": hour
         }
-        r = sess.post(HOT_API,json=payload,headers=HOT_HEADERS,timeout=60)
-        dbg("hot.net.il",f"hour {hour} status {r.status_code}",flush=True)
+        r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=60)
+        dbg("hot.net.il", f"hour {hour} status {r.status_code}", flush=True)
         r.raise_for_status()
         data = r.json()
         if data.get("isError"):
-            dbg("hot.net.il","API error",data.get("messageDesc"))
+            dbg("hot.net.il", "API error", data.get("messageDesc"))
             continue
-        for item in data.get("data",[]):
-            cid = item.get("channelID","").lstrip("0")
-            day_map.setdefault(cid,[]).append(item)
+
+        for item in data.get("data", []):
+            cid = str(item.get("channelID", "")).zfill(3)  # **keep leading zeros**
+            day_map.setdefault(cid, []).append(item)
+
     return day_map
 
-def fetch_hot(sess,site_id,since,till):
+def fetch_hot(sess, site_id, since, till):
+    """Return the list of items for the *exact* site_id, e.g. '039'."""
     global _HOT_CACHE
     if _HOT_CACHE is None:
-        _HOT_CACHE = _hot_collect_day(sess,since)
-    return _HOT_CACHE.get(site_id.lstrip("0"),[])
-
+        _HOT_CACHE = _hot_collect_day(sess, since)
+    return _HOT_CACHE.get(site_id, [])
 # ───────── main build ──────────────────────────────────────────
 def build_epg():
     day_start,day_end = day_window(dt.datetime.now(IL_TZ))
