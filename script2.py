@@ -29,6 +29,8 @@ from urllib3.util.ssl_ import create_urllib3_context
 
 # ────────────────────────── helpers ───────────────────────────
 
+warnings.simplefilter("ignore", .exceptions.InsecureRequestWarning)
+
 _DEBUG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no", "NO")
 
 def dbg(msg: str):
