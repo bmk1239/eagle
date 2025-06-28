@@ -26,11 +26,12 @@ from requests.adapters import HTTPAdapter
 from requests.exceptions import HTTPError
 import ssl
 from urllib3.util.ssl_ import create_urllib3_context
+import urllib3
 
 # ────────────────────────── helpers ───────────────────────────
 
-import urllib3                            # ← import the library first
-warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
+                            # ← import the library first
+
 _DEBUG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no", "NO")
 
 def dbg(msg: str):
@@ -72,6 +73,7 @@ BASE_HEADERS = {
 
 # Treat every warning as an exception so the script aborts even on SSLWarnings
 warnings.filterwarnings("error")
+warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 
 def day_window(now_il: dt.datetime) -> tuple[dt.datetime, dt.datetime]:
     """Return the UTC span of the requested IL calendar day."""
