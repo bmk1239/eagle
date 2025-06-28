@@ -1,27 +1,38 @@
 #!/usr/bin/env python3
 """
-Generate a one-day XMLTV guide from FreeTV *and* Cellcom through an IL proxy.
-Every request URL is printed; DEBUG=1 adds extra detail. Output → file2.xml
+Build a one-day XMLTV guide from FreeTV + Cellcom through an Israeli proxy.
+Prints every request URL.  DEBUG=1 adds [DBG] lines.
+Output file is always file2.xml.
 """
 
 from __future__ import annotations
 import datetime as dt, os, warnings, json, xml.etree.ElementTree as ET
 from html import escape
 from zoneinfo import ZoneInfo
-
 import cloudscraper, ssl, urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
 
-# ───────── proxy helper ─────────
+# ───────────── proxy helper ─────────────
 class InsecureTunnel(HTTPAdapter):
+    """Adapter that disables TLS verification when talking to the upstream proxy."""
     def _new_ctx(self):
-        ctx = create_urllib3_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+        ctx = create_urllib3_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
         return ctx
-    def init_poolmanager(self,*a,**kw): kw["ssl_context"]=self._new_ctx(); return super().init_poolmanager(*a,**kw)
-    proxy_manager_for = init_poolmanager
 
-# ───────── constants ─────────
+    # pool for direct HTTPS
+    def init_poolmanager(self, connections, maxsize, block=False, **kw):
+        kw["ssl_context"] = self._new_ctx()
+        return super().init_poolmanager(connections, maxsize, block, **kw)
+
+    # pool for proxy HTTPS
+    def proxy_manager_for(self, proxy, **kw):
+        kw["ssl_context"] = self._new_ctx()
+        return super().proxy_manager_for(proxy, **kw)
+
+# ───────────── constants ─────────────
 FREETV_API_URL = "https://web.freetv.tv/api/products/lives/programmes"
 FREETV_HOME    = "https://web.freetv.tv/"
 CELL_LOGIN = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/anonymousLogin"
@@ -40,31 +51,44 @@ _DEBUG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
 def dbg(*m): 
     if _DEBUG: print("[DBG]", *m)
 
-# ───────── helpers ─────────
+# ───────────── helpers ─────────────
 def day_window(now):
     s = dt.datetime.combine(now.date(), dt.time.min, tzinfo=IL_TZ)
     return s, s + dt.timedelta(days=1)
 
 def configure():
-    s = cloudscraper.create_scraper(); s.mount("https://", InsecureTunnel()); s.headers.update(BASE_HEADERS)
-    p = os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
-    s.proxies = {"http": p, "https": p}
-    if os.getenv("IL_PROXY_INSECURE", "").lower() in ("1", "true", "yes"): s.verify = False
+    s = cloudscraper.create_scraper()
+    s.mount("https://", InsecureTunnel())
+    s.headers.update(BASE_HEADERS)
+
+    proxy = os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
+    s.proxies = {"http": proxy, "https": proxy}
+    if os.getenv("IL_PROXY_INSECURE", "").lower() in ("1", "true", "yes"):
+        s.verify = False
     return s
 
-# ───────── FreeTV ─────────
+# ───────────── FreeTV ─────────────
 def fetch_freetv(sess, sid, since, till):
-    params = {"liveId[]": sid, "since": since.strftime("%Y-%m-%dT%H:%M%z"),
-              "till": till.strftime("%Y-%m-%dT%H:%M%z"), "lang": "HEB", "platform": "BROWSER"}
+    params = {
+        "liveId[]": sid,
+        "since": since.strftime("%Y-%m-%dT%H:%M%z"),
+        "till":  till.strftime("%Y-%m-%dT%H:%M%z"),
+        "lang": "HEB",
+        "platform": "BROWSER",
+    }
     for a in (1, 2):
         r = sess.get(FREETV_API_URL, params=params, timeout=30); print(r.url)
-        if r.status_code == 403 and a == 1: sess.get(FREETV_HOME, timeout=20); continue
-        r.raise_for_status(); d = r.json(); return d.get("data", d) if isinstance(d, dict) else d
+        if r.status_code == 403 and a == 1:
+            sess.get(FREETV_HOME, timeout=20); continue
+        r.raise_for_status()
+        d = r.json()
+        return d.get("data", d) if isinstance(d, dict) else d
 
-# ───────── Cellcom ─────────
+# ───────────── Cellcom ─────────────
 def fetch_cellcom(sess, site_id, since, till):
     chan = site_id.split("##")[0]
-    # login
+
+    # 1) login → ks
     r = sess.post(CELL_LOGIN,
                   json={"apiVersion":"5.4.0.28193","partnerId":"3197","udid":"f4423331-81a2-4a08-8c62-95515d080d79"},
                   headers=CELL_HEADERS, timeout=30)
@@ -72,6 +96,7 @@ def fetch_cellcom(sess, site_id, since, till):
     ks = r.json().get("ks") or r.json().get("result", {}).get("ks")
     if not ks: raise RuntimeError("KS token missing")
 
+    # 2) asset list
     since_ts, till_ts = int(since.timestamp()), int(till.timestamp())
     payload = {
         "apiVersion": "5.4.0.28193",
@@ -87,15 +112,16 @@ def fetch_cellcom(sess, site_id, since, till):
     dbg("Cellcom payload", json.dumps(payload)[:200] + "…")
     r = sess.post(CELL_LIST, json=payload, headers=CELL_HEADERS, timeout=30)
     print(r.url); r.raise_for_status()
-    data = r.json(); objs = data.get("objects") or data.get("result", {}).get("objects", [])
+    data = r.json()
+    objs = data.get("objects") or data.get("result", {}).get("objects", [])
     if not objs: dbg("Cellcom raw response", json.dumps(data)[:400] + "…")
     return objs
 
-# ───────── main ─────────
+# ───────────── main ─────────────
 def build_epg():
     since, till = day_window(dt.datetime.now(IL_TZ)); sess = configure()
     root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom", "generator-info-name": "proxyEPG"})
-    progs = []
+    progs=[]
 
     for ch in ET.parse(CHANNELS_FILE).findall("channel"):
         site = ch.attrib.get("site", "").lower()
