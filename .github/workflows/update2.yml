@@ -2,7 +2,8 @@ name: update2
 
 on:
   schedule:
-    - cron: '0 3 * * *'   # 06:00 Israel time during DST
+    # 21:05 Saturday UTC == 00:05 Sunday IL
+    - cron: '5 21 * * 6'
   workflow_dispatch:
 
 jobs:
