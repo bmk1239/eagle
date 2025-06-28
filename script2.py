@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 EPG builder for FreeTV, Cellcom, Partner, Yes **and HOT**.
-Creates a 1-day guide (IL-time: today 00:00 → tomorrow 00:00).
+Creates a 1-day guide (IL-time today 00:00 → tomorrow 00:00).
 Output: file2.xml
 """
 
@@ -10,6 +10,7 @@ import datetime as dt, os, re, warnings, xml.etree.ElementTree as ET
 from html import escape
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
 import cloudscraper, ssl, urllib3, json
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
@@ -17,14 +18,18 @@ from urllib3.util.ssl_ import create_urllib3_context
 # ───────── proxy helper ─────────
 class InsecureTunnel(HTTPAdapter):
     def _ctx(self):
-        ctx = create_urllib3_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE
+        ctx = create_urllib3_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
         return ctx
     def init_poolmanager(self, *a, **kw):
-        kw["ssl_context"] = self._ctx(); return super().init_poolmanager(*a, **kw)
+        kw["ssl_context"] = self._ctx()
+        return super().init_poolmanager(*a, **kw)
     def proxy_manager_for(self, *a, **kw):
-        kw["ssl_context"] = self._ctx();  return super().proxy_manager_for(*a, **kw)
+        kw["ssl_context"] = self._ctx()
+        return super().proxy_manager_for(*a, **kw)
 
-# ───────── endpoints ─────────
+# ───────── API endpoints ─────────
 FREETV_API  = "https://web.freetv.tv/api/products/lives/programmes"
 FREETV_HOME = "https://web.freetv.tv/"
 CELL_LOGIN  = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/anonymousLogin"
@@ -39,16 +44,22 @@ OUT_XML       = "file2.xml"
 UA            = "Mozilla/5.0 (Windows NT 10.0; Win64; rv:126.0) Gecko/20100101 Firefox/126.0"
 
 BASE_HEADERS   = {"User-Agent": UA, "Accept": "application/json, text/plain, */*"}
-CELL_HEADERS   = {"Content-Type": "application/json", "Accept-Encoding": "gzip, deflate, br", "User-Agent": UA}
-PARTNER_HEADERS= {"Content-Type": "application/json;charset=UTF-8","Accept":"application/json, text/plain, */*",
-                  "brand":"orange","category":"TV","platform":"WEB","subCategory":"EPG","lang":"he-il",
+CELL_HEADERS   = {"Content-Type": "application/json", "Accept-Encoding": "gzip, deflate, br",
+                  "User-Agent": UA}
+PARTNER_HEADERS= {"Content-Type": "application/json;charset=UTF-8",
+                  "Accept": "application/json, text/plain, */*",
+                  "brand":"orange","category":"TV","platform":"WEB",
+                  "subCategory":"EPG","lang":"he-il",
                   "Accept-Encoding":"gzip,deflate,br","User-Agent": UA}
 YES_HEADERS    = {"Accept-Language":"he-IL","Accept":"application/json, text/plain, */*",
-                  "Referer":"https://www.yes.co.il/","Origin":"https://www.yes.co.il","User-Agent": UA}
+                  "Referer":"https://www.yes.co.il/","Origin":"https://www.yes.co.il",
+                  "User-Agent": UA}
 HOT_HEADERS    = {"Content-Type":"application/json","Accept":"application/json, text/plain, */*",
-                  "Origin":"https://www.hot.net.il","Referer":"https://www.hot.net.il/heb/tv/tvguide/","User-Agent": UA}
+                  "Origin":"https://www.hot.net.il",
+                  "Referer":"https://www.hot.net.il/heb/tv/tvguide/",
+                  "User-Agent": UA}
 
-# ───────── debug ─────────
+# ───────── debug helper ─────────
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG","1").lower() not in ("0","false","no")
 def dbg(site,*msg,flush=False):
@@ -80,10 +91,10 @@ def new_session():
         s.verify = False
     return s
 
-# ───────── FreeTV / Cellcom / Partner / Yes – unchanged functions here ─────────
-# (omitted for brevity – they are identical to your last working copy)
+# ───────── FreeTV / Cellcom / Partner / Yes functions ─────────
+# (unchanged from your working copy; omitted here for brevity)
 
-# ───────── HOT (single cached download, **no filtering**) ─────────
+# ───────── HOT (single cached download, no filtering) ─────────
 _HOT_CACHE: dict[str,list] | None = None
 def _collect_hot_day(sess, start):
     dbg("hot.net.il","collecting once",flush=True)
@@ -113,7 +124,7 @@ def fetch_hot(sess,site_id,start,_):
     dbg("hot.net.il",f"channel {site_id} items: {len(items)}",flush=True)
     return items
 
-# ───────── main build (identical to your last working copy) ─────────
+# ───────── main build (unchanged) ─────────
 def build_epg():
     since,till=day_window(dt.datetime.now(IL_TZ))
     sess=new_session()
