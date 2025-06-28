@@ -65,7 +65,7 @@ warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
 def dbg(site, *m):
     if _DBG:
-        print(f"[DBG {site}]", *m)
+        print(f"[DBG {site}]", *m, flush=True)
 
 # ── helpers ─────────────────────────────────────────────────────
 _Z_RE = re.compile(r"Z$")
@@ -102,7 +102,7 @@ def fetch_freetv(sess, sid, since, till):
          "lang": "HEB", "platform": "BROWSER"}
     for a in (1, 2):
         r = sess.get(FREETV_API, params=p, timeout=30)
-        print(r.url)
+        print(r.url, flush=True)
         if r.status_code == 403 and a == 1:
             sess.get(FREETV_HOME, timeout=20)
             continue
@@ -121,7 +121,7 @@ def _cell_req(sess, ks, chan, sts, ets, quoted):
                "ks": ks,
                "pager": {"objectType": "KalturaFilterPager", "pageIndex": 1, "pageSize": 1000}}
     r = sess.post(CELL_LIST, json=payload, headers=CELL_HEADERS, timeout=30)
-    print(r.url)
+    print(r.url, flush=True)
     r.raise_for_status()
     return r.json()
 
@@ -131,7 +131,7 @@ def fetch_cellcom(sess, site_id, since, till):
     login = {"apiVersion": "5.4.0.28193", "partnerId": "3197",
              "udid": "f4423331-81a2-4a08-8c62-95515d080d79"}
     r = sess.post(CELL_LOGIN, json=login, headers=CELL_HEADERS, timeout=30)
-    print(r.url)
+    print(r.url, flush=True)
     r.raise_for_status()
     ks = r.json().get("ks") or r.json().get("result", {}).get("ks")
 
@@ -150,7 +150,7 @@ def fetch_partner(sess, site_id, since, till):
     param = f"{chan}|{since.strftime('%Y-%m-%d')}|UTC"
     body = {"_keys": ["param"], "_values": [param], "param": param}
     r = sess.post(PARTNER_EPG, json=body, headers=PARTNER_HEADERS, timeout=30)
-    print(r.url)
+    print(r.url, flush=True)
     r.raise_for_status()
     for ch in r.json().get("data", []):
         if ch.get("id") == chan:
@@ -162,7 +162,7 @@ def fetch_yes(sess, site_id, since, till):
     chan = site_id.strip()
     url = f"{YES_CH_BASE}/{chan}?date={since.strftime('%Y-%m-%d')}&ignorePastItems=false"
     r = sess.get(url, headers=YES_HEADERS, timeout=30)
-    print(r.url)
+    print(r.url, flush=True)
     r.raise_for_status()
     return r.json().get("items", [])
 
@@ -266,7 +266,7 @@ def build_epg():
 
     ET.indent(root)
     ET.ElementTree(root).write(OUT_XML, encoding="utf-8", xml_declaration=True)
-    print("✅ wrote", OUT_XML)
+    print("✅ wrote", OUT_XML, flush=True)
 
 if __name__ == "__main__":
     build_epg()
