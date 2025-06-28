@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<tv source-info-name="FreeTV" generator-info-name="FreeTV-EPG (proxy)">
+<tv source-info-name="Combined EPG" generator-info-name="FreeTV + Cellcom EPG (proxy)">
   <channel id="ערוץ 9">
     <display-name lang="he">ערוץ 9</display-name>
   </channel>
@@ -191,6 +191,240 @@
   </channel>
   <channel id="FOMO">
     <display-name lang="he">FOMO</display-name>
+  </channel>
+  <channel id="ישראלי tv">
+    <display-name lang="he">ישראלי tv</display-name>
+  </channel>
+  <channel id="מרתון סרטים">
+    <display-name lang="he">מרתון סרטים</display-name>
+  </channel>
+  <channel id="ערוץ HBO">
+    <display-name lang="he">ערוץ HBO</display-name>
+  </channel>
+  <channel id="סלקום קידס">
+    <display-name lang="he">סלקום קידס</display-name>
+  </channel>
+  <channel id="סלקום family">
+    <display-name lang="he">סלקום family</display-name>
+  </channel>
+  <channel id="מרתון דוקו">
+    <display-name lang="he">מרתון דוקו</display-name>
+  </channel>
+  <channel id="ערוץ 9">
+    <display-name lang="he">ערוץ 9</display-name>
+  </channel>
+  <channel id="ספיישל סדרות אהבה">
+    <display-name lang="he">ספיישל סדרות אהבה</display-name>
+  </channel>
+  <channel id="כאן 11">
+    <display-name lang="he">כאן 11</display-name>
+  </channel>
+  <channel id="קשת">
+    <display-name lang="he">קשת</display-name>
+  </channel>
+  <channel id="רשת">
+    <display-name lang="he">רשת</display-name>
+  </channel>
+  <channel id="ערוץ 14 HD">
+    <display-name lang="he">ערוץ 14 HD</display-name>
+  </channel>
+  <channel id="וואלה +">
+    <display-name lang="he">וואלה +</display-name>
+  </channel>
+  <channel id="נ. ג’יאוגרפיק WILD HD">
+    <display-name lang="he">נ. ג’יאוגרפיק WILD HD</display-name>
+  </channel>
+  <channel id="נשיונל ג’יאוגרפיק">
+    <display-name lang="he">נשיונל ג’יאוגרפיק</display-name>
+  </channel>
+  <channel id="Discovery HD">
+    <display-name lang="he">Discovery HD</display-name>
+  </channel>
+  <channel id="animal planet">
+    <display-name lang="he">animal planet</display-name>
+  </channel>
+  <channel id="ערוץ ההיסטוריה">
+    <display-name lang="he">ערוץ ההיסטוריה</display-name>
+  </channel>
+  <channel id="ערוץ הקניות">
+    <display-name lang="he">ערוץ הקניות</display-name>
+  </channel>
+  <channel id="מוזיקה il">
+    <display-name lang="he">מוזיקה il</display-name>
+  </channel>
+  <channel id="מוסיקה 24">
+    <display-name lang="he">מוסיקה 24</display-name>
+  </channel>
+  <channel id="E!">
+    <display-name lang="he">E!</display-name>
+  </channel>
+  <channel id="ישראל במלחמה: שמות הנופלים והנופלות">
+    <display-name lang="he">ישראל במלחמה: שמות הנופלים והנופלות</display-name>
+  </channel>
+  <channel id="TLC">
+    <display-name lang="he">TLC</display-name>
+  </channel>
+  <channel id="FOODY">
+    <display-name lang="he">FOODY</display-name>
+  </channel>
+  <channel id="FOOD NETWORK HD">
+    <display-name lang="he">FOOD NETWORK HD</display-name>
+  </channel>
+  <channel id="בית + HD">
+    <display-name lang="he">בית + HD</display-name>
+  </channel>
+  <channel id="TRAVEL Channel HD">
+    <display-name lang="he">TRAVEL Channel HD</display-name>
+  </channel>
+  <channel id="מכאן">
+    <display-name lang="he">מכאן</display-name>
+  </channel>
+  <channel id="ערוץ הסדרות ההודיות">
+    <display-name lang="he">ערוץ הסדרות ההודיות</display-name>
+  </channel>
+  <channel id="ערוץ הסדרות ההודיות 2">
+    <display-name lang="he">ערוץ הסדרות ההודיות 2</display-name>
+  </channel>
+  <channel id="ויוה">
+    <display-name lang="he">ויוה</display-name>
+  </channel>
+  <channel id="ויוה +">
+    <display-name lang="he">ויוה +</display-name>
+  </channel>
+  <channel id="ויוה פרימיום">
+    <display-name lang="he">ויוה פרימיום</display-name>
+  </channel>
+  <channel id="ויוה וינטג">
+    <display-name lang="he">ויוה וינטג</display-name>
+  </channel>
+  <channel id="ואמוס">
+    <display-name lang="he">ואמוס</display-name>
+  </channel>
+  <channel id="ים תיכוני 2">
+    <display-name lang="he">ים תיכוני 2</display-name>
+  </channel>
+  <channel id="ערוץ הדרמות הטורקיות+">
+    <display-name lang="he">ערוץ הדרמות הטורקיות+</display-name>
+  </channel>
+  <channel id="ערוץ הדרמות הטורקיות 2">
+    <display-name lang="he">ערוץ הדרמות הטורקיות 2</display-name>
+  </channel>
+  <channel id="ערוץ הדרמות הטורקיות 3">
+    <display-name lang="he">ערוץ הדרמות הטורקיות 3</display-name>
+  </channel>
+  <channel id="ים תיכוני">
+    <display-name lang="he">ים תיכוני</display-name>
+  </channel>
+  <channel id="ים תיכוני +">
+    <display-name lang="he">ים תיכוני +</display-name>
+  </channel>
+  <channel id="ONE2 HD">
+    <display-name lang="he">ONE2 HD</display-name>
+  </channel>
+  <channel id="ONE HD">
+    <display-name lang="he">ONE HD</display-name>
+  </channel>
+  <channel id="5SPORT HD">
+    <display-name lang="he">5SPORT HD</display-name>
+  </channel>
+  <channel id="5PLUS HD">
+    <display-name lang="he">5PLUS HD</display-name>
+  </channel>
+  <channel id="5GOLD">
+    <display-name lang="he">5GOLD</display-name>
+  </channel>
+  <channel id="5LIVE HD">
+    <display-name lang="he">5LIVE HD</display-name>
+  </channel>
+  <channel id="5STARS">
+    <display-name lang="he">5STARS</display-name>
+  </channel>
+  <channel id="ONE DOCO">
+    <display-name lang="he">ONE DOCO</display-name>
+  </channel>
+  <channel id="SPORT EDGE">
+    <display-name lang="he">SPORT EDGE</display-name>
+  </channel>
+  <channel id="ערוצי TO GO">
+    <display-name lang="he">ערוצי TO GO</display-name>
+  </channel>
+  <channel id="sport to  go 1">
+    <display-name lang="he">sport to  go 1</display-name>
+  </channel>
+  <channel id="sport to  go 2">
+    <display-name lang="he">sport to  go 2</display-name>
+  </channel>
+  <channel id="דיסני ג’וניור">
+    <display-name lang="he">דיסני ג’וניור</display-name>
+  </channel>
+  <channel id="דיסני">
+    <display-name lang="he">דיסני</display-name>
+  </channel>
+  <channel id="ערוץ הילדים">
+    <display-name lang="he">ערוץ הילדים</display-name>
+  </channel>
+  <channel id="לוגי">
+    <display-name lang="he">לוגי</display-name>
+  </channel>
+  <channel id="ג’וניור">
+    <display-name lang="he">ג’וניור</display-name>
+  </channel>
+  <channel id="ערוץ הכוכבים">
+    <display-name lang="he">ערוץ הכוכבים</display-name>
+  </channel>
+  <channel id="בייבי HD">
+    <display-name lang="he">בייבי HD</display-name>
+  </channel>
+  <channel id="יויו">
+    <display-name lang="he">יויו</display-name>
+  </channel>
+  <channel id="כאן חינוכית">
+    <display-name lang="he">כאן חינוכית</display-name>
+  </channel>
+  <channel id="FOMO">
+    <display-name lang="he">FOMO</display-name>
+  </channel>
+  <channel id="ילדותי">
+    <display-name lang="he">ילדותי</display-name>
+  </channel>
+  <channel id="שירי ילדותי">
+    <display-name lang="he">שירי ילדותי</display-name>
+  </channel>
+  <channel id="FOX NEWS HD">
+    <display-name lang="he">FOX NEWS HD</display-name>
+  </channel>
+  <channel id="FOX BUSINESS HD">
+    <display-name lang="he">FOX BUSINESS HD</display-name>
+  </channel>
+  <channel id="DW English HD">
+    <display-name lang="he">DW English HD</display-name>
+  </channel>
+  <channel id="i24NEWS ENGLISH">
+    <display-name lang="he">i24NEWS ENGLISH</display-name>
+  </channel>
+  <channel id="i24NEWS FRENCH">
+    <display-name lang="he">i24NEWS FRENCH</display-name>
+  </channel>
+  <channel id="i24NEWS ARABIC">
+    <display-name lang="he">i24NEWS ARABIC</display-name>
+  </channel>
+  <channel id="ערוץ הכנסת">
+    <display-name lang="he">ערוץ הכנסת</display-name>
+  </channel>
+  <channel id="עכשיו בסלקום tv">
+    <display-name lang="he">עכשיו בסלקום tv</display-name>
+  </channel>
+  <channel id="Kиномарафон">
+    <display-name lang="he">Kиномарафон</display-name>
+  </channel>
+  <channel id="DAYSTAR">
+    <display-name lang="he">DAYSTAR</display-name>
+  </channel>
+  <channel id="ערוץ הידברות">
+    <display-name lang="he">ערוץ הידברות</display-name>
+  </channel>
+  <channel id="Первый канал - pervii kanal">
+    <display-name lang="he">Первый канал - pervii kanal</display-name>
   </channel>
   <programme start="20250627231500 +0300" stop="20250628004500 +0300" channel="ערוץ 9">
     <title lang="he">את מקום הפגישה אי-אפשר לשנות - פרק 5</title>
