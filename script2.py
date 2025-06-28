@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
 EPG builder for FreeTV, Cellcom, Partner, Yes and HOT.
-Creates a 1-day guide, from 00:00 today (IL) to 00:00 next day.
+Creates a 1-day guide: today 00 : 00 IL → tomorrow 00 : 00 IL
 Output: file2.xml
 """
 
 from __future__ import annotations
-import datetime as dt, os, re, warnings, xml.etree.ElementTree as ET
+import datetime as dt, os, re, json, warnings, xml.etree.ElementTree as ET
 from html import escape
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-import cloudscraper, ssl, urllib3
+import cloudscraper, ssl, urllib3, requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
 
@@ -30,57 +30,62 @@ class InsecureTunnel(HTTPAdapter):
         return super().proxy_manager_for(proxy, **kw)
 
 # ── API endpoints ───────────────────────────────────────────────
-FREETV_API  = "https://web.freetv.tv/api/products/lives/programmes"
-FREETV_HOME = "https://web.freetv.tv/"
-CELL_LOGIN  = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/anonymousLogin"
-CELL_LIST   = "https://api.frp1.ott.kaltura.com/api_v3/service/asset/action/list"
-PARTNER_EPG = "https://my.partner.co.il/TV.Services/MyTvSrv.svc/SeaChange/GetEpg"
-YES_CH_BASE = "https://svc.yes.co.il/api/content/broadcast-schedule/channels"
-HOT_API     = "https://www.hot.net.il/HotCmsApiFront/api/ProgramsSchedual/GetProgramsSchedual"
+FREETV_API   = "https://web.freetv.tv/api/products/lives/programmes"
+FREETV_HOME  = "https://web.freetv.tv/"
+CELL_LOGIN   = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/anonymousLogin"
+CELL_LIST    = "https://api.frp1.ott.kaltura.com/api_v3/service/asset/action/list"
+PARTNER_EPG  = "https://my.partner.co.il/TV.Services/MyTvSrv.svc/SeaChange/GetEpg"
+YES_CH_BASE  = "https://svc.yes.co.il/api/content/broadcast-schedule/channels"
+HOT_API      = "https://www.hot.net.il/HotCmsApiFront/api/ProgramsSchedual/GetProgramsSchedual"
+
+HOT_TIMEOUT  = int(os.getenv("HOT_TIMEOUT", "90"))   # seconds per HOT request
 
 IL_TZ         = ZoneInfo("Asia/Jerusalem")
 CHANNELS_FILE = "channels.xml"
 OUT_XML       = "file2.xml"
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; rv:126.0) Gecko/20100101 Firefox/126.0"
-BASE_HEADERS = {"User-Agent": UA, "Accept": "application/json, text/plain, */*"}
-CELL_HEADERS = {"Content-Type": "application/json", "Accept-Encoding": "gzip, deflate, br", "User-Agent": UA}
+BASE_HEADERS   = {"User-Agent": UA, "Accept": "application/json, text/plain, */*"}
+CELL_HEADERS   = {"Content-Type": "application/json",
+                  "Accept-Encoding": "gzip, deflate, br",
+                  "User-Agent": UA}
 PARTNER_HEADERS = {"Content-Type": "application/json;charset=UTF-8",
                    "Accept": "application/json, text/plain, */*",
                    "brand": "orange", "category": "TV", "platform": "WEB",
                    "subCategory": "EPG", "lang": "he-il",
                    "Accept-Encoding": "gzip,deflate,br", "User-Agent": UA}
-YES_HEADERS  = {"Accept-Language": "he-IL",
-                "Accept": "application/json, text/plain, */*",
-                "Referer": "https://www.yes.co.il/",
-                "Origin":  "https://www.yes.co.il",
-                "User-Agent": UA}
-HOT_HEADERS  = {"Content-Type": "application/json",
-                "Accept": "application/json, text/plain, */*",
-                "Origin": "https://www.hot.net.il",
-                "Referer": "https://www.hot.net.il/heb/tv/tvguide/",
-                "User-Agent": UA}
+YES_HEADERS    = {"Accept-Language": "he-IL",
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://www.yes.co.il/",
+                  "Origin":  "https://www.yes.co.il",
+                  "User-Agent": UA}
+HOT_HEADERS    = {"Content-Type": "application/json",
+                  "Accept": "application/json, text/plain, */*",
+                  "Origin": "https://www.hot.net.il",
+                  "Referer": "https://www.hot.net.il/heb/tv/tvguide/",
+                  "User-Agent": UA}
 
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
-def dbg(site, *m):
+def dbg(site, *m, flush=False):
     if _DBG:
-        print(f"[DBG {site}]", *m, flush=True)
+        print(f"[DBG {site}]", *m, flush=True if flush else False)
 
 # ── helpers ─────────────────────────────────────────────────────
 _Z_RE = re.compile(r"Z$")
-_SLASH_FMT = "%d/%m/%Y %H:%M"
+_SLASH_FMT = "%d/%m/%Y %H:%M"          # Partner: “26/06/2025 23:30”
 
-def to_dt(v):
-    if isinstance(v, (int, float)):
-        return dt.datetime.fromtimestamp(int(v), tz=IL_TZ)
-    if isinstance(v, str):
-        if "/" in v:
-            return datetime.strptime(v, _SLASH_FMT).replace(tzinfo=IL_TZ)
-        return dt.datetime.fromisoformat(_Z_RE.sub("+00:00", v)).astimezone(IL_TZ)
-    raise TypeError("bad datetime")
+def to_dt(val):
+    if isinstance(val, (int, float)):
+        return dt.datetime.fromtimestamp(int(val), tz=IL_TZ)
+    if isinstance(val, str):
+        if "/" in val:
+            return datetime.strptime(val, _SLASH_FMT).replace(tzinfo=IL_TZ)
+        iso = _Z_RE.sub("+00:00", val)
+        return dt.datetime.fromisoformat(iso).astimezone(IL_TZ)
+    raise TypeError("unsupported datetime value")
 
-def day_window(now):
+def day_window(now: dt.datetime):
     start = dt.datetime.combine(now.date(), dt.time.min, tzinfo=IL_TZ)
     return start, start + dt.timedelta(days=1)
 
@@ -88,13 +93,13 @@ def new_session():
     s = cloudscraper.create_scraper()
     s.mount("https://", InsecureTunnel())
     s.headers.update(BASE_HEADERS)
-    proxy = os.environ["IL_PROXY"]
+    proxy = os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
     s.proxies = {"http": proxy, "https": proxy}
     if os.getenv("IL_PROXY_INSECURE", "").lower() in ("1", "true", "yes"):
         s.verify = False
     return s
 
-# ── FreeTV ──────────────────────────────────────────────────────
+# ── FreeTV ─────────────────────────────────────────────
 def fetch_freetv(sess, sid, since, till):
     p = {"liveId[]": sid,
          "since": since.strftime("%Y-%m-%dT%H:%M%z"),
@@ -110,7 +115,7 @@ def fetch_freetv(sess, sid, since, till):
         d = r.json()
         return d.get("data", d) if isinstance(d, dict) else d
 
-# ── Cellcom ─────────────────────────────────────────────────────
+# ── Cellcom ───────────────────────────────────────────
 def _cell_req(sess, ks, chan, sts, ets, quoted):
     q = "'" if quoted else ""
     ksql = (f"(and epg_channel_id='{chan}' start_date>{q}{sts}{q} "
@@ -135,20 +140,18 @@ def fetch_cellcom(sess, site_id, since, till):
     r.raise_for_status()
     ks = r.json().get("ks") or r.json().get("result", {}).get("ks")
 
-    data = _cell_req(sess, ks, chan, sts, ets, quoted=False)
+    data = _cell_req(sess, ks, chan, sts, ets, False)
     objs = data.get("objects") or data.get("result", {}).get("objects", [])
-    if objs:
-        return objs
+    if objs: return objs
     if data.get("result", {}).get("error", {}).get("code") == "4004":
-        data2 = _cell_req(sess, ks, chan, sts, ets, quoted=True)
-        return data2.get("objects") or data2.get("result", {}).get("objects", [])
-    return objs
+        data = _cell_req(sess, ks, chan, sts, ets, True)
+    return data.get("objects") or data.get("result", {}).get("objects", [])
 
-# ── Partner ─────────────────────────────────────────────────────
+# ── Partner ───────────────────────────────────────────
 def fetch_partner(sess, site_id, since, till):
     chan = site_id.strip()
-    param = f"{chan}|{since.strftime('%Y-%m-%d')}|UTC"
-    body = {"_keys": ["param"], "_values": [param], "param": param}
+    body = {"_keys": ["param"], "_values": [f"{chan}|{since:%Y-%m-%d}|UTC"],
+            "param": f"{chan}|{since:%Y-%m-%d}|UTC"}
     r = sess.post(PARTNER_EPG, json=body, headers=PARTNER_HEADERS, timeout=30)
     print(r.url, flush=True)
     r.raise_for_status()
@@ -157,43 +160,61 @@ def fetch_partner(sess, site_id, since, till):
             return ch.get("events", [])
     return []
 
-# ── Yes ─────────────────────────────────────────────────────────
+# ── Yes ───────────────────────────────────────────────
 def fetch_yes(sess, site_id, since, till):
     chan = site_id.strip()
-    url = f"{YES_CH_BASE}/{chan}?date={since.strftime('%Y-%m-%d')}&ignorePastItems=false"
+    url = f"{YES_CH_BASE}/{chan}?date={since:%Y-%m-%d}&ignorePastItems=false"
     r = sess.get(url, headers=YES_HEADERS, timeout=30)
     print(r.url, flush=True)
     r.raise_for_status()
     return r.json().get("items", [])
 
-# ── HOT ─────────────────────────────────────────────────────────
-def fetch_hot(sess, site_id, since, till):
-    chan = site_id
-    dbg("hot.net.il", f"fetch {chan}")
+# ── HOT (hourly cache) ───────────────────────────────
+_hot_cache: dict[int, list[dict]] = {}        # hour (0-23) → list
+
+def _hot_fetch_hour(sess, day_start, hour):
+    if hour in _hot_cache:
+        return _hot_cache[hour]
+
+    st = (day_start + dt.timedelta(hours=hour)).strftime("%Y-%m-%dT%H:%M:%S")
+    et = (day_start + dt.timedelta(hours=hour+1)).strftime("%Y-%m-%dT%H:%M:%S")
     payload = {
-        "ChannelId": chan,
-        "ProgramsStartDateTime": since.strftime("%Y-%m-%dT%H:%M:%S"),
-        "ProgramsEndDateTime": till.strftime("%Y-%m-%dT%H:%M:%S"),
+        "ChannelId": "0",          # server ignores it anyway
+        "ProgramsStartDateTime": st,
+        "ProgramsEndDateTime":   et,
+        "Hour": hour
     }
+
     try:
-        r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=30)
+        r = sess.post(HOT_API, json=payload,
+                      headers=HOT_HEADERS, timeout=HOT_TIMEOUT)
+        dbg("hot.net.il", f"hour {hour:02d}", flush=True)
         r.raise_for_status()
         data = r.json()
-        if data.get("isSuccess"):
-            return data.get("data", [])
-        return []
-    except Exception as e:
-        dbg("hot.net.il", f"fetch error for channel {chan}: {e}")
-        return []    
+        _hot_cache[hour] = data.get("data", []) if data.get("isSuccess") else []
+    except requests.Timeout:
+        dbg("hot.net.il", f"hour {hour:02d} TIMEOUT", flush=True)
+        _hot_cache[hour] = []
+    return _hot_cache[hour]
 
-# ── main build ──────────────────────────────────────────────────
+def fetch_hot(sess, site_id, since, till):
+    chan = site_id.lstrip("0") or "0"
+    items: list[dict] = []
+    for hour in range(24):
+        items.extend([row for row in _hot_fetch_hour(sess, since, hour)
+                      if row.get("channelID") == chan])
+    return items
+
+# ── main build ─────────────────────────────────────────
 def build_epg():
-    print("Starting EPG build...", flush=True)   # <- add this line
     day_start, day_end = day_window(dt.datetime.now(IL_TZ))
     sess = new_session()
 
-    root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom+Partner+Yes+HOT (Day)",
-                             "generator-info-name": "proxyEPG"})
+    root = ET.Element("tv", {
+        "source-info-name": "FreeTV+Cellcom+Partner+Yes+HOT (Day)",
+        "generator-info-name": "proxyEPG"
+    })
+
     programmes: list[tuple[str, dict, str]] = []
     id_state: dict[tuple[str, str], bool] = {}
 
@@ -210,23 +231,23 @@ def build_epg():
             ET.SubElement(ce, "display-name", lang="he").text = name
 
         if id_state.get(key):
-            dbg(site, "skip duplicate", key)
+            dbg(site, "skip duplicate", key, flush=True)
             continue
 
         try:
             items = (
-                fetch_freetv(sess, raw, day_start, day_end)  if site == "freetv.tv"   else
+                fetch_freetv(sess, raw, day_start, day_end) if site == "freetv.tv" else
                 fetch_cellcom(sess, raw, day_start, day_end) if site == "cellcom.co.il" else
                 fetch_partner(sess, raw, day_start, day_end) if site == "partner.co.il" else
-                fetch_yes(sess, raw, day_start, day_end)     if site == "yes.co.il"     else
-                fetch_hot(sess, raw, day_start, day_end)     if site == "hot.net.il"    else
+                fetch_yes(sess, raw, day_start, day_end) if site == "yes.co.il" else
+                fetch_hot(sess, raw, day_start, day_end) if site == "hot.net.il" else
                 []
             )
         except Exception as e:
-            dbg(site, "fetch error", xmltv, e)
+            dbg(site, "fetch error", xmltv, e, flush=True)
             items = []
 
-        dbg(site, f"{xmltv} → {len(items)} items")
+        dbg(site, f"{xmltv} → {len(items)} items", flush=True)
         if items:
             id_state[key] = True
             programmes.extend((xmltv, it, site) for it in items)
@@ -246,10 +267,10 @@ def build_epg():
                 title = it["name"]
                 desc  = it.get("shortSynopsis")
             elif site == "hot.net.il":
-                s, e = to_dt(it["startTime"]), to_dt(it["endTime"])
-                title = it.get("programName") or it.get("programTitle") or it.get("programNameHe")
-                desc  = it.get("shortDescription") or it.get("shortDescriptionHe")
-            else:  # yes
+                s, e = to_dt(it["programStartTime"]), to_dt(it["programEndTime"])
+                title = it.get("programTitle") or it.get("programNameHe")
+                desc  = it.get("synopsis")
+            else:   # yes
                 s, e = to_dt(it["starts"]), to_dt(it["ends"])
                 title = it["title"]
                 desc  = it.get("description")
@@ -262,7 +283,7 @@ def build_epg():
             if desc:
                 ET.SubElement(pr, "desc", lang="he").text = escape(desc)
         except Exception as e:
-            dbg(site, "programme error", xid, e)
+            dbg(site, "programme error", xid, e, flush=True)
 
     ET.indent(root)
     ET.ElementTree(root).write(OUT_XML, encoding="utf-8", xml_declaration=True)
