@@ -25,18 +25,26 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests cloudscraper 'backports.zoneinfo;python_version<"3.9"'
 
-    - name: Generate EPG
-      run: python script2.py
+    - name: Show runner IP (no proxy)
+      run: curl -s https://ifconfig.me | head -c 100
 
-    - name: Commit & push if updated
-      env: { TZ: UTC }
+    - name: Show runner IP (via your proxy)
       run: |
-        git config user.name  "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add file2.xml
-        if git diff --cached --quiet; then
-          echo "No changes."
-        else
-          git commit -m "Update Epg $(date -u '+%Y-%m-%d %H:%M:%S')"
-          git push
-        fi
+        echo "Using proxy: $IL_PROXY"
+        curl -v -x "$IL_PROXY" https://ifconfig.me | head -c 100
+    
+   # - name: Generate EPG
+    #  run: python script2.py
+
+  #  - name: Commit & push if updated
+   #   env: { TZ: UTC }
+    #  run: |
+   #     git config user.name  "github-actions[bot]"
+  #      git config user.email "github-actions[bot]@users.noreply.github.com"
+  #      git add file2.xml
+  #      if git diff --cached --quiet; then
+  #        echo "No changes."
+  #      else
+ #         git commit -m "Update Epg $(date -u '+%Y-%m-%d %H:%M:%S')"
+ #         git push
+  #      fi
