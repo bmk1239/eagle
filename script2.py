@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Build a one-day XMLTV guide from FreeTV + Cellcom via an IL proxy.
-• Every request URL is printed.               • DEBUG=1 adds [DBG] lines.
-• Duplicate channel IDs (per provider) are skipped.
+• Prints each request URL.
+• Duplicates: ignore only *after* one variant returned data.
+• DEBUG=1 env shows extra [DBG] lines.
 • Output file: file2.xml
 """
 
@@ -36,8 +37,8 @@ CELL_LOGIN  = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/an
 CELL_LIST   = "https://api.frp1.ott.kaltura.com/api_v3/service/asset/action/list"
 
 IL_TZ         = ZoneInfo("Asia/Jerusalem")
-CHANNELS_FILE = "channels.xml"        # input
-OUT_XML       = "file2.xml"           # output
+CHANNELS_FILE = "channels.xml"         # input
+OUT_XML       = "file2.xml"            # output
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; rv:126.0) Gecko/20100101 Firefox/126.0"
 BASE_HEADERS = {"User-Agent": UA,
@@ -49,9 +50,9 @@ CELL_HEADERS = {"Content-Type": "application/json",
                 "User-Agent": UA}
 
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
-_DEBUG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
+_DBG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
 def dbg(*m): 
-    if _DEBUG: print("[DBG]", *m)
+    if _DBG: print("[DBG]", *m)
 
 # ───────── helpers ─────────
 def day_window(now):
@@ -79,7 +80,7 @@ def fetch_freetv(sess, sid, since, till):
     for a in (1, 2):
         r = sess.get(FREETV_API, params=params, timeout=30)
         print(r.url)
-        if r.status_code == 403 and a == 1:   # Cloudflare challenge
+        if r.status_code == 403 and a == 1:
             sess.get(FREETV_HOME, timeout=20)
             continue
         r.raise_for_status()
@@ -133,39 +134,48 @@ def build_epg():
     root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom",
                              "generator-info-name": "proxyEPG"})
     programmes = []
-    seen_ids = set()                     # to skip duplicate channel IDs
+    id_state: dict[tuple[str, str], bool] = {}   # (site, logical_id) -> has_data
 
     for ch in ET.parse(CHANNELS_FILE).findall("channel"):
         site = ch.attrib.get("site", "").lower()
-        full_site_id = ch.attrib["site_id"]
-        dedupe_id = (site, full_site_id.split("##")[0] if site == "cellcom.co.il" else full_site_id)
-
-        if dedupe_id in seen_ids:
-            dbg("skip duplicate", dedupe_id)
-            continue
-        seen_ids.add(dedupe_id)
+        raw_id = ch.attrib["site_id"]
+        logical_id = raw_id.split("##")[0] if site == "cellcom.co.il" else raw_id
+        key = (site, logical_id)
 
         xmltv_id = ch.attrib["xmltv_id"]
         name = (ch.text or xmltv_id).strip()
 
-        # write <channel>
-        ch_el = ET.SubElement(root, "channel", id=xmltv_id)
-        ET.SubElement(ch_el, "display-name", lang="he").text = name
+        # channel element only for the first encounter
+        if key not in id_state:
+            ch_el = ET.SubElement(root, "channel", id=xmltv_id)
+            ET.SubElement(ch_el, "display-name", lang="he").text = name
 
+        # If we already have data for this logical channel, skip
+        if id_state.get(key, False):
+            dbg("skip duplicate with data", key)
+            continue
+
+        # Fetch
         try:
             if site == "freetv.tv":
-                items = fetch_freetv(sess, full_site_id, since, till)
+                items = fetch_freetv(sess, raw_id, since, till)
             elif site == "cellcom.co.il":
-                items = fetch_cellcom(sess, full_site_id, since, till)
+                items = fetch_cellcom(sess, raw_id, since, till)
             else:
                 dbg("unknown site", site)
                 continue
-            dbg(f"{xmltv_id} → {len(items)} items")
-            programmes.extend((xmltv_id, it, site) for it in items)
         except Exception as e:
             dbg("fetch error", xmltv_id, e)
+            items = []
 
-    # write <programme> after all channels
+        dbg(f"{xmltv_id} → {len(items)} items")
+        if items:
+            id_state[key] = True                  # mark that we now have data
+            programmes.extend((xmltv_id, it, site) for it in items)
+        else:
+            id_state.setdefault(key, False)       # remember we tried but got 0
+
+    # write programmes
     for xmltv_id, it, site in programmes:
         try:
             if site == "freetv.tv":
@@ -173,7 +183,7 @@ def build_epg():
                 e = dt.datetime.fromisoformat(it["till"]).astimezone(IL_TZ)
                 title = it["title"]
                 desc  = it.get("description") or it.get("summary")
-            else:  # cellcom
+            else:
                 s = dt.datetime.fromisoformat(it["startDate"]).astimezone(IL_TZ)
                 e = dt.datetime.fromisoformat(it["endDate"]).astimezone(IL_TZ)
                 title = it["name"]
