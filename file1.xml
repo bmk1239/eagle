@@ -280,9 +280,6 @@
   <channel id="2299449">
     <display-name>Channel 2299449</display-name>
   </channel>
-  <channel id="2299447">
-    <display-name>Channel 2299447</display-name>
-  </channel>
   <channel id="2299450">
     <display-name>Channel 2299450</display-name>
   </channel>
@@ -297,6 +294,9 @@
   </channel>
   <channel id="2299433">
     <display-name>Channel 2299433</display-name>
+  </channel>
+  <channel id="2299447">
+    <display-name lang="he">FreeTV סדרות קומדיה</display-name>
   </channel>
   <programme start="20250627211700 +0000" stop="20250627220200 +0000" channel="2299435">
     <title>מקום בלב 2 פרק 7</title>
@@ -23650,9 +23650,6 @@
   <programme channel="2299449" start="20250628031002 +0000" stop="20250628050450 +0000">
     <title lang="he">פול ספיד</title>
   </programme>
-  <programme channel="2299447" start="20250628031200 +0000" stop="20250628035337 +0000">
-    <title lang="he">יש לה את זה 1 - פרח נדיר</title>
-  </programme>
   <programme channel="2299450" start="20250628031348 +0000" stop="20250628052150 +0000">
     <title lang="he">הספירה לאחור</title>
   </programme>
@@ -23670,9 +23667,6 @@
   </programme>
   <programme channel="2299451" start="20250628034754 +0000" stop="20250628051837 +0000">
     <title lang="he">כל הדרכים מובילות לרומא</title>
-  </programme>
-  <programme channel="2299447" start="20250628035337 +0000" stop="20250628043041 +0000">
-    <title lang="he">פלפלים צהובים 1 - תרופה נגד אוטיזם</title>
   </programme>
   <programme channel="2299440" start="20250628040000 +0000" stop="20250628080000 +0000">
     <title lang="he">HOT משפחה</title>
@@ -23719,9 +23713,6 @@
   <programme channel="2299448" start="20250628042623 +0000" stop="20250628045008 +0000">
     <title lang="he">סברי מרנן 7 - הצעת נישואין</title>
   </programme>
-  <programme channel="2299447" start="20250628043041 +0000" stop="20250628051121 +0000">
-    <title lang="he">שטוקהולם 1 - מסתבכים</title>
-  </programme>
   <programme channel="2299448" start="20250628045008 +0000" stop="20250628052534 +0000">
     <title lang="he">מה זה השטויות האלה?  1 - חבר&amp;#x27;ה</title>
   </programme>
@@ -23737,9 +23728,6 @@
   <programme channel="2299444" start="20250628051000 +0000" stop="20250628064000 +0000">
     <title lang="he">טרור על פסי הרכבת</title>
   </programme>
-  <programme channel="2299447" start="20250628051121 +0000" stop="20250628054944 +0000">
-    <title lang="he">ישמח חתני 1 - מילים קשות</title>
-  </programme>
   <programme channel="2299451" start="20250628051837 +0000" stop="20250628065705 +0000">
     <title lang="he">מקום לאהבה</title>
   </programme>
@@ -23752,9 +23740,6 @@
   <programme channel="2299445" start="20250628054000 +0000" stop="20250628062000 +0000">
     <title lang="he">צעירים חסרי מנוח - פרק 12449</title>
   </programme>
-  <programme channel="2299447" start="20250628054944 +0000" stop="20250628062859 +0000">
-    <title lang="he">כיפת ברזל 1 - אל נקמות</title>
-  </programme>
   <programme channel="2299446" start="20250628055000 +0000" stop="20250628072500 +0000">
     <title lang="he">שרק לנצח - מדובב</title>
   </programme>
@@ -23766,9 +23751,6 @@
   </programme>
   <programme channel="2299445" start="20250628062000 +0000" stop="20250628064500 +0000">
     <title lang="he">היפים והאמיצים - פרק 9487</title>
-  </programme>
-  <programme channel="2299447" start="20250628062859 +0000" stop="20250628071418 +0000">
-    <title lang="he">להיות איתה 3 - תגיד לי שאתה אוהב אותי</title>
   </programme>
   <programme channel="2299444" start="20250628064000 +0000" stop="20250628083500 +0000">
     <title lang="he">החיים האלה</title>
@@ -23791,9 +23773,6 @@
   <programme channel="2299445" start="20250628071000 +0000" stop="20250628075500 +0000">
     <title lang="he">רופא ללא גבולות: עונה 3 - פרק 5</title>
   </programme>
-  <programme channel="2299447" start="20250628071418 +0000" stop="20250628073840 +0000">
-    <title lang="he">שחקן זר 1 - פרק 6</title>
-  </programme>
   <programme channel="2299446" start="20250628072500 +0000" stop="20250628085500 +0000">
     <title lang="he">החתול של שרק - מדובב</title>
   </programme>
@@ -23802,9 +23781,6 @@
   </programme>
   <programme channel="2299448" start="20250628073826 +0000" stop="20250628081541 +0000">
     <title lang="he">פולישוק 3 - צונאמי מדיני</title>
-  </programme>
-  <programme channel="2299447" start="20250628073840 +0000" stop="20250628081726 +0000">
-    <title lang="he">אמא&amp;#x27;לה 2 - צימר רומנטי</title>
   </programme>
   <programme channel="2299433" start="20250628074600 +0000" stop="20250628090600 +0000">
     <title lang="he">חסמבה ונערי ההפקר</title>
@@ -23848,9 +23824,6 @@
   <programme channel="2299448" start="20250628081541 +0000" stop="20250628083849 +0000">
     <title lang="he">סברי מרנן 2 - אמי הגנרלית</title>
   </programme>
-  <programme channel="2299447" start="20250628081726 +0000" stop="20250628085940 +0000">
-    <title lang="he">יש לה את זה 1 - פרח נדיר</title>
-  </programme>
   <programme channel="2299449" start="20250628082338 +0000" stop="20250628100454 +0000">
     <title lang="he">שושנה חלוץ מרכזי</title>
   </programme>
@@ -23869,9 +23842,6 @@
   <programme channel="2299446" start="20250628085500 +0000" stop="20250628104000 +0000">
     <title lang="he">הבית עם השעון המסתורי - מדובב</title>
   </programme>
-  <programme channel="2299447" start="20250628085940 +0000" stop="20250628095619 +0000">
-    <title lang="he">השוטרים 2 - בחזרה לנהריה</title>
-  </programme>
   <programme channel="2299448" start="20250628090208 +0000" stop="20250628094905 +0000">
     <title lang="he">ארץ נהדרת 21 - ארץ נלחמת - מהדורה מיוחדת</title>
   </programme>
@@ -23887,9 +23857,6 @@
   <programme channel="2299448" start="20250628094905 +0000" stop="20250628102316 +0000">
     <title lang="he">צומת מילר 1 - אסי זה חבר</title>
   </programme>
-  <programme channel="2299447" start="20250628095619 +0000" stop="20250628103323 +0000">
-    <title lang="he">פלפלים צהובים 1 - תרופה נגד אוטיזם</title>
-  </programme>
   <programme channel="2299449" start="20250628100454 +0000" stop="20250628115212 +0000">
     <title lang="he">לצוד פילים</title>
   </programme>
@@ -23898,9 +23865,6 @@
   </programme>
   <programme channel="2299448" start="20250628102316 +0000" stop="20250628105520 +0000">
     <title lang="he">צומת מילר 1 - לשמח חיילים</title>
-  </programme>
-  <programme channel="2299447" start="20250628103323 +0000" stop="20250628111403 +0000">
-    <title lang="he">שטוקהולם 1 - מסתבכים</title>
   </programme>
   <programme channel="2299444" start="20250628104000 +0000" stop="20250628125000 +0000">
     <title lang="he">עולם היורה: נפילת הממלכה</title>
@@ -23923,9 +23887,6 @@
   <programme channel="2299450" start="20250628111009 +0000" stop="20250628124107 +0000">
     <title lang="he">פרדייס סיטי</title>
   </programme>
-  <programme channel="2299447" start="20250628111403 +0000" stop="20250628115226 +0000">
-    <title lang="he">ישמח חתני 1 - מילים קשות</title>
-  </programme>
   <programme channel="2299433" start="20250628111700 +0000" stop="20250628115300 +0000">
     <title lang="he">העולם מצחיק אז צוחקים</title>
   </programme>
@@ -23937,9 +23898,6 @@
   </programme>
   <programme channel="2299449" start="20250628115212 +0000" stop="20250628132712 +0000">
     <title lang="he">זרים מושלמים</title>
-  </programme>
-  <programme channel="2299447" start="20250628115226 +0000" stop="20250628124518 +0000">
-    <title lang="he">אף אחד לא עוזב את פאלו אלטו  1 - החקירה</title>
   </programme>
   <programme channel="2299433" start="20250628115300 +0000" stop="20250628132400 +0000">
     <title lang="he">חגיגה בסנוקר</title>
@@ -23995,9 +23953,6 @@
   <programme channel="2299448" start="20250628124151 +0000" stop="20250628130839 +0000">
     <title lang="he">עבודה ערבית 4 - שורף היערות</title>
   </programme>
-  <programme channel="2299447" start="20250628124518 +0000" stop="20250628132433 +0000">
-    <title lang="he">כיפת ברזל 1 - אל נקמות</title>
-  </programme>
   <programme channel="2299444" start="20250628125000 +0000" stop="20250628151500 +0000">
     <title lang="he">עולם היורה: עולם חדש</title>
   </programme>
@@ -24013,9 +23968,6 @@
   <programme channel="2299433" start="20250628132400 +0000" stop="20250628150500 +0000">
     <title lang="he">מחילה</title>
   </programme>
-  <programme channel="2299447" start="20250628132433 +0000" stop="20250628140319 +0000">
-    <title lang="he">אמא&amp;#x27;לה 2 - צימר רומנטי</title>
-  </programme>
   <programme channel="2299449" start="20250628132712 +0000" stop="20250628150628 +0000">
     <title lang="he">לילה בחיפה</title>
   </programme>
@@ -24027,9 +23979,6 @@
   </programme>
   <programme channel="2299446" start="20250628134500 +0000" stop="20250628151000 +0000">
     <title lang="he">פליקס 2: ארנב הצעצוע ומכונת הזמן - מדובב</title>
-  </programme>
-  <programme channel="2299447" start="20250628140319 +0000" stop="20250628144838 +0000">
-    <title lang="he">להיות איתה 3 - תגיד לי שאתה אוהב אותי</title>
   </programme>
   <programme channel="2299448" start="20250628140332 +0000" stop="20250628142840 +0000">
     <title lang="he">רמזור 2 - אישה מחליפה</title>
@@ -24045,9 +23994,6 @@
   </programme>
   <programme channel="2299450" start="20250628144443 +0000" stop="20250628165914 +0000">
     <title lang="he">הקרב על מידוויי</title>
-  </programme>
-  <programme channel="2299447" start="20250628144838 +0000" stop="20250628152701 +0000">
-    <title lang="he">ישמח חתני 1 - מילים קשות</title>
   </programme>
   <programme channel="2299448" start="20250628145219 +0000" stop="20250628151540 +0000">
     <title lang="he">סברי מרנן 3 - מקסיקני קרח</title>
@@ -24069,9 +24015,6 @@
   </programme>
   <programme channel="2299448" start="20250628151540 +0000" stop="20250628155922 +0000">
     <title lang="he">ארץ נהדרת 12 - ספיישל עצמאות</title>
-  </programme>
-  <programme channel="2299447" start="20250628152701 +0000" stop="20250628161953 +0000">
-    <title lang="he">אף אחד לא עוזב את פאלו אלטו  1 - החקירה</title>
   </programme>
   <programme channel="2299445" start="20250628155000 +0000" stop="20250628163500 +0000">
     <title lang="he">שוטרי שיקגו 9 - פרק 19</title>
@@ -24112,9 +24055,6 @@
   <programme channel="2299483" start="20250628160000 +0000" stop="20250628200000 +0000">
     <title lang="he">לולי</title>
   </programme>
-  <programme channel="2299447" start="20250628161953 +0000" stop="20250628171632 +0000">
-    <title lang="he">השוטרים 2 - בחזרה לנהריה</title>
-  </programme>
   <programme channel="2299451" start="20250628162554 +0000" stop="20250628182842 +0000">
     <title lang="he">מה הסיכוי?</title>
   </programme>
@@ -24142,17 +24082,11 @@
   <programme channel="2299450" start="20250628165914 +0000" stop="20250628183041 +0000">
     <title lang="he">משחק הניצודים</title>
   </programme>
-  <programme channel="2299447" start="20250628171632 +0000" stop="20250628174054 +0000">
-    <title lang="he">שחקן זר 1 - פרק 6</title>
-  </programme>
   <programme channel="2299445" start="20250628172000 +0000" stop="20250628181500 +0000">
     <title lang="he">גברת מייזל המופלאה - פרק 4</title>
   </programme>
   <programme channel="2299448" start="20250628172303 +0000" stop="20250628175117 +0000">
     <title lang="he">הפרלמנט 1 - שאולי וראובן בשבעה</title>
-  </programme>
-  <programme channel="2299447" start="20250628174054 +0000" stop="20250628181758 +0000">
-    <title lang="he">פלפלים צהובים 1 - תרופה נגד אוטיזם</title>
   </programme>
   <programme channel="2299448" start="20250628175117 +0000" stop="20250628184821 +0000">
     <title lang="he">ארץ נהדרת 20 - הפשרה הגדולה</title>
@@ -24165,9 +24099,6 @@
   </programme>
   <programme channel="2299449" start="20250628181611 +0000" stop="20250628195111 +0000">
     <title lang="he">זרים מושלמים</title>
-  </programme>
-  <programme channel="2299447" start="20250628181758 +0000" stop="20250628185935 +0000">
-    <title lang="he">יש לה את זה 1 - פרח נדיר</title>
   </programme>
   <programme channel="2299433" start="20250628182500 +0000" stop="20250628201200 +0000">
     <title lang="he">בית</title>
@@ -24237,5 +24168,189 @@
   </programme>
   <programme channel="2299483" start="20250629000000 +0000" stop="20250629040000 +0000">
     <title lang="he">לולי</title>
+  </programme>
+  <programme start="20250627234636 +0300" stop="20250628003749 +0300" channel="2299447">
+    <title lang="he">צא מזה 1 - חיים אתגר והמתחזה</title>
+    <desc lang="he">חיים אתגר מגיע ל&amp;quot;צא מזה&amp;quot; עם ההתחזות הכי מצחיקה שראיתם: מה קורה כשלוכד הנוכלים המפורסם במדינה נכנס לבית קפה עם צוות צילום ומאשים אותך לעיני כל בהתחזות?</desc>
+  </programme>
+  <programme start="20250628003749 +0300" stop="20250628010052 +0300" channel="2299447">
+    <title lang="he">דובדבני וקובץ&amp;#x27; 2 - כנאפה</title>
+    <desc lang="he">השניים מחליטים לצאת לכפר הקרוב לרכוש כנאפה רק שבדרך הדברים יוצאים משליטה והשניים מסתבכים</desc>
+  </programme>
+  <programme start="20250628010052 +0300" stop="20250628014031 +0300" channel="2299447">
+    <title lang="he"> 1 - מועדון לילה </title>
+    <desc lang="he">ארז טל פותח את המועדון עם חברים חדשים. צוות המועדון ייתן פרשנות קומית לאירועים שהתרחשו ולחיים בכלל, יארח אורחים שווים ויחנוך פינות מפתיעות. תתלבשו יפה ובואו</desc>
+  </programme>
+  <programme start="20250628014031 +0300" stop="20250628020338 +0300" channel="2299447">
+    <title lang="he">עבודה ערבית 2 - שחייה</title>
+    <desc lang="he">אמג&amp;#x27;ד נרשם ללימודי שחייה בגלל המיתוס שערבים לא יודעים לשחות, ומגלה שמצבו חמור משחשב. העניינים מסתבכים כשאמג&amp;#x27;ד מטביע את המאמן ומואשם בהריגה על רקע לאומני</desc>
+  </programme>
+  <programme start="20250628020338 +0300" stop="20250628022554 +0300" channel="2299447">
+    <title lang="he">עבודה ערבית 2 - אמג&amp;#x27;ד כוכב עליון</title>
+    <desc lang="he">אמג&amp;#x27;ד תמיד חלם להגיע לטלוויזיה, ומקבל הצעה להגיש תכנית חדשה בערבית. הוא משוכנע שהולך להיות הערבי הראשון בפריים טיים, אלא שאז מוצא עצמו בדרך לאולפן לבוש כשפן</desc>
+  </programme>
+  <programme start="20250628022554 +0300" stop="20250628030517 +0300" channel="2299447">
+    <title lang="he"> 1 - רותם באה אליכם - סטנדאפ ברודוס</title>
+    <desc lang="he">כשבארץ אסור להתקהל, רותם אבוהב תופסת טיסה לרודוס כדי לפגוש את הישראלים להופעה מיוחדת. הכרטיסים עלינו, תהנו!</desc>
+  </programme>
+  <programme start="20250628030517 +0300" stop="20250628032638 +0300" channel="2299447">
+    <title lang="he"> 1 - ביפ קומדי בר</title>
+    <desc lang="he">הכישרונות החדשים והמפתיעים של עולם הסטנד אפ הישראלי עולים על במת מועדון ה&amp;quot;ביפ קומדי בר&amp;quot;. והפעם: איתמר פדאל, הראל ודניאל, מוטי אהרונוביץ וחיים אלמקייס</desc>
+  </programme>
+  <programme start="20250628032638 +0300" stop="20250628043254 +0300" channel="2299447">
+    <title lang="he">איזה צחוק 1 - חנוך דאום</title>
+    <desc lang="he">מדי שבוע אבי נוסבאום מארח קומיקאי לשיחה מצחיקה, ולצפייה ב-VOD שהוכן עבורו, עם מיטב הקטעים של האורח, וקטעים של קומיקאים שהוא אוהב במיוחד. אורח: חנוך דאום</desc>
+  </programme>
+  <programme start="20250628043254 +0300" stop="20250628045519 +0300" channel="2299447">
+    <title lang="he">היכל התהילה 1 - הורים וילדים</title>
+    <desc lang="he">עופר עובד במשרד החקירות של כץ והשניים יוצאים לעקוב אחרי בנו ההומו של רב פקד דרוקר. במקביל עופר מגלה שאמא ז&amp;#x27;אנט בהריון וכץ מגיע לביקור אצל האחות בבנק הזרע</desc>
+  </programme>
+  <programme start="20250628045519 +0300" stop="20250628051847 +0300" channel="2299447">
+    <title lang="he">אין מה לראות 1 - פרק 6</title>
+    <desc lang="he">השיחות עם המאסטר מובילות לרגשות אובדניים, הטבחים הצרפתים חוגגים יומולדת והכתב האמיץ מצליח לחדור בגאווה ללב העולם החרדי. בקיצור - אין מה  לראות</desc>
+  </programme>
+  <programme start="20250628051847 +0300" stop="20250628054255 +0300" channel="2299447">
+    <title lang="he">מה שבע 1 - הפיליפינית</title>
+    <desc lang="he">דודי שובר את שתי ידיו, אמו שבאה לעזור לו נעלבת ממנו ושוכרת פיליפינית. זהר, המזכירה של דודי, מנסה להיות שמאית בזמן שדודי מושבת בביתו</desc>
+  </programme>
+  <programme start="20250628054255 +0300" stop="20250628060600 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 2 - אמי הגנרלית</title>
+    <desc lang="he">שי במילואים ונשאר שישי-שבת בבסיס, ומשפחת רוזן נוסעת לבקר אותו בדיוק כשהכוננות עוברת מירוק לאדום</desc>
+  </programme>
+  <programme start="20250628060600 +0300" stop="20250628062919 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 2 - אחד באפריל</title>
+    <desc lang="he">אחד באפריל בבית משפחת חסון - וכולם מותחים את כולם ובעיקר את משה כץ</desc>
+  </programme>
+  <programme start="20250628062919 +0300" stop="20250628070331 +0300" channel="2299447">
+    <title lang="he">פולישוק 2 - צדק חזותי</title>
+    <desc lang="he">פולישוק מסתבך עם התקשורת ומואשם כמושחת, לאחר שהוא מאשר בטעות חוק המקנה זכות למשקפיים חינם לכל אזרח</desc>
+  </programme>
+  <programme start="20250628070331 +0300" stop="20250628072623 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 7 - חג שני</title>
+    <desc lang="he">בגלל חוסר היכולת של שי ושני להגיד לא, הם נאלצים בחג השני להיות גם בבית רוזן וגם בבית חסון</desc>
+  </programme>
+  <programme start="20250628072623 +0300" stop="20250628075008 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 7 - הצעת נישואין</title>
+    <desc lang="he">איתמר מגיע לארוחת שישי אצל שי ושני עם השכנה החדשה של ריקי, ורז מגיע עם חברה חדשה</desc>
+  </programme>
+  <programme start="20250628075008 +0300" stop="20250628082534 +0300" channel="2299447">
+    <title lang="he">מה זה השטויות האלה?  1 - חבר&amp;#x27;ה</title>
+    <desc lang="he">מה זה השטויות האלה חבר&amp;#x27;ה? עדי בודקת איך כולם נהיו פתאום בחבורות, ולמה לה אין? היא מצטרפת לחבורת זוגות נשואים, ונוסעת עם מתבודד לבדוק את אופציית החיים &amp;quot;לבד&amp;quot;</desc>
+  </programme>
+  <programme start="20250628082534 +0300" stop="20250628091643 +0300" channel="2299447">
+    <title lang="he">ארץ נהדרת 18 - קבינט החינוך</title>
+    <desc lang="he">כשכולם שואלים מה עם מערכת החינוך, הגיע הזמן לקבינט החירום של ארץ נהדרת: היחיד שיחשוף את מתווה החזרה ללימודים</desc>
+  </programme>
+  <programme start="20250628091643 +0300" stop="20250628094026 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 6 - זה רדיו זה?</title>
+    <desc lang="he">אהרון ומירב פתחו מספרה בסלון ביתם של סילבן ורחל, פנחס שנסע עם ריקי לבודפשט מבקש משי להפעיל את רדיו קלאסיק בהעדרו. שחקנים אורחים - גיליה שטרן, מאור בוזגלו</desc>
+  </programme>
+  <programme start="20250628094026 +0300" stop="20250628100413 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 6 - סיפור סיפור</title>
+    <desc lang="he">מסתבר שלירי כתבה ספר אוטוביוגרפי בזמן שהותה בכלא, ויש סיבה לכולם לפחד מהכתוב בו</desc>
+  </programme>
+  <programme start="20250628100413 +0300" stop="20250628103826 +0300" channel="2299447">
+    <title lang="he">מה זה השטויות האלה?  1 - גיל ההתבגרות</title>
+    <desc lang="he">מה זה השטויות האלה גיל ההתבגרות? עדי מצטרפת לנערה בת 15 המתגוררת בפתח תקווה, ומנסה לבדוק האם כשאת בת תיכוניסטית יפה ו&amp;quot;מקובלת&amp;quot; תקופת ההתבגרות קלה ויפה יותר?</desc>
+  </programme>
+  <programme start="20250628103826 +0300" stop="20250628111541 +0300" channel="2299447">
+    <title lang="he">פולישוק 3 - צונאמי מדיני</title>
+    <desc lang="he">ישראל עומדת לפני תבוסה באו&amp;quot;ם אבל בובעס מסרב לנסוע לכינוס העצרת. פולישוק נשלח למשימה חשאית באיי האוקיינוס השקט, ואף אחד לא מבין למה הוא מהסס</desc>
+  </programme>
+  <programme start="20250628111541 +0300" stop="20250628113849 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 2 - אמי הגנרלית</title>
+    <desc lang="he">שי במילואים ונשאר שישי-שבת בבסיס, ומשפחת רוזן נוסעת לבקר אותו בדיוק כשהכוננות עוברת מירוק לאדום</desc>
+  </programme>
+  <programme start="20250628113849 +0300" stop="20250628120208 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 2 - אחד באפריל</title>
+    <desc lang="he">אחד באפריל בבית משפחת חסון - וכולם מותחים את כולם ובעיקר את משה כץ</desc>
+  </programme>
+  <programme start="20250628120208 +0300" stop="20250628124905 +0300" channel="2299447">
+    <title lang="he">ארץ נהדרת 21 - ארץ נלחמת - מהדורה מיוחדת </title>
+    <desc lang="he">לוקחים הפסקה קטנה מהחדשות עם מהדורה מיוחדת של ארץ נהדרת</desc>
+  </programme>
+  <programme start="20250628124905 +0300" stop="20250628132316 +0300" channel="2299447">
+    <title lang="he">צומת מילר 1 - אסי זה חבר</title>
+    <desc lang="he">אחרי 14 שנה אדיר מגלה מהי הסיבה האמיתית שבגללה נפרדו אסי וגורי. עופר הסוכן שולח את אדיר לאירועים מוזרים על מנת &amp;quot;שיוציאו אותו טוב&amp;quot;</desc>
+  </programme>
+  <programme start="20250628132316 +0300" stop="20250628135520 +0300" channel="2299447">
+    <title lang="he">צומת מילר 1 - לשמח חיילים</title>
+    <desc lang="he">בשל מבצע של צה&amp;quot;ל בעזה אדיר נשלח לשמח חיילים בשטח. העניינים מסתבכים כשהוא מגיע למקום לא צפוי. הבנות לוחצות על אדיר ומאיה לאמץ חיית מחמד. האם הם יעמדו בלחץ?</desc>
+  </programme>
+  <programme start="20250628135520 +0300" stop="20250628143105 +0300" channel="2299447">
+    <title lang="he">מה זה השטויות האלה?  3 - ירושלים</title>
+    <desc lang="he">עדי אשכנזי מגיעה לעיר הקודש עם משפחתה מחו&amp;quot;ל. תוך דקות היא מאבדת אותם, הולכת בעצמה לאיבוד מתחת לאדמה, גורמת לפרוץ פעולות איבה ויוצאת לריצה מבוהלת במאה שערים</desc>
+  </programme>
+  <programme start="20250628143105 +0300" stop="20250628145414 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 2 - לוטו</title>
+    <desc lang="he">שי ושני נוסעים לבית משפחת חסון כדי לגלות שהרוזנים אולי זכו בלוטו</desc>
+  </programme>
+  <programme start="20250628145414 +0300" stop="20250628151733 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 2 - האוטו שלנו</title>
+    <desc lang="he">האם אפשר לעשות עסקים בתוך המשפחה, ומה קורה כשסילבן חסון רוצה לקנות את הרכב של פנחס רוזן?</desc>
+  </programme>
+  <programme start="20250628151733 +0300" stop="20250628154151 +0300" channel="2299447">
+    <title lang="he">הפרלמנט 2 - שטיפה</title>
+    <desc lang="he">שאולי, אמציה, אבי, ד&amp;quot;ר הקטור, קרקו ואירינה בסדרת מערכונים המלווים את חייהם ההזויים. והפעם: &amp;quot;הבשורה&amp;quot;, &amp;quot;שבת&amp;quot;, &amp;quot;שטיפה&amp;quot;, &amp;quot;באהבה ובהוקרה&amp;quot;</desc>
+  </programme>
+  <programme start="20250628154151 +0300" stop="20250628160839 +0300" channel="2299447">
+    <title lang="he">עבודה ערבית 4 - שורף היערות</title>
+    <desc lang="he">אמג&amp;#x27;ד מגלה שבדיוק במקום בו ערך פיקניק ביער ירושלים פרצה שריפה וישנו חשד להצתה. בינתיים, מאיר חוזר הביתה ומסתבך עם פעילי תג מחיר, שרוצים לנקום את שריפת היער</desc>
+  </programme>
+  <programme start="20250628160839 +0300" stop="20250628163627 +0300" channel="2299447">
+    <title lang="he">עבודה ערבית 4 - טעם ערבי</title>
+    <desc lang="he">אמג&amp;#x27;ד שוכר פועל בשם מוסטפא שיכין את החדר לקראת הלידה המתקרבת. כשתמנע מחפשת שיפוצניק, אמג&amp;#x27;ד רותם את מוסטפא, אלא שזה נעלם ותמנע מוציאה את העצבים על אמג&amp;#x27;ד</desc>
+  </programme>
+  <programme start="20250628163627 +0300" stop="20250628170332 +0300" channel="2299447">
+    <title lang="he">רמזור 2 - שיעורי בית</title>
+    <desc lang="he">איצקו עוזר לדניאל לעשות שיעורי בית - וטועה. היא מאבדת אמון בו והוא יוצא להשיב אותו. אמיר מגלה שטלי נוחרת, וחפר מבלה לילה עם בחורה סקסית. למחרת מחכה לו בשורה</desc>
+  </programme>
+  <programme start="20250628170332 +0300" stop="20250628172840 +0300" channel="2299447">
+    <title lang="he">רמזור 2 - אישה מחליפה</title>
+    <desc lang="he">אמיר שם לב שטלי מחליפה כל מתנה שהוא קונה לה - אפילו את פתק ההחלפה. חפר יוצא עם סטודנטית למשחק נלהבת מדי והמטפלת שולחת את איצקו למשימה: לגרום ללילך לקנא</desc>
+  </programme>
+  <programme start="20250628172840 +0300" stop="20250628175219 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 3 - הבוררת</title>
+    <desc lang="he">איתמר יוצא עם בתו של בורר העולם התחתון. האם המשפחה עומדת להסתבך עם עולם הפשע?</desc>
+  </programme>
+  <programme start="20250628175219 +0300" stop="20250628181540 +0300" channel="2299447">
+    <title lang="he">סברי מרנן 3 - מקסיקני קרח</title>
+    <desc lang="he">שי דרס את השכן של סילבן ורחל, עורך דין מקסיקני מהפנטאהוז. האם הוא ייצא מזה בשלום והאם מרב בהריון?</desc>
+  </programme>
+  <programme start="20250628181540 +0300" stop="20250628185922 +0300" channel="2299447">
+    <title lang="he">ארץ נהדרת 12 - ספיישל עצמאות</title>
+    <desc lang="he">ארץ נהדרת חוזרת בעונה חדשה עם כל הדמויות והמערכונים האהובים. והפעם: תכנית עצמאות חגיגית</desc>
+  </programme>
+  <programme start="20250628185922 +0300" stop="20250628192919 +0300" channel="2299447">
+    <title lang="he">פולישוק 1 - פרק 8</title>
+    <desc lang="he">פפראצי שנשלח ע&amp;quot;י תקומה מצלם את פולישוק חונה בחניית נכים. הפרסום מונע מפולישוק לעשות טובה לחבר ילדות של ראש הממשלה. סולי נעתרת לדייט עם קוזו</desc>
+  </programme>
+  <programme start="20250628192919 +0300" stop="20250628195558 +0300" channel="2299447">
+    <title lang="he">רמזור 2 - חיי לילה</title>
+    <desc lang="he">לחפר נמאס לצאת עם ילדות, ואיצקו ואמיר מציעים לו לצאת עם נשים בגילם, האם זה לא גדול עליו? וגם: לאמיר נמאס להיות הנהג של טלי, והוא לא מוכן לוותר על האוטו שלו</desc>
+  </programme>
+  <programme start="20250628195558 +0300" stop="20250628202303 +0300" channel="2299447">
+    <title lang="he">רמזור 2 - כמה לתת?</title>
+    <desc lang="he">24 השעות האחרונות של אמיר וטלי בדרך לחופה, מכניסה את כולם ללחצים. איצקו שבור כי החבר הכי טוב שלו מתחתן, חפר מנסה למצוא מקורות מימון לצ&amp;#x27;ק לחתונה. כמה נותנים?</desc>
+  </programme>
+  <programme start="20250628202303 +0300" stop="20250628205117 +0300" channel="2299447">
+    <title lang="he">הפרלמנט 1 - שאולי וראובן בשבעה</title>
+    <desc lang="he">שאולי וראובן בשבעה, אמציה יוצא לטיול שורשים בפולין ומוצא אהבה והאיום הדמוגרפי של התרנגולות הופך מוחשי מתמיד</desc>
+  </programme>
+  <programme start="20250628205117 +0300" stop="20250628214821 +0300" channel="2299447">
+    <title lang="he">ארץ נהדרת 20 - הפשרה הגדולה</title>
+    <desc lang="he">מי היה מאמין? היא סופסוף כאן: הפשרה הגדולה של הקואליציה - עם עצמה. ובסברי מרנן גאים להציג: כך תעבירו את סדר הפסח בלי מלחמת אחים ודודים ונינים וגיסים</desc>
+  </programme>
+  <programme start="20250628214821 +0300" stop="20250628222730 +0300" channel="2299447">
+    <title lang="he">צומת מילר 2 - כינור</title>
+    <desc lang="he">הבת של אדיר מתקבלת ללימודי כינור ומתאמנת בבית. מאיה נתקלת באימא שמבקרת את האימהות שלה ואחיה חוזר מצרפת עם אשתו הצרפתייה, אנאלי, ואדיר עוזר לה למצוא עבודה</desc>
+  </programme>
+  <programme start="20250628222730 +0300" stop="20250628230457 +0300" channel="2299447">
+    <title lang="he">צומת מילר 2 - שהילדים לא יבינו כרגע</title>
+    <desc lang="he">אדיר ומאיה מגלים כי הם אינם יכולים יותר לדבר אנגלית מעל ראשם של הילדים, עופר מציע תפקיד ראשי לשחקן ונסחט על ידו. אימא של אדיר זקוקה לטיפול שמביך את אדיר</desc>
+  </programme>
+  <programme start="20250628230457 +0300" stop="20250629000109 +0300" channel="2299447">
+    <title lang="he">ארץ נהדרת 22 - אסד מגיע לאולפן </title>
+    <desc lang="he">מה קורה בסוריה? אסד מגיע לענות על הכל. וגם: להקת חמסה גרסת הממשלה, אושר כהן ועדן פינס חושפים את הזוגיות, ובהשמעת בכורה בין-לאומית: ״גחלת נעורים״ השיר המלא!</desc>
   </programme>
 </tv>
