@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-EPG builder for FreeTV, Cellcom and Partner via an Israeli proxy.
-• Each HTTP request URL is printed.      • DEBUG=1 shows extra [DBG] lines
-• Duplicate logical channel-IDs skipped only after one has data.
+EPG builder for FreeTV, Cellcom **and Partner** via an Israeli proxy.
+• Every HTTP request URL is printed;   set DEBUG=1 for extra [DBG] lines.
+• Duplicate logical channel-IDs are processed until one variant yields data.
 • Output file: file2.xml
 """
 
@@ -14,25 +14,27 @@ import cloudscraper, ssl, urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
 
-# ───────── proxy helper ─────────
+# ────────────────── proxy helper ──────────────────
 class InsecureTunnel(HTTPAdapter):
     def _ctx(self):
-        ctx = create_urllib3_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
+        ctx = create_urllib3_context()
+        ctx.check_hostname = False
+        ctx.verify_mode   = ssl.CERT_NONE
         return ctx
     def init_poolmanager(self, con, maxsize, block=False, **kw):
-        kw["ssl_context"]=self._ctx(); return super().init_poolmanager(con, maxsize, block, **kw)
+        kw["ssl_context"] = self._ctx()
+        return super().init_poolmanager(con, maxsize, block, **kw)
     def proxy_manager_for(self, proxy, **kw):
-        kw["ssl_context"]=self._ctx(); return super().proxy_manager_for(proxy, **kw)
+        kw["ssl_context"] = self._ctx()
+        return super().proxy_manager_for(proxy, **kw)
 
-# ───────── constants ─────────
+# ────────────────── constants ──────────────────
 # FreeTV
 FREETV_API  = "https://web.freetv.tv/api/products/lives/programmes"
 FREETV_HOME = "https://web.freetv.tv/"
-
 # Cellcom
 CELL_LOGIN  = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/anonymousLogin"
 CELL_LIST   = "https://api.frp1.ott.kaltura.com/api_v3/service/asset/action/list"
-
 # Partner
 PARTNER_EPG = "https://my.partner.co.il/TV.Services/MyTvSrv.svc/SeaChange/GetEpg"
 
@@ -40,25 +42,29 @@ IL_TZ         = ZoneInfo("Asia/Jerusalem")
 CHANNELS_FILE = "channels.xml"
 OUT_XML       = "file2.xml"
 
-UA = "Mozilla/5.0 (Windows NT 10.0; Win64; rv:126.0) Gecko/20100101 Firefox/126.0"
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; rv:126.0) "
+      "Gecko/20100101 Firefox/126.0")
 BASE_HEADERS = {"User-Agent": UA,
                 "Accept": "application/json, text/plain, */*"}
 CELL_HEADERS = {"Content-Type": "application/json",
                 "Accept-Encoding": "gzip, deflate, br",
                 "User-Agent": UA}
-PARTNER_HEADERS = {"Content-Type": "application/json;charset=UTF-8",
-                   "Accept": "application/json, text/plain, */*",
-                   "brand": "orange", "category": "TV", "platform": "WEB",
-                   "subCategory": "EPG", "lang": "he-il",
-                   "Accept-Encoding": "gzip,deflate,br",
-                   "User-Agent": UA}
+PARTNER_HEADERS = {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Accept": "application/json, text/plain, */*",
+    "brand": "orange", "category": "TV", "platform": "WEB",
+    "subCategory": "EPG", "lang": "he-il",
+    "Accept-Encoding": "gzip,deflate,br",
+    "User-Agent": UA,
+}
 
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
-def dbg(*m): 
-    if _DBG: print("[DBG]", *m)
+def dbg(*m):
+    if _DBG:
+        print("[DBG]", *m)
 
-# ───────── helpers ─────────
+# ────────────────── helpers ──────────────────
 def day_window(now):
     start = dt.datetime.combine(now.date(), dt.time.min, tzinfo=IL_TZ)
     return start, start + dt.timedelta(days=1)
@@ -78,72 +84,70 @@ def to_dt(val):
         return dt.datetime.fromtimestamp(int(val), tz=IL_TZ)
     if isinstance(val, str):
         return dt.datetime.fromisoformat(val).astimezone(IL_TZ)
-    raise TypeError("bad datetime value")
+    raise TypeError("unsupported datetime format")
 
-# ───────── FreeTV fetch ─────────
+# ────────────────── FreeTV fetch ──────────────────
 def fetch_freetv(sess, sid, since, till):
-    params = {"liveId[]": sid,
-              "since": since.strftime("%Y-%m-%dT%H:%M%z"),
-              "till":  till.strftime("%Y-%m-%dT%H:%M%z"),
-              "lang": "HEB", "platform": "BROWSER"}
-    for a in (1,2):
+    params = {
+        "liveId[]": sid,
+        "since": since.strftime("%Y-%m-%dT%H:%M%z"),
+        "till":  till.strftime("%Y-%m-%dT%H:%M%z"),
+        "lang": "HEB", "platform": "BROWSER",
+    }
+    for a in (1, 2):
         r = sess.get(FREETV_API, params=params, timeout=30); print(r.url)
         if r.status_code == 403 and a == 1:
             sess.get(FREETV_HOME, timeout=20); continue
         r.raise_for_status()
         d = r.json(); return d.get("data", d) if isinstance(d, dict) else d
 
-# ───────── Cellcom fetch ─────────
-def _cell_req(sess, ks, chan, since_ts, till_ts, quoted):
+# ────────────────── Cellcom fetch ──────────────────
+def _cell_req(sess, ks, chan, s_ts, e_ts, quoted):
     q = "'" if quoted else ""
-    ksql = f"(and epg_channel_id='{chan}' start_date>{q}{since_ts}{q} end_date<{q}{till_ts}{q} asset_type='epg')"
+    ksql = f"(and epg_channel_id='{chan}' start_date>{q}{s_ts}{q} end_date<{q}{e_ts}{q} asset_type='epg')"
     payload = {"apiVersion":"5.4.0.28193","clientTag":"2500009-Android",
                "filter":{"kSql":ksql,"objectType":"KalturaSearchAssetFilter","orderBy":"START_DATE_ASC"},
                "ks": ks, "pager":{"objectType":"KalturaFilterPager","pageIndex":1,"pageSize":1000}}
-    dbg("Cell payload",("quoted" if quoted else "numeric"),json.dumps(payload)[:160]+"…")
+    dbg("Cell payload", "quoted" if quoted else "numeric", json.dumps(payload)[:150]+"…")
     r = sess.post(CELL_LIST, json=payload, headers=CELL_HEADERS, timeout=30)
     print(r.url); r.raise_for_status(); return r.json()
 
 def fetch_cellcom(sess, site_id, since, till):
     chan = site_id.split("##")[0]
-    r = sess.post(CELL_LOGIN,
-                  json={"apiVersion":"5.4.0.28193","partnerId":"3197",
-                        "udid":"f4423331-81a2-4a08-8c62-95515d080d79"},
-                  headers=CELL_HEADERS, timeout=30)
+    login = {"apiVersion":"5.4.0.28193","partnerId":"3197",
+             "udid":"f4423331-81a2-4a08-8c62-95515d080d79"}
+    r = sess.post(CELL_LOGIN, json=login, headers=CELL_HEADERS, timeout=30)
     print(r.url); r.raise_for_status()
-    ks = r.json().get("ks") or r.json().get("result", {}).get("ks")
-    since_ts, till_ts = int(since.timestamp()), int(till.timestamp())
+    ks = r.json().get("ks") or r.json().get("result",{}).get("ks")
+    s_ts, e_ts = int(since.timestamp()), int(till.timestamp())
 
-    data = _cell_req(sess, ks, chan, since_ts, till_ts, quoted=False)
+    data = _cell_req(sess, ks, chan, s_ts, e_ts, quoted=False)
     objs = data.get("objects") or data.get("result", {}).get("objects", [])
     if objs: return objs
-    if data.get("result",{}).get("error",{}).get("code") == "4004":
-        data2 = _cell_req(sess, ks, chan, since_ts, till_ts, quoted=True)
+    if data.get("result", {}).get("error", {}).get("code") == "4004":
+        data2 = _cell_req(sess, ks, chan, s_ts, e_ts, quoted=True)
         return data2.get("objects") or data2.get("result", {}).get("objects", [])
     return objs
 
-# ───────── Partner fetch ─────────
-def _partner_payload(channel_id:int, date_str:str) -> dict:
-    """Builds the JSON body Partner expects."""
-    param = f"{channel_id}|{date_str}|UTC"
-    return {"_keys":["param"], "_values":[param], "param": param}
-
-def fetch_partner(sess, site_id:str, since, till):
-    chan_id = int(site_id)          # Partner channel IDs are numeric
+# ────────────────── Partner fetch ──────────────────
+def fetch_partner(sess, site_id, since, till):
+    chan_id = site_id.strip()                 # keep original string
     date_str = since.strftime("%Y-%m-%d")
-    body = _partner_payload(chan_id, date_str)
+    param = f"{chan_id}|{date_str}|UTC"
+    body  = {"_keys": ["param"], "_values": [param], "param": param}
+    dbg("Partner param", param)
 
     r = sess.post(PARTNER_EPG, json=body, headers=PARTNER_HEADERS, timeout=30)
     print(r.url); r.raise_for_status()
     data = r.json()
+    dbg("Partner raw", json.dumps(data)[:180]+"…")
 
-    # Response is a list of channels: find this chan
     for ch in data.get("channels", []):
-        if str(ch.get("id")) == str(chan_id):
+        if str(ch.get("id")) == chan_id:
             return ch.get("events", [])
     return []
 
-# ───────── main ─────────
+# ────────────────── main ──────────────────
 def build_epg():
     since, till = day_window(dt.datetime.now(IL_TZ))
     sess = new_session()
@@ -154,27 +158,25 @@ def build_epg():
     id_state: dict[tuple[str,str], bool] = {}
 
     for ch in ET.parse(CHANNELS_FILE).findall("channel"):
-        site = ch.attrib.get("site", "").lower()
-        raw_id = ch.attrib["site_id"]
-        logical = (raw_id.split("##")[0] if site=="cellcom.co.il" else raw_id)
+        site = ch.attrib.get("site","").lower()
+        raw  = ch.attrib["site_id"]
+        logical = raw.split("##")[0] if site=="cellcom.co.il" else raw
         key = (site, logical)
 
         xmltv_id = ch.attrib["xmltv_id"]
         name = (ch.text or xmltv_id).strip()
 
-        if key not in id_state:     # first encounter: write channel element
+        if key not in id_state:
             CE = ET.SubElement(root,"channel",id=xmltv_id)
             ET.SubElement(CE,"display-name",lang="he").text = name
 
-        if id_state.get(key):       # already fetched successfully
-            dbg("skip duplicate with data", key)
-            continue
+        if id_state.get(key):
+            dbg("skip duplicate with data", key); continue
 
         try:
-            items = (fetch_freetv(sess, raw_id, since, till)      if site=="freetv.tv" else
-                     fetch_cellcom(sess, raw_id, since, till)     if site=="cellcom.co.il" else
-                     fetch_partner(sess, raw_id, since, till)     if site=="partner.co.il" else
-                     [])
+            items = (fetch_freetv(sess, raw, since, till)      if site=="freetv.tv" else
+                     fetch_cellcom(sess, raw, since, till)     if site=="cellcom.co.il" else
+                     fetch_partner(sess, raw, since, till)     if site=="partner.co.il" else [])
         except Exception as e:
             dbg("fetch error", xmltv_id, e); items=[]
 
@@ -183,31 +185,31 @@ def build_epg():
             id_state[key] = True
             programmes.extend((xmltv_id, it, site) for it in items)
 
-    # Write all <programme> entries
+    # write programmes
     for xid, it, site in programmes:
         try:
-            if site == "freetv.tv":
-                s, e = to_dt(it["since"]),     to_dt(it["till"])
-                title = it["title"]
-                desc  = it.get("description") or it.get("summary")
-            elif site == "cellcom.co.il":
-                s, e = to_dt(it["startDate"]), to_dt(it["endDate"])
-                title = it["name"];  desc = it.get("description")
+            if site=="freetv.tv":
+                s,e = to_dt(it["since"]), to_dt(it["till"])
+                title = it["title"]; desc = it.get("description") or it.get("summary")
+            elif site=="cellcom.co.il":
+                s,e = to_dt(it["startDate"]), to_dt(it["endDate"])
+                title = it["name"]; desc = it.get("description")
             else:  # partner
-                s, e = to_dt(it["start"]),    to_dt(it["end"])
-                title = it["name"];  desc = it.get("shortSynopsis")
+                s,e = to_dt(it["start"]), to_dt(it["end"])
+                title = it["name"]; desc = it.get("shortSynopsis")
 
-            pr = ET.SubElement(root, "programme",
+            pr = ET.SubElement(root,"programme",
                                start=s.strftime("%Y%m%d%H%M%S %z"),
                                stop=e.strftime("%Y%m%d%H%M%S %z"),
                                channel=xid)
-            ET.SubElement(pr, "title", lang="he").text = escape(title)
+            ET.SubElement(pr,"title",lang="he").text = escape(title)
             if desc:
-                ET.SubElement(pr, "desc", lang="he").text = escape(desc)
+                ET.SubElement(pr,"desc",lang="he").text = escape(desc)
         except Exception as e:
             dbg("programme error", xid, e)
 
-    ET.indent(root); ET.ElementTree(root).write(OUT_XML, encoding="utf-8", xml_declaration=True)
+    ET.indent(root)
+    ET.ElementTree(root).write(OUT_XML, encoding="utf-8", xml_declaration=True)
     print("✅ wrote", OUT_XML)
 
 if __name__ == "__main__":
