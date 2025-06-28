@@ -61,7 +61,7 @@ YES_HEADERS    = {"Accept-Language": "he-IL",
                   "User-Agent": UA}
 
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
-_DBG = os.getenv("DEBUG", "0") not in ("0", "false", "False", "no")
+_DBG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
 def dbg(site, *m):
     if _DBG:
         print(f"[DBG {site}]", *m)
