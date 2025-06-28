@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-EPG builder for FreeTV, Cellcom, Partner and Yes.
+EPG builder for FreeTV, Cellcom, Partner, Yes and HOT.
 Creates a 1-day guide, from 00:00 today (IL) to 00:00 next day.
 Output: file2.xml
 """
@@ -36,6 +36,7 @@ CELL_LOGIN   = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/a
 CELL_LIST    = "https://api.frp1.ott.kaltura.com/api_v3/service/asset/action/list"
 PARTNER_EPG  = "https://my.partner.co.il/TV.Services/MyTvSrv.svc/SeaChange/GetEpg"
 YES_CH_BASE  = "https://svc.yes.co.il/api/content/broadcast-schedule/channels"
+HOT_API      = "https://www.hot.net.il/HotCmsApiFront/api/ProgramsSchedual/GetProgramsSchedual"
 
 IL_TZ         = ZoneInfo("Asia/Jerusalem")
 CHANNELS_FILE = "channels.xml"
@@ -58,6 +59,11 @@ YES_HEADERS    = {"Accept-Language": "he-IL",
                   "Accept": "application/json, text/plain, */*",
                   "Referer": "https://www.yes.co.il/",
                   "Origin":  "https://www.yes.co.il",
+                  "User-Agent": UA}
+HOT_HEADERS    = {"Content-Type": "application/json",
+                  "Accept": "application/json, text/plain, */*",
+                  "Origin": "https://www.hot.net.il",
+                  "Referer": "https://www.hot.net.il/heb/tv/tvguide/",
                   "User-Agent": UA}
 
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
@@ -96,7 +102,7 @@ def new_session():
         s.verify = False
     return s
 
-# ── FreeTV ──────────────────────────────────────────────────────
+# ── FreeTV (unchanged) ──────────────────────────────────────────
 def fetch_freetv(sess, sid, since, till):
     p = {"liveId[]": sid,
          "since": since.strftime("%Y-%m-%dT%H:%M%z"),
@@ -112,7 +118,7 @@ def fetch_freetv(sess, sid, since, till):
         d = r.json()
         return d.get("data", d) if isinstance(d, dict) else d
 
-# ── Cellcom ─────────────────────────────────────────────────────
+# ── Cellcom (unchanged) ─────────────────────────────────────────
 def _cell_req(sess, ks, chan, sts, ets, quoted):
     q = "'" if quoted else ""
     ksql = (f"(and epg_channel_id='{chan}' start_date>{q}{sts}{q} "
@@ -146,7 +152,7 @@ def fetch_cellcom(sess, site_id, since, till):
         return data2.get("objects") or data2.get("result", {}).get("objects", [])
     return objs
 
-# ── Partner ──────────────────────────────────────────────────────
+# ── Partner (unchanged) ─────────────────────────────────────────
 def fetch_partner(sess, site_id, since, till):
     chan = site_id.strip()
     param = f"{chan}|{since.strftime('%Y-%m-%d')}|UTC"
@@ -159,7 +165,7 @@ def fetch_partner(sess, site_id, since, till):
             return ch.get("events", [])
     return []
 
-# ── Yes ──────────────────────────────────────────────────────────
+# ── Yes (unchanged) ─────────────────────────────────────────────
 def fetch_yes(sess, site_id, since, till):
     chan = site_id.strip()
     url = f"{YES_CH_BASE}/{chan}?date={since.strftime('%Y-%m-%d')}&ignorePastItems=false"
@@ -168,12 +174,33 @@ def fetch_yes(sess, site_id, since, till):
     r.raise_for_status()
     return r.json().get("items", [])
 
-# ── main build ───────────────────────────────────────────────────
+# ── HOT (new) ───────────────────────────────────────────────────
+def fetch_hot(sess, site_id, since, till):
+    chan = site_id.lstrip("0") or "0"     # ChannelId as numeric string
+    items: list[dict] = []
+    for hour in range(24):
+        start_block = since + dt.timedelta(hours=hour)
+        end_block   = start_block + dt.timedelta(hours=1)
+        payload = {
+            "ChannelId": chan,
+            "ProgramsStartDateTime": start_block.strftime("%Y-%m-%dT%H:%M:%S"),
+            "ProgramsEndDateTime":   end_block.strftime("%Y-%m-%dT%H:%M:%S"),
+            "Hour": hour
+        }
+        r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=30)
+        print(r.url)
+        r.raise_for_status()
+        data = r.json()
+        if data.get("isSuccess"):
+            items.extend(data.get("data", []))
+    return items
+
+# ── main build (original logic + HOT branch) ────────────────────
 def build_epg():
     day_start, day_end = day_window(dt.datetime.now(IL_TZ))
     sess = new_session()
 
-    root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom+Partner+Yes (Day)",
+    root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom+Partner+Yes+HOT (Day)",
                              "generator-info-name": "proxyEPG"})
     programmes: list[tuple[str, dict, str]] = []
     id_state: dict[tuple[str, str], bool] = {}
@@ -200,6 +227,7 @@ def build_epg():
                 fetch_cellcom(sess, raw, day_start, day_end)   if site == "cellcom.co.il" else
                 fetch_partner(sess, raw, day_start, day_end)   if site == "partner.co.il" else
                 fetch_yes(sess, raw, day_start, day_end)       if site == "yes.co.il" else
+                fetch_hot(sess, raw, day_start, day_end)       if site == "hot.net.il" else
                 []
             )
         except Exception as e:
@@ -225,6 +253,10 @@ def build_epg():
                 s, e = to_dt(it["start"]), to_dt(it["end"])
                 title = it["name"]
                 desc  = it.get("shortSynopsis")
+            elif site == "hot.net.il":
+                s, e = to_dt(it["startTime"]), to_dt(it["endTime"])
+                title = it.get("programName") or it.get("programTitle") or it.get("programNameHe")
+                desc  = it.get("shortDescription") or it.get("shortDescriptionHe")
             else:   # yes
                 s, e = to_dt(it["starts"]), to_dt(it["ends"])
                 title = it["title"]
@@ -234,7 +266,7 @@ def build_epg():
                                start=s.strftime("%Y%m%d%H%M%S %z"),
                                stop=e.strftime("%Y%m%d%H%M%S %z"),
                                channel=xid)
-            ET.SubElement(pr, "title", lang="he").text = escape(title)
+            ET.SubElement(pr, "title", lang="he").text = escape(title or "")
             if desc:
                 ET.SubElement(pr, "desc", lang="he").text = escape(desc)
         except Exception as e:
