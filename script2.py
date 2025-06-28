@@ -188,7 +188,7 @@ def fetch_hot(sess, site_id, since, _):
 
 # ── main build ──────────────────────────────────────────────────
 def build_epg():
-    print("Starting EPG build...")   # <- add this line
+    print("Starting EPG build...", flush=True)   # <- add this line
     day_start, day_end = day_window(dt.datetime.now(IL_TZ))
     sess = new_session()
 
