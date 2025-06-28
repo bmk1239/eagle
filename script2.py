@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 EPG builder for FreeTV, Cellcom, Partner and Yes.
-Creates a 7-day guide, from the most-recent Sunday 00:00 (IL) through the
-following Saturday 23:59.  Output: file2.xml
+Creates a 1-day guide, from 00:00 today (IL) to 00:00 next day.
+Output: file2.xml
 """
 
 from __future__ import annotations
@@ -81,18 +81,10 @@ def to_dt(val):
         return dt.datetime.fromisoformat(iso).astimezone(IL_TZ)
     raise TypeError("unsupported datetime value")
 
-def week_window(now: dt.datetime):
-    """Return (Sunday 00:00, next Sunday 00:00) for the week containing `now`."""
-    days_back = (now.weekday() - 6) % 7      # Python: Monday=0 … Sunday=6
-    start = dt.datetime.combine(
-        (now - dt.timedelta(days=days_back)).date(),
-        dt.time.min, tzinfo=IL_TZ
-    )
-    return start, start + dt.timedelta(days=7)
-
-def daterange(start: dt.datetime):
-    for i in range(7):
-        yield (start + dt.timedelta(days=i)).date()
+def day_window(now: dt.datetime):
+    """Return (today 00:00, tomorrow 00:00) in IL timezone."""
+    start = dt.datetime.combine(now.date(), dt.time.min, tzinfo=IL_TZ)
+    return start, start + dt.timedelta(days=1)
 
 def new_session():
     s = cloudscraper.create_scraper()
@@ -154,41 +146,34 @@ def fetch_cellcom(sess, site_id, since, till):
         return data2.get("objects") or data2.get("result", {}).get("objects", [])
     return objs
 
-# ── Partner (daily loop) ────────────────────────────────────────
-def fetch_partner_week(sess, site_id, week_start):
+# ── Partner ──────────────────────────────────────────────────────
+def fetch_partner(sess, site_id, since, till):
     chan = site_id.strip()
-    out: list[dict] = []
-    for d in daterange(week_start):
-        body = {"_keys": ["param"],
-                "_values": [f"{chan}|{d}|UTC"],
-                "param": f"{chan}|{d}|UTC"}
-        r = sess.post(PARTNER_EPG, json=body, headers=PARTNER_HEADERS, timeout=30)
-        print(r.url)
-        r.raise_for_status()
-        for ch in r.json().get("data", []):
-            if ch.get("id") == chan:
-                out.extend(ch.get("events", []))
-                break
-    return out
+    param = f"{chan}|{since.strftime('%Y-%m-%d')}|UTC"
+    body = {"_keys": ["param"], "_values": [param], "param": param}
+    r = sess.post(PARTNER_EPG, json=body, headers=PARTNER_HEADERS, timeout=30)
+    print(r.url)
+    r.raise_for_status()
+    for ch in r.json().get("data", []):
+        if ch.get("id") == chan:
+            return ch.get("events", [])
+    return []
 
-# ── Yes (daily loop) ────────────────────────────────────────────
-def fetch_yes_week(sess, site_id, week_start):
+# ── Yes ──────────────────────────────────────────────────────────
+def fetch_yes(sess, site_id, since, till):
     chan = site_id.strip()
-    out: list[dict] = []
-    for d in daterange(week_start):
-        url = f"{YES_CH_BASE}/{chan}?date={d}&ignorePastItems=false"
-        r = sess.get(url, headers=YES_HEADERS, timeout=30)
-        print(r.url)
-        r.raise_for_status()
-        out.extend(r.json().get("items", []))
-    return out
+    url = f"{YES_CH_BASE}/{chan}?date={since.strftime('%Y-%m-%d')}&ignorePastItems=false"
+    r = sess.get(url, headers=YES_HEADERS, timeout=30)
+    print(r.url)
+    r.raise_for_status()
+    return r.json().get("items", [])
 
-# ── main build ─────────────────────────────────────────────────
+# ── main build ───────────────────────────────────────────────────
 def build_epg():
-    week_start, week_end = week_window(dt.datetime.now(IL_TZ))
+    day_start, day_end = day_window(dt.datetime.now(IL_TZ))
     sess = new_session()
 
-    root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom+Partner+Yes (Sun–Sat)",
+    root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom+Partner+Yes (Day)",
                              "generator-info-name": "proxyEPG"})
     programmes: list[tuple[str, dict, str]] = []
     id_state: dict[tuple[str, str], bool] = {}
@@ -211,10 +196,10 @@ def build_epg():
 
         try:
             items = (
-                fetch_freetv(sess, raw, week_start, week_end)    if site == "freetv.tv"  else
-                fetch_cellcom(sess, raw, week_start, week_end)   if site == "cellcom.co.il" else
-                fetch_partner_week(sess, raw, week_start)        if site == "partner.co.il" else
-                fetch_yes_week(sess, raw, week_start)            if site == "yes.co.il" else
+                fetch_freetv(sess, raw, day_start, day_end)    if site == "freetv.tv"  else
+                fetch_cellcom(sess, raw, day_start, day_end)   if site == "cellcom.co.il" else
+                fetch_partner(sess, raw, day_start, day_end)   if site == "partner.co.il" else
+                fetch_yes(sess, raw, day_start, day_end)       if site == "yes.co.il" else
                 []
             )
         except Exception as e:
