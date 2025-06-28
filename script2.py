@@ -127,15 +127,15 @@ def build_epg():
         programmes = fetch_programmes(sess, site_id, start, end)
 
         for p in programmes:
-            if "start" not in p or "end" not in p or "name" not in p:
+            if "since" not in p or "till" not in p or "title" not in p:
                 continue  # דילוג על פריטים חסרי מידע חיוני
-            s = dt.datetime.fromisoformat(p["start"]).astimezone(IL_TZ)
-            e = dt.datetime.fromisoformat(p["end"]).astimezone(IL_TZ)
+            s = dt.datetime.fromisoformat(p["since"]).astimezone(IL_TZ)
+            e = dt.datetime.fromisoformat(p["till"]).astimezone(IL_TZ)
             pr = ET.SubElement(root, "programme",
                                start=s.strftime("%Y%m%d%H%M%S %z"),
                                stop=e.strftime("%Y%m%d%H%M%S %z"),
                                channel=xmltv_id)
-            ET.SubElement(pr, "title", lang="he").text = escape(p.get("name", ""))
+            ET.SubElement(pr, "title", lang="he").text = escape(p.get("title", ""))
             if desc := p.get("description") or p.get("summary"):
                 ET.SubElement(pr, "desc", lang="he").text = escape(desc)
 
