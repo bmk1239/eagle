@@ -168,7 +168,7 @@ def fetch_yes(sess, site_id, since, till):
 
 # ── HOT ─────────────────────────────────────────────────────────
 def fetch_hot(sess, site_id, since, till):
-    chan = site_id.lstrip("0") or "0"
+    chan = site_id
     dbg("hot.net.il", f"fetch {chan}")
     payload = {
         "ChannelId": chan,
