@@ -169,56 +169,30 @@ def fetch_yes(sess, site_id, since, till):
     r.raise_for_status()
     return r.json().get("items", [])
 
-# ── HOT (hourly shared-cache, robust ID match) ──────────────────
-_hot_cache: dict[int, list[dict]] = {}          # {hour: rows}
-
-def _hot_fetch_hour(sess, day_start: dt.datetime, hour: int) -> list[dict]:
-    """Download (once) the full HOT grid for a given hour and cache it."""
-    if hour in _hot_cache:
-        return _hot_cache[hour]
-
-    block_start = day_start + dt.timedelta(hours=hour)
-    block_end   = block_start + dt.timedelta(hours=1)
-
-    payload = {
-        "ChannelId": 0,  # 0 = return ALL channels for the requested hour
-        "ProgramsStartDateTime": block_start.strftime("%Y-%m-%dT%H:%M:%S"),
-        "ProgramsEndDateTime":   block_end.strftime("%Y-%m-%dT%H:%M:%S"),
-        "Hour": hour
-    }
-
-    dbg("hot.net.il", f"fetch hour {hour:02d}", flush=True)
-    r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=60)
-    print(r.url, flush=True)                          # one URL per hour
-    r.raise_for_status()
-
-    data = r.json()
-    _hot_cache[hour] = data.get("data", []) if data.get("isSuccess") else []
-    return _hot_cache[hour]
-
-
-def fetch_hot(sess, site_id: str,
-              since: dt.datetime, till: dt.datetime) -> list[dict]:
-    """
-    Collect every row whose numeric channelID matches `site_id`,
-    across the 24 cached hourly blocks.
-    """
-    try:
-        target_id = int(site_id)                      # ignore leading zeros
-    except ValueError:
-        dbg("hot.net.il", f"bad site_id '{site_id}'", flush=True)
-        return []
-
-    dbg("hot.net.il", f"channel {target_id}", flush=True)
-
-    items: list[dict] = []
+def fetch_hot(sess, site_id, since, till):
+    chan = site_id.lstrip("0") or "0"
+    dbg("hot.net.il", f"Fetching for channel: {chan}", flush=True)
+    items = []
     for hour in range(24):
-        for row in _hot_fetch_hour(sess, since, hour):
-            cid = row.get("channelID", "").strip()
-            if cid.isdigit() and int(cid) == target_id:
-                items.append(row)
-
-    dbg("hot.net.il", f"collected {len(items)} items", flush=True)
+        start_block = since + dt.timedelta(hours=hour)
+        end_block   = start_block + dt.timedelta(hours=1)
+        payload = {
+            "ChannelId": chan,
+            "ProgramsStartDateTime": start_block.strftime("%Y-%m-%dT%H:%M:%S"),
+            "ProgramsEndDateTime":   end_block.strftime("%Y-%m-%dT%H:%M:%S"),
+            "Hour": hour
+        }
+        r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=60)
+        r.raise_for_status()
+        data = r.json()
+        dbg("hot.net.il", f"Hour {hour} response keys: {list(data.keys())}", flush=True)
+        dbg("hot.net.il", f"Hour {hour} response isSuccess: {data.get('isSuccess')}", flush=True)
+        if data.get("isSuccess"):
+            dbg("hot.net.il", f"Hour {hour} data length: {len(data.get('data', []))}", flush=True)
+            items.extend(data.get("data", []))
+        else:
+            dbg("hot.net.il", f"Hour {hour} returned failure or empty data", flush=True)
+    dbg("hot.net.il", f"Total items fetched: {len(items)}", flush=True)
     return items
 
 # ── main build ─────────────────────────────────────────
