@@ -64,33 +64,20 @@
     <channel update="i" site="freetv.tv" site_id="3355714" xmltv_id="Junior">Junior</channel>
     <channel update="i" site="freetv.tv" site_id="3513313" xmltv_id="ערוץ הילדים">ערוץ הילדים</channel>
     <channel update="i" site="freetv.tv" site_id="3520308" xmltv_id="FOMO">FOMO</channel>
-
+    
     <channel update="i" site="cellcom.co.il" site_id="3728##f53ca55a5b454260bc82ccd7e45ba5d8/version/0" xmltv_id="ישראלי tv">ישראלי tv</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3725##560a7ac3a0db499f8b7d0a0ddf77baf3/version/2" xmltv_id="מרתון סרטים">מרתון סרטים</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3726##b0d75a26b918429293a4977c80e19ae1/version/3" xmltv_id="ערוץ HBO">ערוץ HBO</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3749##7ee8a927433b4304af3766a4ea616ea6/version/10" xmltv_id="סלקום קידס">סלקום קידס</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="4354##52921e6860324f8ea26f5c8b9106dd18/version/4" xmltv_id="סלקום family">סלקום family</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3724##d4660182c0f447ef9cdfc487d2f10ced/version/0" xmltv_id="מרתון דוקו">מרתון דוקו</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3536##aaf44cf9e9ed405786a19a97b06d9e74/version/0" xmltv_id="ערוץ 9">ערוץ 9</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="4915##cce6fc1fe5184dd3a2700655d35b15b4/version/2" xmltv_id="ספיישל סדרות אהבה">ספיישל סדרות אהבה</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3533##3ee36e3305694613b4b82aa97703ac2a/version/0" xmltv_id="כאן 11">כאן 11</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3530##a3ff442c67a84f8c904cd4636eecbdd8/version/0" xmltv_id="קשת">קשת</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3531##7ed219e2533e4e719fff2385ea24d6ae/version/2" xmltv_id="רשת">רשת</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3537##4491d6195fca43cc86e9d386610464dc/version/3" xmltv_id="ערוץ 14 HD">ערוץ 14 HD</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="4881##087798928fd04af2bf8d1f1d9e67d78c/version/1" xmltv_id="וואלה +">וואלה +</channel>
-
     <channel update="i" site="cellcom.co.il" site_id="3538##e96dde86b1534315a53698647135e7b1/version/0" xmltv_id="נ. ג’יאוגרפיק WILD HD">נ. ג’יאוגרפיק WILD HD</channel>
     <channel update="i" site="cellcom.co.il" site_id="3539##12edebf10c3e4af894a9cb001f98f19d/version/0" xmltv_id="נשיונל ג’יאוגרפיק">נשיונל ג’יאוגרפיק</channel>
     <channel update="i" site="cellcom.co.il" site_id="3540##d500409ba81f4b82a683a534c02f63d4/version/0" xmltv_id="Discovery HD">Discovery HD</channel>
