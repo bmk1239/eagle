@@ -45,7 +45,7 @@ SITE_HOME = "https://web.freetv.tv/"
 IL_TZ     = ZoneInfo("Asia/Jerusalem")
 
 CHANNELS_FILE = "channels.xml"
-OUT_XML       = "freetv_epg.xml"
+OUT_XML       = "file2.xml"
 
 BASE_HEADERS = {
     "User-Agent": (
