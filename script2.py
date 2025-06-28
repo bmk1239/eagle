@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
 Generate a one-day XMLTV guide from FreeTV, using an Israel proxy and a
-custom root‑CA that’s stored in GitHub Secrets as IL_PROXY_CA_B64.
+custom root-CA that’s stored in GitHub Secrets as IL_PROXY_CA_B64.
 
-Added verbose *debug prints* – look for the [dbg] prefix.
-Set the environment variable DEBUG=0 to mute them.
-
-Dependencies:  requests  cloudscraper  (install in workflow)
+🆕 2025-06-28
+• Removed all per-channel try/except blocks.
+• All warnings are now treated as errors, so even SSL warnings stop the run.
+• Any exception anywhere ends the process with a non-zero exit status.
 """
 
 from __future__ import annotations
@@ -15,20 +15,17 @@ import base64
 import datetime as dt
 import os
 import tempfile
+import warnings
 from html import escape
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import xml.etree.ElementTree as ET
 
 import cloudscraper
+from requests.adapters import HTTPAdapter
 from requests.exceptions import HTTPError
-# top of the file
-import warnings, urllib3
-# ...
-
 import ssl
 from urllib3.util.ssl_ import create_urllib3_context
-from requests.adapters import HTTPAdapter
 
 # ────────────────────────── helpers ───────────────────────────
 
@@ -71,6 +68,8 @@ BASE_HEADERS = {
 }
 # ─────────────────────────────────────────────────────────────────
 
+# Treat every warning as an exception so the script aborts even on SSLWarnings
+warnings.filterwarnings("error")
 
 def day_window(now_il: dt.datetime) -> tuple[dt.datetime, dt.datetime]:
     """Return the UTC span of the requested IL calendar day."""
@@ -98,8 +97,7 @@ def configure_session():
     # ---- Disable TLS checks if flag present ----------------
     if os.getenv("IL_PROXY_INSECURE", "").lower() in ("1", "true", "yes"):
         sess.verify = False
-        warnings.filterwarnings("ignore",
-                                category=urllib3.exceptions.InsecureRequestWarning)
+        # the warning will now raise, so announce why we’re ignoring it
         print("[warn] SSL verification DISABLED (IL_PROXY_INSECURE)")
 
     # ---- Optional login cookies ----------------------------
@@ -136,7 +134,7 @@ def fetch_programmes(sess, site_id, start: dt.datetime, end: dt.datetime):
                 dbg("Attempting Cloudflare challenge bypass …")
                 sess.get(SITE_HOME, timeout=20)
                 continue
-            raise exc
+            raise  # re-raise → abort script immediately
 
 
 def build_epg():
@@ -164,21 +162,20 @@ def build_epg():
         ch_el = ET.SubElement(root, "channel", id=xmltv_id)
         ET.SubElement(ch_el, "display-name", lang="he").text = name
 
-        try:
-            programmes = fetch_programmes(sess, site_id, start, end)
-            for p in programmes:
-                s = dt.datetime.fromisoformat(p["start"]).astimezone(IL_TZ)
-                e = dt.datetime.fromisoformat(p["end"]).astimezone(IL_TZ)
-                pr = ET.SubElement(root, "programme",
-                                   start=s.strftime("%Y%m%d%H%M%S %z"),
-                                   stop=e.strftime("%Y%m%d%H%M%S %z"),
-                                   channel=xmltv_id)
-                ET.SubElement(pr, "title", lang="he").text = escape(p.get("name", ""))
-                if desc := p.get("description") or p.get("summary"):
-                    ET.SubElement(pr, "desc", lang="he").text = escape(desc)
-            dbg(f"Added {len(programmes)} programmes for {name}")
-        except Exception as exc:
-            print(f"[warn] {name}: {exc}")
+        # 🚨 No try/except here – any failure kills the entire run
+        programmes = fetch_programmes(sess, site_id, start, end)
+
+        for p in programmes:
+            s = dt.datetime.fromisoformat(p["start"]).astimezone(IL_TZ)
+            e = dt.datetime.fromisoformat(p["end"]).astimezone(IL_TZ)
+            pr = ET.SubElement(root, "programme",
+                               start=s.strftime("%Y%m%d%H%M%S %z"),
+                               stop=e.strftime("%Y%m%d%H%M%S %z"),
+                               channel=xmltv_id)
+            ET.SubElement(pr, "title", lang="he").text = escape(p.get("name", ""))
+            if desc := p.get("description") or p.get("summary"):
+                ET.SubElement(pr, "desc", lang="he").text = escape(desc)
+        dbg(f"Added {len(programmes)} programmes for {name}")
 
     ET.indent(root)
     ET.ElementTree(root).write(OUT_XML, encoding="utf-8", xml_declaration=True)
@@ -186,4 +183,5 @@ def build_epg():
 
 
 if __name__ == "__main__":
+    # Any uncaught exception will exit with a non-zero code.
     build_epg()
