@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-EPG builder for FreeTV, Cellcom **and Partner** via an Israeli proxy.
-• Every HTTP request URL is printed;   set DEBUG=1 for extra [DBG] lines.
-• Duplicate logical channel-IDs are processed until one variant yields data.
+EPG builder for FreeTV, Cellcom and Partner via an IL proxy.
+• Prints every request URL; DEBUG=1 adds [DBG] lines.
+• Duplicate logical channel-IDs skipped only after one returns data.
 • Output file: file2.xml
 """
 
@@ -14,12 +14,12 @@ import cloudscraper, ssl, urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
 
-# ────────────────── proxy helper ──────────────────
+# ───────── proxy helper ─────────
 class InsecureTunnel(HTTPAdapter):
     def _ctx(self):
         ctx = create_urllib3_context()
         ctx.check_hostname = False
-        ctx.verify_mode   = ssl.CERT_NONE
+        ctx.verify_mode    = ssl.CERT_NONE
         return ctx
     def init_poolmanager(self, con, maxsize, block=False, **kw):
         kw["ssl_context"] = self._ctx()
@@ -28,14 +28,11 @@ class InsecureTunnel(HTTPAdapter):
         kw["ssl_context"] = self._ctx()
         return super().proxy_manager_for(proxy, **kw)
 
-# ────────────────── constants ──────────────────
-# FreeTV
+# ───────── constants ─────────
 FREETV_API  = "https://web.freetv.tv/api/products/lives/programmes"
 FREETV_HOME = "https://web.freetv.tv/"
-# Cellcom
 CELL_LOGIN  = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/anonymousLogin"
 CELL_LIST   = "https://api.frp1.ott.kaltura.com/api_v3/service/asset/action/list"
-# Partner
 PARTNER_EPG = "https://my.partner.co.il/TV.Services/MyTvSrv.svc/SeaChange/GetEpg"
 
 IL_TZ         = ZoneInfo("Asia/Jerusalem")
@@ -60,11 +57,10 @@ PARTNER_HEADERS = {
 
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG", "1") not in ("0", "false", "False", "no")
-def dbg(*m):
-    if _DBG:
-        print("[DBG]", *m)
+def dbg(*m):       # simple debug printer
+    if _DBG: print("[DBG]", *m)
 
-# ────────────────── helpers ──────────────────
+# ───────── helpers ─────────
 def day_window(now):
     start = dt.datetime.combine(now.date(), dt.time.min, tzinfo=IL_TZ)
     return start, start + dt.timedelta(days=1)
@@ -84,16 +80,14 @@ def to_dt(val):
         return dt.datetime.fromtimestamp(int(val), tz=IL_TZ)
     if isinstance(val, str):
         return dt.datetime.fromisoformat(val).astimezone(IL_TZ)
-    raise TypeError("unsupported datetime format")
+    raise TypeError("bad datetime value")
 
-# ────────────────── FreeTV fetch ──────────────────
+# ───────── FreeTV fetch ─────────
 def fetch_freetv(sess, sid, since, till):
-    params = {
-        "liveId[]": sid,
-        "since": since.strftime("%Y-%m-%dT%H:%M%z"),
-        "till":  till.strftime("%Y-%m-%dT%H:%M%z"),
-        "lang": "HEB", "platform": "BROWSER",
-    }
+    params = {"liveId[]": sid,
+              "since": since.strftime("%Y-%m-%dT%H:%M%z"),
+              "till":  till.strftime("%Y-%m-%dT%H:%M%z"),
+              "lang": "HEB", "platform": "BROWSER"}
     for a in (1, 2):
         r = sess.get(FREETV_API, params=params, timeout=30); print(r.url)
         if r.status_code == 403 and a == 1:
@@ -101,14 +95,13 @@ def fetch_freetv(sess, sid, since, till):
         r.raise_for_status()
         d = r.json(); return d.get("data", d) if isinstance(d, dict) else d
 
-# ────────────────── Cellcom fetch ──────────────────
+# ───────── Cellcom fetch ─────────
 def _cell_req(sess, ks, chan, s_ts, e_ts, quoted):
     q = "'" if quoted else ""
     ksql = f"(and epg_channel_id='{chan}' start_date>{q}{s_ts}{q} end_date<{q}{e_ts}{q} asset_type='epg')"
     payload = {"apiVersion":"5.4.0.28193","clientTag":"2500009-Android",
                "filter":{"kSql":ksql,"objectType":"KalturaSearchAssetFilter","orderBy":"START_DATE_ASC"},
-               "ks": ks, "pager":{"objectType":"KalturaFilterPager","pageIndex":1,"pageSize":1000}}
-    dbg("Cell payload", "quoted" if quoted else "numeric", json.dumps(payload)[:150]+"…")
+               "ks": ks,"pager":{"objectType":"KalturaFilterPager","pageIndex":1,"pageSize":1000}}
     r = sess.post(CELL_LIST, json=payload, headers=CELL_HEADERS, timeout=30)
     print(r.url); r.raise_for_status(); return r.json()
 
@@ -119,35 +112,35 @@ def fetch_cellcom(sess, site_id, since, till):
     r = sess.post(CELL_LOGIN, json=login, headers=CELL_HEADERS, timeout=30)
     print(r.url); r.raise_for_status()
     ks = r.json().get("ks") or r.json().get("result",{}).get("ks")
-    s_ts, e_ts = int(since.timestamp()), int(till.timestamp())
+    sts, ets = int(since.timestamp()), int(till.timestamp())
 
-    data = _cell_req(sess, ks, chan, s_ts, e_ts, quoted=False)
+    data = _cell_req(sess, ks, chan, sts, ets, quoted=False)
     objs = data.get("objects") or data.get("result", {}).get("objects", [])
     if objs: return objs
     if data.get("result", {}).get("error", {}).get("code") == "4004":
-        data2 = _cell_req(sess, ks, chan, s_ts, e_ts, quoted=True)
+        data2 = _cell_req(sess, ks, chan, sts, ets, quoted=True)
         return data2.get("objects") or data2.get("result", {}).get("objects", [])
     return objs
 
-# ────────────────── Partner fetch ──────────────────
+# ───────── Partner fetch ─────────
 def fetch_partner(sess, site_id, since, till):
-    chan_id = site_id.strip()                 # keep original string
+    chan_id  = site_id.strip()                              # keep string
     date_str = since.strftime("%Y-%m-%d")
-    param = f"{chan_id}|{date_str}|UTC"
-    body  = {"_keys": ["param"], "_values": [param], "param": param}
+    param    = f"{chan_id}|{date_str}|UTC"
+    body     = {"_keys":["param"], "_values":[param], "param": param}
     dbg("Partner param", param)
 
     r = sess.post(PARTNER_EPG, json=body, headers=PARTNER_HEADERS, timeout=30)
     print(r.url); r.raise_for_status()
     data = r.json()
-    dbg("Partner raw", json.dumps(data)[:180]+"…")
+    dbg("Partner raw", json.dumps(data)[:200]+"…")
 
-    for ch in data.get("channels", []):
-        if str(ch.get("id")) == chan_id:
+    for ch in data.get("data", []):                         # <-- CHANGED
+        if ch.get("id") == chan_id:                         # <-- CHANGED
             return ch.get("events", [])
     return []
 
-# ────────────────── main ──────────────────
+# ───────── main ─────────
 def build_epg():
     since, till = day_window(dt.datetime.now(IL_TZ))
     sess = new_session()
@@ -185,7 +178,7 @@ def build_epg():
             id_state[key] = True
             programmes.extend((xmltv_id, it, site) for it in items)
 
-    # write programmes
+    # create programme elements
     for xid, it, site in programmes:
         try:
             if site=="freetv.tv":
@@ -194,7 +187,7 @@ def build_epg():
             elif site=="cellcom.co.il":
                 s,e = to_dt(it["startDate"]), to_dt(it["endDate"])
                 title = it["name"]; desc = it.get("description")
-            else:  # partner
+            else:
                 s,e = to_dt(it["start"]), to_dt(it["end"])
                 title = it["name"]; desc = it.get("shortSynopsis")
 
