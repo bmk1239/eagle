@@ -2,13 +2,13 @@
 """
 EPG builder for FreeTV, Cellcom, Partner, Yes **and HOT**.
 Creates a 1-day guide (IL-time today 00:00 → tomorrow 00:00).
-Times are written in UTC (+0000).  Output: file2.xml
+Times are written in Israel local offset.  Output: file2.xml
 """
 
 from __future__ import annotations
 import datetime as dt, os, re, warnings, xml.etree.ElementTree as ET
 from html import escape
-from datetime import datetime, timezone      # ← UTC helper
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import cloudscraper, ssl, urllib3, json
@@ -133,93 +133,4 @@ _HOT_CACHE=None; HOT_DT="%Y/%m/%d %H:%M:%S"
 def _collect_hot_day(sess,start):
     dbg("hot.net.il","collecting whole day once",flush=True)
     payload={"ChannelId":"0","ProgramsStartDateTime":start.strftime("%Y-%m-%dT00:00:00"),
-             "ProgramsEndDateTime": start.strftime("%Y-%m-%dT23:59:59"),"Hour":0}
-    r=sess.post(HOT_API,json=payload,headers=HOT_HEADERS,timeout=60); print(r.url,flush=True)
-    try: rows=r.json().get("data",{}).get("programsDetails",[])
-    except Exception as e: dbg("hot.net.il","json decode error",e,flush=True); return {}
-    dbg("hot.net.il",f"whole-day rows: {len(rows)}",flush=True)
-    by={}; 
-    for it in rows: by.setdefault(str(it.get("channelID","")).zfill(3),[]).append(it)
-    return by
-def fetch_hot(sess,site_id,start,_):
-    global _HOT_CACHE
-    if _HOT_CACHE is None: _HOT_CACHE=_collect_hot_day(sess,start)
-    items=_HOT_CACHE.get(site_id.zfill(3),[])
-    dbg("hot.net.il",f"channel {site_id} items: {len(items)}",flush=True)
-    return items
-
-# ───────── main build ─────────
-def build_epg():
-    since,till=day_window(dt.datetime.now(IL_TZ)); sess=new_session()
-    root=ET.Element("tv",{"source-info-name":"FreeTV+Cellcom+Partner+Yes+HOT (Day)",
-                          "generator-info-name":"proxyEPG"})
-    entries: dict[str,list[tuple[str,str,str,str]]] = {}  # xmltv_id -> list[(site,raw,name,logical)]
-
-    # collect all lines by xmltv_id
-    for ch in ET.parse(CHANNELS_FILE).findall("channel"):
-        xmltv = (ch.attrib.get("xmltv_id") or "").strip()
-        if not xmltv:
-            dbg("skip","empty xmltv_id, ignored",flush=True)
-            continue
-        site = ch.attrib.get("site","").lower()
-        raw  = ch.attrib["site_id"]
-        logical = raw.split("##")[0] if site=="cellcom.co.il" else raw
-        name = (ch.text or xmltv).strip()
-        entries.setdefault(xmltv,[]).append((site,raw,name,logical))
-
-    programmes=[]
-    for xmltv, variants in entries.items():
-        ok_items=None
-        for site,raw,name,logical in variants:
-            try:
-                items=( fetch_freetv(sess,raw,since,till)  if site=="freetv.tv"  else
-                        fetch_cellcom(sess,raw,since,till) if site=="cellcom.co.il" else
-                        fetch_partner(sess,raw,since,till) if site=="partner.co.il" else
-                        fetch_yes(sess,raw,since,till)     if site=="yes.co.il"    else
-                        fetch_hot(sess,raw,since,till)     if site=="hot.net.il"   else [] )
-            except Exception as e:
-                dbg(site,"fetch error",xmltv,e,flush=True); items=[]
-            dbg(site,f"{xmltv} → {len(items)} items",flush=True)
-            if items:
-                ok_items=(items,site,name)
-                break   # first variant with data wins
-
-        if not ok_items:
-            dbg("skip",f"{xmltv}: no data",flush=True)
-            continue   # nothing to write
-
-        items,site,name = ok_items
-        CE=ET.SubElement(root,"channel",id=xmltv); ET.SubElement(CE,"display-name",lang="he").text=name
-        for it in items:
-            try:
-                if site=="freetv.tv":
-                    s,e=to_dt(it["since"]),to_dt(it["till"]); title=it["title"]; desc=it.get("description") or it.get("summary")
-                elif site=="cellcom.co.il":
-                    s,e=to_dt(it["startDate"]),to_dt(it["endDate"]); title=it["name"]; desc=it.get("description")
-                elif site=="partner.co.il":
-                    s,e=to_dt(it["start"]),to_dt(it["end"]); title=it["name"]; desc=it.get("shortSynopsis")
-                elif site=="hot.net.il":
-                    s=dt.datetime.strptime(it["programStartTime"],HOT_DT).replace(tzinfo=IL_TZ)
-                    e=dt.datetime.strptime(it["programEndTime"],  HOT_DT).replace(tzinfo=IL_TZ)
-                    title=it.get("programTitle") or it.get("programName") or it.get("programNameHe") or ""
-                    desc =it.get("synopsis") or it.get("shortDescription") or ""
-                else: # yes
-                    s,e=to_dt(it["starts"]),to_dt(it["ends"]); title=it["title"]; desc=it.get("description")
-
-                # --- convert output to UTC (+0000) -----------------
-                s = s.astimezone(timezone.utc)
-                e = e.astimezone(timezone.utc)
-                # ----------------------------------------------------
-
-                pr=ET.SubElement(root,"programme",start=s.strftime("%Y%m%d%H%M%S %z"),
-                                 stop=e.strftime("%Y%m%d%H%M%S %z"),channel=xmltv)
-                ET.SubElement(pr,"title",lang="he").text=escape(title)
-                if desc: ET.SubElement(pr,"desc",lang="he").text=escape(desc)
-            except Exception as e:
-                dbg(site,"programme error",xmltv,e,flush=True)
-
-    ET.indent(root); ET.ElementTree(root).write(OUT_XML,encoding="utf-8",xml_declaration=True)
-    print("✅ wrote",OUT_XML,flush=True)
-
-if __name__=="__main__":
-    build_epg()
+             "ProgramsEndDateTime": start.strftime("%Y-%m-
