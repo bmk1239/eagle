@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tv source-info-name="FreeTV" generator-info-name="FreeTV-EPG (proxy-CA)">
+  <channel id="ערוץ 9">
+    <display-name lang="he">ערוץ 9</display-name>
+  </channel>
+  <channel id="FreeTV גלובל">
+    <display-name lang="he">FreeTV גלובל</display-name>
+  </channel>
+  <channel id="ערוץ 11">
+    <display-name lang="he">ערוץ 11</display-name>
+  </channel>
+  <channel id="ערוץ 12">
+    <display-name lang="he">ערוץ 12</display-name>
+  </channel>
+  <channel id="ערוץ 13">
+    <display-name lang="he">ערוץ 13</display-name>
+  </channel>
+  <channel id="ערוץ 14">
+    <display-name lang="he">ערוץ 14</display-name>
+  </channel>
+  <channel id="i24 עברית">
+    <display-name lang="he">i24 עברית</display-name>
+  </channel>
+  <channel id="ויוה טלנובלות">
+    <display-name lang="he">ויוה טלנובלות</display-name>
+  </channel>
+  <channel id="ויוה איסטנבול">
+    <display-name lang="he">ויוה איסטנבול</display-name>
+  </channel>
+  <channel id="וואמוס">
+    <display-name lang="he">וואמוס</display-name>
+  </channel>
+  <channel id="FreeTV סרטים פעולה">
+    <display-name lang="he">FreeTV סרטים פעולה</display-name>
+  </channel>
+  <channel id="FreeTV סרטים קומדיה">
+    <display-name lang="he">FreeTV סרטים קומדיה</display-name>
+  </channel>
+  <channel id="FreeTV סרטים דרמה">
+    <display-name lang="he">FreeTV סרטים דרמה</display-name>
+  </channel>
+  <channel id="FreeTV סרטים אימה">
+    <display-name lang="he">FreeTV סרטים אימה</display-name>
+  </channel>
+  <channel id="FreeTV סרטים רומנטי">
+    <display-name lang="he">FreeTV סרטים רומנטי</display-name>
+  </channel>
+  <channel id="FreeTV סרטים פיל גוד">
+    <display-name lang="he">FreeTV סרטים פיל גוד</display-name>
+  </channel>
+  <channel id="FreeTV סרטים משפחה">
+    <display-name lang="he">FreeTV סרטים משפחה</display-name>
+  </channel>
+  <channel id="FreeTV סרטים ישראלי">
+    <display-name lang="he">FreeTV סרטים ישראלי</display-name>
+  </channel>
+  <channel id="Music 24">
+    <display-name lang="he">Music 24</display-name>
+  </channel>
+  <channel id="Music IL">
+    <display-name lang="he">Music IL</display-name>
+  </channel>
+  <channel id="ערוץ הכוכב הבא">
+    <display-name lang="he">ערוץ הכוכב הבא</display-name>
+  </channel>
+  <channel id="ערוץ הקריוקי">
+    <display-name lang="he">ערוץ הקריוקי</display-name>
+  </channel>
+  <channel id="Love Island">
+    <display-name lang="he">Love Island</display-name>
+  </channel>
+  <channel id="FreeTV סדרות דרמה">
+    <display-name lang="he">FreeTV סדרות דרמה</display-name>
+  </channel>
+  <channel id="FreeTV סדרות קומדיה">
+    <display-name lang="he">FreeTV סדרות קומדיה</display-name>
+  </channel>
+  <channel id="FreeTV לייף סטייל">
+    <display-name lang="he">FreeTV לייף סטייל</display-name>
+  </channel>
+  <channel id="FreeTV אוכל">
+    <display-name lang="he">FreeTV אוכל</display-name>
+  </channel>
+  <channel id="FreeTV דוקו">
+    <display-name lang="he">FreeTV דוקו</display-name>
+  </channel>
+  <channel id="ערוץ דוק">
+    <display-name lang="he">ערוץ דוק</display-name>
+  </channel>
+  <channel id="ערוץ חתונה ממבט ראשון">
+    <display-name lang="he">ערוץ חתונה ממבט ראשון</display-name>
+  </channel>
+  <channel id="ערוץ נינג'ה">
+    <display-name lang="he">ערוץ נינג'ה</display-name>
+  </channel>
+  <channel id="ערוץ ארץ נהדרת">
+    <display-name lang="he">ערוץ ארץ נהדרת</display-name>
+  </channel>
+  <channel id="ערוץ סברי מרנן">
+    <display-name lang="he">ערוץ סברי מרנן</display-name>
+  </channel>
+  <channel id="ערוץ הכנסת">
+    <display-name lang="he">ערוץ הכנסת</display-name>
+  </channel>
+  <channel id="ערוץ 24 צרפת">
+    <display-name lang="he">ערוץ 24 צרפת</display-name>
+  </channel>
+  <channel id="ערוץ 11 - כבדי שמיעה">
+    <display-name lang="he">ערוץ 11 - כבדי שמיעה</display-name>
+  </channel>
+  <channel id="ערוץ 12 - כבדי שמיעה">
+    <display-name lang="he">ערוץ 12 - כבדי שמיעה</display-name>
+  </channel>
+  <channel id="ערוץ 13 - כבדי שמיעה">
+    <display-name lang="he">ערוץ 13 - כבדי שמיעה</display-name>
+  </channel>
+  <channel id="ערוץ 14 - כבדי שמיעה">
+    <display-name lang="he">ערוץ 14 - כבדי שמיעה</display-name>
+  </channel>
+  <channel id="i24 English">
+    <display-name lang="he">i24 English</display-name>
+  </channel>
+  <channel id="i24 French">
+    <display-name lang="he">i24 French</display-name>
+  </channel>
+  <channel id="מכאן ">
+    <display-name lang="he">מכאן</display-name>
+  </channel>
+  <channel id="SPORT5">
+    <display-name lang="he">SPORT5</display-name>
+  </channel>
+  <channel id="SPORT 5 PLUS">
+    <display-name lang="he">SPORT 5 PLUS</display-name>
+  </channel>
+  <channel id="SPORT 5 GOLD">
+    <display-name lang="he">SPORT 5 GOLD</display-name>
+  </channel>
+  <channel id="Sport 5 Live">
+    <display-name lang="he">Sport 5 Live</display-name>
+  </channel>
+  <channel id="Sport 5 Stars">
+    <display-name lang="he">Sport 5 Stars</display-name>
+  </channel>
+  <channel id="SPORT 5 4K">
+    <display-name lang="he">SPORT 5 4K</display-name>
+  </channel>
+  <channel id="ONE 1">
+    <display-name lang="he">ONE 1</display-name>
+  </channel>
+  <channel id="ONE 2">
+    <display-name lang="he">ONE 2</display-name>
+  </channel>
+  <channel id="One Doco">
+    <display-name lang="he">One Doco</display-name>
+  </channel>
+  <channel id="One Edge">
+    <display-name lang="he">One Edge</display-name>
+  </channel>
+  <channel id="BABY">
+    <display-name lang="he">BABY</display-name>
+  </channel>
+  <channel id="שירי ילדותי">
+    <display-name lang="he">שירי ילדותי</display-name>
+  </channel>
+  <channel id="יויו">
+    <display-name lang="he">יויו</display-name>
+  </channel>
+  <channel id="פלא">
+    <display-name lang="he">פלא</display-name>
+  </channel>
+  <channel id="A Plus">
+    <display-name lang="he">A Plus</display-name>
+  </channel>
+  <channel id="ערוץ הכוכבים">
+    <display-name lang="he">ערוץ הכוכבים</display-name>
+  </channel>
+  <channel id="ילדותי">
+    <display-name lang="he">ילדותי</display-name>
+  </channel>
+  <channel id="לוגי">
+    <display-name lang="he">לוגי</display-name>
+  </channel>
+  <channel id="חינוכית">
+    <display-name lang="he">חינוכית</display-name>
+  </channel>
+  <channel id="Junior">
+    <display-name lang="he">Junior</display-name>
+  </channel>
+  <channel id="ערוץ הילדים">
+    <display-name lang="he">ערוץ הילדים</display-name>
+  </channel>
+  <channel id="FOMO">
+    <display-name lang="he">FOMO</display-name>
+  </channel>
+</tv>
