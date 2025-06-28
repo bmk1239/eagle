@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <channels>
+    <channel site="yes.co.il" site_id="PT69" xmltv_id="2299481">NICK Junior</channel>
+    <channel site="yes.co.il" site_id="CH19" xmltv_id="">Kids Stars Channel</channel>
+    <channel site="yes.co.il" site_id="TVR6" xmltv_id="">Children channel (RGE)</channel>
+    <channel site="yes.co.il" site_id="CH98" xmltv_id="2299488">ZOOM TOON</channel>
+    <channel site="yes.co.il" site_id="PT91" xmltv_id="2299479">Disney HD</channel>
+    <channel site="yes.co.il" site_id="PT85" xmltv_id="2299487">ZOOM</channel>
+    <channel site="yes.co.il" site_id="NK01" xmltv_id="2299480">Nickelodeon</channel>
+    <channel site="yes.co.il" site_id="CH13" xmltv_id="">WiZ</channel>
+    <channel site="yes.co.il" site_id="TA05" xmltv_id="2299484">Junior</channel>
+    <channel site="yes.co.il" site_id="CH18" xmltv_id="2299482">TeenNick</channel>
+    <channel site="yes.co.il" site_id="PT48" xmltv_id="">JimJam</channel>
+    <channel site="yes.co.il" site_id="CN08" xmltv_id="">Childhood</channel>
+    <channel site="yes.co.il" site_id="PT30" xmltv_id="">Hidabroot</channel>
+    <channel site="yes.co.il" site_id="TV43" xmltv_id="">Kehilaty (98)</channel>
+    <channel site="yes.co.il" site_id="TV89" xmltv_id="2299415">Knesset</channel>
+    <channel site="yes.co.il" site_id="TV12" xmltv_id="">CNN</channel>
+    <channel site="yes.co.il" site_id="TV42" xmltv_id="">Sky News</channel>
+    <channel site="yes.co.il" site_id="PT18" xmltv_id="">FRANCE 24</channel>
+    <channel site="yes.co.il" site_id="TV13" xmltv_id="">Fox News</channel>
+    <channel site="yes.co.il" site_id="TV59" xmltv_id="">Bloomberg</channel>
+    <channel site="yes.co.il" site_id="CN05" xmltv_id="">France 24 fr</channel>
+    <channel site="yes.co.il" site_id="TV02" xmltv_id="">METV</channel>
+    <channel site="yes.co.il" site_id="PT06" xmltv_id="">CGTN</channel>
+    <channel site="yes.co.il" site_id="CH50" xmltv_id="">CGTN DOC</channel>
+    <channel site="yes.co.il" site_id="PT02" xmltv_id="">Bollywood Movies</channel>
+    <channel site="yes.co.il" site_id="CH68" xmltv_id="2299473">Bollywood Series</channel>
+    <channel site="yes.co.il" site_id="PT14" xmltv_id="">Health Channel</channel>
+    <channel site="yes.co.il" site_id="PT12" xmltv_id="">EGO</channel>
+    <channel site="yes.co.il" site_id="CN13" xmltv_id="">i24 English</channel>
+    <channel site="yes.co.il" site_id="CN14" xmltv_id="">i24 Arabic</channel>
+    <channel site="yes.co.il" site_id="TV44" xmltv_id="">RTL</channel>
+    <channel site="yes.co.il" site_id="TV46" xmltv_id="">SAT 3</channel>
+    <channel site="yes.co.il" site_id="TV45" xmltv_id="">SAT 1</channel>
+    <channel site="yes.co.il" site_id="TV79" xmltv_id="">GTV</channel>
+    <channel site="yes.co.il" site_id="TV34" xmltv_id="">FTV</channel>
+    <channel site="yes.co.il" site_id="TV49" xmltv_id="">TVE</channel>
+    <channel site="yes.co.il" site_id="PT11" xmltv_id="">TVR i</channel>
+    <channel site="yes.co.il" site_id="TV57" xmltv_id="">PROTV</channel>
+    <channel site="yes.co.il" site_id="TV98" xmltv_id="">ZEETV</channel>
+    <channel site="yes.co.il" site_id="PT64" xmltv_id="">Mediaset</channel>
+    <channel site="yes.co.il" site_id="CH74" xmltv_id="">FRANCE3</channel>
+    <channel site="yes.co.il" site_id="TV94" xmltv_id="">France 2 (F2)</channel>
+    <channel site="yes.co.il" site_id="TV47" xmltv_id="">ARTE</channel>
+    <channel site="yes.co.il" site_id="TV56" xmltv_id="">EUROSTAR</channel>
+    <channel site="yes.co.il" site_id="TV77" xmltv_id="">RTM</channel>
+    <channel site="yes.co.il" site_id="PT19" xmltv_id="">IETV</channel>
+    <channel site="yes.co.il" site_id="CH87" xmltv_id="">ROTANA Cinema</channel>
+    <channel site="yes.co.il" site_id="TV71" xmltv_id="">LBC</channel>
+    <channel site="yes.co.il" site_id="TV73" xmltv_id="">ROTANA</channel>
+    <channel site="yes.co.il" site_id="YSAH" xmltv_id="">iTV Shkufit History RUS</channel>
+    <channel site="yes.co.il" site_id="TV81" xmltv_id="">Channel 1 Rus</channel>
+    <channel site="yes.co.il" site_id="TV82" xmltv_id="">RTR</channel>
+    <channel site="yes.co.il" site_id="CN03" xmltv_id="">Dom Kino Premium</channel>
+    <channel site="yes.co.il" site_id="TV85" xmltv_id="">NASHE KINO</channel>
+    <channel site="yes.co.il" site_id="CH24" xmltv_id="">REN TV</channel>
+    <channel site="yes.co.il" site_id="PT73" xmltv_id="">VREMYA</channel>
+    <channel site="yes.co.il" site_id="PT74" xmltv_id="">TELECAFE</channel>
+    <channel site="yes.co.il" site_id="CH76" xmltv_id="">Bober</channel>
+    <channel site="yes.co.il" site_id="CH23" xmltv_id="">Current Time</channel>
+    <channel site="yes.co.il" site_id="PT51" xmltv_id="">CTC</channel>
+    <channel site="yes.co.il" site_id="TV60" xmltv_id="">NTV MIR</channel>
+    <channel site="yes.co.il" site_id="PT45" xmltv_id="">TVCI</channel>
+    <channel site="yes.co.il" site_id="PT15" xmltv_id="">1+1</channel>
+    <channel site="yes.co.il" site_id="PT36" xmltv_id="">Dom Kino</channel>
+    <channel site="yes.co.il" site_id="CH79" xmltv_id="">Music IL</channel>
+    <channel site="yes.co.il" site_id="PT31" xmltv_id="">MTV Club (MTV Dance)</channel>
+    <channel site="yes.co.il" site_id="TV37" xmltv_id="">MTV 00s (VH1)</channel>
+    <channel site="yes.co.il" site_id="TV51" xmltv_id="">MTV 80s (VH1 Classic)</channel>
+    <channel site="yes.co.il" site_id="TV35" xmltv_id="">MTV (MTV Music)</channel>
+    <channel site="yes.co.il" site_id="PT50" xmltv_id="">MTV Live HD</channel>
+    <channel site="yes.co.il" site_id="CH91" xmltv_id="">MTV HITS</channel>
+    <channel site="yes.co.il" site_id="CH41" xmltv_id="">Classica HD</channel>
+    <channel site="yes.co.il" site_id="TV40" xmltv_id="">MEZZO</channel>
+    <channel site="yes.co.il" site_id="CN21" xmltv_id="">MEZZO Live</channel>
+    <channel site="yes.co.il" site_id="CN23" xmltv_id="">MAD World</channel>
+    <channel site="yes.co.il" site_id="CH29" xmltv_id="">SHANSON TV</channel>
+    <channel site="yes.co.il" site_id="TV65" xmltv_id="">Russian MusicBox</channel>
+    <channel site="yes.co.il" site_id="CH27" xmltv_id="">IDXTRA</channel>
+    <channel site="yes.co.il" site_id="PT61" xmltv_id="">Carousel</channel>
+    <channel site="yes.co.il" site_id="PT78" xmltv_id="2299478">Disney Junior RUS</channel>
+    <channel site="yes.co.il" site_id="PT83" xmltv_id="">JimJam RUS</channel>
+    <channel site="yes.co.il" site_id="CH14" xmltv_id="">Baby (RUS)</channel>
+    <channel site="yes.co.il" site_id="CN11" xmltv_id="">Sport TOGO 1</channel>
+    <channel site="yes.co.il" site_id="CN12" xmltv_id="">Sport TOGO 2</channel>
+    <channel site="yes.co.il" site_id="CN02" xmltv_id="">Kan HD LL</channel>
+    <channel site="yes.co.il" site_id="PT05" xmltv_id="">Blue HUSTLER</channel>
+    
     <channel site="hot.net.il" site_id="004" xmltv_id="">MTV MUSIC</channel>
     <channel site="hot.net.il" site_id="006" xmltv_id="2305581">National Geographic</channel>
     <channel site="hot.net.il" site_id="008" xmltv_id="">Sky News</channel>
@@ -296,93 +383,7 @@
     <channel site="yes.co.il" site_id="TV24" xmltv_id="2299485">HOP</channel>
     <channel site="yes.co.il" site_id="PT46" xmltv_id="">HOP! Childhood</channel>
     <channel site="yes.co.il" site_id="PT59" xmltv_id="2299478">Disney Junior</channel>
-    <channel site="yes.co.il" site_id="PT69" xmltv_id="2299481">NICK Junior</channel>
-    <channel site="yes.co.il" site_id="CH19" xmltv_id="">Kids Stars Channel</channel>
-    <channel site="yes.co.il" site_id="TVR6" xmltv_id="">Children channel (RGE)</channel>
-    <channel site="yes.co.il" site_id="CH98" xmltv_id="2299488">ZOOM TOON</channel>
-    <channel site="yes.co.il" site_id="PT91" xmltv_id="2299479">Disney HD</channel>
-    <channel site="yes.co.il" site_id="PT85" xmltv_id="2299487">ZOOM</channel>
-    <channel site="yes.co.il" site_id="NK01" xmltv_id="2299480">Nickelodeon</channel>
-    <channel site="yes.co.il" site_id="CH13" xmltv_id="">WiZ</channel>
-    <channel site="yes.co.il" site_id="TA05" xmltv_id="2299484">Junior</channel>
-    <channel site="yes.co.il" site_id="CH18" xmltv_id="2299482">TeenNick</channel>
-    <channel site="yes.co.il" site_id="PT48" xmltv_id="">JimJam</channel>
-    <channel site="yes.co.il" site_id="CN08" xmltv_id="">Childhood</channel>
-    <channel site="yes.co.il" site_id="PT30" xmltv_id="">Hidabroot</channel>
-    <channel site="yes.co.il" site_id="TV43" xmltv_id="">Kehilaty (98)</channel>
-    <channel site="yes.co.il" site_id="TV89" xmltv_id="2299415">Knesset</channel>
-    <channel site="yes.co.il" site_id="TV12" xmltv_id="">CNN</channel>
-    <channel site="yes.co.il" site_id="TV42" xmltv_id="">Sky News</channel>
-    <channel site="yes.co.il" site_id="PT18" xmltv_id="">FRANCE 24</channel>
-    <channel site="yes.co.il" site_id="TV13" xmltv_id="">Fox News</channel>
-    <channel site="yes.co.il" site_id="TV59" xmltv_id="">Bloomberg</channel>
-    <channel site="yes.co.il" site_id="CN05" xmltv_id="">France 24 fr</channel>
-    <channel site="yes.co.il" site_id="TV02" xmltv_id="">METV</channel>
-    <channel site="yes.co.il" site_id="PT06" xmltv_id="">CGTN</channel>
-    <channel site="yes.co.il" site_id="CH50" xmltv_id="">CGTN DOC</channel>
-    <channel site="yes.co.il" site_id="PT02" xmltv_id="">Bollywood Movies</channel>
-    <channel site="yes.co.il" site_id="CH68" xmltv_id="2299473">Bollywood Series</channel>
-    <channel site="yes.co.il" site_id="PT14" xmltv_id="">Health Channel</channel>
-    <channel site="yes.co.il" site_id="PT12" xmltv_id="">EGO</channel>
-    <channel site="yes.co.il" site_id="CN13" xmltv_id="">i24 English</channel>
-    <channel site="yes.co.il" site_id="CN14" xmltv_id="">i24 Arabic</channel>
-    <channel site="yes.co.il" site_id="TV44" xmltv_id="">RTL</channel>
-    <channel site="yes.co.il" site_id="TV46" xmltv_id="">SAT 3</channel>
-    <channel site="yes.co.il" site_id="TV45" xmltv_id="">SAT 1</channel>
-    <channel site="yes.co.il" site_id="TV79" xmltv_id="">GTV</channel>
-    <channel site="yes.co.il" site_id="TV34" xmltv_id="">FTV</channel>
-    <channel site="yes.co.il" site_id="TV49" xmltv_id="">TVE</channel>
-    <channel site="yes.co.il" site_id="PT11" xmltv_id="">TVR i</channel>
-    <channel site="yes.co.il" site_id="TV57" xmltv_id="">PROTV</channel>
-    <channel site="yes.co.il" site_id="TV98" xmltv_id="">ZEETV</channel>
-    <channel site="yes.co.il" site_id="PT64" xmltv_id="">Mediaset</channel>
-    <channel site="yes.co.il" site_id="CH74" xmltv_id="">FRANCE3</channel>
-    <channel site="yes.co.il" site_id="TV94" xmltv_id="">France 2 (F2)</channel>
-    <channel site="yes.co.il" site_id="TV47" xmltv_id="">ARTE</channel>
-    <channel site="yes.co.il" site_id="TV56" xmltv_id="">EUROSTAR</channel>
-    <channel site="yes.co.il" site_id="TV77" xmltv_id="">RTM</channel>
-    <channel site="yes.co.il" site_id="PT19" xmltv_id="">IETV</channel>
-    <channel site="yes.co.il" site_id="CH87" xmltv_id="">ROTANA Cinema</channel>
-    <channel site="yes.co.il" site_id="TV71" xmltv_id="">LBC</channel>
-    <channel site="yes.co.il" site_id="TV73" xmltv_id="">ROTANA</channel>
-    <channel site="yes.co.il" site_id="YSAH" xmltv_id="">iTV Shkufit History RUS</channel>
-    <channel site="yes.co.il" site_id="TV81" xmltv_id="">Channel 1 Rus</channel>
-    <channel site="yes.co.il" site_id="TV82" xmltv_id="">RTR</channel>
-    <channel site="yes.co.il" site_id="CN03" xmltv_id="">Dom Kino Premium</channel>
-    <channel site="yes.co.il" site_id="TV85" xmltv_id="">NASHE KINO</channel>
-    <channel site="yes.co.il" site_id="CH24" xmltv_id="">REN TV</channel>
-    <channel site="yes.co.il" site_id="PT73" xmltv_id="">VREMYA</channel>
-    <channel site="yes.co.il" site_id="PT74" xmltv_id="">TELECAFE</channel>
-    <channel site="yes.co.il" site_id="CH76" xmltv_id="">Bober</channel>
-    <channel site="yes.co.il" site_id="CH23" xmltv_id="">Current Time</channel>
-    <channel site="yes.co.il" site_id="PT51" xmltv_id="">CTC</channel>
-    <channel site="yes.co.il" site_id="TV60" xmltv_id="">NTV MIR</channel>
-    <channel site="yes.co.il" site_id="PT45" xmltv_id="">TVCI</channel>
-    <channel site="yes.co.il" site_id="PT15" xmltv_id="">1+1</channel>
-    <channel site="yes.co.il" site_id="PT36" xmltv_id="">Dom Kino</channel>
-    <channel site="yes.co.il" site_id="CH79" xmltv_id="">Music IL</channel>
-    <channel site="yes.co.il" site_id="PT31" xmltv_id="">MTV Club (MTV Dance)</channel>
-    <channel site="yes.co.il" site_id="TV37" xmltv_id="">MTV 00s (VH1)</channel>
-    <channel site="yes.co.il" site_id="TV51" xmltv_id="">MTV 80s (VH1 Classic)</channel>
-    <channel site="yes.co.il" site_id="TV35" xmltv_id="">MTV (MTV Music)</channel>
-    <channel site="yes.co.il" site_id="PT50" xmltv_id="">MTV Live HD</channel>
-    <channel site="yes.co.il" site_id="CH91" xmltv_id="">MTV HITS</channel>
-    <channel site="yes.co.il" site_id="CH41" xmltv_id="">Classica HD</channel>
-    <channel site="yes.co.il" site_id="TV40" xmltv_id="">MEZZO</channel>
-    <channel site="yes.co.il" site_id="CN21" xmltv_id="">MEZZO Live</channel>
-    <channel site="yes.co.il" site_id="CN23" xmltv_id="">MAD World</channel>
-    <channel site="yes.co.il" site_id="CH29" xmltv_id="">SHANSON TV</channel>
-    <channel site="yes.co.il" site_id="TV65" xmltv_id="">Russian MusicBox</channel>
-    <channel site="yes.co.il" site_id="CH27" xmltv_id="">IDXTRA</channel>
-    <channel site="yes.co.il" site_id="PT61" xmltv_id="">Carousel</channel>
-    <channel site="yes.co.il" site_id="PT78" xmltv_id="2299478">Disney Junior RUS</channel>
-    <channel site="yes.co.il" site_id="PT83" xmltv_id="">JimJam RUS</channel>
-    <channel site="yes.co.il" site_id="CH14" xmltv_id="">Baby (RUS)</channel>
-    <channel site="yes.co.il" site_id="CN11" xmltv_id="">Sport TOGO 1</channel>
-    <channel site="yes.co.il" site_id="CN12" xmltv_id="">Sport TOGO 2</channel>
-    <channel site="yes.co.il" site_id="CN02" xmltv_id="">Kan HD LL</channel>
-    <channel site="yes.co.il" site_id="PT05" xmltv_id="">Blue HUSTLER</channel>
-    
+
     <channel site="partner.co.il" site_id="1007" xmltv_id="2299477">ויוה</channel>
     <channel site="partner.co.il" site_id="1101" xmltv_id="2299409">כאן 11</channel>
     <channel site="partner.co.il" site_id="1103" xmltv_id="">נטפליקס פרומו</channel>
