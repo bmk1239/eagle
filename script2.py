@@ -70,7 +70,6 @@ def to_dt(v:str|int|float):
     return dt.datetime.fromisoformat(_Z_RE.sub("+00:00",v)).astimezone(IL_TZ)
 
 def week_window(now: dt.datetime):
-    # week: Sunday 00:00 → Saturday 23:59:59
     sunday  = dt.datetime.combine(now.date() - dt.timedelta(days=(now.weekday()+1)%7),
                                   dt.time.min, tzinfo=IL_TZ)
     saturday = sunday + dt.timedelta(days=6, hours=23, minutes=59, seconds=59)
@@ -120,9 +119,7 @@ def fetch_cellcom(sess,site_id,since,till):
     r.raise_for_status()
     ks=r.json().get("ks") or r.json().get("result",{}).get("ks")
 
-    resp=_cell_req(sess,ks,chan)
-    dbg("cellcom.co.il-RAW",json.dumps(resp)[:300])
-    objs=resp.get("objects") or resp.get("result",{}).get("objects",[])
+    objs=_cell_req(sess,ks,chan).get("objects",[])
     return [o for o in objs
             if to_dt(o["endDate"])>since and to_dt(o["startDate"])<till]
 
@@ -177,7 +174,7 @@ def build_epg():
 
     programmes=[]
     for xmltv,variants in entries.items():
-        chosen_items=None; chosen_site=None; chosen_name=None
+        chosen=None
         for site,raw,name in variants:
             try:
                 data=( fetch_freetv(sess,raw,since,till)  if site=="freetv.tv"  else
@@ -189,31 +186,31 @@ def build_epg():
                 dbg(site,"fetch error",xmltv,e); data=[]
             dbg(site,f"{xmltv} → {len(data)} items")
             if data:
-                chosen_items,chosen_site,chosen_name=data,site,name
-                break
-        if not chosen_items: continue
+                chosen=(site,name,data); break
+        if not chosen: continue
 
+        site,name,data=chosen
         CE=ET.SubElement(root,"channel",id=xmltv)
-        ET.SubElement(CE,"display-name",lang="he").text=chosen_name
+        ET.SubElement(CE,"display-name",lang="he").text=name
 
-        for it in chosen_items:
+        for it in data:
             try:
-                if chosen_site=="freetv.tv":
+                if site=="freetv.tv":
                     s,e=to_dt(it["since"]),to_dt(it["till"]); title=it["title"]; desc=it.get("description") or it.get("summary")
-                elif chosen_site=="cellcom.co.il":
+                elif site=="cellcom.co.il":
                     s,e=to_dt(it["startDate"]),to_dt(it["endDate"]); title=it["name"]; desc=it.get("description")
-                elif chosen_site=="partner.co.il":
+                elif site=="partner.co.il":
                     s,e=to_dt(it["start"]),to_dt(it["end"]); title=it["name"]; desc=it.get("shortSynopsis")
-                elif chosen_site=="hot.net.il":
+                elif site=="hot.net.il":
                     s=dt.datetime.strptime(it["programStartTime"],HOT_DT).replace(tzinfo=IL_TZ)
                     e=dt.datetime.strptime(it["programEndTime"],HOT_DT).replace(tzinfo=IL_TZ)
                     title=it.get("programTitle") or it.get("programName") or it.get("programNameHe") or ""
                     desc =it.get("synopsis") or it.get("shortDescription") or ""
                 else:  # yes
                     s,e=to_dt(it["starts"]),to_dt(it["ends"]); title=it["title"]; desc=it.get("description")
-                programmes.append((s,e,title,desc,chosen_site,xmltv))
+                programmes.append((s,e,title,desc,site,xmltv))
             except Exception as e:
-                dbg(chosen_site,"programme error",xmltv,e)
+                dbg(site,"programme error",xmltv,e)
 
     programmes.sort(key=lambda x:x[0])
     for s,e,title,desc,site,xmltv in programmes:
