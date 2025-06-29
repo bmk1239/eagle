@@ -6,12 +6,12 @@ Output: file2.xml
 """
 
 from __future__ import annotations
-import datetime as dt, os, re, time, warnings, xml.etree.ElementTree as ET
+import datetime as dt, os, re, time, warnings, json, xml.etree.ElementTree as ET
 from html import escape
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-import cloudscraper, ssl, urllib3, json
+import cloudscraper, ssl, urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
 
@@ -58,7 +58,7 @@ HOT_HEADERS = {"Content-Type":"application/json","Accept":"application/json, tex
 
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG","1") not in ("0","false","False","no")
-def dbg(tag,*msg):  # simple debug printer
+def dbg(tag,*msg):                            # small debug helper
     if _DBG: print(f"[DBG {tag}]",*msg,flush=True)
 
 _Z_RE, _SLASH_FMT = re.compile(r"Z$"), "%d/%m/%Y %H:%M"
@@ -70,7 +70,7 @@ def to_dt(v):
     raise TypeError
 
 def day_window(now):
-    weekday = now.weekday()           # Mon=0 … Sun=6
+    weekday = now.weekday()            # Mon=0 … Sun=6
     start = dt.datetime.combine(now.date() - dt.timedelta(days=(weekday+1)%7),
                                 dt.time.min,tzinfo=IL_TZ)
     return start, start + dt.timedelta(days=7)
@@ -85,10 +85,10 @@ def new_session():
         s.verify = False
     return s
 
-def fmt_ts(d,_):  # UTC format for xmltv
+def fmt_ts(d,_):                              # UTC xmltv timestamp
     return d.astimezone(dt.timezone.utc).strftime("%Y%m%d%H%M%S +0000")
 
-# ───────── FreeTV (multi-day) ─────────
+# ───────── FreeTV (split by day) ─────────
 def fetch_freetv(sess,sid,since,till):
     def _one(a,b):
         p={"liveId[]":sid,"since":a.strftime("%Y-%m-%dT%H:%M%z"),
@@ -105,7 +105,7 @@ def fetch_freetv(sess,sid,since,till):
         out.extend(_one(cur,nxt)); cur=nxt
     return out
 
-# ───────── Cellcom (multi-day + polling) ─────────
+# ───────── Cellcom (split by day + polling + raw dump) ─────────
 def _cell_req(sess,ks,chan,sts,ets,q):
     q="'"+q if q else ""
     ksql=f"(and epg_channel_id='{chan}' start_date>{q}{sts}{q} end_date<{q}{ets}{q} asset_type='epg')"
@@ -126,12 +126,13 @@ def fetch_cellcom(sess,site_id,since,till):
 
     def _day(a,b):
         sts,ets=int(a.timestamp()),int(b.timestamp())
-        for attempt in range(3):                # ← poll up to 3×
-            for q in ("", "'"):                 # ← query variants
+        for attempt in range(3):                              # poll up to 3×
+            for q in ("", "'"):                               # two query styles
                 resp=_cell_req(sess,ks,chan,sts,ets,q)
+                dbg("cellcom.co.il-RAW", json.dumps(resp)[:500])  # ← raw dump
                 objs=resp.get("objects") or resp.get("result",{}).get("objects",[])
                 if objs: return objs
-            time.sleep(1)                       # small wait before retry
+            time.sleep(1)
         return []
 
     cur,out=since,[]
@@ -140,7 +141,7 @@ def fetch_cellcom(sess,site_id,since,till):
         out.extend(_day(cur,nxt)); cur=nxt
     return out
 
-# ───────── Partner / Yes / HOT unchanged ─────────
+# ───────── Partner / Yes / HOT (unchanged) ─────────
 def fetch_partner(sess,site_id,since,till):
     chan=site_id.strip()
     def _one(day):
@@ -159,8 +160,8 @@ def fetch_partner(sess,site_id,since,till):
 def fetch_yes(sess,site_id,since,till):
     def _one(day):
         url=f"{YES_CH_BASE}/{site_id.strip()}?date={day:%Y-%m-%d}&ignorePastItems=false"
-        r=sess.get(url,headers=YES_HEADERS,timeout=30)
-        print(r.url,flush=True); r.raise_for_status(); return r.json().get("items",[])
+        r=sess.get(url,headers=YES_HEADERS,timeout=30); print(r.url,flush=True)
+        r.raise_for_status(); return r.json().get("items",[])
     cur,out=since,[]
     while cur<till:
         out.extend(_one(cur)); cur+=dt.timedelta(days=1)
@@ -172,8 +173,7 @@ def _collect_hot_day(sess,day_start):
              "ProgramsStartDateTime":day_start.strftime("%Y-%m-%dT00:00:00"),
              "ProgramsEndDateTime": day_start.strftime("%Y-%m-%dT23:59:59"),
              "Hour":0}
-    r=sess.post(HOT_API,json=payload,headers=HOT_HEADERS,timeout=60)
-    print(r.url,flush=True)
+    r=sess.post(HOT_API,json=payload,headers=HOT_HEADERS,timeout=60); print(r.url,flush=True)
     rows=r.json().get("data",{}).get("programsDetails",[])
     by={}
     for it in rows:
@@ -197,8 +197,7 @@ def build_epg():
     for ch in ET.parse(CHANNELS_FILE).findall("channel"):
         xmltv=(ch.attrib.get("xmltv_id") or "").strip()
         if not xmltv: continue
-        site=ch.attrib.get("site","").lower()
-        raw=ch.attrib["site_id"]
+        site=ch.attrib.get("site","").lower(); raw=ch.attrib["site_id"]
         name=(ch.text or xmltv).strip()
         entries.setdefault(xmltv,[]).append((site,raw,name))
 
