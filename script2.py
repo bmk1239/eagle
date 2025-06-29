@@ -87,6 +87,12 @@ def new_session():
         s.verify = False
     return s
 
+def fmt_ts(dt_obj, site):
+    ts = dt_obj.strftime("%Y%m%d%H%M%S %z")
+    if site == "hot.net.il":
+        return ts.replace("+0300", "+0000")
+    return ts
+
 # ───────── FreeTV ─────────
 def fetch_freetv(sess,sid,since,till):
     p = {"liveId[]":sid,"since":since.strftime("%Y-%m-%dT%H:%M%z"),
@@ -167,7 +173,7 @@ def build_epg():
         name = (ch.text or xmltv).strip()
         entries.setdefault(xmltv,[]).append((site,raw,name,logical))
 
-    programmes=[]
+    all_programs = []
     for xmltv, variants in entries.items():
         ok_items=None
         for site,raw,name,logical in variants:
@@ -182,14 +188,17 @@ def build_epg():
             dbg(site,f"{xmltv} → {len(items)} items",flush=True)
             if items:
                 ok_items=(items,site,name)
-                break   # first variant with data wins
+                break
 
         if not ok_items:
             dbg("skip",f"{xmltv} no data from any variant",flush=True)
-            continue   # nothing to write
+            continue
 
         items,site,name = ok_items
-        CE=ET.SubElement(root,"channel",id=xmltv); ET.SubElement(CE,"display-name",lang="he").text=name
+        CE=ET.SubElement(root,"channel",id=xmltv)
+        ET.SubElement(CE,"display-name",lang="he").text=name
+
+        sorted_items = []
         for it in items:
             try:
                 if site=="freetv.tv":
@@ -200,18 +209,22 @@ def build_epg():
                     s,e=to_dt(it["start"]),to_dt(it["end"]); title=it["name"]; desc=it.get("shortSynopsis")
                 elif site=="hot.net.il":
                     s=dt.datetime.strptime(it["programStartTime"],HOT_DT).replace(tzinfo=IL_TZ)
-                    e=dt.datetime.strptime(it["programEndTime"],  HOT_DT).replace(tzinfo=IL_TZ)
+                    e=dt.datetime.strptime(it["programEndTime"],HOT_DT).replace(tzinfo=IL_TZ)
                     title=it.get("programTitle") or it.get("programName") or it.get("programNameHe") or ""
                     desc =it.get("synopsis") or it.get("shortDescription") or ""
-                else: # yes
+                else:
                     s,e=to_dt(it["starts"]),to_dt(it["ends"]); title=it["title"]; desc=it.get("description")
-
-                pr=ET.SubElement(root,"programme",start=s.strftime("%Y%m%d%H%M%S %z"),
-                                 stop=e.strftime("%Y%m%d%H%M%S %z"),channel=xmltv)
-                ET.SubElement(pr,"title",lang="he").text=escape(title)
-                if desc: ET.SubElement(pr,"desc",lang="he").text=escape(desc)
+                sorted_items.append((s,e,title,desc,site,xmltv))
             except Exception as e:
                 dbg(site,"programme error",xmltv,e,flush=True)
+
+        sorted_items.sort(key=lambda x: x[0])
+        all_programs.extend(sorted_items)
+
+    for s,e,title,desc,site,xmltv in all_programs:
+        pr=ET.SubElement(root,"programme",start=fmt_ts(s,site),stop=fmt_ts(e,site),channel=xmltv)
+        ET.SubElement(pr,"title",lang="he").text=escape(title)
+        if desc: ET.SubElement(pr,"desc",lang="he").text=escape(desc)
 
     ET.indent(root); ET.ElementTree(root).write(OUT_XML,encoding="utf-8",xml_declaration=True)
     print("✅ wrote",OUT_XML,flush=True)
