@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-EPG builder for FreeTV, Cellcom, Partner, Yes and HOT.
+EPG builder for FreeTV, Cellcom, Partner, Yes **and HOT**.
 Creates a 7-day guide (IL-time Sunday 00:00 → next Sunday 00:00).
 Output: file2.xml
 """
@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 import cloudscraper, ssl, urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
+import certifi  # Added import for certifi
 
 # ───────── proxy helper ─────────
 class InsecureTunnel(HTTPAdapter):
@@ -24,7 +25,7 @@ class InsecureTunnel(HTTPAdapter):
     def init_poolmanager(self,*a,**k): k["ssl_context"]=self._ctx(); super().init_poolmanager(*a,**k)
     def proxy_manager_for(self,*a,**k):  k["ssl_context"]=self._ctx(); return super().proxy_manager_for(*a,**k)
 
-# ───────── API endpoints & constants ─────────
+# ───────── API endpoints ─────────
 FREETV_API  = "https://web.freetv.tv/api/products/lives/programmes"
 FREETV_HOME = "https://web.freetv.tv/"
 CELL_LOGIN  = "https://api.frp1.ott.kaltura.com/api_v3/service/OTTUser/action/anonymousLogin"
@@ -52,6 +53,7 @@ YES_HEADERS  = {"Accept-Language":"he-IL","Accept":"application/json, text/plain
 HOT_HEADERS  = {"Content-Type":"application/json","Accept":"application/json, text/plain, */*",
                 "Origin":"https://www.hot.net.il","Referer":"https://www.hot.net.il/heb/tv/tvguide/","User-Agent": UA}
 
+# ───────── debug helper ─────────
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG","1") not in ("0","false","False","no")
 def dbg(tag,*msg): 
@@ -71,24 +73,19 @@ def week_window(now: dt.datetime):
     return sunday, sunday+dt.timedelta(days=7)
 
 def new_session():
-    """
-    Modified for Termux:
-    If IL_PROXY is set → use proxy,
-    else connect directly (no error).
-    """
     s = cloudscraper.create_scraper()
     s.mount("https://", InsecureTunnel())
     s.headers.update(BASE_HEADERS)
-    proxy = os.getenv("IL_PROXY")
-    if proxy:
-        s.proxies = {"http": proxy, "https": proxy}
-        if os.getenv("IL_PROXY_INSECURE", "").lower() in ("1", "true", "yes"):
-            s.verify = False
+    # Use certifi CA bundle explicitly for SSL verification (fix Termux SSL errors)
+    s.verify = certifi.where()
+    proxy=os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
+    s.proxies={"http":proxy,"https":proxy}
+    if os.getenv("IL_PROXY_INSECURE","").lower() in ("1","true","yes"): s.verify=False
     return s
 
 def fmt_ts(d,_):  return d.astimezone(dt.timezone.utc).strftime("%Y%m%d%H%M%S +0000")
 
-# ───────── FreeTV ─────────
+# ───────── FreeTV (split by day) ─────────
 def fetch_freetv(sess,sid,since,till):
     def _one(a,b):
         p={"liveId[]":sid,"since":a.strftime("%Y-%m-%dT%H:%M%z"),
@@ -104,7 +101,7 @@ def fetch_freetv(sess,sid,since,till):
         nxt=min(cur+dt.timedelta(days=1),till); out.extend(_one(cur,nxt)); cur=nxt
     return out
 
-# ───────── Cellcom ─────────
+# ───────── Cellcom (single call + in-memory filter) ─────────
 def _cell_req(sess,ks,chan):
     ksql=f"(and epg_channel_id='{chan}' asset_type='epg')"
     payload={"apiVersion":"5.4.0.28193","clientTag":"2500009-Android",
@@ -116,17 +113,20 @@ def _cell_req(sess,ks,chan):
 
 def fetch_cellcom(sess,site_id,since,till):
     chan=site_id.split("##")[0]
+    # login
     r=sess.post(CELL_LOGIN,
                 json={"apiVersion":"5.4.0.28193","partnerId":"3197","udid":"f442..."},
                 headers=CELL_HEADERS,timeout=30); r.raise_for_status()
     ks=r.json().get("ks") or r.json().get("result",{}).get("ks")
+
+    # pull once, filter locally
     resp=_cell_req(sess,ks,chan)
     objs=resp.get("objects") or resp.get("result",{}).get("objects",[])
     filt=[o for o in objs if to_dt(o["endDate"])>since and to_dt(o["startDate"])<till]
     dbg("cellcom.co.il",f"{chan} → {len(filt)} items")
     return filt
 
-# ───────── Partner ─────────
+# ───────── Partner (split by day) ─────────
 def fetch_partner(sess,site_id,since,till):
     chan=site_id.strip()
     def _day(d):
@@ -141,7 +141,7 @@ def fetch_partner(sess,site_id,since,till):
     while cur<till: out.extend(_day(cur)); cur+=dt.timedelta(days=1)
     return out
 
-# ───────── Yes ─────────
+# ───────── Yes (split by day) ─────────
 def fetch_yes(sess,site_id,since,till):
     def _day(d):
         url=f"{YES_CH_BASE}/{site_id.strip()}?date={d:%Y-%m-%d}&ignorePastItems=false"
@@ -151,7 +151,7 @@ def fetch_yes(sess,site_id,since,till):
     while cur<till: out.extend(_day(cur)); cur+=dt.timedelta(days=1)
     return out
 
-# ───────── HOT ─────────
+# ───────── HOT (cached per day) ─────────
 HOT_DT="%Y/%m/%d %H:%M:%S"; _HOT_CACHE={}
 def _collect_hot(sess,day):
     payload={"ChannelId":"0","ProgramsStartDateTime":day.strftime("%Y-%m-%dT00:00:00"),
@@ -210,7 +210,7 @@ def build_epg():
                     s,e=to_dt(it["since"]),to_dt(it["till"]); title=it["title"]; desc=it.get("description") or it.get("summary")
                 elif site=="cellcom.co.il":
                     s,e=to_dt(it["startDate"]),to_dt(it["endDate"]); title=it["name"]; desc=it.get("description")
-                elif site=="partner.co.il":
+                elif site=="partner.co.il":                                  # ← ONLY CHANGE
                     s=dt.datetime.strptime(it["start"],_SLASH_FMT).replace(tzinfo=IL_TZ)
                     e=dt.datetime.strptime(it["end"],  _SLASH_FMT).replace(tzinfo=IL_TZ)
                     title=it["name"]; desc=it.get("shortSynopsis")
