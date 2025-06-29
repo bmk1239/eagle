@@ -13,7 +13,7 @@ from zoneinfo import ZoneInfo
 import cloudscraper, ssl, urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
-import certifi  # Added import for certifi
+import certifi
 
 # ───────── proxy helper ─────────
 class InsecureTunnel(HTTPAdapter):
@@ -73,14 +73,12 @@ def week_window(now: dt.datetime):
     return sunday, sunday+dt.timedelta(days=7)
 
 def new_session():
-    s = cloudscraper.create_scraper()
-    s.mount("https://", InsecureTunnel())
+    s=cloudscraper.create_scraper()
+    s.mount("https://",InsecureTunnel())
     s.headers.update(BASE_HEADERS)
-    # Use certifi CA bundle explicitly for SSL verification (fix Termux SSL errors)
     s.verify = certifi.where()
-    proxy=os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
-    s.proxies={"http":proxy,"https":proxy}
-    if os.getenv("IL_PROXY_INSECURE","").lower() in ("1","true","yes"): s.verify=False
+    # No proxy set — run direct
+    s.proxies = {}
     return s
 
 def fmt_ts(d,_):  return d.astimezone(dt.timezone.utc).strftime("%Y%m%d%H%M%S +0000")
