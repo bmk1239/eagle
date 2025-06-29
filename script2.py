@@ -87,11 +87,13 @@ def new_session():
         s.verify = False
     return s
 
-def fmt_ts(dt_obj, site):
-    ts = dt_obj.strftime("%Y%m%d%H%M%S %z")
-    if site == "hot.net.il":
-        return ts.replace("+0300", "+0000")
-    return ts
+# ───────── time-format helper (UPDATED) ─────────
+def fmt_ts(dt_obj, _site):
+    """
+    Convert any timezone-aware datetime to UTC and format as XMLTV
+    yyyymmddHHMMSS +0000
+    """
+    return dt_obj.astimezone(dt.timezone.utc).strftime("%Y%m%d%H%M%S +0000")
 
 # ───────── FreeTV ─────────
 def fetch_freetv(sess,sid,since,till):
