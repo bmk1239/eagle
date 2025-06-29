@@ -225,8 +225,10 @@ def build_epg():
 
     for s,e,title,desc,site,xmltv in all_programs:
         pr=ET.SubElement(root,"programme",start=fmt_ts(s,site),stop=fmt_ts(e,site),channel=xmltv)
-        ET.SubElement(pr,"title",lang="he").text=escape(title)
-        if desc: ET.SubElement(pr,"desc",lang="he").text=escape(desc)
+        # ---------- ONLY CHANGE: use quote=False to keep apostrophes ----------
+        ET.SubElement(pr,"title",lang="he").text=escape(title, quote=False)
+        if desc: ET.SubElement(pr,"desc",lang="he").text=escape(desc, quote=False)
+        # ---------------------------------------------------------------------
 
     ET.indent(root); ET.ElementTree(root).write(OUT_XML,encoding="utf-8",xml_declaration=True)
     print("✅ wrote",OUT_XML,flush=True)
