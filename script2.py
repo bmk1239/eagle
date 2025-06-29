@@ -6,7 +6,7 @@ Output: file2.xml
 """
 
 from __future__ import annotations
-import datetime as dt, os, re, warnings, xml.etree.ElementTree as ET
+import datetime as dt, os, re, time, warnings, xml.etree.ElementTree as ET
 from html import escape
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -38,7 +38,7 @@ PARTNER_EPG = "https://my.partner.co.il/TV.Services/MyTvSrv.svc/SeaChange/GetEpg
 YES_CH_BASE = "https://svc.yes.co.il/api/content/broadcast-schedule/channels"
 HOT_API     = "https://www.hot.net.il/HotCmsApiFront/api/ProgramsSchedual/GetProgramsSchedual"
 
-IL_TZ  = ZoneInfo("Asia/Jerusalem")
+IL_TZ         = ZoneInfo("Asia/Jerusalem")
 CHANNELS_FILE = "channels.xml"
 OUT_XML       = "file2.xml"
 
@@ -105,13 +105,14 @@ def fetch_freetv(sess,sid,since,till):
         out.extend(_one(cur,nxt)); cur=nxt
     return out
 
-# ───────── Cellcom (multi-day) ─────────
+# ───────── Cellcom (multi-day + polling) ─────────
 def _cell_req(sess,ks,chan,sts,ets,q):
     q="'"+q if q else ""
     ksql=f"(and epg_channel_id='{chan}' start_date>{q}{sts}{q} end_date<{q}{ets}{q} asset_type='epg')"
     payload={"apiVersion":"5.4.0.28193","clientTag":"2500009-Android",
              "filter":{"kSql":ksql,"objectType":"KalturaSearchAssetFilter","orderBy":"START_DATE_ASC"},
-             "ks":ks,"pager":{"objectType":"KalturaFilterPager","pageIndex":1,"pageSize":1000}}
+             "ks":ks,
+             "pager":{"objectType":"KalturaFilterPager","pageIndex":1,"pageSize":1000}}
     r=sess.post(CELL_LIST,json=payload,headers=CELL_HEADERS,timeout=30)
     print(r.url,flush=True); r.raise_for_status(); return r.json()
 
@@ -125,10 +126,12 @@ def fetch_cellcom(sess,site_id,since,till):
 
     def _day(a,b):
         sts,ets=int(a.timestamp()),int(b.timestamp())
-        for q in ("", "'"):                                       # ← fallback attempt
-            resp=_cell_req(sess,ks,chan,sts,ets,q)
-            objs=resp.get("objects") or resp.get("result",{}).get("objects",[])
-            if objs: return objs
+        for attempt in range(3):                # ← poll up to 3×
+            for q in ("", "'"):                 # ← query variants
+                resp=_cell_req(sess,ks,chan,sts,ets,q)
+                objs=resp.get("objects") or resp.get("result",{}).get("objects",[])
+                if objs: return objs
+            time.sleep(1)                       # small wait before retry
         return []
 
     cur,out=since,[]
@@ -137,7 +140,7 @@ def fetch_cellcom(sess,site_id,since,till):
         out.extend(_day(cur,nxt)); cur=nxt
     return out
 
-# ───────── Partner / Yes / HOT unchanged (multi-day) ─────────
+# ───────── Partner / Yes / HOT unchanged ─────────
 def fetch_partner(sess,site_id,since,till):
     chan=site_id.strip()
     def _one(day):
