@@ -21,12 +21,8 @@ class InsecureTunnel(HTTPAdapter):
         ctx.check_hostname = False
         ctx.verify_mode = ssl.CERT_NONE
         return ctx
-    def init_poolmanager(self,*a,**k):  # type: ignore
-        k["ssl_context"] = self._ctx()
-        return super().init_poolmanager(*a,**k)
-    def proxy_manager_for(self,*a,**k):  # type: ignore
-        k["ssl_context"] = self._ctx()
-        return super().proxy_manager_for(*a,**k)
+    def init_poolmanager(self,*a,**k): k["ssl_context"]=self._ctx(); super().init_poolmanager(*a,**k)
+    def proxy_manager_for(self,*a,**k):  k["ssl_context"]=self._ctx(); return super().proxy_manager_for(*a,**k)
 
 # ───────── API endpoints ─────────
 FREETV_API  = "https://web.freetv.tv/api/products/lives/programmes"
@@ -56,64 +52,55 @@ YES_HEADERS  = {"Accept-Language":"he-IL","Accept":"application/json, text/plain
 HOT_HEADERS  = {"Content-Type":"application/json","Accept":"application/json, text/plain, */*",
                 "Origin":"https://www.hot.net.il","Referer":"https://www.hot.net.il/heb/tv/tvguide/","User-Agent": UA}
 
-# ───────── minimal debug helper ─────────
+# ───────── debug helper ─────────
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 _DBG = os.getenv("DEBUG","1") not in ("0","false","False","no")
 def dbg(tag,*msg): 
-    if _DBG:
-        print(f"[DBG {tag}]",*msg,flush=True)
+    if _DBG: print(f"[DBG {tag}]",*msg,flush=True)
 
 # ───────── misc helpers ─────────
 _Z_RE = re.compile(r"Z$")
+_SLASH_FMT = "%d/%m/%Y %H:%M"
 def to_dt(v:str|int|float):
     if isinstance(v,(int,float)):
         return dt.datetime.fromtimestamp(int(v),tz=IL_TZ)
     return dt.datetime.fromisoformat(_Z_RE.sub("+00:00",v)).astimezone(IL_TZ)
 
 def week_window(now: dt.datetime):
-    sunday = dt.datetime.combine(
-        now.date() - dt.timedelta(days=(now.weekday()+1)%7),
-        dt.time.min, tzinfo=IL_TZ)
-    return sunday, sunday + dt.timedelta(days=7)
+    sunday = dt.datetime.combine(now.date()-dt.timedelta(days=(now.weekday()+1)%7),
+                                 dt.time.min,tzinfo=IL_TZ)
+    return sunday, sunday+dt.timedelta(days=7)
 
 def new_session():
-    s = cloudscraper.create_scraper()
-    s.mount("https://", InsecureTunnel())
-    s.headers.update(BASE_HEADERS)
-    proxy = os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
-    s.proxies = {"http": proxy, "https": proxy}
-    if os.getenv("IL_PROXY_INSECURE","").lower() in ("1","true","yes"):
-        s.verify = False
+    s=cloudscraper.create_scraper(); s.mount("https://",InsecureTunnel()); s.headers.update(BASE_HEADERS)
+    proxy=os.getenv("IL_PROXY") or (_ for _ in ()).throw(RuntimeError("IL_PROXY env missing"))
+    s.proxies={"http":proxy,"https":proxy}
+    if os.getenv("IL_PROXY_INSECURE","").lower() in ("1","true","yes"): s.verify=False
     return s
 
-def fmt_ts(d,_):                 # XMLTV UTC timestamp
-    return d.astimezone(dt.timezone.utc).strftime("%Y%m%d%H%M%S +0000")
+def fmt_ts(d,_):  return d.astimezone(dt.timezone.utc).strftime("%Y%m%d%H%M%S +0000")
 
 # ───────── FreeTV (split by day) ─────────
 def fetch_freetv(sess,sid,since,till):
     def _one(a,b):
-        p={"liveId[]":sid,
-           "since":a.strftime("%Y-%m-%dT%H:%M%z"),
-           "till": b.strftime("%Y-%m-%dT%H:%M%z"),
-           "lang":"HEB","platform":"BROWSER"}
-        for attempt in (1,2):
+        p={"liveId[]":sid,"since":a.strftime("%Y-%m-%dT%H:%M%z"),
+           "till":b.strftime("%Y-%m-%dT%H:%M%z"),"lang":"HEB","platform":"BROWSER"}
+        for n in (1,2):
             r=sess.get(FREETV_API,params=p,timeout=30); print(r.url,flush=True)
-            if r.status_code==403 and attempt==1:
+            if r.status_code==403 and n==1:
                 sess.get(FREETV_HOME,timeout=20); continue
             r.raise_for_status(); d=r.json()
             return d.get("data",d) if isinstance(d,dict) else d
-    cur,since_items=since,[]
+    out,cur=[],since
     while cur<till:
-        nxt=min(cur+dt.timedelta(days=1),till)
-        since_items.extend(_one(cur,nxt)); cur=nxt
-    return since_items
+        nxt=min(cur+dt.timedelta(days=1),till); out.extend(_one(cur,nxt)); cur=nxt
+    return out
 
-# ───────── Cellcom  (single call, in-memory filter) ─────────
+# ───────── Cellcom (single call + in-memory filter) ─────────
 def _cell_req(sess,ks,chan):
-    ksql=f"(and epg_channel_id='{chan}' asset_type='epg')"   # no date in KSQL
+    ksql=f"(and epg_channel_id='{chan}' asset_type='epg')"
     payload={"apiVersion":"5.4.0.28193","clientTag":"2500009-Android",
-             "filter":{"kSql":ksql,"objectType":"KalturaSearchAssetFilter",
-                       "orderBy":"START_DATE_ASC"},
+             "filter":{"kSql":ksql,"objectType":"KalturaSearchAssetFilter","orderBy":"START_DATE_ASC"},
              "ks":ks,
              "pager":{"objectType":"KalturaFilterPager","pageIndex":1,"pageSize":1000}}
     r=sess.post(CELL_LIST,json=payload,headers=CELL_HEADERS,timeout=30)
@@ -127,45 +114,43 @@ def fetch_cellcom(sess,site_id,since,till):
                 headers=CELL_HEADERS,timeout=30); r.raise_for_status()
     ks=r.json().get("ks") or r.json().get("result",{}).get("ks")
 
-    # pull full list once
+    # pull once, filter locally
     resp=_cell_req(sess,ks,chan)
     objs=resp.get("objects") or resp.get("result",{}).get("objects",[])
-    # keep only shows overlapping our 7-day window
-    return [o for o in objs
-            if to_dt(o["endDate"])>since and to_dt(o["startDate"])<till]
+    filt=[o for o in objs if to_dt(o["endDate"])>since and to_dt(o["startDate"])<till]
+    dbg("cellcom.co.il",f"{chan} → {len(filt)} items")
+    return filt
 
 # ───────── Partner (split by day) ─────────
 def fetch_partner(sess,site_id,since,till):
     chan=site_id.strip()
-    def _one(day:dt.datetime):
-        body={"_keys":["param"],"_values":[f"{chan}|{day:%Y-%m-%d}|UTC"],
-              "param":f"{chan}|{day:%Y-%m-%d}|UTC"}
+    def _day(d):
+        body={"_keys":["param"],"_values":[f"{chan}|{d:%Y-%m-%d}|UTC"],
+              "param":f"{chan}|{d:%Y-%m-%d}|UTC"}
         r=sess.post(PARTNER_EPG,json=body,headers=PARTNER_HEADERS,timeout=30)
         print(r.url,flush=True); r.raise_for_status()
         for ch in r.json().get("data",[]):
             if ch.get("id")==chan: return ch.get("events",[])
         return []
     cur,out=since,[]
-    while cur<till: out.extend(_one(cur)); cur+=dt.timedelta(days=1)
+    while cur<till: out.extend(_day(cur)); cur+=dt.timedelta(days=1)
     return out
 
 # ───────── Yes (split by day) ─────────
 def fetch_yes(sess,site_id,since,till):
-    def _one(day:dt.datetime):
-        url=f"{YES_CH_BASE}/{site_id.strip()}?date={day:%Y-%m-%d}&ignorePastItems=false"
+    def _day(d):
+        url=f"{YES_CH_BASE}/{site_id.strip()}?date={d:%Y-%m-%d}&ignorePastItems=false"
         r=sess.get(url,headers=YES_HEADERS,timeout=30); print(r.url,flush=True); r.raise_for_status()
         return r.json().get("items",[])
     cur,out=since,[]
-    while cur<till: out.extend(_one(cur)); cur+=dt.timedelta(days=1)
+    while cur<till: out.extend(_day(cur)); cur+=dt.timedelta(days=1)
     return out
 
-# ───────── HOT (cached per calendar day) ─────────
+# ───────── HOT (cached per day) ─────────
 HOT_DT="%Y/%m/%d %H:%M:%S"; _HOT_CACHE={}
-def _collect_hot_day(sess,day_start):
-    payload={"ChannelId":"0",
-             "ProgramsStartDateTime":day_start.strftime("%Y-%m-%dT00:00:00"),
-             "ProgramsEndDateTime":  day_start.strftime("%Y-%m-%dT23:59:59"),
-             "Hour":0}
+def _collect_hot(sess,day):
+    payload={"ChannelId":"0","ProgramsStartDateTime":day.strftime("%Y-%m-%dT00:00:00"),
+             "ProgramsEndDateTime":day.strftime("%Y-%m-%dT23:59:59"),"Hour":0}
     r=sess.post(HOT_API,json=payload,headers=HOT_HEADERS,timeout=60); print(r.url,flush=True)
     rows=r.json().get("data",{}).get("programsDetails",[])
     by={}
@@ -174,9 +159,9 @@ def _collect_hot_day(sess,day_start):
 def fetch_hot(sess,site_id,start,till):
     items,cur=[],start
     while cur<till:
-        d=cur.date()
-        if d not in _HOT_CACHE: _HOT_CACHE[d]=_collect_hot_day(sess,cur)
-        items.extend(_HOT_CACHE[d].get(site_id.zfill(3),[])); cur+=dt.timedelta(days=1)
+        day=cur.date()
+        if day not in _HOT_CACHE: _HOT_CACHE[day]=_collect_hot(sess,cur)
+        items.extend(_HOT_CACHE[day].get(site_id.zfill(3),[])); cur+=dt.timedelta(days=1)
     return items
 
 # ───────── main build ─────────
@@ -185,7 +170,6 @@ def build_epg():
     root=ET.Element("tv",{"source-info-name":"FreeTV+Cellcom+Partner+Yes+HOT (Week)",
                           "generator-info-name":"proxyEPG"})
 
-    # read channels
     entries={}
     for ch in ET.parse(CHANNELS_FILE).findall("channel"):
         xmltv=(ch.attrib.get("xmltv_id") or "").strip()
@@ -199,30 +183,32 @@ def build_epg():
         chosen=None
         for site,raw,name in variants:
             try:
-                items=( fetch_freetv(sess,raw,since,till)  if site=="freetv.tv"  else
-                        fetch_cellcom(sess,raw,since,till) if site=="cellcom.co.il" else
-                        fetch_partner(sess,raw,since,till) if site=="partner.co.il" else
-                        fetch_yes(sess,raw,since,till)     if site=="yes.co.il"    else
-                        fetch_hot(sess,raw,since,till)     if site=="hot.net.il"   else [] )
+                data=( fetch_freetv(sess,raw,since,till)  if site=="freetv.tv"  else
+                       fetch_cellcom(sess,raw,since,till) if site=="cellcom.co.il" else
+                       fetch_partner(sess,raw,since,till) if site=="partner.co.il" else
+                       fetch_yes(sess,raw,since,till)     if site=="yes.co.il"    else
+                       fetch_hot(sess,raw,since,till)     if site=="hot.net.il"   else [] )
             except Exception as e:
-                dbg(site,"fetch error",xmltv,e); items=[]
-            dbg(site,f"{xmltv} → {len(items)} items")
-            if items:
-                chosen=(site,name,items); break
+                dbg(site,"fetch error",xmltv,e); data=[]
+            dbg(site,f"{xmltv} → {len(data)} items")
+            if data:
+                chosen=(site,name,data); break
         if not chosen: continue
 
-        site,name,items=chosen
-        CE=ET.SubElement(root,"channel",id=xmltv)
-        ET.SubElement(CE,"display-name",lang="he").text=name
+        site,name,data=chosen
+        ch_el=ET.SubElement(root,"channel",id=xmltv)
+        ET.SubElement(ch_el,"display-name",lang="he").text=name
 
-        for it in items:
+        for it in data:
             try:
                 if site=="freetv.tv":
                     s,e=to_dt(it["since"]),to_dt(it["till"]); title=it["title"]; desc=it.get("description") or it.get("summary")
                 elif site=="cellcom.co.il":
                     s,e=to_dt(it["startDate"]),to_dt(it["endDate"]); title=it["name"]; desc=it.get("description")
-                elif site=="partner.co.il":
-                    s,e=to_dt(it["start"]),to_dt(it["end"]); title=it["name"]; desc=it.get("shortSynopsis")
+                elif site=="partner.co.il":                                  # ← ONLY CHANGE
+                    s=dt.datetime.strptime(it["start"],_SLASH_FMT).replace(tzinfo=IL_TZ)
+                    e=dt.datetime.strptime(it["end"],  _SLASH_FMT).replace(tzinfo=IL_TZ)
+                    title=it["name"]; desc=it.get("shortSynopsis")
                 elif site=="hot.net.il":
                     s=dt.datetime.strptime(it["programStartTime"],HOT_DT).replace(tzinfo=IL_TZ)
                     e=dt.datetime.strptime(it["programEndTime"],HOT_DT).replace(tzinfo=IL_TZ)
@@ -236,8 +222,7 @@ def build_epg():
 
     programmes.sort(key=lambda x:x[0])
     for s,e,title,desc,site,xmltv in programmes:
-        pr=ET.SubElement(root,"programme",
-                         start=fmt_ts(s,site),stop=fmt_ts(e,site),channel=xmltv)
+        pr=ET.SubElement(root,"programme",start=fmt_ts(s,site),stop=fmt_ts(e,site),channel=xmltv)
         ET.SubElement(pr,"title",lang="he").text=escape(title,quote=False)
         if desc:
             ET.SubElement(pr,"desc",lang="he").text=escape(desc,quote=False)
