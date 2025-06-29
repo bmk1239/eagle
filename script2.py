@@ -76,8 +76,7 @@ def to_dt(v):
     raise TypeError
 
 def day_window(now: dt.datetime):
-    """Return (since, till) covering current Sunday 00:00 → next Sunday 00:00 (IL time)."""
-    weekday = now.weekday()           # Monday=0 … Sunday=6
+    weekday = now.weekday()           # Mon=0 … Sun=6
     days_from_sun = (weekday + 1) % 7
     start_date = now.date() - dt.timedelta(days=days_from_sun)
     start = dt.datetime.combine(start_date, dt.time.min, tzinfo=IL_TZ)
@@ -97,21 +96,31 @@ def new_session():
 def fmt_ts(dt_obj, _site):
     return dt_obj.astimezone(dt.timezone.utc).strftime("%Y%m%d%H%M%S +0000")
 
-# ───────── FreeTV ─────────
+# ───────── FreeTV (multi-day) ─────────
 def fetch_freetv(sess, sid, since, till):
-    p = {"liveId[]": sid,
-         "since": since.strftime("%Y-%m-%dT%H:%M%z"),
-         "till":  till.strftime("%Y-%m-%dT%H:%M%z"),
-         "lang": "HEB",
-         "platform": "BROWSER"}
-    for a in (1, 2):
-        r = sess.get(FREETV_API, params=p, timeout=30); print(r.url, flush=True)
-        if r.status_code == 403 and a == 1:
-            sess.get(FREETV_HOME, timeout=20); continue
-        r.raise_for_status(); d = r.json()
-        return d.get("data", d) if isinstance(d, dict) else d
+    def _one(a, b):
+        p = {"liveId[]": sid,
+             "since": a.strftime("%Y-%m-%dT%H:%M%z"),
+             "till":  b.strftime("%Y-%m-%dT%H:%M%z"),
+             "lang": "HEB", "platform": "BROWSER"}
+        for attempt in (1, 2):
+            r = sess.get(FREETV_API, params=p, timeout=30); print(r.url, flush=True)
+            if r.status_code == 403 and attempt == 1:
+                sess.get(FREETV_HOME, timeout=20); continue
+            if r.status_code == 400:
+                dbg("freetv.tv", "bad span", sid, a, b, flush=True); return []
+            r.raise_for_status(); d = r.json()
+            return d.get("data", d) if isinstance(d, dict) else d
+    if till - since > dt.timedelta(days=1):
+        cur, out = since, []
+        while cur < till:
+            nxt = min(cur + dt.timedelta(days=1), till)
+            out.extend(_one(cur, nxt))
+            cur = nxt
+        return out
+    return _one(since, till)
 
-# ───────── Cellcom ─────────
+# ───────── Cellcom (multi-day) ─────────
 def _cell_req(sess, ks, chan, sts, ets, q):
     q = "'" + q if q else ""
     ksql = f"(and epg_channel_id='{chan}' start_date>{q}{sts}{q} end_date<{q}{ets}{q} asset_type='epg')"
@@ -125,19 +134,31 @@ def _cell_req(sess, ks, chan, sts, ets, q):
 
 def fetch_cellcom(sess, site_id, since, till):
     chan = site_id.split("##")[0]
-    sts, ets = int(since.timestamp()), int(till.timestamp())
-    r = sess.post(CELL_LOGIN, json={"apiVersion": "5.4.0.28193", "partnerId": "3197",
-                                    "udid": "f442..."}, headers=CELL_HEADERS, timeout=30)
+    r = sess.post(CELL_LOGIN,
+                  json={"apiVersion": "5.4.0.28193", "partnerId": "3197", "udid": "f442..."},
+                  headers=CELL_HEADERS, timeout=30)
     print(r.url, flush=True); r.raise_for_status()
     ks = r.json().get("ks") or r.json().get("result", {}).get("ks")
-    d = _cell_req(sess, ks, chan, sts, ets, "")
-    objs = d.get("objects") or d.get("result", {}).get("objects", [])
-    if objs:
-        return objs
-    if d.get("result", {}).get("error", {}).get("code") == "4004":
-        d = _cell_req(sess, ks, chan, sts, ets, "'")
-        return d.get("objects") or d.get("result", {}).get("objects", [])
-    return []
+
+    def _day(a, b):
+        sts, ets = int(a.timestamp()), int(b.timestamp())
+        d = _cell_req(sess, ks, chan, sts, ets, "")
+        objs = d.get("objects") or d.get("result", {}).get("objects", [])
+        if objs:
+            return objs
+        if d.get("result", {}).get("error", {}).get("code") == "4004":
+            d = _cell_req(sess, ks, chan, sts, ets, "'")
+            return d.get("objects") or d.get("result", {}).get("objects", [])
+        return []
+
+    if till - since > dt.timedelta(days=1):
+        cur, out = since, []
+        while cur < till:
+            nxt = min(cur + dt.timedelta(days=1), till)
+            out.extend(_day(cur, nxt))
+            cur = nxt
+        return out
+    return _day(since, till)
 
 # ───────── Partner (multi-day) ─────────
 def fetch_partner(sess, site_id, since, till):
@@ -174,7 +195,7 @@ def fetch_yes(sess, site_id, since, till):
     return _one(since)
 
 # ───────── HOT (multi-day cache) ─────────
-_HOT_CACHE = {}    # date → {channel → items}
+_HOT_CACHE: dict[dt.date, dict[str, list]] = {}
 HOT_DT = "%Y/%m/%d %H:%M:%S"
 def _collect_hot_day(sess, day_start):
     dbg("hot.net.il", "collecting", day_start.date(), flush=True)
@@ -182,12 +203,13 @@ def _collect_hot_day(sess, day_start):
                "ProgramsStartDateTime": day_start.strftime("%Y-%m-%dT00:00:00"),
                "ProgramsEndDateTime":  day_start.strftime("%Y-%m-%dT23:59:59"),
                "Hour": 0}
-    r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=60); print(r.url, flush=True)
+    r = sess.post(HOT_API, json=payload, headers=HOT_HEADERS, timeout=60)
+    print(r.url, flush=True)
     try:
         rows = r.json().get("data", {}).get("programsDetails", [])
     except Exception as e:
         dbg("hot.net.il", "json decode error", e, flush=True); return {}
-    by = {}
+    by: dict[str, list] = {}
     for it in rows:
         by.setdefault(str(it.get("channelID", "")).zfill(3), []).append(it)
     return by
@@ -208,9 +230,8 @@ def build_epg():
     since, till = day_window(dt.datetime.now(IL_TZ)); sess = new_session()
     root = ET.Element("tv", {"source-info-name": "FreeTV+Cellcom+Partner+Yes+HOT (Week)",
                              "generator-info-name": "proxyEPG"})
-
-    # read channels file
     entries: dict[str, list[tuple[str, str, str, str]]] = {}
+
     for ch in ET.parse(CHANNELS_FILE).findall("channel"):
         xmltv = (ch.attrib.get("xmltv_id") or "").strip()
         if not xmltv:
@@ -228,16 +249,15 @@ def build_epg():
         for site, raw, name, logical in variants:
             try:
                 items = (fetch_freetv(sess, raw, since, till)   if site == "freetv.tv"  else
-                         fetch_cellcom(sess, raw, since, till)  if site == "cellcom.co.il" else
-                         fetch_partner(sess, raw, since, till)  if site == "partner.co.il" else
-                         fetch_yes(sess, raw, since, till)      if site == "yes.co.il"    else
-                         fetch_hot(sess, raw, since, till)      if site == "hot.net.il"   else [])
+                         fetch_cellcom(sess, raw, since, till)   if site == "cellcom.co.il" else
+                         fetch_partner(sess, raw, since, till)   if site == "partner.co.il" else
+                         fetch_yes(sess, raw, since, till)       if site == "yes.co.il"    else
+                         fetch_hot(sess, raw, since, till)       if site == "hot.net.il"   else [])
             except Exception as e:
                 dbg(site, "fetch error", xmltv, e, flush=True); items = []
             dbg(site, f"{xmltv} → {len(items)} items", flush=True)
             if items:
                 ok_items = (items, site, name); break
-
         if not ok_items:
             dbg("skip", f"{xmltv} no data", flush=True); continue
 
