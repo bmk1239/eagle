@@ -149,8 +149,9 @@ def fetch_yes(sess,site_id,since,till):
 # ───────── HOT (cached per day) ─────────
 HOT_DT="%Y/%m/%d %H:%M:%S"; _HOT_CACHE={}
 def _collect_hot(sess,day):
-    payload={"ChannelId":"0","ProgramsStartDateTime":day.strftime("%Y-%m-%dT00:00:00"),
-             "ProgramsEndDateTime":day.strftime("%Y-%m-%dT23:59:59"),"Hour":0}
+    # ▼ minimal change: payload uses slash-format dates and no extra keys
+    payload={"ProgramsStartDateTime": day.strftime("%Y/%m/%d 00:00:00"),
+             "ProgramsEndDateTime"  : day.strftime("%Y/%m/%d 23:59:59")}
     r=sess.post(HOT_API,json=payload,headers=HOT_HEADERS,timeout=60); print(r.url,flush=True)
     rows=r.json().get("data",{}).get("programsDetails",[])
     by={}
@@ -205,7 +206,7 @@ def build_epg():
                     s,e=to_dt(it["since"]),to_dt(it["till"]); title=it["title"]; desc=it.get("description") or it.get("summary")
                 elif site=="cellcom.co.il":
                     s,e=to_dt(it["startDate"]),to_dt(it["endDate"]); title=it["name"]; desc=it.get("description")
-                elif site=="partner.co.il":                                  # ← ONLY CHANGE
+                elif site=="partner.co.il":
                     s=dt.datetime.strptime(it["start"],_SLASH_FMT).replace(tzinfo=IL_TZ)
                     e=dt.datetime.strptime(it["end"],  _SLASH_FMT).replace(tzinfo=IL_TZ)
                     title=it["name"]; desc=it.get("shortSynopsis")
