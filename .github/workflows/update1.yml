@@ -26,14 +26,8 @@ jobs:
     - name: Run script1
       run: python script1.py
 
-    - name: Commit and push updated file1.xml
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add file1.xml
-        if ! git diff --cached --quiet; then
-          git commit -m "Update file1"
-          git push
-        else
-          echo "No changes to commit"
-        fi
+    - name: commit file1.xml
+      uses: EndBug/add-and-commit@v9
+      with:
+        add: file1.xml
+        message: "ci: update file1.xml"
