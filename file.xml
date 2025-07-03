@@ -1,2 +1,2100 @@
 <?xml version="1.0" ?>
-<tv/>
+<tv>
+  <channel id="2299419">
+    <display-name>Channel 2299419</display-name>
+  </channel>
+  <channel id="2299421">
+    <display-name>Channel 2299421</display-name>
+  </channel>
+  <channel id="2299426">
+    <display-name>Channel 2299426</display-name>
+  </channel>
+  <channel id="2299431">
+    <display-name>Channel 2299431</display-name>
+  </channel>
+  <channel id="2299449">
+    <display-name>Channel 2299449</display-name>
+  </channel>
+  <channel id="2299451">
+    <display-name>Channel 2299451</display-name>
+  </channel>
+  <channel id="2299450">
+    <display-name>Channel 2299450</display-name>
+  </channel>
+  <channel id="2299435">
+    <display-name>Channel 2299435</display-name>
+  </channel>
+  <channel id="2299429">
+    <display-name>Channel 2299429</display-name>
+  </channel>
+  <channel id="2299433">
+    <display-name>Channel 2299433</display-name>
+  </channel>
+  <channel id="2299430">
+    <display-name>Channel 2299430</display-name>
+  </channel>
+  <channel id="2299411">
+    <display-name>Channel 2299411</display-name>
+  </channel>
+  <channel id="2305578">
+    <display-name>Channel 2305578</display-name>
+  </channel>
+  <channel id="2299416">
+    <display-name>Channel 2299416</display-name>
+  </channel>
+  <channel id="2299417">
+    <display-name>Channel 2299417</display-name>
+  </channel>
+  <channel id="2299418">
+    <display-name>Channel 2299418</display-name>
+  </channel>
+  <channel id="2299422">
+    <display-name>Channel 2299422</display-name>
+  </channel>
+  <channel id="2299425">
+    <display-name>Channel 2299425</display-name>
+  </channel>
+  <channel id="2299445">
+    <display-name>Channel 2299445</display-name>
+  </channel>
+  <channel id="2299436">
+    <display-name>Channel 2299436</display-name>
+  </channel>
+  <channel id="2299409">
+    <display-name>Channel 2299409</display-name>
+  </channel>
+  <channel id="2299428">
+    <display-name>Channel 2299428</display-name>
+  </channel>
+  <channel id="2299410">
+    <display-name>Channel 2299410</display-name>
+  </channel>
+  <channel id="2299413">
+    <display-name>Channel 2299413</display-name>
+  </channel>
+  <channel id="2299434">
+    <display-name>Channel 2299434</display-name>
+  </channel>
+  <channel id="2299448">
+    <display-name>Channel 2299448</display-name>
+  </channel>
+  <channel id="2299444">
+    <display-name>Channel 2299444</display-name>
+  </channel>
+  <channel id="2299446">
+    <display-name>Channel 2299446</display-name>
+  </channel>
+  <channel id="2299414">
+    <display-name>Channel 2299414</display-name>
+  </channel>
+  <channel id="2299420">
+    <display-name>Channel 2299420</display-name>
+  </channel>
+  <channel id="2299423">
+    <display-name>Channel 2299423</display-name>
+  </channel>
+  <channel id="2299424">
+    <display-name>Channel 2299424</display-name>
+  </channel>
+  <channel id="2299427">
+    <display-name>Channel 2299427</display-name>
+  </channel>
+  <channel id="2299438">
+    <display-name>Channel 2299438</display-name>
+  </channel>
+  <channel id="2299437">
+    <display-name>Channel 2299437</display-name>
+  </channel>
+  <channel id="2350798">
+    <display-name>Channel 2350798</display-name>
+  </channel>
+  <channel id="2305579">
+    <display-name>Channel 2305579</display-name>
+  </channel>
+  <channel id="2299432">
+    <display-name>Channel 2299432</display-name>
+  </channel>
+  <channel id="2299447">
+    <display-name>Channel 2299447</display-name>
+  </channel>
+  <channel id="2305576">
+    <display-name>Channel 2305576</display-name>
+  </channel>
+  <programme channel="2299419" start="20250703020000 +0000" stop="20250703041000 +0000">
+    <title lang="he">ישיר! ח&amp;#x27; גמר: הונדורס - מקסיקו</title>
+  </programme>
+  <programme channel="2299421" start="20250703020000 +0000" stop="20250703053000 +0000">
+    <title lang="he">ישיר! ל.א. דודג&amp;#x27;רס - שיקגו וייט סוקס</title>
+  </programme>
+  <programme channel="2299426" start="20250703020000 +0000" stop="20250703040000 +0000">
+    <title lang="he">ליגת גרנד סלאם טראק ממיאמי</title>
+  </programme>
+  <programme channel="2299431" start="20250703020900 +0000" stop="20250703035100 +0000">
+    <title lang="he">דרך ארוכה - ניק נולטה</title>
+  </programme>
+  <programme channel="2299449" start="20250703023109 +0000" stop="20250703035831 +0000">
+    <title lang="he">קולות רקע</title>
+  </programme>
+  <programme channel="2299451" start="20250703023548 +0000" stop="20250703042132 +0000">
+    <title lang="he">הנשיקה האחרונה של הקיסר</title>
+  </programme>
+  <programme channel="2299450" start="20250703024310 +0000" stop="20250703041938 +0000">
+    <title lang="he">סלולרי</title>
+  </programme>
+  <programme channel="2299435" start="20250703024400 +0000" stop="20250703050000 +0000">
+    <title lang="he">נשוב לשדר ב-1020</title>
+  </programme>
+  <programme channel="2299429" start="20250703025500 +0000" stop="20250703043100 +0000">
+    <title lang="he">האיש בעל אגרופי הברזל - ראסל קרואו</title>
+  </programme>
+  <programme channel="2299433" start="20250703025500 +0000" stop="20250703041500 +0000">
+    <title lang="he">גיבור בעננים</title>
+  </programme>
+  <programme channel="2299430" start="20250703025900 +0000" stop="20250703035900 +0000">
+    <title lang="he">שידורינו יתחדשו בקרוב</title>
+  </programme>
+  <programme channel="2299411" start="20250703030000 +0000" stop="20250703040000 +0000">
+    <title lang="he">העולם הבוקר - רגע לפני</title>
+  </programme>
+  <programme channel="2305578" start="20250703030000 +0000" stop="20250703040000 +0000">
+    <title lang="he">הדבר הבא עם דני רופ</title>
+  </programme>
+  <programme channel="2299416" start="20250703030000 +0000" stop="20250703045000 +0000">
+    <title lang="he">ח&amp;#x27; גמר: גואטמלה - ארה&amp;#x27;&amp;#x27;ב</title>
+  </programme>
+  <programme channel="2299417" start="20250703030000 +0000" stop="20250703045000 +0000">
+    <title lang="he">איסלנד - פינלנד (נשים)</title>
+  </programme>
+  <programme channel="2299418" start="20250703030000 +0000" stop="20250703045000 +0000">
+    <title lang="he">העונה שהייתה: נאפולי</title>
+  </programme>
+  <programme channel="2299422" start="20250703030000 +0000" stop="20250703070000 +0000">
+    <title lang="he">ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299425" start="20250703030000 +0000" stop="20250703050000 +0000">
+    <title lang="he">One Championship - אירוע 113</title>
+  </programme>
+  <programme channel="2299445" start="20250703030000 +0000" stop="20250703035000 +0000">
+    <title lang="he">זה הולך לכאוב - פרק 2</title>
+  </programme>
+  <programme channel="2299436" start="20250703030200 +0000" stop="20250703035000 +0000">
+    <title lang="he">צונאמי הגל שהרעיד את העולם</title>
+  </programme>
+  <programme channel="2299409" start="20250703030400 +0000" stop="20250703050000 +0000">
+    <title lang="he">הבוקר הזה - עם אילאיל שחר</title>
+  </programme>
+  <programme channel="2299428" start="20250703030800 +0000" stop="20250703035600 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2299410" start="20250703031000 +0000" stop="20250703040000 +0000">
+    <title lang="he">כותרות הבוקר</title>
+  </programme>
+  <programme channel="2299413" start="20250703031000 +0000" stop="20250703040000 +0000">
+    <title lang="he">הסיפורים הגדולים</title>
+  </programme>
+  <programme channel="2299434" start="20250703032200 +0000" stop="20250703035100 +0000">
+    <title lang="he">תרגיע, עונה 8</title>
+  </programme>
+  <programme channel="2299448" start="20250703032200 +0000" stop="20250703035618 +0000">
+    <title lang="he">פולישוק 3 - פרשת מצורע</title>
+  </programme>
+  <programme channel="2299444" start="20250703032500 +0000" stop="20250703035500 +0000">
+    <title lang="he">מאחורי הקלעים - פינק ליידי</title>
+  </programme>
+  <programme channel="2299446" start="20250703032500 +0000" stop="20250703044500 +0000">
+    <title lang="he">בכורה! גיבורה בהפתעה: טובים ה-2 מן האחד</title>
+  </programme>
+  <programme channel="2299414" start="20250703033000 +0000" stop="20250703035500 +0000">
+    <title lang="he">עוזרת בית - תרופה נגד שיעמום</title>
+  </programme>
+  <programme channel="2299420" start="20250703033000 +0000" stop="20250703035500 +0000">
+    <title lang="he">גוף בתנועה - עם גלעד ינקלביץ&amp;#x27;</title>
+  </programme>
+  <programme channel="2299423" start="20250703033000 +0000" stop="20250703040000 +0000">
+    <title lang="he">גיבורים לנצח</title>
+  </programme>
+  <programme channel="2299424" start="20250703033000 +0000" stop="20250703040000 +0000">
+    <title lang="he">סיפורים מהליגה הספרדית - פרק 41</title>
+  </programme>
+  <programme channel="2299427" start="20250703033000 +0000" stop="20250703050000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2299438" start="20250703033000 +0000" stop="20250703041300 +0000">
+    <title lang="he">NCIS הוואי 3</title>
+  </programme>
+  <programme channel="2299437" start="20250703033300 +0000" stop="20250703043800 +0000">
+    <title lang="he">בת אלה - הכוח לשמוח</title>
+  </programme>
+  <programme channel="2350798" start="20250703033500 +0000" stop="20250703042500 +0000">
+    <title lang="he">חדשות הספורט</title>
+  </programme>
+  <programme channel="2305579" start="20250703033600 +0000" stop="20250703041800 +0000">
+    <title lang="he">התעלומות הגדולות בהיסטוריה 5 - פרק 1</title>
+  </programme>
+  <programme channel="2299432" start="20250703033700 +0000" stop="20250703061700 +0000">
+    <title lang="he">הקיסר האחרון</title>
+  </programme>
+  <programme channel="2299447" start="20250703033700 +0000" stop="20250703041558 +0000">
+    <title lang="he">יש לה את זה 1 - אנה הופ דוגמנית על</title>
+  </programme>
+  <programme channel="2305576" start="20250703034200 +0000" stop="20250703035800 +0000">
+    <title lang="he">עיר המספרים 2</title>
+  </programme>
+  <programme channel="2299436" start="20250703035000 +0000" stop="20250703044000 +0000">
+    <title lang="he">צונאמי הגל שהרעיד את העולם</title>
+  </programme>
+  <programme channel="2299445" start="20250703035000 +0000" stop="20250703044000 +0000">
+    <title lang="he">זה הולך לכאוב - פרק 3</title>
+  </programme>
+  <programme channel="2299431" start="20250703035100 +0000" stop="20250703054600 +0000">
+    <title lang="he">תקועים בחופשה - אדם סנדלר</title>
+  </programme>
+  <programme channel="2299434" start="20250703035100 +0000" stop="20250703041200 +0000">
+    <title lang="he">אבוט אלמנטרי 2</title>
+  </programme>
+  <programme channel="2299414" start="20250703035500 +0000" stop="20250703042500 +0000">
+    <title lang="he">כולם חשודים - רודפת צדק</title>
+  </programme>
+  <programme channel="2299420" start="20250703035500 +0000" stop="20250703040500 +0000">
+    <title lang="he">גוף בעיצוב - עם גלעד ינקלביץ&amp;#x27;</title>
+  </programme>
+  <programme channel="2299444" start="20250703035500 +0000" stop="20250703053500 +0000">
+    <title lang="he">עוד משהו בקטנה</title>
+  </programme>
+  <programme channel="2299428" start="20250703035600 +0000" stop="20250703042300 +0000">
+    <title lang="he">א. העולם בסקייטבורדינג במורד - 4. Open Skate</title>
+  </programme>
+  <programme channel="2299448" start="20250703035618 +0000" stop="20250703041910 +0000">
+    <title lang="he">סברי מרנן 7 - כבר לא ילדה</title>
+  </programme>
+  <programme channel="2305576" start="20250703035800 +0000" stop="20250703041000 +0000">
+    <title lang="he">הפלנטונים</title>
+  </programme>
+  <programme channel="2299449" start="20250703035831 +0000" stop="20250703053147 +0000">
+    <title lang="he">רכבת קלה</title>
+  </programme>
+  <programme channel="2299430" start="20250703035900 +0000" stop="20250703040400 +0000">
+    <title lang="he">שידורינו יתחדשו בקרוב</title>
+  </programme>
+  <programme channel="2299410" start="20250703040000 +0000" stop="20250703063000 +0000">
+    <title lang="he">חדשות הבוקר עם נסלי ברדה</title>
+  </programme>
+  <programme channel="2299411" start="20250703040000 +0000" stop="20250703063000 +0000">
+    <title lang="he">העולם הבוקר - שי גולדן</title>
+  </programme>
+  <programme channel="2299413" start="20250703040000 +0000" stop="20250703043000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2305578" start="20250703040000 +0000" stop="20250703060000 +0000">
+    <title lang="he">בוקר כלכלי</title>
+  </programme>
+  <programme channel="2299423" start="20250703040000 +0000" stop="20250703043000 +0000">
+    <title lang="he">יריבויות יורוליג</title>
+  </programme>
+  <programme channel="2299424" start="20250703040000 +0000" stop="20250703055000 +0000">
+    <title lang="he">ל. ספרדית 2024/25 - ר. ויאדוליד/ר. מדריד</title>
+  </programme>
+  <programme channel="2299426" start="20250703040000 +0000" stop="20250703050000 +0000">
+    <title lang="he">סנוקר</title>
+  </programme>
+  <programme channel="2299430" start="20250703040400 +0000" stop="20250703054100 +0000">
+    <title lang="he">התנגשות בלתי נמנעת</title>
+  </programme>
+  <programme channel="2299420" start="20250703040500 +0000" stop="20250703054000 +0000">
+    <title lang="he">עד גיל 19: ישראל - קמרון</title>
+  </programme>
+  <programme channel="2305576" start="20250703041000 +0000" stop="20250703041800 +0000">
+    <title lang="he">בלואי</title>
+  </programme>
+  <programme channel="2299419" start="20250703041000 +0000" stop="20250703060500 +0000">
+    <title lang="he">ח&amp;#x27; גמר: הונדורס - מקסיקו</title>
+  </programme>
+  <programme channel="2299434" start="20250703041200 +0000" stop="20250703043300 +0000">
+    <title lang="he">אבוט אלמנטרי 2</title>
+  </programme>
+  <programme channel="2299438" start="20250703041300 +0000" stop="20250703045400 +0000">
+    <title lang="he">NCIS עונה 22</title>
+  </programme>
+  <programme channel="2299433" start="20250703041500 +0000" stop="20250703053400 +0000">
+    <title lang="he">גויאבות</title>
+  </programme>
+  <programme channel="2299447" start="20250703041558 +0000" stop="20250703045326 +0000">
+    <title lang="he">פלפלים צהובים 2 - לשחרר</title>
+  </programme>
+  <programme channel="2305576" start="20250703041800 +0000" stop="20250703042600 +0000">
+    <title lang="he">בלואי</title>
+  </programme>
+  <programme channel="2305579" start="20250703041800 +0000" stop="20250703050000 +0000">
+    <title lang="he">התעלומות הגדולות בהיסטוריה 5 - פרק 2</title>
+  </programme>
+  <programme channel="2299448" start="20250703041910 +0000" stop="20250703044341 +0000">
+    <title lang="he">סברי מרנן 7 - ציפור הכלא</title>
+  </programme>
+  <programme channel="2299450" start="20250703041938 +0000" stop="20250703060109 +0000">
+    <title lang="he">הוריקן</title>
+  </programme>
+  <programme channel="2299451" start="20250703042132 +0000" stop="20250703060000 +0000">
+    <title lang="he">מקום לאהבה</title>
+  </programme>
+  <programme channel="2299428" start="20250703042300 +0000" stop="20250703044900 +0000">
+    <title lang="he">אודיסאה אלקטרונית</title>
+  </programme>
+  <programme channel="2299414" start="20250703042500 +0000" stop="20250703051500 +0000">
+    <title lang="he">עקבות על המים - בן הקוקיה</title>
+  </programme>
+  <programme channel="2350798" start="20250703042500 +0000" stop="20250703052000 +0000">
+    <title lang="he">חדשות הספורט</title>
+  </programme>
+  <programme channel="2305576" start="20250703042600 +0000" stop="20250703044500 +0000">
+    <title lang="he">קפה עמליה</title>
+  </programme>
+  <programme channel="2299413" start="20250703043000 +0000" stop="20250703050000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299423" start="20250703043000 +0000" stop="20250703044500 +0000">
+    <title lang="he">דרך המים: מייקל פלפס</title>
+  </programme>
+  <programme channel="2299429" start="20250703043100 +0000" stop="20250703063200 +0000">
+    <title lang="he">רוקטמן</title>
+  </programme>
+  <programme channel="2299434" start="20250703043300 +0000" stop="20250703050000 +0000">
+    <title lang="he">VEEP, עונה 2</title>
+  </programme>
+  <programme channel="2299437" start="20250703043800 +0000" stop="20250703060400 +0000">
+    <title lang="he">מה זאת אהבה</title>
+  </programme>
+  <programme channel="2299436" start="20250703044000 +0000" stop="20250703053500 +0000">
+    <title lang="he">דנ&amp;#x27;&amp;#x27;א קץ הפשיעה?</title>
+  </programme>
+  <programme channel="2299445" start="20250703044000 +0000" stop="20250703052500 +0000">
+    <title lang="he">S.W.A.T עונה 2 - פרק 11</title>
+  </programme>
+  <programme channel="2299448" start="20250703044341 +0000" stop="20250703051841 +0000">
+    <title lang="he">מה זה השטויות האלה?  2 - חופשה בצפון</title>
+  </programme>
+  <programme channel="2305576" start="20250703044500 +0000" stop="20250703050500 +0000">
+    <title lang="he">פרפר נחמד</title>
+  </programme>
+  <programme channel="2299423" start="20250703044500 +0000" stop="20250703060000 +0000">
+    <title lang="he">אייאקס - מילאן, 94/5</title>
+  </programme>
+  <programme channel="2299446" start="20250703044500 +0000" stop="20250703060500 +0000">
+    <title lang="he">אגדת המלך שלמה - מדובב</title>
+  </programme>
+  <programme channel="2299428" start="20250703044900 +0000" stop="20250703053700 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2299416" start="20250703045000 +0000" stop="20250703072000 +0000">
+    <title lang="he">גמר יורו 2025: אנגליה - גרמניה</title>
+  </programme>
+  <programme channel="2299417" start="20250703045000 +0000" stop="20250703064000 +0000">
+    <title lang="he">שוויץ - נורווגיה (נשים)</title>
+  </programme>
+  <programme channel="2299418" start="20250703045000 +0000" stop="20250703064000 +0000">
+    <title lang="he">העונה שהייתה: נאפולי</title>
+  </programme>
+  <programme channel="2299447" start="20250703045326 +0000" stop="20250703053552 +0000">
+    <title lang="he">מעורב ירושלמי 2 - ראש השנה</title>
+  </programme>
+  <programme channel="2299438" start="20250703045400 +0000" stop="20250703053700 +0000">
+    <title lang="he">חוק וסדר טורונטו 2</title>
+  </programme>
+  <programme channel="2299409" start="20250703050000 +0000" stop="20250703070000 +0000">
+    <title lang="he">עקיבא נוביק ורינה מצליח</title>
+  </programme>
+  <programme channel="2299413" start="20250703050000 +0000" stop="20250703053000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299425" start="20250703050000 +0000" stop="20250703064600 +0000">
+    <title lang="he">One Championship - אירוע 113</title>
+  </programme>
+  <programme channel="2299426" start="20250703050000 +0000" stop="20250703063000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2299427" start="20250703050000 +0000" stop="20250703063000 +0000">
+    <title lang="he">גביע העולם</title>
+  </programme>
+  <programme channel="2299434" start="20250703050000 +0000" stop="20250703052700 +0000">
+    <title lang="he">VEEP, עונה 2</title>
+  </programme>
+  <programme channel="2299435" start="20250703050000 +0000" stop="20250703072000 +0000">
+    <title lang="he">נשוב לשדר ב-1020</title>
+  </programme>
+  <programme channel="2305579" start="20250703050000 +0000" stop="20250703054300 +0000">
+    <title lang="he">הבריחות הגדולות עם מורגן פרימן 2 - פרק 6</title>
+  </programme>
+  <programme channel="2305576" start="20250703050500 +0000" stop="20250703051700 +0000">
+    <title lang="he">צ&amp;#x27;רלי ולולה</title>
+  </programme>
+  <programme channel="2299414" start="20250703051500 +0000" stop="20250703054000 +0000">
+    <title lang="he">להבין ולסלוח - התגרות באנס</title>
+  </programme>
+  <programme channel="2305576" start="20250703051700 +0000" stop="20250703053000 +0000">
+    <title lang="he">הדרדסים 2</title>
+  </programme>
+  <programme channel="2299448" start="20250703051841 +0000" stop="20250703055739 +0000">
+    <title lang="he">ארץ נהדרת 18 - העימות האחרון</title>
+  </programme>
+  <programme channel="2350798" start="20250703052000 +0000" stop="20250703072000 +0000">
+    <title lang="he">ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299445" start="20250703052500 +0000" stop="20250703060500 +0000">
+    <title lang="he">צעירים חסרי מנוח - פרק 12452</title>
+  </programme>
+  <programme channel="2299434" start="20250703052700 +0000" stop="20250703060300 +0000">
+    <title lang="he">תרגיע, עונה 9</title>
+  </programme>
+  <programme channel="2305576" start="20250703053000 +0000" stop="20250703053700 +0000">
+    <title lang="he">בלואי</title>
+  </programme>
+  <programme channel="2299413" start="20250703053000 +0000" stop="20250703060000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299421" start="20250703053000 +0000" stop="20250703074000 +0000">
+    <title lang="he">ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299449" start="20250703053147 +0000" stop="20250703072306 +0000">
+    <title lang="he">סוף העולם שמאלה</title>
+  </programme>
+  <programme channel="2299433" start="20250703053400 +0000" stop="20250703070400 +0000">
+    <title lang="he">סלומוניקו</title>
+  </programme>
+  <programme channel="2299436" start="20250703053500 +0000" stop="20250703062500 +0000">
+    <title lang="he">איפה האוכל? עם אייל שני</title>
+  </programme>
+  <programme channel="2299444" start="20250703053500 +0000" stop="20250703073000 +0000">
+    <title lang="he">חיי כלב</title>
+  </programme>
+  <programme channel="2299447" start="20250703053552 +0000" stop="20250703062203 +0000">
+    <title lang="he">בקרוב אצלי 1 - שתי נשיקות</title>
+  </programme>
+  <programme channel="2305576" start="20250703053700 +0000" stop="20250703054600 +0000">
+    <title lang="he">בלואי</title>
+  </programme>
+  <programme channel="2299428" start="20250703053700 +0000" stop="20250703060300 +0000">
+    <title lang="he">א. העולם בסקייטבורדינג במורד - 5. Street Luge</title>
+  </programme>
+  <programme channel="2299438" start="20250703053700 +0000" stop="20250703061800 +0000">
+    <title lang="he">חוק וסדר מדור מיוחד 26</title>
+  </programme>
+  <programme channel="2299414" start="20250703054000 +0000" stop="20250703061000 +0000">
+    <title lang="he">להבין ולסלוח - נכד נחשק</title>
+  </programme>
+  <programme channel="2299420" start="20250703054000 +0000" stop="20250703094000 +0000">
+    <title lang="he">ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299430" start="20250703054100 +0000" stop="20250703072500 +0000">
+    <title lang="he">בלתי נשכחים 4</title>
+  </programme>
+  <programme channel="2305579" start="20250703054300 +0000" stop="20250703070300 +0000">
+    <title lang="he">היסטוריה למכירה בדרכים 2 - פרק 9</title>
+  </programme>
+  <programme channel="2305576" start="20250703054600 +0000" stop="20250703055700 +0000">
+    <title lang="he">זה יוני</title>
+  </programme>
+  <programme channel="2299431" start="20250703054600 +0000" stop="20250703071200 +0000">
+    <title lang="he">חברות או לא להיות</title>
+  </programme>
+  <programme channel="2299424" start="20250703055000 +0000" stop="20250703065000 +0000">
+    <title lang="he">ל. ספרדית 2024/25 - השערים הגדולים בלה-ליגה 2024/25</title>
+  </programme>
+  <programme channel="2305576" start="20250703055700 +0000" stop="20250703062000 +0000">
+    <title lang="he">המופלאה הרפתקאות ליידי באג 2</title>
+  </programme>
+  <programme channel="2299448" start="20250703055739 +0000" stop="20250703062032 +0000">
+    <title lang="he">סברי מרנן 6 - אורנה ומשה כ&amp;quot;ץ</title>
+  </programme>
+  <programme channel="2299413" start="20250703060000 +0000" stop="20250703063000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2305578" start="20250703060000 +0000" stop="20250703090000 +0000">
+    <title lang="he">פותחים שוק</title>
+  </programme>
+  <programme channel="2299423" start="20250703060000 +0000" stop="20250703073000 +0000">
+    <title lang="he">מנ. יונייטד - ניוקאסל, 2002/3</title>
+  </programme>
+  <programme channel="2299451" start="20250703060000 +0000" stop="20250703072850 +0000">
+    <title lang="he">חג האהבה של איימי</title>
+  </programme>
+  <programme channel="2299450" start="20250703060109 +0000" stop="20250703074849 +0000">
+    <title lang="he">קולוסאל</title>
+  </programme>
+  <programme channel="2299428" start="20250703060300 +0000" stop="20250703065100 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2299434" start="20250703060300 +0000" stop="20250703063700 +0000">
+    <title lang="he">תרגיע, עונה 9</title>
+  </programme>
+  <programme channel="2299437" start="20250703060400 +0000" stop="20250703080200 +0000">
+    <title lang="he">יהונתן פרלמן בהיכל התרבות</title>
+  </programme>
+  <programme channel="2299419" start="20250703060500 +0000" stop="20250703075500 +0000">
+    <title lang="he">איסלנד - פינלנד (נשים)</title>
+  </programme>
+  <programme channel="2299445" start="20250703060500 +0000" stop="20250703063000 +0000">
+    <title lang="he">היפים והאמיצים - פרק 9491</title>
+  </programme>
+  <programme channel="2299446" start="20250703060500 +0000" stop="20250703074000 +0000">
+    <title lang="he">הקרודים 2: עידן חדש - מדובב</title>
+  </programme>
+  <programme channel="2299414" start="20250703061000 +0000" stop="20250703070500 +0000">
+    <title lang="he">עץ או פלי. עונת המים</title>
+  </programme>
+  <programme channel="2299432" start="20250703061700 +0000" stop="20250703075900 +0000">
+    <title lang="he">שני לבבות</title>
+  </programme>
+  <programme channel="2299438" start="20250703061800 +0000" stop="20250703065900 +0000">
+    <title lang="he">חוק וסדר פשע מאורגן 5</title>
+  </programme>
+  <programme channel="2305576" start="20250703062000 +0000" stop="20250703064500 +0000">
+    <title lang="he">שקשוקה עונה 3</title>
+  </programme>
+  <programme channel="2299448" start="20250703062032 +0000" stop="20250703064336 +0000">
+    <title lang="he">סברי מרנן 6 - עובדי עצות</title>
+  </programme>
+  <programme channel="2299447" start="20250703062203 +0000" stop="20250703070411 +0000">
+    <title lang="he">כיפת ברזל 1 - דבר שקר</title>
+  </programme>
+  <programme channel="2299436" start="20250703062500 +0000" stop="20250703072000 +0000">
+    <title lang="he">ז&amp;#x27;אן-קלוד ואן דאם</title>
+  </programme>
+  <programme channel="2299410" start="20250703063000 +0000" stop="20250703063500 +0000">
+    <title lang="he">מבזק חדשות</title>
+  </programme>
+  <programme channel="2299411" start="20250703063000 +0000" stop="20250703063500 +0000">
+    <title lang="he">מבזק חדשות</title>
+  </programme>
+  <programme channel="2299413" start="20250703063000 +0000" stop="20250703070000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299426" start="20250703063000 +0000" stop="20250703070000 +0000">
+    <title lang="he">מגזין גולף</title>
+  </programme>
+  <programme channel="2299427" start="20250703063000 +0000" stop="20250703080000 +0000">
+    <title lang="he">סנוקר</title>
+  </programme>
+  <programme channel="2299445" start="20250703063000 +0000" stop="20250703065500 +0000">
+    <title lang="he">היפים והאמיצים - פרק 9492</title>
+  </programme>
+  <programme channel="2299429" start="20250703063200 +0000" stop="20250703082900 +0000">
+    <title lang="he">הלילה הוא שלנו - מארק וולברג</title>
+  </programme>
+  <programme channel="2299410" start="20250703063500 +0000" stop="20250703080000 +0000">
+    <title lang="he">חדשות הבוקר - עם יואב לימור</title>
+  </programme>
+  <programme channel="2299411" start="20250703063500 +0000" stop="20250703070000 +0000">
+    <title lang="he">פותחים יום - ירדן ואלעד</title>
+  </programme>
+  <programme channel="2299434" start="20250703063700 +0000" stop="20250703065800 +0000">
+    <title lang="he">אבוט אלמנטרי 2</title>
+  </programme>
+  <programme channel="2299417" start="20250703064000 +0000" stop="20250703082500 +0000">
+    <title lang="he">העונה שהייתה: מנור סולומון</title>
+  </programme>
+  <programme channel="2299418" start="20250703064000 +0000" stop="20250703074000 +0000">
+    <title lang="he">סיכום העונה בליגה האיטלקית</title>
+  </programme>
+  <programme channel="2299448" start="20250703064336 +0000" stop="20250703071905 +0000">
+    <title lang="he">מה זה השטויות האלה?  2 - לחפש משמעות</title>
+  </programme>
+  <programme channel="2305576" start="20250703064500 +0000" stop="20250703070000 +0000">
+    <title lang="he">ילדי בית העץ</title>
+  </programme>
+  <programme channel="2299425" start="20250703064600 +0000" stop="20250703071500 +0000">
+    <title lang="he">פול אימפקט - מחזור 38</title>
+  </programme>
+  <programme channel="2299424" start="20250703065000 +0000" stop="20250703071000 +0000">
+    <title lang="he">ל. ספרדית 2024/25 - סביליה/ברצלונה - תקציר מורחב</title>
+  </programme>
+  <programme channel="2299428" start="20250703065100 +0000" stop="20250703082500 +0000">
+    <title lang="he">מירוצי GT - גרמניה: מרוץ ספרינט 1</title>
+  </programme>
+  <programme channel="2299445" start="20250703065500 +0000" stop="20250703073500 +0000">
+    <title lang="he">צעירים חסרי מנוח - פרק 12453</title>
+  </programme>
+  <programme channel="2299434" start="20250703065800 +0000" stop="20250703071900 +0000">
+    <title lang="he">אבוט אלמנטרי 2</title>
+  </programme>
+  <programme channel="2299438" start="20250703065900 +0000" stop="20250703074100 +0000">
+    <title lang="he">הטירון 4</title>
+  </programme>
+  <programme channel="2299409" start="20250703070000 +0000" stop="20250703090000 +0000">
+    <title lang="he">רוני קובן ועמרי אסנהיים</title>
+  </programme>
+  <programme channel="2299411" start="20250703070000 +0000" stop="20250703070500 +0000">
+    <title lang="he">מבזק חדשות</title>
+  </programme>
+  <programme channel="2305576" start="20250703070000 +0000" stop="20250703072000 +0000">
+    <title lang="he">השמרטפים</title>
+  </programme>
+  <programme channel="2299413" start="20250703070000 +0000" stop="20250703073000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299422" start="20250703070000 +0000" stop="20250703080500 +0000">
+    <title lang="he">ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299426" start="20250703070000 +0000" stop="20250703080000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2305579" start="20250703070300 +0000" stop="20250703074500 +0000">
+    <title lang="he">אבות המזון של אמריקה 4 - פרק 11</title>
+  </programme>
+  <programme channel="2299433" start="20250703070400 +0000" stop="20250703084700 +0000">
+    <title lang="he">ארבינקא</title>
+  </programme>
+  <programme channel="2299447" start="20250703070411 +0000" stop="20250703074505 +0000">
+    <title lang="he">היורשת 1 - בת מצווש מהגיהנום</title>
+  </programme>
+  <programme channel="2299411" start="20250703070500 +0000" stop="20250703080000 +0000">
+    <title lang="he">פותחים יום - ירדן ואלעד</title>
+  </programme>
+  <programme channel="2299414" start="20250703070500 +0000" stop="20250703075000 +0000">
+    <title lang="he">העדים - מעלית לגרדום</title>
+  </programme>
+  <programme channel="2299424" start="20250703071000 +0000" stop="20250703080000 +0000">
+    <title lang="he">טרנספר מרקט, קיץ 2025 - פרק 5</title>
+  </programme>
+  <programme channel="2299431" start="20250703071200 +0000" stop="20250703085600 +0000">
+    <title lang="he">לגדול עם ההורים</title>
+  </programme>
+  <programme channel="2299425" start="20250703071500 +0000" stop="20250703074300 +0000">
+    <title lang="he">המיטב בסרייה A - מחזור 38</title>
+  </programme>
+  <programme channel="2299434" start="20250703071900 +0000" stop="20250703074600 +0000">
+    <title lang="he">VEEP, עונה 2</title>
+  </programme>
+  <programme channel="2299448" start="20250703071905 +0000" stop="20250703074625 +0000">
+    <title lang="he">פולישוק 3 - נקמת היונה - חלק ב&amp;#x27;</title>
+  </programme>
+  <programme channel="2305576" start="20250703072000 +0000" stop="20250703074000 +0000">
+    <title lang="he">להציל את חיות הבית</title>
+  </programme>
+  <programme channel="2299416" start="20250703072000 +0000" stop="20250703091000 +0000">
+    <title lang="he">ח&amp;#x27; גמר: הונדורס - מקסיקו</title>
+  </programme>
+  <programme channel="2350798" start="20250703072000 +0000" stop="20250703081000 +0000">
+    <title lang="he">חדשות הספורט</title>
+  </programme>
+  <programme channel="2299435" start="20250703072000 +0000" stop="20250703080300 +0000">
+    <title lang="he">לא רציונלי 2</title>
+  </programme>
+  <programme channel="2299436" start="20250703072000 +0000" stop="20250703080500 +0000">
+    <title lang="he">ריאל מדריד איך לא אוהב אותך?</title>
+  </programme>
+  <programme channel="2299449" start="20250703072306 +0000" stop="20250703085745 +0000">
+    <title lang="he">הקיץ של אביה</title>
+  </programme>
+  <programme channel="2299430" start="20250703072500 +0000" stop="20250703093100 +0000">
+    <title lang="he">מלחמת האלים - ג&amp;#x27;רארד באטלר</title>
+  </programme>
+  <programme channel="2299451" start="20250703072850 +0000" stop="20250703085713 +0000">
+    <title lang="he">למצוא את האחת</title>
+  </programme>
+  <programme channel="2299413" start="20250703073000 +0000" stop="20250703080000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299423" start="20250703073000 +0000" stop="20250703090000 +0000">
+    <title lang="he">ניו יורק ניקס - ניו יורק נטס, 1984</title>
+  </programme>
+  <programme channel="2299444" start="20250703073000 +0000" stop="20250703092500 +0000">
+    <title lang="he">ארוס בהשאלה</title>
+  </programme>
+  <programme channel="2299445" start="20250703073500 +0000" stop="20250703081500 +0000">
+    <title lang="he">ימי חיינו - פרק 14215</title>
+  </programme>
+  <programme channel="2305576" start="20250703074000 +0000" stop="20250703080500 +0000">
+    <title lang="he">שכונת חיים</title>
+  </programme>
+  <programme channel="2299418" start="20250703074000 +0000" stop="20250703080000 +0000">
+    <title lang="he">טריוויית שחקני פרמיירליג (משחק שמות)</title>
+  </programme>
+  <programme channel="2299421" start="20250703074000 +0000" stop="20250703094500 +0000">
+    <title lang="he">ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299446" start="20250703074000 +0000" stop="20250703091500 +0000">
+    <title lang="he">קונג פו פנדה (מדובב)</title>
+  </programme>
+  <programme channel="2299438" start="20250703074100 +0000" stop="20250703082200 +0000">
+    <title lang="he">NCIS הוואי 3</title>
+  </programme>
+  <programme channel="2299425" start="20250703074300 +0000" stop="20250703092800 +0000">
+    <title lang="he">ל. איטלקית 2024/25 - אינטר/לאציו</title>
+  </programme>
+  <programme channel="2305579" start="20250703074500 +0000" stop="20250703082600 +0000">
+    <title lang="he">חייזרים מן העבר 16 - פרק 1</title>
+  </programme>
+  <programme channel="2299447" start="20250703074505 +0000" stop="20250703080927 +0000">
+    <title lang="he">החיים הם תקופה קשה 1 - חנוך מתגייס לצה&amp;quot;ל</title>
+  </programme>
+  <programme channel="2299434" start="20250703074600 +0000" stop="20250703081400 +0000">
+    <title lang="he">VEEP, עונה 2</title>
+  </programme>
+  <programme channel="2299448" start="20250703074625 +0000" stop="20250703080934 +0000">
+    <title lang="he">סברי מרנן 2 - שלוש ושליש</title>
+  </programme>
+  <programme channel="2299450" start="20250703074849 +0000" stop="20250703092450 +0000">
+    <title lang="he">התנגשות בלתי נמנעת</title>
+  </programme>
+  <programme channel="2299414" start="20250703075000 +0000" stop="20250703084000 +0000">
+    <title lang="he">טבעת נישואין - פרק 30</title>
+  </programme>
+  <programme channel="2299419" start="20250703075500 +0000" stop="20250703094500 +0000">
+    <title lang="he">שוויץ - נורווגיה (נשים)</title>
+  </programme>
+  <programme channel="2299432" start="20250703075900 +0000" stop="20250703094500 +0000">
+    <title lang="he">נוכלות או לא להיות</title>
+  </programme>
+  <programme channel="2299410" start="20250703080000 +0000" stop="20250703084000 +0000">
+    <title lang="he">תמרה וחברים</title>
+  </programme>
+  <programme channel="2299411" start="20250703080000 +0000" stop="20250703080500 +0000">
+    <title lang="he">מבזק חדשות</title>
+  </programme>
+  <programme channel="2299413" start="20250703080000 +0000" stop="20250703083000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299418" start="20250703080000 +0000" stop="20250703120000 +0000">
+    <title lang="he">ישיר! טורניר פאדל, בורדו</title>
+  </programme>
+  <programme channel="2299424" start="20250703080000 +0000" stop="20250703084500 +0000">
+    <title lang="he">ONE Podcasts - שיחת היום</title>
+  </programme>
+  <programme channel="2299426" start="20250703080000 +0000" stop="20250703093000 +0000">
+    <title lang="he">המשחקים האולימפיים</title>
+  </programme>
+  <programme channel="2299427" start="20250703080000 +0000" stop="20250703093000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2299437" start="20250703080200 +0000" stop="20250703091100 +0000">
+    <title lang="he">בארץ אהבתי</title>
+  </programme>
+  <programme channel="2299435" start="20250703080300 +0000" stop="20250703083400 +0000">
+    <title lang="he">שלטון הצללים</title>
+  </programme>
+  <programme channel="2299411" start="20250703080500 +0000" stop="20250703090000 +0000">
+    <title lang="he">פותחים יום - ירדן ואלעד</title>
+  </programme>
+  <programme channel="2305576" start="20250703080500 +0000" stop="20250703083300 +0000">
+    <title lang="he">כראמל</title>
+  </programme>
+  <programme channel="2299422" start="20250703080500 +0000" stop="20250703082000 +0000">
+    <title lang="he">דורטמונד - מונטריי</title>
+  </programme>
+  <programme channel="2299436" start="20250703080500 +0000" stop="20250703085500 +0000">
+    <title lang="he">צונאמי הגל שהרעיד את העולם</title>
+  </programme>
+  <programme channel="2299447" start="20250703080927 +0000" stop="20250703083911 +0000">
+    <title lang="he">אמא&amp;#x27;לה 3 - תאילנד</title>
+  </programme>
+  <programme channel="2299448" start="20250703080934 +0000" stop="20250703083245 +0000">
+    <title lang="he">סברי מרנן 2 - חלומות</title>
+  </programme>
+  <programme channel="2350798" start="20250703081000 +0000" stop="20250703090000 +0000">
+    <title lang="he">חדשות הספורט</title>
+  </programme>
+  <programme channel="2299434" start="20250703081400 +0000" stop="20250703083600 +0000">
+    <title lang="he">וויל וגרייס 2</title>
+  </programme>
+  <programme channel="2299445" start="20250703081500 +0000" stop="20250703084000 +0000">
+    <title lang="he">וויל וגרייס: עונה 6 - פרק 7</title>
+  </programme>
+  <programme channel="2299422" start="20250703082000 +0000" stop="20250703094500 +0000">
+    <title lang="he">עד גיל 19: ישראל - קמרון</title>
+  </programme>
+  <programme channel="2299438" start="20250703082200 +0000" stop="20250703090500 +0000">
+    <title lang="he">חוק וסדר טורונטו 2</title>
+  </programme>
+  <programme channel="2299417" start="20250703082500 +0000" stop="20250703101500 +0000">
+    <title lang="he">העונה שהייתה: מנור סולומון</title>
+  </programme>
+  <programme channel="2299428" start="20250703082500 +0000" stop="20250703085100 +0000">
+    <title lang="he">ספורט מסביב לעולם</title>
+  </programme>
+  <programme channel="2305579" start="20250703082600 +0000" stop="20250703090800 +0000">
+    <title lang="he">אוצר האי המקולל 12 - פרק 16</title>
+  </programme>
+  <programme channel="2299429" start="20250703082900 +0000" stop="20250703103200 +0000">
+    <title lang="he">בן-חור (2016)</title>
+  </programme>
+  <programme channel="2299413" start="20250703083000 +0000" stop="20250703090000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299448" start="20250703083245 +0000" stop="20250703092557 +0000">
+    <title lang="he">ארץ נהדרת 21 - מסלקים את 2023</title>
+  </programme>
+  <programme channel="2305576" start="20250703083300 +0000" stop="20250703085800 +0000">
+    <title lang="he">לבד בבית</title>
+  </programme>
+  <programme channel="2299435" start="20250703083400 +0000" stop="20250703091700 +0000">
+    <title lang="he">רק רוצחים בגינה</title>
+  </programme>
+  <programme channel="2299434" start="20250703083600 +0000" stop="20250703085900 +0000">
+    <title lang="he">וויל וגרייס 2</title>
+  </programme>
+  <programme channel="2299447" start="20250703083911 +0000" stop="20250703091846 +0000">
+    <title lang="he">יש לה את זה 1 - אנה הופ דוגמנית על</title>
+  </programme>
+  <programme channel="2299410" start="20250703084000 +0000" stop="20250703090000 +0000">
+    <title lang="he">גיא פינס</title>
+  </programme>
+  <programme channel="2299414" start="20250703084000 +0000" stop="20250703103500 +0000">
+    <title lang="he">העיוורת</title>
+  </programme>
+  <programme channel="2299445" start="20250703084000 +0000" stop="20250703092500 +0000">
+    <title lang="he">חוק וסדר: פשע מאורגן עונה 4 - פרק 8</title>
+  </programme>
+  <programme channel="2299424" start="20250703084500 +0000" stop="20250703093000 +0000">
+    <title lang="he">ONE Podcasts - שיחת היום</title>
+  </programme>
+  <programme channel="2299433" start="20250703084700 +0000" stop="20250703102000 +0000">
+    <title lang="he">אבוללה</title>
+  </programme>
+  <programme channel="2299428" start="20250703085100 +0000" stop="20250703091600 +0000">
+    <title lang="he">אודיסאה אלקטרונית</title>
+  </programme>
+  <programme channel="2299436" start="20250703085500 +0000" stop="20250703094500 +0000">
+    <title lang="he">צונאמי הגל שהרעיד את העולם</title>
+  </programme>
+  <programme channel="2299431" start="20250703085600 +0000" stop="20250703103400 +0000">
+    <title lang="he">החברה של החבר הכי טוב שלי - קייט הדסון</title>
+  </programme>
+  <programme channel="2299451" start="20250703085713 +0000" stop="20250703102258 +0000">
+    <title lang="he">נשיקה בקמפינג</title>
+  </programme>
+  <programme channel="2299449" start="20250703085745 +0000" stop="20250703103159 +0000">
+    <title lang="he">אוהב אותך צ&amp;#x27;ארלי</title>
+  </programme>
+  <programme channel="2305576" start="20250703085800 +0000" stop="20250703092200 +0000">
+    <title lang="he">האריות של שלי הכובשת</title>
+  </programme>
+  <programme channel="2299434" start="20250703085900 +0000" stop="20250703092000 +0000">
+    <title lang="he">אבוט אלמנטרי 2</title>
+  </programme>
+  <programme channel="2299409" start="20250703090000 +0000" stop="20250703100000 +0000">
+    <title lang="he">האמת מאחורי התעלומות הגדולות - פרק 7</title>
+  </programme>
+  <programme channel="2299410" start="20250703090000 +0000" stop="20250703120000 +0000">
+    <title lang="he">משדר חדשות מיוחד - אלמז מנגיסטו</title>
+  </programme>
+  <programme channel="2299411" start="20250703090000 +0000" stop="20250703090500 +0000">
+    <title lang="he">מבזק חדשות</title>
+  </programme>
+  <programme channel="2299413" start="20250703090000 +0000" stop="20250703093000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2305578" start="20250703090000 +0000" stop="20250703110000 +0000">
+    <title lang="he">אולפן כלכלה</title>
+  </programme>
+  <programme channel="2350798" start="20250703090000 +0000" stop="20250703094500 +0000">
+    <title lang="he">ריאדה אל חמיסה - מגזין בערבית</title>
+  </programme>
+  <programme channel="2299423" start="20250703090000 +0000" stop="20250703103000 +0000">
+    <title lang="he">מ. חיפה - ה. ת&amp;#x27;&amp;#x27;א, 2001/2</title>
+  </programme>
+  <programme channel="2299411" start="20250703090500 +0000" stop="20250703095000 +0000">
+    <title lang="he">סטטוסקופ - פרק 261</title>
+  </programme>
+  <programme channel="2299438" start="20250703090500 +0000" stop="20250703094700 +0000">
+    <title lang="he">חוק וסדר 24</title>
+  </programme>
+  <programme channel="2305579" start="20250703090800 +0000" stop="20250703094900 +0000">
+    <title lang="he">תגליות מסתוריות עם דני טרחו - פרק 4</title>
+  </programme>
+  <programme channel="2299416" start="20250703091000 +0000" stop="20250703110000 +0000">
+    <title lang="he">ה. ב&amp;#x27;&amp;#x27;ש - קרקוביה קרקוב</title>
+  </programme>
+  <programme channel="2299437" start="20250703091100 +0000" stop="20250703105300 +0000">
+    <title lang="he">הפרח בגני משיריו של זוהר ארגוב</title>
+  </programme>
+  <programme channel="2299446" start="20250703091500 +0000" stop="20250703103500 +0000">
+    <title lang="he">מעלה והלאה - מדובב</title>
+  </programme>
+  <programme channel="2299428" start="20250703091600 +0000" stop="20250703094200 +0000">
+    <title lang="he">מעלים הילוך</title>
+  </programme>
+  <programme channel="2299435" start="20250703091700 +0000" stop="20250703100400 +0000">
+    <title lang="he">מקום בלב 3</title>
+  </programme>
+  <programme channel="2299447" start="20250703091846 +0000" stop="20250703100509 +0000">
+    <title lang="he">השוטרים 2 - השוטרים נחשפים</title>
+  </programme>
+  <programme channel="2299434" start="20250703092000 +0000" stop="20250703094100 +0000">
+    <title lang="he">אבוט אלמנטרי 2</title>
+  </programme>
+  <programme channel="2305576" start="20250703092200 +0000" stop="20250703094400 +0000">
+    <title lang="he">חדש! מלון הוטל 2</title>
+  </programme>
+  <programme channel="2299450" start="20250703092450 +0000" stop="20250703111320 +0000">
+    <title lang="he">הקבלן</title>
+  </programme>
+  <programme channel="2299444" start="20250703092500 +0000" stop="20250703114500 +0000">
+    <title lang="he">מהיר ועצבני 9</title>
+  </programme>
+  <programme channel="2299445" start="20250703092500 +0000" stop="20250703101000 +0000">
+    <title lang="he">חוק וסדר: פשע מאורגן עונה 4 - פרק 9</title>
+  </programme>
+  <programme channel="2299448" start="20250703092557 +0000" stop="20250703095347 +0000">
+    <title lang="he">צומת מילר 1 - רמזור בתאטרון</title>
+  </programme>
+  <programme channel="2299425" start="20250703092800 +0000" stop="20250703095700 +0000">
+    <title lang="he">פול אימפקט - מחזור 38</title>
+  </programme>
+  <programme channel="2299413" start="20250703093000 +0000" stop="20250703100000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299424" start="20250703093000 +0000" stop="20250703101500 +0000">
+    <title lang="he">ONE Podcasts - שיחת היום</title>
+  </programme>
+  <programme channel="2299426" start="20250703093000 +0000" stop="20250703110000 +0000">
+    <title lang="he">גביע העולם</title>
+  </programme>
+  <programme channel="2299427" start="20250703093000 +0000" stop="20250703110000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2299430" start="20250703093100 +0000" stop="20250703111300 +0000">
+    <title lang="he">באש ובמים - כריס פיין</title>
+  </programme>
+  <programme channel="2299420" start="20250703094000 +0000" stop="20250703094500 +0000">
+    <title lang="he">ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299434" start="20250703094100 +0000" stop="20250703100200 +0000">
+    <title lang="he">שני גברים וחצי 6</title>
+  </programme>
+  <programme channel="2299428" start="20250703094200 +0000" stop="20250703103000 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2305576" start="20250703094400 +0000" stop="20250703100800 +0000">
+    <title lang="he">שקשוקה עונה 3</title>
+  </programme>
+  <programme channel="2299419" start="20250703094500 +0000" stop="20250703102500 +0000">
+    <title lang="he">סערה בממלכה (ערן זהבי, חלק ב&amp;#x27;)</title>
+  </programme>
+  <programme channel="2299420" start="20250703094500 +0000" stop="20250703100000 +0000">
+    <title lang="he">ישיר! ווימבלדון: אולפן</title>
+  </programme>
+  <programme channel="2299421" start="20250703094500 +0000" stop="20250703100000 +0000">
+    <title lang="he">ישיר! ווימבלדון: אולפן</title>
+  </programme>
+  <programme channel="2350798" start="20250703094500 +0000" stop="20250703100000 +0000">
+    <title lang="he">ישיר! ווימבלדון: אולפן</title>
+  </programme>
+  <programme channel="2299422" start="20250703094500 +0000" stop="20250703100000 +0000">
+    <title lang="he">ישיר! ווימבלדון: אולפן</title>
+  </programme>
+  <programme channel="2299432" start="20250703094500 +0000" stop="20250703111700 +0000">
+    <title lang="he">כאריות לכבשים - מריל סטריפ</title>
+  </programme>
+  <programme channel="2299436" start="20250703094500 +0000" stop="20250703104000 +0000">
+    <title lang="he">דנ&amp;#x27;&amp;#x27;א קץ הפשיעה?</title>
+  </programme>
+  <programme channel="2299438" start="20250703094700 +0000" stop="20250703102800 +0000">
+    <title lang="he">NCIS עונה 22</title>
+  </programme>
+  <programme channel="2305579" start="20250703094900 +0000" stop="20250703103200 +0000">
+    <title lang="he">הבריחות הגדולות עם מורגן פרימן 2 - פרק 6</title>
+  </programme>
+  <programme channel="2299411" start="20250703095000 +0000" stop="20250703100000 +0000">
+    <title lang="he">לילה TALK - משפט פשוט</title>
+  </programme>
+  <programme channel="2299448" start="20250703095347 +0000" stop="20250703103759 +0000">
+    <title lang="he">צומת מילר 1 - נוסעים ללונדון</title>
+  </programme>
+  <programme channel="2299425" start="20250703095700 +0000" stop="20250703101500 +0000">
+    <title lang="he">יום בחיי - שרון מימר</title>
+  </programme>
+  <programme channel="2299409" start="20250703100000 +0000" stop="20250703105000 +0000">
+    <title lang="he">עוד ניפגש 2 - פרק אחרון</title>
+  </programme>
+  <programme channel="2299411" start="20250703100000 +0000" stop="20250703100500 +0000">
+    <title lang="he">מבזק חדשות</title>
+  </programme>
+  <programme channel="2299413" start="20250703100000 +0000" stop="20250703103000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299420" start="20250703100000 +0000" stop="20250703140000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299421" start="20250703100000 +0000" stop="20250703140000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2350798" start="20250703100000 +0000" stop="20250703140000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299422" start="20250703100000 +0000" stop="20250703140000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299434" start="20250703100200 +0000" stop="20250703102400 +0000">
+    <title lang="he">שני גברים וחצי 6</title>
+  </programme>
+  <programme channel="2299435" start="20250703100400 +0000" stop="20250703104900 +0000">
+    <title lang="he">לא רציונלי 2</title>
+  </programme>
+  <programme channel="2299411" start="20250703100500 +0000" stop="20250703103000 +0000">
+    <title lang="he">לילה TALK - משפט פשוט</title>
+  </programme>
+  <programme channel="2299447" start="20250703100509 +0000" stop="20250703104735 +0000">
+    <title lang="he">מעורב ירושלמי 2 - ראש השנה</title>
+  </programme>
+  <programme channel="2305576" start="20250703100800 +0000" stop="20250703101700 +0000">
+    <title lang="he">חדש! סטודיו אמציה-רק אנימציה</title>
+  </programme>
+  <programme channel="2299445" start="20250703101000 +0000" stop="20250703105500 +0000">
+    <title lang="he">S.W.A.T עונה 2 - פרק 12</title>
+  </programme>
+  <programme channel="2299417" start="20250703101500 +0000" stop="20250703112500 +0000">
+    <title lang="he">בשירות פוד מלכותו (ספיישל היסטורי)</title>
+  </programme>
+  <programme channel="2299424" start="20250703101500 +0000" stop="20250703110000 +0000">
+    <title lang="he">ONE Podcasts - שיחת היום</title>
+  </programme>
+  <programme channel="2299425" start="20250703101500 +0000" stop="20250703104100 +0000">
+    <title lang="he">המיטב בסרייה A - מחזור 38</title>
+  </programme>
+  <programme channel="2305576" start="20250703101700 +0000" stop="20250703102400 +0000">
+    <title lang="he">בלואי</title>
+  </programme>
+  <programme channel="2299433" start="20250703102000 +0000" stop="20250703120300 +0000">
+    <title lang="he">רימון הזהב</title>
+  </programme>
+  <programme channel="2299451" start="20250703102258 +0000" stop="20250703114338 +0000">
+    <title lang="he">חלומות אולימפיים</title>
+  </programme>
+  <programme channel="2305576" start="20250703102400 +0000" stop="20250703103200 +0000">
+    <title lang="he">בלואי</title>
+  </programme>
+  <programme channel="2299434" start="20250703102400 +0000" stop="20250703104500 +0000">
+    <title lang="he">וויל וגרייס 2</title>
+  </programme>
+  <programme channel="2299419" start="20250703102500 +0000" stop="20250703121500 +0000">
+    <title lang="he">ח&amp;#x27; גמר: גואטמלה - ארה&amp;#x27;&amp;#x27;ב</title>
+  </programme>
+  <programme channel="2299438" start="20250703102800 +0000" stop="20250703111000 +0000">
+    <title lang="he">חוק וסדר פשע מאורגן 5</title>
+  </programme>
+  <programme channel="2299411" start="20250703103000 +0000" stop="20250703110000 +0000">
+    <title lang="he">נדל&amp;#x27;&amp;#x27;ן בצו השעה</title>
+  </programme>
+  <programme channel="2299413" start="20250703103000 +0000" stop="20250703110000 +0000">
+    <title lang="he">חדר החדשות</title>
+  </programme>
+  <programme channel="2299423" start="20250703103000 +0000" stop="20250703110000 +0000">
+    <title lang="he">כתבות מן העבר, פרק 21</title>
+  </programme>
+  <programme channel="2299428" start="20250703103000 +0000" stop="20250703120000 +0000">
+    <title lang="he">מירוצי GT - גרמניה: מרוץ ספרינט 2</title>
+  </programme>
+  <programme channel="2299449" start="20250703103159 +0000" stop="20250703120505 +0000">
+    <title lang="he">סיפור גדול</title>
+  </programme>
+  <programme channel="2305576" start="20250703103200 +0000" stop="20250703104400 +0000">
+    <title lang="he">הדרדסים 2</title>
+  </programme>
+  <programme channel="2299429" start="20250703103200 +0000" stop="20250703124200 +0000">
+    <title lang="he">המצוד (1998) - רוברט דאוני ג&amp;#x27;וניור</title>
+  </programme>
+  <programme channel="2305579" start="20250703103200 +0000" stop="20250703111400 +0000">
+    <title lang="he">תגליות מסתוריות עם דני טרחו - פרק 8</title>
+  </programme>
+  <programme channel="2299431" start="20250703103400 +0000" stop="20250703122400 +0000">
+    <title lang="he">רחוב ג&amp;#x27;אמפ 22 - צ&amp;#x27;נינג טייטום</title>
+  </programme>
+  <programme channel="2299414" start="20250703103500 +0000" stop="20250703112500 +0000">
+    <title lang="he">עקבות על המים - ציד בני אדם מתחת למים</title>
+  </programme>
+  <programme channel="2299446" start="20250703103500 +0000" stop="20250703120000 +0000">
+    <title lang="he">מסביב לעולם ב-80 יום - מדובב</title>
+  </programme>
+  <programme channel="2299448" start="20250703103759 +0000" stop="20250703111306 +0000">
+    <title lang="he">מה זה השטויות האלה?  4 - ארה&amp;quot;ב 2</title>
+  </programme>
+  <programme channel="2299436" start="20250703104000 +0000" stop="20250703113000 +0000">
+    <title lang="he">איפה האוכל? עם אייל שני</title>
+  </programme>
+  <programme channel="2299425" start="20250703104100 +0000" stop="20250703123100 +0000">
+    <title lang="he">ל. איטלקית 2024/25 - נאפולי/מילאן</title>
+  </programme>
+  <programme channel="2305576" start="20250703104400 +0000" stop="20250703110700 +0000">
+    <title lang="he">המופלאה הרפתקאות ליידי באג 2</title>
+  </programme>
+  <programme channel="2299434" start="20250703104500 +0000" stop="20250703110700 +0000">
+    <title lang="he">וויל וגרייס 2</title>
+  </programme>
+  <programme channel="2299447" start="20250703104735 +0000" stop="20250703113346 +0000">
+    <title lang="he">בקרוב אצלי 1 - שתי נשיקות</title>
+  </programme>
+  <programme channel="2299435" start="20250703104900 +0000" stop="20250703112000 +0000">
+    <title lang="he">שלטון הצללים</title>
+  </programme>
+  <programme channel="2299409" start="20250703105000 +0000" stop="20250703112200 +0000">
+    <title lang="he">סיפורים מהכורסה 2 - על כסף</title>
+  </programme>
+  <programme channel="2299437" start="20250703105300 +0000" stop="20250703123900 +0000">
+    <title lang="he">כל העולם במה - צדי צרפתי</title>
+  </programme>
+  <programme channel="2299445" start="20250703105500 +0000" stop="20250703114000 +0000">
+    <title lang="he">S.W.A.T עונה 2 - פרק 13</title>
+  </programme>
+  <programme channel="2299411" start="20250703110000 +0000" stop="20250703110500 +0000">
+    <title lang="he">מבזק חדשות</title>
+  </programme>
+  <programme channel="2299413" start="20250703110000 +0000" stop="20250703120000 +0000">
+    <title lang="he">מהדורת הצהריים</title>
+  </programme>
+  <programme channel="2305578" start="20250703110000 +0000" stop="20250703130000 +0000">
+    <title lang="he">השבוע שהיה עם לי סובר</title>
+  </programme>
+  <programme channel="2299416" start="20250703110000 +0000" stop="20250703111000 +0000">
+    <title lang="he">וואלה! תיקתקנו - מבזק ספורט</title>
+  </programme>
+  <programme channel="2299423" start="20250703110000 +0000" stop="20250703113000 +0000">
+    <title lang="he">די סטפנו - הסופרסטאר הראשון</title>
+  </programme>
+  <programme channel="2299424" start="20250703110000 +0000" stop="20250703114500 +0000">
+    <title lang="he">ONE Podcasts - שיחת היום</title>
+  </programme>
+  <programme channel="2299426" start="20250703110000 +0000" stop="20250703113000 +0000">
+    <title lang="he">ינס פויגט - דיוקן</title>
+  </programme>
+  <programme channel="2299427" start="20250703110000 +0000" stop="20250703150000 +0000">
+    <title lang="he">ליגת גרנד סלאם טראק מפילדלפיה</title>
+  </programme>
+  <programme channel="2299411" start="20250703110500 +0000" stop="20250703120000 +0000">
+    <title lang="he">הדו&amp;#x27;&amp;#x27;ח היומי</title>
+  </programme>
+  <programme channel="2305576" start="20250703110700 +0000" stop="20250703113500 +0000">
+    <title lang="he">שכונת חיים</title>
+  </programme>
+  <programme channel="2299434" start="20250703110700 +0000" stop="20250703112900 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2299416" start="20250703111000 +0000" stop="20250703115000 +0000">
+    <title lang="he">רצועה נוסטלגית: מכבי חיפה</title>
+  </programme>
+  <programme channel="2299438" start="20250703111000 +0000" stop="20250703115200 +0000">
+    <title lang="he">חוק וסדר מדור מיוחד 26</title>
+  </programme>
+  <programme channel="2299430" start="20250703111300 +0000" stop="20250703132600 +0000">
+    <title lang="he">גראן טוריסמו</title>
+  </programme>
+  <programme channel="2299448" start="20250703111306 +0000" stop="20250703113727 +0000">
+    <title lang="he">סברי מרנן 2 - בגידות</title>
+  </programme>
+  <programme channel="2299450" start="20250703111320 +0000" stop="20250703132122 +0000">
+    <title lang="he">הספירה לאחור</title>
+  </programme>
+  <programme channel="2305579" start="20250703111400 +0000" stop="20250703115600 +0000">
+    <title lang="he">תיקים סודיים עם דיוויד דוכובני - פרק 5</title>
+  </programme>
+  <programme channel="2299432" start="20250703111700 +0000" stop="20250703130400 +0000">
+    <title lang="he">פיסת גן עדן - קייט הדסון</title>
+  </programme>
+  <programme channel="2299435" start="20250703112000 +0000" stop="20250703120300 +0000">
+    <title lang="he">רק רוצחים בגינה</title>
+  </programme>
+  <programme channel="2299409" start="20250703112200 +0000" stop="20250703113700 +0000">
+    <title lang="he">מהצד השני - עם גיא זהר</title>
+  </programme>
+  <programme channel="2299414" start="20250703112500 +0000" stop="20250703121500 +0000">
+    <title lang="he">הבלתי נראים - אשמאי זקן</title>
+  </programme>
+  <programme channel="2299417" start="20250703112500 +0000" stop="20250703131500 +0000">
+    <title lang="he">ח&amp;#x27; גמר: הונדורס - מקסיקו</title>
+  </programme>
+  <programme channel="2299434" start="20250703112900 +0000" stop="20250703115100 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2299423" start="20250703113000 +0000" stop="20250703122500 +0000">
+    <title lang="he">ווימבלדון: הסרט הרשמי 1980</title>
+  </programme>
+  <programme channel="2299426" start="20250703113000 +0000" stop="20250703140000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2299436" start="20250703113000 +0000" stop="20250703122500 +0000">
+    <title lang="he">ז&amp;#x27;אן-קלוד ואן דאם</title>
+  </programme>
+  <programme channel="2299447" start="20250703113346 +0000" stop="20250703121641 +0000">
+    <title lang="he">אף אחד לא עוזב את פאלו אלטו  1 - פריצת דרך</title>
+  </programme>
+  <programme channel="2305576" start="20250703113500 +0000" stop="20250703120400 +0000">
+    <title lang="he">בני מצווה</title>
+  </programme>
+  <programme channel="2299409" start="20250703113700 +0000" stop="20250703120000 +0000">
+    <title lang="he">קופה ראשית - 16. יום שישי בסופר</title>
+  </programme>
+  <programme channel="2299448" start="20250703113727 +0000" stop="20250703120045 +0000">
+    <title lang="he">סברי מרנן 2 - דברים שרציתי לומר</title>
+  </programme>
+  <programme channel="2299445" start="20250703114000 +0000" stop="20250703122500 +0000">
+    <title lang="he">חוקי משפחה: עונה 4 - פרק 3</title>
+  </programme>
+  <programme channel="2299451" start="20250703114338 +0000" stop="20250703131712 +0000">
+    <title lang="he">אולי חתונה</title>
+  </programme>
+  <programme channel="2299424" start="20250703114500 +0000" stop="20250703124000 +0000">
+    <title lang="he">ל. ספרדית 2024/25 - סיכום שנת 2024/25 בלה-ליגה</title>
+  </programme>
+  <programme channel="2299444" start="20250703114500 +0000" stop="20250703140000 +0000">
+    <title lang="he">חלום אמריקאי</title>
+  </programme>
+  <programme channel="2299416" start="20250703115000 +0000" stop="20250703134000 +0000">
+    <title lang="he">רצועה נוסטלגית: מכבי חיפה</title>
+  </programme>
+  <programme channel="2299434" start="20250703115100 +0000" stop="20250703121100 +0000">
+    <title lang="he">שני גברים וחצי 6</title>
+  </programme>
+  <programme channel="2299438" start="20250703115200 +0000" stop="20250703123600 +0000">
+    <title lang="he">Alert</title>
+  </programme>
+  <programme channel="2305579" start="20250703115600 +0000" stop="20250703131600 +0000">
+    <title lang="he">היסטוריה למכירה בדרכים 2 - פרק 10</title>
+  </programme>
+  <programme channel="2299409" start="20250703120000 +0000" stop="20250703130000 +0000">
+    <title lang="he">שלוש - עם יונתן אוחיון</title>
+  </programme>
+  <programme channel="2299410" start="20250703120000 +0000" stop="20250703135500 +0000">
+    <title lang="he">מהדורת היום - עם עופר חדד ועמליה דואק</title>
+  </programme>
+  <programme channel="2299411" start="20250703120000 +0000" stop="20250703135500 +0000">
+    <title lang="he">חדשות היום</title>
+  </programme>
+  <programme channel="2299413" start="20250703120000 +0000" stop="20250703135000 +0000">
+    <title lang="he">מהדורת 15</title>
+  </programme>
+  <programme channel="2299418" start="20250703120000 +0000" stop="20250703160000 +0000">
+    <title lang="he">ישיר! טורניר פאדל, בורדו</title>
+  </programme>
+  <programme channel="2299428" start="20250703120000 +0000" stop="20250703124800 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2299446" start="20250703120000 +0000" stop="20250703121500 +0000">
+    <title lang="he">הרפתקאות לגו סיטי: עונה 3 - פרק 11</title>
+  </programme>
+  <programme channel="2299448" start="20250703120045 +0000" stop="20250703122959 +0000">
+    <title lang="he">הפרלמנט 1 - יום כיפור</title>
+  </programme>
+  <programme channel="2299433" start="20250703120300 +0000" stop="20250703134000 +0000">
+    <title lang="he">פעמיים בוסקילה</title>
+  </programme>
+  <programme channel="2299435" start="20250703120300 +0000" stop="20250703124200 +0000">
+    <title lang="he">ימי חיינו, חדש!</title>
+  </programme>
+  <programme channel="2305576" start="20250703120400 +0000" stop="20250703123200 +0000">
+    <title lang="he">כראמל</title>
+  </programme>
+  <programme channel="2299449" start="20250703120505 +0000" stop="20250703134844 +0000">
+    <title lang="he">עץ הדומים תפוס</title>
+  </programme>
+  <programme channel="2299434" start="20250703121100 +0000" stop="20250703123100 +0000">
+    <title lang="he">שני גברים וחצי 6</title>
+  </programme>
+  <programme channel="2299414" start="20250703121500 +0000" stop="20250703130000 +0000">
+    <title lang="he">עקבות - האיש השחור</title>
+  </programme>
+  <programme channel="2299419" start="20250703121500 +0000" stop="20250703122500 +0000">
+    <title lang="he">וואלה! תיקתקנו - מבזק ספורט</title>
+  </programme>
+  <programme channel="2299446" start="20250703121500 +0000" stop="20250703124000 +0000">
+    <title lang="he">ברבי: מגע של קסם - 2. למצוא בית</title>
+  </programme>
+  <programme channel="2299447" start="20250703121641 +0000" stop="20250703125849 +0000">
+    <title lang="he">כיפת ברזל 1 - דבר שקר</title>
+  </programme>
+  <programme channel="2299431" start="20250703122400 +0000" stop="20250703140900 +0000">
+    <title lang="he">סוכן וחצי - דווין ג&amp;#x27;ונסון</title>
+  </programme>
+  <programme channel="2299419" start="20250703122500 +0000" stop="20250703124500 +0000">
+    <title lang="he">הרגעים הגדולים, עונת 2024/25 - מכבי ת&amp;#x27;&amp;#x27;א</title>
+  </programme>
+  <programme channel="2299423" start="20250703122500 +0000" stop="20250703132000 +0000">
+    <title lang="he">ווימבלדון: הסרט הרשמי 1981</title>
+  </programme>
+  <programme channel="2299436" start="20250703122500 +0000" stop="20250703131500 +0000">
+    <title lang="he">צונאמי הגל שהרעיד את העולם</title>
+  </programme>
+  <programme channel="2299445" start="20250703122500 +0000" stop="20250703130000 +0000">
+    <title lang="he">האקס 3 - פרק 3</title>
+  </programme>
+  <programme channel="2299448" start="20250703122959 +0000" stop="20250703125338 +0000">
+    <title lang="he">עבודה ערבית 2 - פורים</title>
+  </programme>
+  <programme channel="2299425" start="20250703123100 +0000" stop="20250703125700 +0000">
+    <title lang="he">סדרת השחמט העולמית - פרק 3</title>
+  </programme>
+  <programme channel="2299434" start="20250703123100 +0000" stop="20250703125200 +0000">
+    <title lang="he">חברים 6</title>
+  </programme>
+  <programme channel="2305576" start="20250703123200 +0000" stop="20250703125700 +0000">
+    <title lang="he">חדש! מלון הוטל 2</title>
+  </programme>
+  <programme channel="2299438" start="20250703123600 +0000" stop="20250703132000 +0000">
+    <title lang="he">חוק וסדר טורונטו 2</title>
+  </programme>
+  <programme channel="2299437" start="20250703123900 +0000" stop="20250703134500 +0000">
+    <title lang="he">לעולם בעקבות השמש</title>
+  </programme>
+  <programme channel="2299424" start="20250703124000 +0000" stop="20250703140500 +0000">
+    <title lang="he">טורניר כישרונות לה-ליגה 2025 - גמר: סביליה/אספניול</title>
+  </programme>
+  <programme channel="2299446" start="20250703124000 +0000" stop="20250703130500 +0000">
+    <title lang="he">סופר סטרייקה 5 - 11. עידוד ובטלה בלאס וגאס</title>
+  </programme>
+  <programme channel="2299429" start="20250703124200 +0000" stop="20250703145000 +0000">
+    <title lang="he">באהבה אין חוקים - ג&amp;#x27;ק ניקולסון</title>
+  </programme>
+  <programme channel="2299435" start="20250703124200 +0000" stop="20250703132000 +0000">
+    <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
+  </programme>
+  <programme channel="2299419" start="20250703124500 +0000" stop="20250703130000 +0000">
+    <title lang="he">הרגעים הגדולים, עונת 2024/25 - הפועל ב&amp;#x27;&amp;#x27;</title>
+  </programme>
+  <programme channel="2299428" start="20250703124800 +0000" stop="20250703131500 +0000">
+    <title lang="he">אודיסאה אלקטרונית</title>
+  </programme>
+  <programme channel="2299434" start="20250703125200 +0000" stop="20250703131400 +0000">
+    <title lang="he">חברים 6</title>
+  </programme>
+  <programme channel="2299448" start="20250703125338 +0000" stop="20250703131733 +0000">
+    <title lang="he">עבודה ערבית 2 - מוסיקה</title>
+  </programme>
+  <programme channel="2305576" start="20250703125700 +0000" stop="20250703132500 +0000">
+    <title lang="he">האחיין שלי בנץ 3</title>
+  </programme>
+  <programme channel="2299425" start="20250703125700 +0000" stop="20250703132100 +0000">
+    <title lang="he">המיטב בסרייה A - מחזור 38</title>
+  </programme>
+  <programme channel="2299447" start="20250703125849 +0000" stop="20250703132910 +0000">
+    <title lang="he">אמא&amp;#x27;לה 3 - תאילנד</title>
+  </programme>
+  <programme channel="2299409" start="20250703130000 +0000" stop="20250703135500 +0000">
+    <title lang="he">העולם היום - עם מיכל רשף</title>
+  </programme>
+  <programme channel="2305578" start="20250703130000 +0000" stop="20250703140000 +0000">
+    <title lang="he">לקראת סגירה</title>
+  </programme>
+  <programme channel="2299414" start="20250703130000 +0000" stop="20250703133000 +0000">
+    <title lang="he">אירועי היום - אירועי היום ב-16:00</title>
+  </programme>
+  <programme channel="2299419" start="20250703130000 +0000" stop="20250703145000 +0000">
+    <title lang="he">ה. ב&amp;#x27;&amp;#x27;ש - קרקוביה קרקוב</title>
+  </programme>
+  <programme channel="2299445" start="20250703130000 +0000" stop="20250703134000 +0000">
+    <title lang="he">צעירים חסרי מנוח - פרק 12453</title>
+  </programme>
+  <programme channel="2299432" start="20250703130400 +0000" stop="20250703145200 +0000">
+    <title lang="he">הזמן שלנו</title>
+  </programme>
+  <programme channel="2299446" start="20250703130500 +0000" stop="20250703144000 +0000">
+    <title lang="he">עיר הגחלת - מדובב</title>
+  </programme>
+  <programme channel="2299434" start="20250703131400 +0000" stop="20250703133600 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2299417" start="20250703131500 +0000" stop="20250703135000 +0000">
+    <title lang="he">סקודטו - נקודת רתיחה</title>
+  </programme>
+  <programme channel="2299428" start="20250703131500 +0000" stop="20250703134100 +0000">
+    <title lang="he">מעלים הילוך</title>
+  </programme>
+  <programme channel="2299436" start="20250703131500 +0000" stop="20250703140500 +0000">
+    <title lang="he">צונאמי הגל שהרעיד את העולם</title>
+  </programme>
+  <programme channel="2305579" start="20250703131600 +0000" stop="20250703135800 +0000">
+    <title lang="he">אבות המזון של אמריקה 4 - פרק 12</title>
+  </programme>
+  <programme channel="2299451" start="20250703131712 +0000" stop="20250703150005 +0000">
+    <title lang="he">תקווה בהופ ספרינגס</title>
+  </programme>
+  <programme channel="2299448" start="20250703131733 +0000" stop="20250703134757 +0000">
+    <title lang="he">רמזור 3 - קולסלאו</title>
+  </programme>
+  <programme channel="2299423" start="20250703132000 +0000" stop="20250703141500 +0000">
+    <title lang="he">ווימבלדון: הסרט הרשמי 1982</title>
+  </programme>
+  <programme channel="2299435" start="20250703132000 +0000" stop="20250703134300 +0000">
+    <title lang="he">היפים והאמיצים</title>
+  </programme>
+  <programme channel="2299438" start="20250703132000 +0000" stop="20250703140200 +0000">
+    <title lang="he">חוק וסדר 24</title>
+  </programme>
+  <programme channel="2299425" start="20250703132100 +0000" stop="20250703135000 +0000">
+    <title lang="he">פול אימפקט - מחזור 38</title>
+  </programme>
+  <programme channel="2299450" start="20250703132122 +0000" stop="20250703144606 +0000">
+    <title lang="he">חוצה את הגבול</title>
+  </programme>
+  <programme channel="2305576" start="20250703132500 +0000" stop="20250703134800 +0000">
+    <title lang="he">לבד בבית</title>
+  </programme>
+  <programme channel="2299430" start="20250703132600 +0000" stop="20250703153600 +0000">
+    <title lang="he">הספירה לאחור</title>
+  </programme>
+  <programme channel="2299447" start="20250703132910 +0000" stop="20250703141041 +0000">
+    <title lang="he">היורשת 1 - בת מצווש מהגיהנום</title>
+  </programme>
+  <programme channel="2299414" start="20250703133000 +0000" stop="20250703140000 +0000">
+    <title lang="he">יום</title>
+  </programme>
+  <programme channel="2299434" start="20250703133600 +0000" stop="20250703135700 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2299416" start="20250703134000 +0000" stop="20250703135000 +0000">
+    <title lang="he">וואלה! תיקתקנו - מבזק ספורט</title>
+  </programme>
+  <programme channel="2299433" start="20250703134000 +0000" stop="20250703151700 +0000">
+    <title lang="he">לילסדה</title>
+  </programme>
+  <programme channel="2299445" start="20250703134000 +0000" stop="20250703140500 +0000">
+    <title lang="he">היפים והאמיצים - פרק 9492</title>
+  </programme>
+  <programme channel="2299428" start="20250703134100 +0000" stop="20250703142900 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2299435" start="20250703134300 +0000" stop="20250703140500 +0000">
+    <title lang="he">היפים והאמיצים</title>
+  </programme>
+  <programme channel="2299437" start="20250703134500 +0000" stop="20250703150700 +0000">
+    <title lang="he">דודו פישר - מופע היובל</title>
+  </programme>
+  <programme channel="2299448" start="20250703134757 +0000" stop="20250703141636 +0000">
+    <title lang="he">רמזור 3 - פרחים לאלישע</title>
+  </programme>
+  <programme channel="2305576" start="20250703134800 +0000" stop="20250703141200 +0000">
+    <title lang="he">האריות של שלי הכובשת</title>
+  </programme>
+  <programme channel="2299449" start="20250703134844 +0000" stop="20250703153100 +0000">
+    <title lang="he">שושלת שוורץ</title>
+  </programme>
+  <programme channel="2299413" start="20250703135000 +0000" stop="20250703145300 +0000">
+    <title lang="he">מהדורת חמש</title>
+  </programme>
+  <programme channel="2299416" start="20250703135000 +0000" stop="20250703154000 +0000">
+    <title lang="he">רצועה נוסטלגית: מכבי חיפה</title>
+  </programme>
+  <programme channel="2299417" start="20250703135000 +0000" stop="20250703154000 +0000">
+    <title lang="he">ח&amp;#x27; גמר: גואטמלה - ארה&amp;#x27;&amp;#x27;ב</title>
+  </programme>
+  <programme channel="2299425" start="20250703135000 +0000" stop="20250703145800 +0000">
+    <title lang="he">מונדיאל המלכים 2025 - דנדלה/F2R</title>
+  </programme>
+  <programme channel="2299409" start="20250703135500 +0000" stop="20250703145500 +0000">
+    <title lang="he">חן ליברמן וישי שנרב</title>
+  </programme>
+  <programme channel="2299410" start="20250703135500 +0000" stop="20250703145500 +0000">
+    <title lang="he">חמש עם רפי רשף</title>
+  </programme>
+  <programme channel="2299411" start="20250703135500 +0000" stop="20250703145500 +0000">
+    <title lang="he">שיחת היום - עם לוסי אהריש</title>
+  </programme>
+  <programme channel="2299434" start="20250703135700 +0000" stop="20250703141900 +0000">
+    <title lang="he">חברים 6</title>
+  </programme>
+  <programme channel="2305579" start="20250703135800 +0000" stop="20250703144000 +0000">
+    <title lang="he">תגליות מסתוריות עם דני טרחו - פרק 8</title>
+  </programme>
+  <programme channel="2305578" start="20250703140000 +0000" stop="20250703160000 +0000">
+    <title lang="he">סוגרים שוק</title>
+  </programme>
+  <programme channel="2299414" start="20250703140000 +0000" stop="20250703150000 +0000">
+    <title lang="he">אירועי היום - אירועי היום ב-17:00</title>
+  </programme>
+  <programme channel="2299420" start="20250703140000 +0000" stop="20250703180000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299421" start="20250703140000 +0000" stop="20250703180000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2350798" start="20250703140000 +0000" stop="20250703180000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299422" start="20250703140000 +0000" stop="20250703180000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299426" start="20250703140000 +0000" stop="20250703163000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2299444" start="20250703140000 +0000" stop="20250703162000 +0000">
+    <title lang="he">מפוצלים</title>
+  </programme>
+  <programme channel="2299438" start="20250703140200 +0000" stop="20250703144400 +0000">
+    <title lang="he">חוק וסדר פשע מאורגן 5</title>
+  </programme>
+  <programme channel="2299424" start="20250703140500 +0000" stop="20250703143500 +0000">
+    <title lang="he">סיפורים מהליגה הספרדית - פרק 41</title>
+  </programme>
+  <programme channel="2299435" start="20250703140500 +0000" stop="20250703144300 +0000">
+    <title lang="he">ימי חיינו, חדש!</title>
+  </programme>
+  <programme channel="2299436" start="20250703140500 +0000" stop="20250703150000 +0000">
+    <title lang="he">דנ&amp;#x27;&amp;#x27;א קץ הפשיעה?</title>
+  </programme>
+  <programme channel="2299445" start="20250703140500 +0000" stop="20250703143000 +0000">
+    <title lang="he">היפים והאמיצים - פרק 9493</title>
+  </programme>
+  <programme channel="2299431" start="20250703140900 +0000" stop="20250703154200 +0000">
+    <title lang="he">מרגלת מתבגרת - מיילי סיירוס</title>
+  </programme>
+  <programme channel="2299447" start="20250703141041 +0000" stop="20250703145652 +0000">
+    <title lang="he">בקרוב אצלי 1 - שתי נשיקות</title>
+  </programme>
+  <programme channel="2305576" start="20250703141200 +0000" stop="20250703144000 +0000">
+    <title lang="he">המתחם ה-25</title>
+  </programme>
+  <programme channel="2299423" start="20250703141500 +0000" stop="20250703143000 +0000">
+    <title lang="he">דרך המים: מייקל פלפס</title>
+  </programme>
+  <programme channel="2299448" start="20250703141636 +0000" stop="20250703143945 +0000">
+    <title lang="he">סברי מרנן 3 - נזדרוביה</title>
+  </programme>
+  <programme channel="2299434" start="20250703141900 +0000" stop="20250703144000 +0000">
+    <title lang="he">חברים 6</title>
+  </programme>
+  <programme channel="2299428" start="20250703142900 +0000" stop="20250703145500 +0000">
+    <title lang="he">מעלים הילוך</title>
+  </programme>
+  <programme channel="2299423" start="20250703143000 +0000" stop="20250703160000 +0000">
+    <title lang="he">ברצלונה - פ.ס.ז&amp;#x27;, 2016/17</title>
+  </programme>
+  <programme channel="2299445" start="20250703143000 +0000" stop="20250703151000 +0000">
+    <title lang="he">צעירים חסרי מנוח - פרק 12454</title>
+  </programme>
+  <programme channel="2299424" start="20250703143500 +0000" stop="20250703153500 +0000">
+    <title lang="he">ל. ספרדית 2024/25 - האלופה - ברצלונה</title>
+  </programme>
+  <programme channel="2299448" start="20250703143945 +0000" stop="20250703150249 +0000">
+    <title lang="he">סברי מרנן 3 - מבחנים</title>
+  </programme>
+  <programme channel="2305576" start="20250703144000 +0000" stop="20250703150700 +0000">
+    <title lang="he">מיוחדת</title>
+  </programme>
+  <programme channel="2299434" start="20250703144000 +0000" stop="20250703150200 +0000">
+    <title lang="he">שני גברים וחצי 6</title>
+  </programme>
+  <programme channel="2299446" start="20250703144000 +0000" stop="20250703162500 +0000">
+    <title lang="he">פדינגטון 2 - מדובב</title>
+  </programme>
+  <programme channel="2305579" start="20250703144000 +0000" stop="20250703152200 +0000">
+    <title lang="he">תיקים סודיים עם דיוויד דוכובני - פרק 5</title>
+  </programme>
+  <programme channel="2299435" start="20250703144300 +0000" stop="20250703152000 +0000">
+    <title lang="he">צעירים חסרי מנוח 47, חדש!</title>
+  </programme>
+  <programme channel="2299438" start="20250703144400 +0000" stop="20250703152500 +0000">
+    <title lang="he">NCIS עונה 22</title>
+  </programme>
+  <programme channel="2299450" start="20250703144606 +0000" stop="20250703164118 +0000">
+    <title lang="he">חיית הלילה</title>
+  </programme>
+  <programme channel="2299419" start="20250703145000 +0000" stop="20250703150000 +0000">
+    <title lang="he">וואלה! תיקתקנו - מבזק ספורט</title>
+  </programme>
+  <programme channel="2299429" start="20250703145000 +0000" stop="20250703170600 +0000">
+    <title lang="he">המבול - ראסל קרואו</title>
+  </programme>
+  <programme channel="2299432" start="20250703145200 +0000" stop="20250703171100 +0000">
+    <title lang="he">הצבע ארגמן</title>
+  </programme>
+  <programme channel="2299413" start="20250703145300 +0000" stop="20250703155900 +0000">
+    <title lang="he">מדד גלבוע</title>
+  </programme>
+  <programme channel="2299409" start="20250703145500 +0000" stop="20250703155500 +0000">
+    <title lang="he">כאן בשש - עם קרן אוזן</title>
+  </programme>
+  <programme channel="2299410" start="20250703145500 +0000" stop="20250703160000 +0000">
+    <title lang="he">שש עם...</title>
+  </programme>
+  <programme channel="2299411" start="20250703145500 +0000" stop="20250703155900 +0000">
+    <title lang="he">חדשות בשש</title>
+  </programme>
+  <programme channel="2299428" start="20250703145500 +0000" stop="20250703154300 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2299447" start="20250703145652 +0000" stop="20250703153947 +0000">
+    <title lang="he">אף אחד לא עוזב את פאלו אלטו  1 - פריצת דרך</title>
+  </programme>
+  <programme channel="2299425" start="20250703145800 +0000" stop="20250703154900 +0000">
+    <title lang="he">מונדיאל המלכים 2025 - בומרס/גלאקטיקוס דל קריבה</title>
+  </programme>
+  <programme channel="2299414" start="20250703150000 +0000" stop="20250703160000 +0000">
+    <title lang="he">אירועי היום - אירועי היום ב-18:00</title>
+  </programme>
+  <programme channel="2299419" start="20250703150000 +0000" stop="20250703153000 +0000">
+    <title lang="he">מגזין טניס גברים</title>
+  </programme>
+  <programme channel="2299427" start="20250703150000 +0000" stop="20250703163000 +0000">
+    <title lang="he">לה מאן 24 שעות</title>
+  </programme>
+  <programme channel="2299436" start="20250703150000 +0000" stop="20250703155000 +0000">
+    <title lang="he">איפה האוכל? עם אייל שני</title>
+  </programme>
+  <programme channel="2299451" start="20250703150005 +0000" stop="20250703163816 +0000">
+    <title lang="he">סאמרלנד</title>
+  </programme>
+  <programme channel="2299434" start="20250703150200 +0000" stop="20250703152200 +0000">
+    <title lang="he">שני גברים וחצי 6 - חוק &amp;#x27;&amp;#x27;שתי האצבעות&amp;#x27;&amp;#x27;</title>
+  </programme>
+  <programme channel="2299448" start="20250703150249 +0000" stop="20250703155453 +0000">
+    <title lang="he">ארץ נהדרת 12 - הפרידה שמסעירה את המדינה</title>
+  </programme>
+  <programme channel="2305576" start="20250703150700 +0000" stop="20250703153200 +0000">
+    <title lang="he">חדש! מלון הוטל 2</title>
+  </programme>
+  <programme channel="2299437" start="20250703150700 +0000" stop="20250703163200 +0000">
+    <title lang="he">הרחובות ממריאים לאט</title>
+  </programme>
+  <programme channel="2299445" start="20250703151000 +0000" stop="20250703155000 +0000">
+    <title lang="he">ימי חיינו - פרק 14216</title>
+  </programme>
+  <programme channel="2299433" start="20250703151700 +0000" stop="20250703164200 +0000">
+    <title lang="he">אבו אל בנאת</title>
+  </programme>
+  <programme channel="2299435" start="20250703152000 +0000" stop="20250703155000 +0000">
+    <title lang="he">שלטון הצללים</title>
+  </programme>
+  <programme channel="2299434" start="20250703152200 +0000" stop="20250703154400 +0000">
+    <title lang="he">וויל וגרייס 2</title>
+  </programme>
+  <programme channel="2305579" start="20250703152200 +0000" stop="20250703160500 +0000">
+    <title lang="he">הבריחות הגדולות עם מורגן פרימן 2 - פרק 6</title>
+  </programme>
+  <programme channel="2299438" start="20250703152500 +0000" stop="20250703160700 +0000">
+    <title lang="he">חוק וסדר מדור מיוחד 26</title>
+  </programme>
+  <programme channel="2299419" start="20250703153000 +0000" stop="20250703172000 +0000">
+    <title lang="he">מיטב הישראליות באירופה</title>
+  </programme>
+  <programme channel="2299449" start="20250703153100 +0000" stop="20250703170048 +0000">
+    <title lang="he">איביזה</title>
+  </programme>
+  <programme channel="2305576" start="20250703153200 +0000" stop="20250703160000 +0000">
+    <title lang="he">הבאר עונה 2</title>
+  </programme>
+  <programme channel="2299424" start="20250703153500 +0000" stop="20250703160500 +0000">
+    <title lang="he">מזווית אחרת - מחזור 38</title>
+  </programme>
+  <programme channel="2299430" start="20250703153600 +0000" stop="20250703171500 +0000">
+    <title lang="he">שחיה לילית</title>
+  </programme>
+  <programme channel="2299447" start="20250703153947 +0000" stop="20250703162610 +0000">
+    <title lang="he">השוטרים 2 - השוטרים נחשפים</title>
+  </programme>
+  <programme channel="2299416" start="20250703154000 +0000" stop="20250703162500 +0000">
+    <title lang="he">סערה בממלכה (המיטב)</title>
+  </programme>
+  <programme channel="2299417" start="20250703154000 +0000" stop="20250703155000 +0000">
+    <title lang="he">וואלה! תיקתקנו - מבזק ספורט</title>
+  </programme>
+  <programme channel="2299431" start="20250703154200 +0000" stop="20250703172900 +0000">
+    <title lang="he">רוק בבית הספר - ג&amp;#x27;ק בלאק</title>
+  </programme>
+  <programme channel="2299428" start="20250703154300 +0000" stop="20250703160900 +0000">
+    <title lang="he">מעלים הילוך</title>
+  </programme>
+  <programme channel="2299434" start="20250703154400 +0000" stop="20250703160700 +0000">
+    <title lang="he">וויל וגרייס 2</title>
+  </programme>
+  <programme channel="2299425" start="20250703154900 +0000" stop="20250703161700 +0000">
+    <title lang="he">סדרת השחמט העולמית - פרק 2</title>
+  </programme>
+  <programme channel="2299417" start="20250703155000 +0000" stop="20250703180000 +0000">
+    <title lang="he">ישיר! בלגיה - איטליה (נשים)</title>
+  </programme>
+  <programme channel="2299435" start="20250703155000 +0000" stop="20250703163100 +0000">
+    <title lang="he">לא רציונלי 2</title>
+  </programme>
+  <programme channel="2299436" start="20250703155000 +0000" stop="20250703164000 +0000">
+    <title lang="he">צונאמי הגל שהרעיד את העולם</title>
+  </programme>
+  <programme channel="2299445" start="20250703155000 +0000" stop="20250703164000 +0000">
+    <title lang="he">גומורה 5 - פרק 3</title>
+  </programme>
+  <programme channel="2299448" start="20250703155453 +0000" stop="20250703162437 +0000">
+    <title lang="he">פולישוק 1 - פרק 13</title>
+  </programme>
+  <programme channel="2299409" start="20250703155500 +0000" stop="20250703165300 +0000">
+    <title lang="he">שבע - עם איילה חסון</title>
+  </programme>
+  <programme channel="2299411" start="20250703155900 +0000" stop="20250703165300 +0000">
+    <title lang="he">אזור מלחמה - רביב דרוקר</title>
+  </programme>
+  <programme channel="2299413" start="20250703155900 +0000" stop="20250703165000 +0000">
+    <title lang="he">7 שרון גל</title>
+  </programme>
+  <programme channel="2299410" start="20250703160000 +0000" stop="20250703165500 +0000">
+    <title lang="he">מגזין תכנית חיסכון</title>
+  </programme>
+  <programme channel="2305576" start="20250703160000 +0000" stop="20250703162700 +0000">
+    <title lang="he">האחיין שלי בנץ 3</title>
+  </programme>
+  <programme channel="2305578" start="20250703160000 +0000" stop="20250703170000 +0000">
+    <title lang="he">מחלקה ראשונה</title>
+  </programme>
+  <programme channel="2299414" start="20250703160000 +0000" stop="20250703170000 +0000">
+    <title lang="he">אירועי היום - אירועי היום ב-19:00</title>
+  </programme>
+  <programme channel="2299418" start="20250703160000 +0000" stop="20250703200000 +0000">
+    <title lang="he">ישיר! טורניר פאדל, בורדו</title>
+  </programme>
+  <programme channel="2299423" start="20250703160000 +0000" stop="20250703193000 +0000">
+    <title lang="he">ישיר! מיאמי - מינסוטה</title>
+  </programme>
+  <programme channel="2299424" start="20250703160500 +0000" stop="20250703175000 +0000">
+    <title lang="he">ל. ספרדית 2024/25 - ס. ויגו/ברצלונה</title>
+  </programme>
+  <programme channel="2305579" start="20250703160500 +0000" stop="20250703164600 +0000">
+    <title lang="he">חייזרים מן העבר 16 - פרק 1</title>
+  </programme>
+  <programme channel="2299434" start="20250703160700 +0000" stop="20250703162900 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2299438" start="20250703160700 +0000" stop="20250703165100 +0000">
+    <title lang="he">Alert</title>
+  </programme>
+  <programme channel="2299428" start="20250703160900 +0000" stop="20250703163500 +0000">
+    <title lang="he">אודיסאה אלקטרונית</title>
+  </programme>
+  <programme channel="2299425" start="20250703161700 +0000" stop="20250703164600 +0000">
+    <title lang="he">פול אימפקט - מחזור 38</title>
+  </programme>
+  <programme channel="2299444" start="20250703162000 +0000" stop="20250703182000 +0000">
+    <title lang="he">סאגת מפוצלים: מורדים</title>
+  </programme>
+  <programme channel="2299448" start="20250703162437 +0000" stop="20250703165251 +0000">
+    <title lang="he">רמזור 3 - התזונאי</title>
+  </programme>
+  <programme channel="2299416" start="20250703162500 +0000" stop="20250703183000 +0000">
+    <title lang="he">ישיר! מ. חיפה - קישפשט הונבד</title>
+  </programme>
+  <programme channel="2299446" start="20250703162500 +0000" stop="20250703175000 +0000">
+    <title lang="he">פליקס 2: ארנב הצעצוע ומכונת הזמן - מדובב</title>
+  </programme>
+  <programme channel="2299447" start="20250703162610 +0000" stop="20250703165032 +0000">
+    <title lang="he">החיים הם תקופה קשה 1 - חנוך מתגייס לצה&amp;quot;ל</title>
+  </programme>
+  <programme channel="2305576" start="20250703162700 +0000" stop="20250703170200 +0000">
+    <title lang="he">מקיף מילאנו</title>
+  </programme>
+  <programme channel="2299434" start="20250703162900 +0000" stop="20250703165000 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2299426" start="20250703163000 +0000" stop="20250703180000 +0000">
+    <title lang="he">ישיר! טור דה פראנס 2025</title>
+  </programme>
+  <programme channel="2299427" start="20250703163000 +0000" stop="20250703183000 +0000">
+    <title lang="he">המשחקים האולימפיים</title>
+  </programme>
+  <programme channel="2299435" start="20250703163100 +0000" stop="20250703171800 +0000">
+    <title lang="he">מקום בלב 3</title>
+  </programme>
+  <programme channel="2299437" start="20250703163200 +0000" stop="20250703171000 +0000">
+    <title lang="he">רגעים של תרבות</title>
+  </programme>
+  <programme channel="2299428" start="20250703163500 +0000" stop="20250703172300 +0000">
+    <title lang="he">סיפורי EDGEsport</title>
+  </programme>
+  <programme channel="2299451" start="20250703163816 +0000" stop="20250703183412 +0000">
+    <title lang="he">יום האם</title>
+  </programme>
+  <programme channel="2299436" start="20250703164000 +0000" stop="20250703172100 +0000">
+    <title lang="he">ריאל מדריד איך לא אוהב אותך?</title>
+  </programme>
+  <programme channel="2299445" start="20250703164000 +0000" stop="20250703170500 +0000">
+    <title lang="he">וויל וגרייס: עונה 6 - פרק 7</title>
+  </programme>
+  <programme channel="2299450" start="20250703164118 +0000" stop="20250703182022 +0000">
+    <title lang="he">בורדרלנדס</title>
+  </programme>
+  <programme channel="2299433" start="20250703164200 +0000" stop="20250703181600 +0000">
+    <title lang="he">שוברים</title>
+  </programme>
+  <programme channel="2299425" start="20250703164600 +0000" stop="20250703171100 +0000">
+    <title lang="he">המיטב בסרייה A - מחזור 38</title>
+  </programme>
+  <programme channel="2305579" start="20250703164600 +0000" stop="20250703172700 +0000">
+    <title lang="he">תגליות מסתוריות עם דני טרחו - פרק 4</title>
+  </programme>
+  <programme channel="2299413" start="20250703165000 +0000" stop="20250703181500 +0000">
+    <title lang="he">המהדורה המרכזית</title>
+  </programme>
+  <programme channel="2299434" start="20250703165000 +0000" stop="20250703171200 +0000">
+    <title lang="he">חברים 6</title>
+  </programme>
+  <programme channel="2299447" start="20250703165032 +0000" stop="20250703172800 +0000">
+    <title lang="he">פלפלים צהובים 2 - לשחרר</title>
+  </programme>
+  <programme channel="2299438" start="20250703165100 +0000" stop="20250703173400 +0000">
+    <title lang="he">הטירון 4</title>
+  </programme>
+  <programme channel="2299448" start="20250703165251 +0000" stop="20250703172120 +0000">
+    <title lang="he">רמזור 3 - טסט בשלומי</title>
+  </programme>
+  <programme channel="2299409" start="20250703165300 +0000" stop="20250703183000 +0000">
+    <title lang="he">מהדורת כאן חדשות - עם טל ברמן</title>
+  </programme>
+  <programme channel="2299411" start="20250703165300 +0000" stop="20250703183000 +0000">
+    <title lang="he">חדשות: המהדורה המרכזית</title>
+  </programme>
+  <programme channel="2299410" start="20250703165500 +0000" stop="20250703183000 +0000">
+    <title lang="he">המהדורה המרכזית</title>
+  </programme>
+  <programme channel="2305578" start="20250703170000 +0000" stop="20250703172000 +0000">
+    <title lang="he">המהדורה המרכזית</title>
+  </programme>
+  <programme channel="2299414" start="20250703170000 +0000" stop="20250703183000 +0000">
+    <title lang="he">מהדורה מרכזית</title>
+  </programme>
+  <programme channel="2299449" start="20250703170048 +0000" stop="20250703183000 +0000">
+    <title lang="he">לשחרר את שולי</title>
+  </programme>
+  <programme channel="2305576" start="20250703170200 +0000" stop="20250703172600 +0000">
+    <title lang="he">גלילאו 10</title>
+  </programme>
+  <programme channel="2299445" start="20250703170500 +0000" stop="20250703175000 +0000">
+    <title lang="he">שוטרי שיקגו 9 - פרק 22</title>
+  </programme>
+  <programme channel="2299429" start="20250703170600 +0000" stop="20250703190000 +0000">
+    <title lang="he">קצה המחר - טום קרוז</title>
+  </programme>
+  <programme channel="2299437" start="20250703171000 +0000" stop="20250703190000 +0000">
+    <title lang="he">עושים כבוד לששי קשת</title>
+  </programme>
+  <programme channel="2299425" start="20250703171100 +0000" stop="20250703172700 +0000">
+    <title lang="he">תוצרת איטליה - ריקרדו אורסוליני</title>
+  </programme>
+  <programme channel="2299432" start="20250703171100 +0000" stop="20250703190000 +0000">
+    <title lang="he">המלחמה על הכוח - בכורה בערוץ!</title>
+  </programme>
+  <programme channel="2299434" start="20250703171200 +0000" stop="20250703173300 +0000">
+    <title lang="he">חברים 6</title>
+  </programme>
+  <programme channel="2299430" start="20250703171500 +0000" stop="20250703190000 +0000">
+    <title lang="he">דירה 7א&amp;#x27;</title>
+  </programme>
+  <programme channel="2299435" start="20250703171800 +0000" stop="20250703181700 +0000">
+    <title lang="he">לקראת אפס</title>
+  </programme>
+  <programme channel="2305578" start="20250703172000 +0000" stop="20250703182000 +0000">
+    <title lang="he">בינה אחרת</title>
+  </programme>
+  <programme channel="2299419" start="20250703172000 +0000" stop="20250703191000 +0000">
+    <title lang="he">מיטב הישראליות באירופה</title>
+  </programme>
+  <programme channel="2299436" start="20250703172100 +0000" stop="20250703181500 +0000">
+    <title lang="he">ז&amp;#x27;אן-קלוד ואן דאם</title>
+  </programme>
+  <programme channel="2299448" start="20250703172120 +0000" stop="20250703181309 +0000">
+    <title lang="he">ארץ נהדרת 15 - הכלבה קאיה מתגייסת ללשכה</title>
+  </programme>
+  <programme channel="2299428" start="20250703172300 +0000" stop="20250703174900 +0000">
+    <title lang="he">אודיסאה אלקטרונית</title>
+  </programme>
+  <programme channel="2305576" start="20250703172600 +0000" stop="20250703175400 +0000">
+    <title lang="he">המתחם ה-25</title>
+  </programme>
+  <programme channel="2299425" start="20250703172700 +0000" stop="20250703182900 +0000">
+    <title lang="he">מונדיאל המלכים 2025 - ג&amp;#x27;ינקזי/מוראש</title>
+  </programme>
+  <programme channel="2305579" start="20250703172700 +0000" stop="20250703184600 +0000">
+    <title lang="he">היסטוריה למכירה בדרכים 2 - פרק 10</title>
+  </programme>
+  <programme channel="2299447" start="20250703172800 +0000" stop="20250703180658 +0000">
+    <title lang="he">יש לה את זה 1 - אנה הופ דוגמנית על</title>
+  </programme>
+  <programme channel="2299431" start="20250703172900 +0000" stop="20250703190000 +0000">
+    <title lang="he">בדיוק כשהתאהבנו - ג&amp;#x27;ון קיוזאק</title>
+  </programme>
+  <programme channel="2299434" start="20250703173300 +0000" stop="20250703175500 +0000">
+    <title lang="he">שני גברים וחצי 6</title>
+  </programme>
+  <programme channel="2299438" start="20250703173400 +0000" stop="20250703181600 +0000">
+    <title lang="he">NCIS הוואי 3</title>
+  </programme>
+  <programme channel="2299428" start="20250703174900 +0000" stop="20250703194900 +0000">
+    <title lang="he">מירוצי GT - גרמניה: המרוץ הראשי</title>
+  </programme>
+  <programme channel="2299424" start="20250703175000 +0000" stop="20250703185000 +0000">
+    <title lang="he">ל. ספרדית 2024/25 - סיכום שנת 2024/25 בלה-ליגה</title>
+  </programme>
+  <programme channel="2299445" start="20250703175000 +0000" stop="20250703183000 +0000">
+    <title lang="he">טולסה קינג: עונה 1 - פרק 3</title>
+  </programme>
+  <programme channel="2299446" start="20250703175000 +0000" stop="20250703192000 +0000">
+    <title lang="he">משפחת אדמס - מדובב</title>
+  </programme>
+  <programme channel="2305576" start="20250703175400 +0000" stop="20250703181800 +0000">
+    <title lang="he">לבד בבית</title>
+  </programme>
+  <programme channel="2299434" start="20250703175500 +0000" stop="20250703181600 +0000">
+    <title lang="he">שני גברים וחצי 6</title>
+  </programme>
+  <programme channel="2299417" start="20250703180000 +0000" stop="20250703183000 +0000">
+    <title lang="he">סיפורי הפרמיירליג</title>
+  </programme>
+  <programme channel="2299420" start="20250703180000 +0000" stop="20250703200000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299421" start="20250703180000 +0000" stop="20250703200500 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2350798" start="20250703180000 +0000" stop="20250703200000 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299422" start="20250703180000 +0000" stop="20250703200500 +0000">
+    <title lang="he">ישיר! ווימבלדון: סיבוב 2</title>
+  </programme>
+  <programme channel="2299426" start="20250703180000 +0000" stop="20250703203000 +0000">
+    <title lang="he">טור דה פראנס 2024</title>
+  </programme>
+  <programme channel="2299447" start="20250703180658 +0000" stop="20250703184829 +0000">
+    <title lang="he">היורשת 1 - בת מצווש מהגיהנום</title>
+  </programme>
+  <programme channel="2299448" start="20250703181309 +0000" stop="20250703183643 +0000">
+    <title lang="he">הפרלמנט 2 - האקדח</title>
+  </programme>
+  <programme channel="2299413" start="20250703181500 +0000" stop="20250703190500 +0000">
+    <title lang="he">הערביסטים</title>
+  </programme>
+  <programme channel="2299436" start="20250703181500 +0000" stop="20250703190000 +0000">
+    <title lang="he">ריאל מדריד איך לא אוהב אותך?</title>
+  </programme>
+  <programme channel="2299433" start="20250703181600 +0000" stop="20250703193900 +0000">
+    <title lang="he">גולסטאר מרוסקים</title>
+  </programme>
+  <programme channel="2299434" start="20250703181600 +0000" stop="20250703183800 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2299438" start="20250703181600 +0000" stop="20250703190000 +0000">
+    <title lang="he">חוק וסדר טורונטו 2</title>
+  </programme>
+  <programme channel="2299435" start="20250703181700 +0000" stop="20250703190000 +0000">
+    <title lang="he">גחליליות</title>
+  </programme>
+  <programme channel="2305576" start="20250703181800 +0000" stop="20250703184200 +0000">
+    <title lang="he">חדש! מלון הוטל 2</title>
+  </programme>
+  <programme channel="2305578" start="20250703182000 +0000" stop="20250703190000 +0000">
+    <title lang="he">אולפן כלכלה</title>
+  </programme>
+  <programme channel="2299444" start="20250703182000 +0000" stop="20250703202000 +0000">
+    <title lang="he">סאגת מפוצלים: נאמנים</title>
+  </programme>
+  <programme channel="2299450" start="20250703182022 +0000" stop="20250703200000 +0000">
+    <title lang="he">בודיקה: המלכה הלוחמת</title>
+  </programme>
+  <programme channel="2299425" start="20250703182900 +0000" stop="20250703191900 +0000">
+    <title lang="he">טרנספר מרקט, קיץ 2025 - פרק 5</title>
+  </programme>
+  <programme channel="2299409" start="20250703183000 +0000" stop="20250703190500 +0000">
+    <title lang="he">מה שתגידו 4 - פרק 36</title>
+  </programme>
+  <programme channel="2299410" start="20250703183000 +0000" stop="20250703200000 +0000">
+    <title lang="he">המטבח המנצח VIP - עונה חדשה</title>
+  </programme>
+  <programme channel="2299411" start="20250703183000 +0000" stop="20250703200000 +0000">
+    <title lang="he">כלוב הזהב - הרכב יוצא מהכלוב?</title>
+  </programme>
+  <programme channel="2299414" start="20250703183000 +0000" stop="20250703191500 +0000">
+    <title lang="he">עקבות - מוות אוהב ניגודים</title>
+  </programme>
+  <programme channel="2299416" start="20250703183000 +0000" stop="20250703202000 +0000">
+    <title lang="he">מ. חיפה - קישפשט הונבד</title>
+  </programme>
+  <programme channel="2299417" start="20250703183000 +0000" stop="20250703185000 +0000">
+    <title lang="he">טריוויית שחקני פרמיירליג (גבוה או נמוך)</title>
+  </programme>
+  <programme channel="2299427" start="20250703183000 +0000" stop="20250703193000 +0000">
+    <title lang="he">גביע העולם</title>
+  </programme>
+  <programme channel="2299445" start="20250703183000 +0000" stop="20250703190000 +0000">
+    <title lang="he">האקס 4 - פרק 3</title>
+  </programme>
+  <programme channel="2299449" start="20250703183000 +0000" stop="20250703200756 +0000">
+    <title lang="he">בחורים טובים</title>
+  </programme>
+  <programme channel="2299451" start="20250703183412 +0000" stop="20250703200000 +0000">
+    <title lang="he">היעד.. חתונה</title>
+  </programme>
+  <programme channel="2299448" start="20250703183643 +0000" stop="20250703191328 +0000">
+    <title lang="he">צומת מילר 3 - משקפיים</title>
+  </programme>
+  <programme channel="2299434" start="20250703183800 +0000" stop="20250703190000 +0000">
+    <title lang="he">מופע שנות ה-70 עונה 4</title>
+  </programme>
+  <programme channel="2305576" start="20250703184200 +0000" stop="20250703190800 +0000">
+    <title lang="he">מיוחדת</title>
+  </programme>
+  <programme channel="2305579" start="20250703184600 +0000" stop="20250703190800 +0000">
+    <title lang="he">הצעצועים שבנו את העולם 3 - פרק 9</title>
+  </programme>
+  <programme channel="2299447" start="20250703184829 +0000" stop="20250703193124 +0000">
+    <title lang="he">אף אחד לא עוזב את פאלו אלטו  1 - פריצת דרך</title>
+  </programme>
+  <programme channel="2299417" start="20250703185000 +0000" stop="20250703210000 +0000">
+    <title lang="he">ישיר! ספרד - פורטוגל (נשים)</title>
+  </programme>
+  <programme channel="2299424" start="20250703185000 +0000" stop="20250703212000 +0000">
+    <title lang="he">ל. ספרדית שנייה 2024/25 - ר. אוביידו/מיראנדס</title>
+  </programme>
+  <programme channel="2305578" start="20250703190000 +0000" stop="20250703201500 +0000">
+    <title lang="he">תל אביב - ניו יורק</title>
+  </programme>
+  <programme channel="2299429" start="20250703190000 +0000" stop="20250703205900 +0000">
+    <title lang="he">הנוסע - ג&amp;#x27;יימי פוקס</title>
+  </programme>
+  <programme channel="2299430" start="20250703190000 +0000" stop="20250703202600 +0000">
+    <title lang="he">הטיהור - איתן הוק - חדש בערוץ!</title>
+  </programme>
+  <programme channel="2299431" start="20250703190000 +0000" stop="20250703205000 +0000">
+    <title lang="he">פשע הוליוודי</title>
+  </programme>
+  <programme channel="2299432" start="20250703190000 +0000" stop="20250703211900 +0000">
+    <title lang="he">המשחק הגדול</title>
+  </programme>
+  <programme channel="2299434" start="20250703190000 +0000" stop="20250703192100 +0000">
+    <title lang="he">חברים 7</title>
+  </programme>
+  <programme channel="2299435" start="20250703190000 +0000" stop="20250703194400 +0000">
+    <title lang="he">גחליליות</title>
+  </programme>
+  <programme channel="2299436" start="20250703190000 +0000" stop="20250703201000 +0000">
+    <title lang="he">אולסי</title>
+  </programme>
+  <programme channel="2299437" start="20250703190000 +0000" stop="20250703203900 +0000">
+    <title lang="he">חוגגים 70 למיקי קם</title>
+  </programme>
+  <programme channel="2299438" start="20250703190000 +0000" stop="20250703194100 +0000">
+    <title lang="he">חוק וסדר מדור מיוחד 26</title>
+  </programme>
+  <programme channel="2299445" start="20250703190000 +0000" stop="20250703200500 +0000">
+    <title lang="he">גברת מייזל המופלאה - פרק 8</title>
+  </programme>
+  <programme channel="2299409" start="20250703190500 +0000" stop="20250703194800 +0000">
+    <title lang="he">שודדי האוצר האבוד - פרק הבכורה</title>
+  </programme>
+  <programme channel="2299413" start="20250703190500 +0000" stop="20250703194500 +0000">
+    <title lang="he">מדברים חדשות</title>
+  </programme>
+  <programme channel="2305576" start="20250703190800 +0000" stop="20250703193600 +0000">
+    <title lang="he">האחיין שלי בנץ 3</title>
+  </programme>
+  <programme channel="2305579" start="20250703190800 +0000" stop="20250703193000 +0000">
+    <title lang="he">הצעצועים שבנו את העולם 3 - פרק 10</title>
+  </programme>
+  <programme channel="2299419" start="20250703191000 +0000" stop="20250703210000 +0000">
+    <title lang="he">מיטב הישראליות באירופה</title>
+  </programme>
+  <programme channel="2299448" start="20250703191328 +0000" stop="20250703195024 +0000">
+    <title lang="he">צומת מילר 3 - יום כיפור</title>
+  </programme>
+  <programme channel="2299414" start="20250703191500 +0000" stop="20250703200000 +0000">
+    <title lang="he">עקבות - עגבניות המוות</title>
+  </programme>
+  <programme channel="2299425" start="20250703191900 +0000" stop="20250703193600 +0000">
+    <title lang="he">תוצרת איטליה - אודינזה</title>
+  </programme>
+  <programme channel="2299446" start="20250703192000 +0000" stop="20250703205500 +0000">
+    <title lang="he">שרק לנצח - מתורגם</title>
+  </programme>
+  <programme channel="2299434" start="20250703192100 +0000" stop="20250703194200 +0000">
+    <title lang="he">חברים 7</title>
+  </programme>
+</tv>
