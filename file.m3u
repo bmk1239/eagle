@@ -27,8 +27,8 @@ https://play.embyil.tv/emby/videos/2299416/master.m3u8
 https://play.embyil.tv/emby/videos/2299417/master.m3u8
 #EXTINF:-1 tvg-id="2299418" tvg-name="ספורט 3" tvg-logo="https://play.embyil.tv/emby/Items/2299418/Images/Primary?tag=0692f8edda5e6e72600c37e277fbbdbf",ספורט 3
 https://play.embyil.tv/emby/videos/2299418/master.m3u8
-#EXTINF:-1 tvg-id="2299419" tvg-name="ספורט 4" tvg-logo="https://play.embyil.tv/emby/Items/2299419/Images/Primary?tag=9c921091bdca03d9925f40b79aa6122a",ספורט 4
-https://play.embyil.tv/emby/videos/2299419/master.m3u8
+#EXTINF:-1 tvg-id="2664632" tvg-name="ספורט 4" tvg-logo="https://play.embyil.tv/emby/Items/2664632/Images/Primary?tag=885e645e73f4266f7557db80161d67d4",ספורט 4
+https://play.embyil.tv/emby/videos/2664632/master.m3u8
 #EXTINF:-1 tvg-id="2299420" tvg-name="ספורט 5" tvg-logo="https://play.embyil.tv/emby/Items/2299420/Images/Primary?tag=3e61f31799e4e8ccf7e981f1b05ad320",ספורט 5
 https://play.embyil.tv/emby/videos/2299420/master.m3u8
 #EXTINF:-1 tvg-id="2299421" tvg-name="ספורט 5 ישיר" tvg-logo="https://play.embyil.tv/emby/Items/2299421/Images/Primary?tag=6c77c470dea9527c38e028cfe5498a4e",ספורט 5 ישיר
@@ -153,6 +153,8 @@ https://play.embyil.tv/emby/videos/2305579/master.m3u8
 https://play.embyil.tv/emby/videos/2305580/master.m3u8
 #EXTINF:-1 tvg-id="2305581" tvg-name="נשיונל גיאוגרפיק" tvg-logo="https://play.embyil.tv/emby/Items/2305581/Images/Primary?tag=789505b3a597a400eb77a0b20761b52f",נשיונל גיאוגרפיק
 https://play.embyil.tv/emby/videos/2305581/master.m3u8
+#EXTINF:-1 tvg-id="2592574" tvg-name="NatGeo Wild" tvg-logo="https://play.embyil.tv/emby/Items/2592574/Images/Primary?tag=62695dbb4e30353779be245650cbdeae",NatGeo Wild
+https://play.embyil.tv/emby/videos/2592574/master.m3u8
 #EXTINF:-1 tvg-id="2299478" tvg-name="ערוץ דיסני ג'וניור" tvg-logo="https://play.embyil.tv/emby/Items/2299478/Images/Primary?tag=6c14d2c4f9d9cce4c4570ecdd981b798",ערוץ דיסני ג'וניור
 https://play.embyil.tv/emby/videos/2299478/master.m3u8
 #EXTINF:-1 tvg-id="2299479" tvg-name="ערוץ דיסני" tvg-logo="https://play.embyil.tv/emby/Items/2299479/Images/Primary?tag=b5e3e439fd27ea30e3ba9ab13ce97eb7",ערוץ דיסני
