@@ -51,7 +51,7 @@
     <channel site="yes.co.il" site_id="PT53" xmltv_id="2299416">Sport 1 HD</channel>
     <channel site="yes.co.il" site_id="PT98" xmltv_id="2299417">Sport 2 HD</channel>
     <channel site="yes.co.il" site_id="CH09" xmltv_id="2299418">Sport 3 HD</channel>
-    <channel site="yes.co.il" site_id="CH11" xmltv_id="2299419">Sport 4 HD</channel>
+    <channel site="yes.co.il" site_id="CH11" xmltv_id="2664632">Sport 4 HD</channel>
     <channel site="yes.co.il" site_id="PT26" xmltv_id="2299420">Sport 5 HD (55)</channel>
     <channel site="yes.co.il" site_id="CH54" xmltv_id="2350798">Sport 5+ HD (56)</channel>
     <channel site="yes.co.il" site_id="MU03" xmltv_id="2299423">Sport 5 Gold (57)</channel>
@@ -607,7 +607,7 @@
     <channel site="partner.co.il" site_id="1461" xmltv_id="2299416">ספורט 1 HD</channel>
     <channel site="partner.co.il" site_id="1464" xmltv_id="2299417">ספורט 2 HD</channel>
     <channel site="partner.co.il" site_id="1467" xmltv_id="2299418">ספורט 3 HD</channel>
-    <channel site="partner.co.il" site_id="1470" xmltv_id="2299419">ספורט 4 HD</channel>
+    <channel site="partner.co.il" site_id="1470" xmltv_id="2664632">ספורט 4 HD</channel>
     <channel site="partner.co.il" site_id="14731" xmltv_id="2299445">פרטנר סדרות</channel>
     <channel site="partner.co.il" site_id="14751" xmltv_id="2299476">ויוה פרמיום</channel>
     <channel site="partner.co.il" site_id="14791" xmltv_id="2299475">ויוה וינטג'</channel>
