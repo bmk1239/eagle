@@ -3,11 +3,11 @@
     <channel site="yes.co.il" site_id="YSA1" xmltv_id="">yes Movies Drama</channel>
     <channel site="yes.co.il" site_id="YSA2" xmltv_id="">yes Movies Action</channel>
     <channel site="yes.co.il" site_id="YSA3" xmltv_id="">yes Movies Comedy</channel>
-    <channel site="yes.co.il" site_id="YSAU" xmltv_id="">yes Israeli Cinema HD</channel>
+    <channel site="yes.co.il" site_id="YSAU" xmltv_id="2690123">yes Israeli Cinema HD</channel>
     <channel site="yes.co.il" site_id="YS19" xmltv_id="">yes+ cinema</channel>
     <channel site="yes.co.il" site_id="YS20" xmltv_id="">yes+ diamonds</channel>
     <channel site="yes.co.il" site_id="YESI" xmltv_id="">Yes POP UP HD</channel>
-    <channel site="yes.co.il" site_id="YSAT" xmltv_id="">yes Docu HD</channel>
+    <channel site="yes.co.il" site_id="YSAT" xmltv_id="2690125">yes Docu HD</channel>
     <channel site="yes.co.il" site_id="TV50" xmltv_id="2299414">Israel Plus (9)</channel>
     <channel site="yes.co.il" site_id="CH70" xmltv_id="2299466">Turkish Drama</channel>
     <channel site="yes.co.il" site_id="CH30" xmltv_id="2299409">Kan HD</channel>
@@ -74,7 +74,7 @@
     <channel site="yes.co.il" site_id="TV09" xmltv_id="">LifeStyle</channel>
     <channel site="yes.co.il" site_id="CN25" xmltv_id="">DOC</channel>
     <channel site="yes.co.il" site_id="TV87" xmltv_id="">CBS Reality</channel>
-    <channel site="yes.co.il" site_id="YSA4" xmltv_id="">yes Movies Kids</channel>
+    <channel site="yes.co.il" site_id="YSA4" xmltv_id="2690124">yes Movies Kids</channel>
     <channel site="yes.co.il" site_id="CN24" xmltv_id="">Yoyo</channel>
     <channel site="yes.co.il" site_id="CN09" xmltv_id="">Childhood songs</channel>
     <channel site="yes.co.il" site_id="CH57" xmltv_id="2305576">Kan Educational</channel>
