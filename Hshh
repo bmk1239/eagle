@@ -1,0 +1,183 @@
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
+import subprocess
+import os
+import time
+
+BOT_TOKEN = "PASTE_YOUR_BOT_TOKEN"
+LOG_DIR = "/home/pi/logs"
+SCRIPTS_DIR = "/home/pi/scripts"
+
+# ----------------------
+# Helper functions
+# ----------------------
+def get_jobs():
+    return [f.replace(".log", "") for f in os.listdir(LOG_DIR) if f.endswith(".log")]
+
+def get_job_command(job):
+    crontab = subprocess.getoutput("crontab -l")
+    for line in crontab.splitlines():
+        if job in line:
+            return " ".join(line.split()[5:])
+    return None
+
+# ----------------------
+# Command Handlers (keep old commands working)
+# ----------------------
+async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    msg = "📊 Job Status:\n"
+    for f in os.listdir(LOG_DIR):
+        if f.endswith(".log"):
+            path = f"{LOG_DIR}/{f}"
+            t = os.path.getmtime(path)
+            msg += f"\n🔹 {f.replace('.log','')}\n🕒 Last log update: {time.ctime(t)}\n"
+    await update.message.reply_text(msg)
+
+async def log_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /log jobname [lines]")
+        return
+    job = context.args[0]
+    lines = 10
+    if len(context.args) > 1:
+        try:
+            lines = int(context.args[1])
+        except ValueError:
+            await update.message.reply_text("Lines must be integer")
+            return
+    log_file = f"{LOG_DIR}/{job}.log"
+    if not os.path.exists(log_file):
+        await update.message.reply_text("❌ Log not found")
+        return
+    output = subprocess.getoutput(f"tail -n {lines} {log_file}")
+    await update.message.reply_text(f"📄 {job} log (last {lines} lines):\n{output}")
+
+async def run_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /run jobname")
+        return
+    job = context.args[0]
+    cmd = get_job_command(job)
+    if not cmd:
+        await update.message.reply_text(f"❌ Job {job} not found")
+        return
+    subprocess.Popen(cmd, shell=True)
+    await update.message.reply_text(f"▶ {job} started!")
+
+async def cron_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if len(context.args) < 6:
+        await update.message.reply_text("Usage: /cron <job> <min> <hour> <day> <month> <weekday>")
+        return
+    job, m, h, d, mo, w = context.args[:6]
+    cmd = get_job_command(job)
+    if not cmd:
+        await update.message.reply_text(f"❌ Job {job} not found")
+        return
+    new_line = f"{m} {h} {d} {mo} {w} {cmd}"
+    subprocess.run(f"(crontab -l | grep -v '{cmd}'; echo \"{new_line}\") | crontab -", shell=True)
+    await update.message.reply_text(f"⏱ Schedule updated for {job}")
+
+# ----------------------
+# Button interface
+# ----------------------
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [InlineKeyboardButton("📊 Status", callback_data="status")],
+        [InlineKeyboardButton("▶ Run Job", callback_data="run_menu")],
+        [InlineKeyboardButton("📄 View Logs", callback_data="log_menu")],
+        [InlineKeyboardButton("⏱ Update Schedule", callback_data="cron_menu")],
+    ]
+    await update.message.reply_text("📌 Bot Menu:", reply_markup=InlineKeyboardMarkup(keyboard))
+
+async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    data = query.data
+
+    # Status button
+    if data == "status":
+        msg = "📊 Job Status:\n"
+        for f in os.listdir(LOG_DIR):
+            if f.endswith(".log"):
+                path = f"{LOG_DIR}/{f}"
+                t = os.path.getmtime(path)
+                msg += f"\n🔹 {f.replace('.log','')}\n🕒 Last log update: {time.ctime(t)}\n"
+        await query.edit_message_text(msg)
+        return
+
+    # Run menu
+    if data == "run_menu":
+        jobs = get_jobs()
+        keyboard = [[InlineKeyboardButton(job, callback_data=f"run:{job}")] for job in jobs]
+        keyboard.append([InlineKeyboardButton("⬅ Back", callback_data="start")])
+        await query.edit_message_text("▶ Select job to run:", reply_markup=InlineKeyboardMarkup(keyboard))
+        return
+
+    # Log menu
+    if data == "log_menu":
+        jobs = get_jobs()
+        keyboard = [[InlineKeyboardButton(job, callback_data=f"log:{job}:10")] for job in jobs]
+        keyboard.append([InlineKeyboardButton("⬅ Back", callback_data="start")])
+        await query.edit_message_text("📄 Select job to view last 10 lines of logs:", reply_markup=InlineKeyboardMarkup(keyboard))
+        return
+
+    # Cron menu
+    if data == "cron_menu":
+        jobs = get_jobs()
+        keyboard = [[InlineKeyboardButton(job, callback_data=f"cron:{job}")] for job in jobs]
+        keyboard.append([InlineKeyboardButton("⬅ Back", callback_data="start")])
+        await query.edit_message_text("⏱ Select job to update schedule:", reply_markup=InlineKeyboardMarkup(keyboard))
+        return
+
+    # Run job button
+    if data.startswith("run:"):
+        job = data.split(":")[1]
+        cmd = get_job_command(job)
+        if cmd:
+            subprocess.Popen(cmd, shell=True)
+            await query.edit_message_text(f"▶ {job} started!")
+        else:
+            await query.edit_message_text(f"❌ Job {job} not found")
+        return
+
+    # Log button
+    if data.startswith("log:"):
+        _, job, lines = data.split(":")
+        log_file = f"{LOG_DIR}/{job}.log"
+        if os.path.exists(log_file):
+            output = subprocess.getoutput(f"tail -n {lines} {log_file}")
+            await query.edit_message_text(f"📄 {job} log (last {lines} lines):\n{output}")
+        else:
+            await query.edit_message_text(f"❌ Log {job} not found")
+        return
+
+    # Cron edit button
+    if data.startswith("cron:"):
+        job = data.split(":")[1]
+        cmd = get_job_command(job)
+        if cmd:
+            await query.edit_message_text(f"⏱ Current schedule for {job}:\n`{cmd}`\n\nUse /cron to update schedule manually.")
+        else:
+            await query.edit_message_text(f"❌ Job {job} not found")
+        return
+
+    # Back button
+    if data == "start":
+        await start(update, context)
+
+# ----------------------
+# Main
+# ----------------------
+app = ApplicationBuilder().token(BOT_TOKEN).build()
+
+# Command handlers (keep old commands working)
+app.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("status", status_command))
+app.add_handler(CommandHandler("log", log_command))
+app.add_handler(CommandHandler("run", run_command))
+app.add_handler(CommandHandler("cron", cron_command))
+
+# Button handler
+app.add_handler(CallbackQueryHandler(button))
+
+app.run_polling()
