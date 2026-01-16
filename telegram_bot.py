@@ -31,18 +31,25 @@ async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def log(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
-        await update.message.reply_text("Usage: /log jobname")
+        await update.message.reply_text("Usage: /log jobname [lines]")
         return
 
     job = context.args[0]
-    log_file = f"{LOG_DIR}/{job}.log"
+    lines = 10  # default
+    if len(context.args) > 1:
+        try:
+            lines = int(context.args[1])
+        except ValueError:
+            await update.message.reply_text("❌ Lines must be an integer")
+            return
 
+    log_file = f"{LOG_DIR}/{job}.log"
     if not os.path.exists(log_file):
         await update.message.reply_text("❌ Log not found")
         return
 
-    output = subprocess.getoutput(f"tail -n 30 {log_file}")
-    await update.message.reply_text(f"📄 {job} log:\n{output}")
+    output = subprocess.getoutput(f"tail -n {lines} {log_file}")
+    await update.message.reply_text(f"📄 {job} log (last {lines} lines):\n{output}")
 
 async def run(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
