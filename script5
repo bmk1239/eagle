@@ -1,0 +1,889 @@
+import requests
+import random
+import string
+import time
+import re
+from typing import Optional, Tuple
+from collections import OrderedDict
+
+
+class EmbyAccountCreator:
+    def __init__(self, debug: bool = False):
+        self.debug = debug
+        self.session = requests.Session()
+        self.session.headers.update({
+            "accept": "application/json, text/plain, */*",
+            "accept-language": "he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+            "referer": "https://client.embyiltv.io/",
+            "origin": "https://client.embyiltv.io",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        })
+        self.email = None
+        self.account_id = None
+        self.token = None
+        self.jwt_token = None
+        self.user_id = None
+        self.emby_username = None
+        self.emby_password = None
+        self.registration_password = None
+
+    def _print_debug(self, message: str):
+        """Print debug messages if debug mode is enabled"""
+        if self.debug:
+            print(f"[DEBUG] {message}")
+
+    def generate_email(self) -> Optional[str]:
+        """Generate a random temporary email using mail.tm API"""
+        try:
+            self._print_debug("Getting available domains from mail.tm...")
+            response = self.session.get(
+                "https://api.mail.tm/domains",
+                timeout=10
+            )
+
+            if response.status_code != 200:
+                self._print_debug(f"Failed to get domains: {response.status_code}")
+                return None
+
+            domains_data = response.json()
+            domains = domains_data.get('hydra:member', [])
+
+            if not domains:
+                self._print_debug("No domains available")
+                return None
+
+            # Get first available domain
+            domain = domains[0].get('domain')
+            if not domain:
+                return None
+
+            # Generate random username
+            username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=12))
+            email = f"{username}@{domain}"
+
+            # Create account
+            account_data = {
+                "address": email,
+                "password": "".join(random.choices(string.ascii_letters + string.digits, k=16))
+            }
+
+            self._print_debug(f"Creating mail.tm account for {email}...")
+            account_response = self.session.post(
+                "https://api.mail.tm/accounts",
+                json=account_data,
+                timeout=10
+            )
+
+            if account_response.status_code == 201:
+                account_info = account_response.json()
+                self.account_id = account_info.get('id')
+                self.email = email
+                print(f"✓ Created temporary email: {email}")
+
+                # Get token for accessing emails
+                token_response = self.session.post(
+                    "https://api.mail.tm/token",
+                    json={"address": email, "password": account_data["password"]},
+                    timeout=10
+                )
+
+                if token_response.status_code == 200:
+                    token_data = token_response.json()
+                    self.token = token_data.get('token')
+                    # Create new session for email checking
+                    self.email_session = requests.Session()
+                    self.email_session.headers.update({
+                        "Authorization": f"Bearer {self.token}",
+                        "accept": "application/json",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                    })
+                    self._print_debug("Got mail.tm token")
+
+                return email
+            else:
+                self._print_debug(f"Failed to create mail.tm account: {account_response.status_code}")
+                return None
+
+        except Exception as e:
+            self._print_debug(f"Error generating email: {str(e)[:100]}")
+            return None
+
+    def generate_secure_password(self) -> str:
+        """Generate a password that meets Emby requirements"""
+        uppercase = random.choice(string.ascii_uppercase)
+        lowercase = ''.join(random.choices(string.ascii_lowercase, k=5))
+        digits = ''.join(random.choices(string.digits, k=3))
+        special = random.choice("!@#$%^&*")
+
+        password_parts = [uppercase, lowercase, digits, special]
+        random.shuffle(password_parts)
+        password = ''.join(password_parts)
+
+        self._print_debug(f"Generated password: {password}")
+        return password
+
+    def wait_for_verification_email(self, timeout: int = 120) -> Optional[str]:
+        """Wait for and extract verification token from email"""
+        if not self.email or not hasattr(self, 'email_session'):
+            self._print_debug("No email session available")
+            return None
+
+        self._print_debug(f"Waiting for verification email (timeout: {timeout}s)...")
+        start_time = time.time()
+        check_count = 0
+
+        while time.time() - start_time < timeout:
+            check_count += 1
+            self._print_debug(f"Checking for emails (attempt {check_count})...")
+
+            try:
+                response = self.email_session.get(
+                    "https://api.mail.tm/messages",
+                    timeout=10
+                )
+
+                if response.status_code == 200:
+                    messages = response.json()
+                    self._print_debug(f"Found {len(messages)} messages")
+
+                    for message in messages:
+                        from_address = message.get('from', {}).get('address', '')
+                        subject = message.get('subject', '')
+
+                        if from_address == 'noreply@embyiltv.io':
+                            self._print_debug(f"Found email from embyiltv.io: {subject}")
+
+                            if 'אישור הרשמה' in subject or 'Registration confirmation' in subject:
+                                msg_id = message.get('id')
+                                self._print_debug(f"Fetching message {msg_id}...")
+                                msg_response = self.email_session.get(
+                                    f"https://api.mail.tm/messages/{msg_id}",
+                                    timeout=10
+                                )
+
+                                if msg_response.status_code == 200:
+                                    msg_data = msg_response.json()
+                                    html_content = msg_data.get('html', [])
+                                    text_content = msg_data.get('text', '')
+
+                                    all_text = ''
+                                    if html_content:
+                                        all_text += html_content[0]
+                                    if text_content:
+                                        all_text += text_content
+
+                                    # Look for confirmation token (UUID)
+                                    token_pattern = r'[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}'
+                                    tokens = re.findall(token_pattern, all_text, re.IGNORECASE)
+
+                                    for token in tokens:
+                                        self._print_debug(f"Found confirmation token: {token}")
+                                        return token
+
+                time.sleep(3)
+
+            except Exception as e:
+                self._print_debug(f"Error checking email: {str(e)[:100]}")
+                time.sleep(3)
+
+        self._print_debug("Timeout waiting for verification email")
+        return None
+
+    def verify_account(self, confirmation_token: str) -> bool:
+        """Verify account using the correct API endpoint"""
+        try:
+            # Correct API endpoint from the fetch logs
+            verify_url = f"https://emby.embyiltv.io/api/confirmation-token?token={confirmation_token}"
+
+            self._print_debug(f"Verifying account with token: {confirmation_token}")
+            self._print_debug(f"Using API endpoint: {verify_url}")
+
+            # Make the GET request to verify
+            response = self.session.get(verify_url, timeout=10)
+
+            self._print_debug(f"Verification response status: {response.status_code}")
+
+            if response.status_code == 200:
+                print(f"✓ Account verified successfully")
+                return True
+            else:
+                self._print_debug(f"Verification failed with status: {response.status_code}")
+                self._print_debug(f"Response: {response.text[:200]}")
+                return False
+
+        except Exception as e:
+            self._print_debug(f"Error during verification: {str(e)[:100]}")
+            return False
+
+    def register_account(self) -> bool:
+        """Register account on Emby"""
+        if not self.email:
+            self._print_debug("No email available for registration")
+            return False
+
+        name_base = ''.join(random.choices(string.ascii_lowercase, k=6))
+        self.registration_password = self.generate_secure_password()
+
+        registration_data = {
+            "email": self.email,
+            "password": self.registration_password,
+            "lastName": name_base,
+            "firstName": name_base
+        }
+
+        self._print_debug(f"Registering account with email: {self.email}")
+
+        try:
+            response = self.session.post(
+                "https://emby.embyiltv.io/api/auth/signup",
+                json=registration_data,
+                timeout=10
+            )
+
+            if response.status_code == 200:
+                print(f"✓ Account registered successfully")
+                return True
+            else:
+                self._print_debug(f"Registration failed: {response.status_code} - {response.text[:200]}")
+                return False
+
+        except Exception as e:
+            self._print_debug(f"Error during registration: {str(e)[:100]}")
+            return False
+
+    def login_account(self) -> bool:
+        """Login to get JWT token and user ID"""
+        if not self.email or not self.registration_password:
+            self._print_debug("No email or password available for login")
+            return False
+
+        login_data = {
+            "login": self.email,
+            "password": self.registration_password
+        }
+
+        self._print_debug(f"Logging in with email: {self.email}")
+
+        max_attempts = 6
+        for attempt in range(max_attempts):
+            try:
+                self._print_debug(f"Login attempt {attempt + 1}/{max_attempts}")
+                response = self.session.post(
+                    "https://emby.embyiltv.io/api/auth/signin",
+                    json=login_data,
+                    timeout=10
+                )
+
+                if response.status_code == 200:
+                    data = response.json()
+                    self.jwt_token = data.get('accessToken')
+                    self.user_id = data.get('userUuid')
+
+                    if self.jwt_token and self.user_id:
+                        print(f"✓ Logged in successfully")
+                        self._print_debug(f"User ID: {self.user_id}")
+                        self.session.headers.update({
+                            "authorization": f"Bearer {self.jwt_token}"
+                        })
+                        return True
+                    else:
+                        self._print_debug("JWT token or user ID missing in response")
+
+                elif response.status_code == 403 and 'NON_VERIFIED' in response.text:
+                    wait_time = min((attempt + 1) * 2, 10)  # Max 10 seconds
+                    self._print_debug(f"User not verified yet, waiting {wait_time}s...")
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    self._print_debug(f"Login failed: {response.status_code} - {response.text[:200]}")
+                    break
+
+            except Exception as e:
+                self._print_debug(f"Error during login attempt {attempt + 1}: {str(e)[:100]}")
+                if attempt < max_attempts - 1:
+                    time.sleep(2)
+
+        return False
+
+    def activate_trial(self) -> bool:
+        """Activate trial subscription"""
+        if not self.user_id:
+            self._print_debug("No user ID available for trial activation")
+            return False
+
+        self.emby_username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
+        self.emby_password = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+
+        trial_data = {
+            "login": self.emby_username,
+            "password": self.emby_password
+        }
+
+        self._print_debug(f"Activating trial for user: {self.user_id}")
+
+        try:
+            response = self.session.post(
+                f"https://emby.embyiltv.io/api/subscriptions/users/{self.user_id}/trial",
+                json=trial_data,
+                timeout=10
+            )
+
+            if response.status_code == 200:
+                print(f"✓ Trial activated successfully")
+                print(f"✓ Emby Username: {self.emby_username}")
+                print(f"✓ Emby Password: {self.emby_password}")
+                return True
+            else:
+                self._print_debug(f"Trial activation failed: {response.status_code} - {response.text[:200]}")
+                return False
+
+        except Exception as e:
+            self._print_debug(f"Error during trial activation: {str(e)[:100]}")
+            return False
+
+    def create_emby_account(self) -> Optional[Tuple[str, str]]:
+        """Main function to create Emby account and get credentials"""
+        print("Starting Emby account creation process...")
+
+        # Step 1: Generate temporary email
+        print("\n1. Generating temporary email...")
+        if not self.generate_email():
+            print("✗ Failed to generate temporary email")
+            return None
+
+        # Step 2: Register account
+        print("\n2. Registering Emby account...")
+        if not self.register_account():
+            print("✗ Failed to register account")
+            return None
+
+        # Wait for email
+        print("\n3. Waiting for verification email...")
+        time.sleep(3)
+
+        confirmation_token = self.wait_for_verification_email(timeout=90)
+
+        if not confirmation_token:
+            print("✗ No verification email received")
+            return None
+
+        print(f"4. Verifying account with token: {confirmation_token[:8]}...")
+
+        # Verify account
+        if not self.verify_account(confirmation_token):
+            print("⚠ Verification may have failed, trying login anyway...")
+
+        # Wait for verification to process
+        time.sleep(3)
+
+        # Try login
+        print("\n5. Attempting to login...")
+        if not self.login_account():
+            print("✗ Failed to login")
+            return None
+
+        # Step 6: Activate trial
+        print("\n6. Activating trial subscription...")
+        if not self.activate_trial():
+            print("✗ Failed to activate trial")
+            return None
+
+        print("\n✅ Account creation process completed successfully!")
+        return self.emby_username, self.emby_password
+
+
+class M3UPlaylistUpdater:
+    def __init__(self, token, debug=False):
+        self.token = token
+        self.debug = debug
+        self.headers = {
+            "Authorization": f"token {token}",
+            "Accept": "application/vnd.github.v3+json"
+        }
+
+    def _print_debug(self, message: str):
+        """Print debug messages if debug mode is enabled"""
+        if self.debug:
+            print(f"[DEBUG] {message}")
+
+    def find_gist_file(self, filename):
+        """Find a gist containing the specific filename, return (gist_id, content)"""
+        try:
+            response = requests.get(
+                "https://api.github.com/gists",
+                headers=self.headers,
+                params={"per_page": 100}
+            )
+
+            if response.status_code != 200:
+                self._print_debug(f"Error getting gists: {response.status_code}")
+                return None, None
+
+            gists = response.json()
+
+            for gist in gists:
+                files = gist.get('files', {})
+                if filename in files:
+                    gist_id = gist['id']
+                    gist_detail = self.get_gist_detail(gist_id)
+                    if gist_detail:
+                        files_detail = gist_detail.get('files', {})
+                        if filename in files_detail:
+                            file_info = files_detail[filename]
+                            content = self.get_file_content(file_info, gist_id)
+                            return gist_id, content
+
+            return None, None
+
+        except Exception as e:
+            self._print_debug(f"Error finding gist: {e}")
+            return None, None
+
+    def get_gist_detail(self, gist_id):
+        """Get detailed gist info"""
+        try:
+            response = requests.get(
+                f"https://api.github.com/gists/{gist_id}",
+                headers=self.headers
+            )
+            if response.status_code == 200:
+                return response.json()
+        except:
+            pass
+        return None
+
+    def get_file_content(self, file_info, gist_id):
+        """Get file content, handling truncated content"""
+        if file_info.get('content') and not file_info.get('truncated', False):
+            return file_info['content']
+
+        raw_url = file_info.get('raw_url')
+        if raw_url:
+            try:
+                response = requests.get(raw_url)
+                if response.status_code == 200:
+                    return response.text
+            except:
+                pass
+
+        try:
+            raw_url_alt = f"https://gist.githubusercontent.com/anon/{gist_id}/raw/{file_info.get('filename', 'file')}"
+            response = requests.get(raw_url_alt)
+            if response.status_code == 200:
+                return response.text
+        except:
+            pass
+
+        return ""
+
+    def update_gist(self, gist_id, filename, new_content):
+        """Update existing gist"""
+        data = {
+            "files": {
+                filename: {"content": new_content}
+            }
+        }
+
+        try:
+            response = requests.patch(
+                f"https://api.github.com/gists/{gist_id}",
+                json=data,
+                headers=self.headers
+            )
+
+            if response.status_code == 200:
+                gist = response.json()
+                raw_url = f"https://gist.githubusercontent.com/anon/{gist_id}/raw/{filename}"
+                return True, raw_url
+            else:
+                self._print_debug(f"Error updating gist: {response.status_code}")
+                return False, None
+        except Exception as e:
+            self._print_debug(f"Error: {e}")
+            return False, None
+
+    def parse_m3u_playlist(self, content):
+        """
+        Parse M3U playlist into structured data
+        Format exactly as shown in the reference:
+        #EXTM3U
+        #EXTINF:-1 tvg-id="2801228" tvg-name="כאן 11" tvg-logo="https://play.embyil.tv/emby/Items/2801228/Images/Primary?tag=45143c86e4e4c61d2da53cd9e1cdded2",כאן 11
+        https://play.embyil.tv/emby/videos/2801228/master.m3u8
+        """
+        channels = OrderedDict()
+        lines = content.strip().split('\n')
+
+        i = 0
+        channel_index = 0
+
+        # Check for M3U header
+        if lines and lines[0].startswith('#EXTM3U'):
+            channels['header'] = lines[0]
+            i = 1
+        else:
+            # No header, start from beginning
+            channels['header'] = '#EXTM3U'
+
+        while i < len(lines):
+            line = lines[i].strip()
+
+            if not line:
+                i += 1
+                continue
+
+            # Check for channel entry
+            if line.startswith('#EXTINF:'):
+                # This is a channel block
+                extinf_line = line
+
+                # The next line should be the URL
+                url_line = ""
+                if i + 1 < len(lines) and (lines[i + 1].startswith('http') or lines[i + 1].startswith('https')):
+                    url_line = lines[i + 1].strip()
+                    i += 1
+
+                # Parse EXTINF line
+                # Format from reference: #EXTINF:-1 tvg-id="2801228" tvg-name="כאן 11" tvg-logo="https://..."
+                attrs = {}
+                channel_name = ""
+
+                # Extract duration (-1)
+                duration_match = re.search(r'#EXTINF:([\d.-]+)', extinf_line)
+                duration = duration_match.group(1) if duration_match else "-1"
+
+                # Extract attributes using regex
+                attr_pattern = r'(\S+)="([^"]*)"'
+                attrs = dict(re.findall(attr_pattern, extinf_line))
+
+                # Extract channel name (after comma)
+                if ',' in extinf_line:
+                    channel_name = extinf_line.split(',', 1)[1].strip()
+
+                # Extract tvg-name attribute (primary identifier for comparison)
+                tvg_name = attrs.get('tvg-name', '')
+
+                # If no tvg-name in attributes, use the channel name after comma
+                if not tvg_name:
+                    tvg_name = channel_name
+
+                # Create channel object
+                channel_data = {
+                    'index': channel_index,
+                    'extinf': extinf_line,
+                    'duration': duration,
+                    'attrs': attrs,
+                    'name': channel_name,
+                    'tvg_name': tvg_name,
+                    'url': url_line,
+                    'raw_lines': [extinf_line, url_line]
+                }
+
+                # Store with original position as key
+                key = f"pos_{channel_index}"
+                channels[key] = channel_data
+
+                channel_index += 1
+                i += 1  # Move to next line
+
+            else:
+                # Store other lines as metadata (comments, etc.)
+                if line and not line.startswith('http'):
+                    metadata_key = f"metadata_{i}"
+                    channels[metadata_key] = {
+                        'type': 'metadata',
+                        'line': line,
+                        'index': i
+                    }
+                i += 1
+
+        return channels
+
+    def get_current_playlist(self, username, password):
+        """Get current playlist from Emby using credentials"""
+        BASE = "https://play.embyil.tv"
+
+        auth_hdr = (
+            'MediaBrowser Client="GitHubAction", Device="CI", '
+            'DeviceId="gh-epg", Version="4.9.0.42"'
+        )
+
+        try:
+            resp = requests.post(
+                f"{BASE}/emby/Users/AuthenticateByName",
+                headers={
+                    "Content-Type": "application/json",
+                    "X-Emby-Authorization": auth_hdr
+                },
+                json={"Username": username, "Pw": password},
+                timeout=20
+            )
+            resp.raise_for_status()
+            login = resp.json()
+            token = login["AccessToken"]
+            print(f"✅ Logged in to Emby server")
+        except Exception as e:
+            print(f"❌ Authentication failed: {e}")
+            return None
+
+        headers = {
+            "X-Emby-Token": token,
+            "X-Emby-Client": "Emby Web",
+            "X-Emby-Device-Name": "PythonScript",
+            "X-Emby-Device-Id": "script-1234",
+            "X-Emby-Client-Version": "4.9.0.42"
+        }
+
+        m3u_lines = ['#EXTM3U']
+
+        # Get channels info
+        url = f"{BASE}/emby/LiveTv/Channels"
+        params = {
+            "IsAiring": "true",
+            "EnableUserData": "false",
+            "Fields": "PrimaryImageAspectRatio",
+            "ImageTypeLimit": "1",
+            "EnableImageTypes": "Primary",
+            "SortBy": "DefaultChannelOrder",
+            "SortOrder": "Ascending"
+        }
+
+        try:
+            response = requests.get(url, headers=headers, params=params)
+            response.raise_for_status()
+            info = response.json().get("Items", [])
+            print(f"✅ Found {len(info)} channels")
+        except Exception as e:
+            print(f"❌ Failed to get channels: {e}")
+            return None
+
+        # Process each channel
+        channel_count = 0
+        for ch in info:
+            ch_id = ch["Id"]
+            name = ch["Name"]
+            image_tag = ch.get("ImageTags", {}).get("Primary")
+
+            if not image_tag:
+                continue  # skip if no image
+
+            # Logo URL
+            logo_url = f"{BASE}/emby/Items/{ch_id}/Images/Primary?tag={image_tag}"
+
+            # M3U8 URL
+            m3u8_url = f"{BASE}/emby/videos/{ch_id}/master.m3u8"
+
+            # Create EXTINF line with tvg-name matching the channel name
+            extinf = f'#EXTINF:-1 tvg-id="{ch_id}" tvg-name="{name}" tvg-logo="{logo_url}",{name}'
+            m3u_lines.append(extinf)
+            m3u_lines.append(m3u8_url)
+            channel_count += 1
+
+        m3u_content = '\n'.join(m3u_lines)
+        print(f"✅ Generated M3U with {channel_count} channels")
+        return m3u_content
+
+    def compare_and_update_gist(self, gist_filename, reference_content, current_content):
+        """
+        Compare gist with current data and update if needed
+        Simple logic: For each channel in current, if not exist in reference: insert at same position
+        If exists: compare URL, if different use current URL, keep all other channel data
+        """
+        print(f"\n🔍 Comparing playlists...")
+
+        # Parse both playlists
+        gist_channels = self.parse_m3u_playlist(reference_content)
+        current_channels = self.parse_m3u_playlist(current_content)
+
+        # Create lookup dictionaries using tvg-name
+        gist_lookup = {}
+        for key, value in gist_channels.items():
+            if isinstance(value, dict) and 'extinf' in value:
+                tvg_name = value.get('tvg_name')
+                if tvg_name:
+                    gist_lookup[tvg_name] = value
+
+        current_lookup = {}
+        current_order = []  # Keep track of current order with positions
+        for key, value in current_channels.items():
+            if isinstance(value, dict) and 'extinf' in value:
+                tvg_name = value.get('tvg_name')
+                if tvg_name:
+                    current_lookup[tvg_name] = value
+                    current_order.append((value['index'], tvg_name))
+
+        # Sort current order by position
+        current_order.sort(key=lambda x: x[0])
+
+        print(f"📊 Reference gist: {len(gist_lookup)} channels")
+        print(f"📊 Current playlist: {len(current_lookup)} channels")
+
+        changes_made = False
+        new_channels_added = 0
+
+        # Start with the reference content as base
+        updated_channels = gist_channels.copy()
+
+        # Track which channels we've processed
+        processed_tvg_names = set()
+
+        # First, update URLs for existing channels
+        for tvg_name, current_channel in current_lookup.items():
+            if tvg_name in gist_lookup:
+                gist_channel = gist_lookup[tvg_name]
+
+                # Compare URLs
+                if gist_channel['url'] != current_channel['url']:
+                    print(f"🔄 Updating URL for: {tvg_name}")
+
+                    # Update only the URL, keep all other data from gist
+                    gist_channel['url'] = current_channel['url']
+                    gist_channel['raw_lines'][1] = current_channel['url']
+
+                    # Update in updated_channels
+                    for key, chan in updated_channels.items():
+                        if isinstance(chan, dict) and 'extinf' in chan and chan.get('tvg_name') == tvg_name:
+                            updated_channels[key] = gist_channel
+                            break
+
+                    changes_made = True
+
+                processed_tvg_names.add(tvg_name)
+
+        # Now handle new channels - we need to insert them at their positions from current_order
+        # Build a list of all channels in the order we want
+        final_channels = []
+
+        # We'll process in the order of current channels
+        for pos, tvg_name in current_order:
+            current_channel = current_lookup[tvg_name]
+
+            if tvg_name in processed_tvg_names:
+                # This channel already exists in gist - use the updated version
+                for key, chan in updated_channels.items():
+                    if isinstance(chan, dict) and 'extinf' in chan and chan.get('tvg_name') == tvg_name:
+                        final_channels.append(chan)
+                        break
+            else:
+                # This is a new channel - add it
+                print(f"➕ Adding new channel: {tvg_name}")
+                final_channels.append(current_channel)
+                new_channels_added += 1
+                changes_made = True
+
+        # If we have channels in gist that aren't in current, add them at the end
+        for tvg_name, gist_channel in gist_lookup.items():
+            if tvg_name not in processed_tvg_names:
+                print(f"⚠️ Channel '{tvg_name}' not in current playlist, keeping it")
+                final_channels.append(gist_channel)
+
+        if not changes_made:
+            print("✅ No changes needed - playlists are identical")
+            return reference_content, False, 0
+
+        # Reconstruct the M3U content
+        print(f"\n🔧 Reconstructing updated M3U playlist...")
+
+        # Build new content with proper ordering
+        lines = ['#EXTM3U']
+
+        # Add channels in the order they appear in final_channels
+        for channel in final_channels:
+            lines.extend(channel['raw_lines'])
+
+        new_content = '\n'.join(lines)
+
+        print(f"\n📈 Summary:")
+        print(f"   • URLs updated: {len(gist_lookup) - new_channels_added}")
+        print(f"   • New channels added: {new_channels_added}")
+        print(f"   • Total channels: {len(final_channels)}")
+
+        return new_content, True, new_channels_added
+
+    def update_gist_with_current_playlist(self, gist_filename, username, password):
+        """Main function to update gist with current playlist"""
+        print(f"\n{'=' * 80}")
+        print("🎬 M3U Playlist Updater")
+        print(f"📁 Gist file: '{gist_filename}'")
+        print(f"👤 Using Emby account: {username}")
+        print("=" * 80)
+
+        # Step 1: Find the gist
+        print(f"\n🔍 Searching for gist '{gist_filename}'...")
+        gist_id, gist_content = self.find_gist_file(gist_filename)
+
+        if not gist_id:
+            print(f"❌ No gist found containing '{gist_filename}'")
+            return False
+
+        print(f"✓ Found gist: {gist_id}")
+
+        # Step 2: Get current playlist
+        print(f"\n🌐 Getting current playlist from Emby...")
+        current_content = self.get_current_playlist(username, password)
+
+        if not current_content:
+            print("❌ Failed to get current playlist")
+            return False
+
+        # Step 3: Compare and update
+        new_content, changes_made, new_channels = self.compare_and_update_gist(
+            gist_filename, gist_content, current_content
+        )
+
+        if not changes_made:
+            print(f"\n✅ Gist is already up-to-date, no update needed")
+            return True
+
+        # Step 4: Update gist if changes were made
+        print(f"\n💾 Uploading updated playlist to gist...")
+        success, raw_url = self.update_gist(gist_id, gist_filename, new_content)
+
+        if success:
+            print(f"✅ Gist updated successfully!")
+            print(f"🔗 Raw URL: {raw_url}")
+            print(f"🆔 Gist ID: {gist_id}")
+            return True
+        else:
+            print("❌ Failed to update gist")
+            return False
+
+def main():
+    """Main function"""
+    print("=" * 60)
+    print("Emby Account Creator & Gist Updater")
+    print("=" * 60)
+
+    # Create account
+    creator = EmbyAccountCreator(debug=False)
+    credentials = creator.create_emby_account()
+
+    if not credentials:
+        print("\n✗ Account creation failed.")
+        return
+
+    username, password = credentials
+
+    print("\n" + "=" * 60)
+
+    # GitHub token - leave blank for user to fill
+    github_token = ""  # User should fill this
+
+    # Gist filename to update
+    gist_filename = "file2"  # Or whatever your gist filename is
+
+    # Update the gist
+    updater = M3UPlaylistUpdater(github_token, debug=False)
+    success = updater.update_gist_with_current_playlist(gist_filename, username, password)
+
+    if success:
+        print("\n✅ All tasks completed successfully!")
+    else:
+        print("\n✗ Gist update failed.")
+
+
+if __name__ == "__main__":
+    main()
