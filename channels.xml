@@ -42,8 +42,8 @@
     <channel site="yes.co.il" site_id="PT25" xmltv_id="3047714">National G. HD</channel>
     <channel site="yes.co.il" site_id="PT94" xmltv_id="3047713">Discovery HD</channel>
     <channel site="yes.co.il" site_id="CH71" xmltv_id="3047715">National G. Wild HD</channel>
-    <channel site="yes.co.il" site_id="TV19" xmltv_id="">History SD</channel>
-    <channel site="yes.co.il" site_id="PT55" xmltv_id="3047712">History HD</channel>
+    <channel site="yes.co.il" site_id="TV19" xmltv_id="3047712">History SD</channel>
+    <channel site="yes.co.il" site_id="PT55" xmltv_id="">History HD</channel>
     <channel site="yes.co.il" site_id="TV61" xmltv_id="">ANIMAL PLANET</channel>
     <channel site="yes.co.il" site_id="PT13" xmltv_id="">DAYSTAR</channel>
     <channel site="yes.co.il" site_id="CH58" xmltv_id="3047659">ONE2 HD</channel>
