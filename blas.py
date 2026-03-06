@@ -172,17 +172,15 @@ class SessionManager:
             "1440x900", "1280x720", "1600x900"
         ]
 
-        # Generate timezone - updated to match fetch request
-        timezones = ["Asia/Jerusalem", "Europe/Moscow", "Europe/Kiev", "Europe/Minsk"]
+        # Generate timezone - EXACTLY from fetch
+        timezones = ["Asia/Jerusalem"]
 
-        # Generate language - updated to match fetch request
-        languages = ["he-IL", "en-US", "ru-RU", "uk-UA"]
+        # Generate language - EXACTLY from fetch
+        languages = ["he-IL"]
 
-        # Generate user agent - updated to match fetch request
+        # Generate user agent - EXACTLY from fetch
         user_agents = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
         ]
 
         return {
@@ -225,7 +223,7 @@ class TVTeamAccount:
         # SSL handling
         self.session.verify = False
 
-        # Setup headers
+        # Setup headers - EXACTLY from fetch
         self.setup_headers()
 
         # Services
@@ -240,24 +238,22 @@ class TVTeamAccount:
             print(f"  User Agent: {self.fingerprint_data['user_agent'][:50]}...")
 
     def setup_headers(self):
-        """Setup headers with fingerprint - updated to match fetch request"""
+        """Setup headers - EXACTLY matching fetch request"""
         headers = {
             "User-Agent": self.fingerprint_data["user_agent"],
-            "Accept": "application/json, text/plain, */*",
-            "Accept-Language": f"{self.fingerprint_data['language']},en;q=0.9",
+            "Accept": "*/*",
+            "Accept-Language": "he-IL,he;q=0.9",
             "Accept-Encoding": "gzip, deflate, br",
             "Cache-Control": "no-cache",
             "Pragma": "no-cache",
-            "Connection": "keep-alive",
             "Sec-Ch-Ua": '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
             "Sec-Ch-Ua-Mobile": "?0",
             "Sec-Ch-Ua-Platform": '"Windows"',
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-origin",
-            "X-Device-Fingerprint": json.dumps(self.fingerprint_data),
             "Origin": self.base_url,
-            "Referer": f"{self.base_url}/register",
+            "Referer": f"{self.base_url}/register?parentId=310175&email={quote('test@test.com')}",
         }
 
         self.session.headers.update(headers)
@@ -280,8 +276,8 @@ class TVTeamAccount:
                 else:
                     self.human_delay(1, 3)
 
-                # Make request with longer timeout
-                resp = self.session.request(method, url, timeout=45, **kwargs)
+                # Make request
+                resp = self.session.request(method, url, timeout=30, **kwargs)
 
                 if debug and DEBUG:
                     print(f"  🔍 Request: {method} {url}")
@@ -293,28 +289,11 @@ class TVTeamAccount:
                     time.sleep(60)
                     continue
 
-                # Handle server errors
-                if resp.status_code >= 500:
-                    if DEBUG: print(f"  ⚠️ Server error {resp.status_code}, retrying...")
-                    continue
-
                 return resp
 
-            except requests.exceptions.ConnectTimeout:
-                if DEBUG: print(f"  ⚠️ Connection timeout, retrying... ({attempt + 1}/{max_retries})")
-                time.sleep(5)
-                continue
-            except requests.exceptions.ReadTimeout:
-                if DEBUG: print(f"  ⚠️ Read timeout, retrying... ({attempt + 1}/{max_retries})")
-                time.sleep(5)
-                continue
-            except requests.exceptions.SSLError:
-                if DEBUG: print(f"  ⚠️ SSL Error, retrying... ({attempt + 1}/{max_retries})")
-                time.sleep(5)
-                continue
             except Exception as e:
                 if DEBUG: print(f"  ⚠️ Request error: {str(e)[:100]}, retrying... ({attempt + 1}/{max_retries})")
-                time.sleep(5)
+                time.sleep(2)
                 continue
 
         return None
@@ -322,6 +301,13 @@ class TVTeamAccount:
     def get_captcha(self) -> Optional[Dict]:
         """Get captcha"""
         if DEBUG: print("  🔍 Getting captcha...")
+        
+        # Clear any previous cache headers
+        self.session.headers.update({
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache"
+        })
+        
         resp = self.safe_request("GET", f"{self.base_url}/v3/auth/captcha/generate", debug=False)
 
         if not resp:
@@ -332,92 +318,22 @@ class TVTeamAccount:
 
         if resp.status_code != 200:
             if DEBUG: print(f"  ❌ Failed to get captcha: {resp.status_code}")
-            if DEBUG: print(f"  Response: {resp.text[:200]}")
             return None
 
         try:
             data = resp.json()
-
+            if DEBUG: print(f"  Captcha response data: {data}")
+            
             if "data" in data:
-                captcha_data = data.get("data")
-                if captcha_data:
-                    if DEBUG: print(f"  ✓ Got captcha ID: {captcha_data.get('captchaId', 'N/A')[:20]}...")
-                    return captcha_data
-                else:
-                    if DEBUG: print(f"  ❌ No data in captcha response")
-            else:
-                if DEBUG: print(f"  ❌ No 'data' field in captcha response")
+                return data["data"]
+            return None
 
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing captcha: {str(e)[:100]}")
-            if DEBUG: print(f"  Raw response: {resp.text[:200]}...")
-
-        return None
-
-    def calculate_slider_offset(self, challenge_data: Dict[str, Any]) -> int:
-        """Calculate the slider offset for the puzzle captcha"""
-        try:
-            # Get challenge parameters
-            slot_x = challenge_data.get("slotX", 110)
-            knob_size = challenge_data.get("knob", 44)
-            img_width = challenge_data.get("width", 384)
-
-            if DEBUG:
-                print(f"  - Target slot X: {slot_x}")
-                print(f"  - Knob size: {knob_size}")
-
-            # Add human-like variation (±3 pixels)
-            variation = random.randint(-3, 3)
-            offset = slot_x + variation
-
-            # Ensure offset is within bounds
-            offset = max(0, min(offset, img_width - knob_size))
-
-            if DEBUG:
-                print(f"  - Calculated offset: {offset} (with variation: {variation})")
-            return offset
-
-        except Exception as e:
-            if DEBUG: print(f"  ⚠️ Error calculating offset: {str(e)[:100]}")
-            return challenge_data.get("slotX", 110)
-
-    def generate_mouse_trail(self, target_x: int) -> List[Dict[str, int]]:
-        """Generate realistic mouse trail for captcha - based on fetch request"""
-        trail = []
-        
-        # Starting point
-        current_x = 0
-        current_time = 0
-        
-        # Generate movement steps - exactly like in the fetch request
-        movements = [
-            (5, 98),    # x=5, t=98
-            (53, 134),  # x=53, t=134
-            (94, 170),  # x=94, t=170
-            (105, 204), # x=105, t=204
-            (147, 240), # x=147, t=240
-            (161, 278), # x=161, t=278
-            (167, 321), # x=167, t=321
-            (168, 364), # x=168, t=364
-            (173, 406), # x=173, t=406
-            (180, 441), # x=180, t=441
-            (184, 490), # x=184, t=490
-            (185, 612), # x=185, t=612
-            (185, 1338) # x=185, t=1338
-        ]
-        
-        # Scale movements to match target_x
-        scale_factor = target_x / 185 if target_x != 185 else 1
-        
-        for x, t in movements:
-            scaled_x = min(int(x * scale_factor), target_x)
-            scaled_t = int(t * (target_x / 185) * random.uniform(0.9, 1.1))
-            trail.append({"x": scaled_x, "t": scaled_t})
-        
-        return trail
+            return None
 
     def solve_captcha(self, captcha_data: Dict) -> Tuple[Optional[str], Optional[str]]:
-        """Solve captcha and get proof token - WITH TRAIL from fetch request"""
+        """Solve captcha - EXACTLY matching fetch request"""
         captcha_id = captcha_data.get("captchaId")
         challenge = captcha_data.get("challenge", {})
 
@@ -429,27 +345,47 @@ class TVTeamAccount:
             print(f"  Captcha ID: {captcha_id}")
             print(f"  Challenge data: {challenge}")
 
-        # Calculate offset
-        offset_x = self.calculate_slider_offset(challenge)
+        # Get slotX from challenge - this is the target position
+        slot_x = challenge.get("slotX", 110)
+        
+        if DEBUG: print(f"  🎯 Target slot X: {slot_x}")
 
-        if DEBUG: print(f"  🎯 Using offset: {offset_x}")
+        # Use EXACT trail from fetch request
+        trail = [
+            {"x": 0, "t": 0},
+            {"x": 5, "t": 98},
+            {"x": 53, "t": 134},
+            {"x": 94, "t": 170},
+            {"x": 105, "t": 204},
+            {"x": 147, "t": 240},
+            {"x": 161, "t": 278},
+            {"x": 167, "t": 321},
+            {"x": 168, "t": 364},
+            {"x": 173, "t": 406},
+            {"x": 180, "t": 441},
+            {"x": 184, "t": 490},
+            {"x": 185, "t": 612},
+            {"x": 185, "t": 1338}
+        ]
 
-        # Generate mouse trail - FIX FOR FIRST ERROR
-        trail = self.generate_mouse_trail(offset_x)
-
-        # Verify captcha with trail
+        # Verify captcha - EXACT payload from fetch
         payload = {
             "captchaId": captcha_id,
-            "offsetX": offset_x,
+            "offsetX": slot_x,  # Use the exact slot_x from challenge
             "trail": trail
         }
+        
         if DEBUG: print(f"  Payload: {payload}")
 
         resp = self.safe_request(
             "POST",
             f"{self.base_url}/v3/auth/captcha/verify",
             json=payload,
-            headers={"Content-Type": "application/json; charset=UTF-8"},
+            headers={
+                "Content-Type": "application/json; charset=UTF-8",
+                "Cache-Control": "no-cache",
+                "Pragma": "no-cache"
+            },
             debug=False
         )
 
@@ -466,11 +402,12 @@ class TVTeamAccount:
 
         try:
             result = resp.json()
+            if DEBUG: print(f"  Verification response: {result}")
 
-            # Check response structure - from fetch request it returns data.proof
+            # Check response - from fetch it returns data with proof
             if "data" in result:
-                if "proof" in result["data"]:
-                    proof_token = result["data"]["proof"]
+                proof_token = result["data"].get("proof")
+                if proof_token:
                     if DEBUG: print(f"  ✓ Got proof token: {proof_token[:30]}...")
                     return captcha_id, proof_token
                 else:
@@ -479,6 +416,7 @@ class TVTeamAccount:
             else:
                 if DEBUG: print(f"  ❌ No 'data' field in response")
                 if DEBUG: print(f"  Response: {result}")
+
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing verification: {str(e)[:100]}")
             if DEBUG: print(f"  Raw response: {resp.text[:200]}...")
@@ -486,7 +424,7 @@ class TVTeamAccount:
         return None, None
 
     def quick_register_start(self, email: str) -> bool:
-        """Start quick registration with email"""
+        """Start quick registration - EXACTLY matching fetch"""
         print(f"  📝 Registering {email}...")
 
         # Get captcha
@@ -501,10 +439,10 @@ class TVTeamAccount:
             if DEBUG: print("  ❌ Could not solve captcha")
             return False
 
-        # Start quick registration - matching fetch request exactly
+        # Start quick registration - EXACT form data from fetch
         form_data = f"email={quote(email)}&captchaId={quote(captcha_id)}&captchaSolution={quote(proof_token)}&lang=US"
 
-        if DEBUG: print(f"  Registration form data: {form_data[:200]}...")
+        if DEBUG: print(f"  Registration form data: {form_data}")
 
         resp = self.safe_request(
             "POST",
@@ -533,7 +471,7 @@ class TVTeamAccount:
             result = resp.json()
             if DEBUG: print(f"  Registration response: {result}")
             
-            # Check for success in response
+            # Check for success
             if result.get("data", {}).get("ok") or result.get("success"):
                 if DEBUG: print(f"  ✓ Registration started successfully")
                 return True
@@ -542,18 +480,17 @@ class TVTeamAccount:
                 return False
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing registration response: {str(e)[:100]}")
-            if DEBUG: print(f"  Raw response: {resp.text[:200]}...")
             return False
 
     def quick_register_verify(self, email: str) -> bool:
-        """Verify email with code"""
+        """Verify email with code - EXACTLY matching fetch"""
         # Get verification code
         code = self.temp_mail.get_verification_code(timeout=180)
         if not code:
             if DEBUG: print("  ❌ No verification code received")
             return False
 
-        # Complete registration
+        # Complete registration - EXACT form data from fetch
         print(f"  ✅ Verifying with code {code}...")
         form_data = f"email={quote(email)}&code={code}&lang=US"
 
@@ -595,7 +532,6 @@ class TVTeamAccount:
                 return False
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing verification response: {str(e)[:100]}")
-            if DEBUG: print(f"  Raw response: {resp.text[:200]}...")
             return False
 
     def login(self, username: str, password: str) -> bool:
@@ -615,7 +551,7 @@ class TVTeamAccount:
             if DEBUG: print("  ❌ Could not solve captcha for login")
             return False
 
-        # Prepare login data - matching fetch request
+        # Prepare login data
         form_data = (
             f"userLogin={quote(username)}&"
             f"userPasswd={quote(password)}&"
@@ -659,12 +595,10 @@ class TVTeamAccount:
                 self.is_authenticated = True
                 return True
             else:
-                error_msg = login_result.get("message") or login_result.get("data", {}).get("message", "Unknown error")
-                if DEBUG: print(f"  ❌ Login failed: {error_msg}")
+                if DEBUG: print(f"  ❌ Login failed")
                 return False
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing login response: {e}")
-            if DEBUG: print(f"  Raw response: {login_resp.text[:200]}")
             return False
 
     def get_csrf_token(self) -> Optional[str]:
@@ -700,38 +634,13 @@ class TVTeamAccount:
         resp = self.safe_request("GET", f"{self.base_url}/v3/trial/status", debug=False)
 
         if not resp or resp.status_code != 200:
-            if DEBUG: print(f"  ❌ Trial check failed: {resp.status_code if resp else 'No response'}")
+            if DEBUG: print(f"  ❌ Trial check failed")
             return None
 
         try:
             data = resp.json()
-
             trial_data = data.get("data", {})
-
-            if DEBUG:
-                print(f"\n  {'=' * 50}")
-                print(f"  📋 TRIAL STATUS REPORT")
-                print(f"  {'=' * 50}")
-                print(f"  Enabled: {trial_data.get('enabled', 'N/A')}")
-                print(f"  Eligible: {trial_data.get('eligible', 'N/A')}")
-                print(f"  Reason: {trial_data.get('reason', 'N/A')}")
-                print(f"  Reason Text: {trial_data.get('reasonText', 'N/A')}")
-                print(f"  Has Paid History: {trial_data.get('hasPaidHistory', 'N/A')}")
-                print(f"  Ever Had Package: {trial_data.get('everHadPackage', 'N/A')}")
-                print(f"  Has Trial History: {trial_data.get('hasTrialHistory', 'N/A')}")
-                print(f"  Has Active Trial: {trial_data.get('hasActiveTrial', 'N/A')}")
-                print(f"  Remaining Daily: {trial_data.get('remainingDaily', 'N/A')}")
-                print(f"  {'=' * 50}")
-
-            if trial_data.get("eligible"):
-                print(f"  🎉🎉🎉 ACCOUNT IS ELIGIBLE FOR TRIAL! 🎉🎉🎉")
-            else:
-                if DEBUG:
-                    print(f"  ❌ Account is NOT eligible for trial")
-                    print(f"  Reason: {trial_data.get('reasonText', 'Unknown')}")
-
             return trial_data
-
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing trial status: {str(e)[:100]}")
             return None
@@ -777,41 +686,26 @@ class TVTeamAccount:
         if resp.status_code == 200:
             try:
                 result = resp.json()
-
                 if result.get("data", {}).get("ok"):
                     print("  🎉 FREE TRIAL ACTIVATED SUCCESSFULLY!")
                     return True
-                else:
-                    error_msg = result.get("error", {}).get("message", "Unknown error")
-                    if DEBUG: print(f"  ❌ Trial activation failed: {error_msg}")
-                    return False
-            except Exception as e:
-                if DEBUG: print(f"  ❌ Error parsing trial response: {str(e)[:100]}")
-                return False
-        else:
-            if DEBUG: print(f"  ❌ Trial activation failed with status: {resp.status_code}")
-            if DEBUG: print(f"  Response: {resp.text[:200]}")
-            return False
+            except:
+                pass
+        return False
 
     def toggle_erotica(self, enable: bool = True) -> bool:
         """Toggle erotica content on/off"""
         if not self.is_authenticated:
-            if DEBUG: print("  ❌ Cannot toggle erotica - not authenticated")
             return False
 
         print(f"  {'🔞' if enable else '🚫'} Setting erotica content to {'ON' if enable else 'OFF'}...")
 
-        # Get CSRF token
         if not self.get_csrf_token():
-            if DEBUG: print("  ❌ Failed to get CSRF token")
             return False
 
-        # Toggle erotica
         erotica_data = {
             "showPorno": "1" if enable else "0"
         }
-
-        if DEBUG: print(f"  Erotica toggle data: {erotica_data}")
 
         resp = self.safe_request(
             "POST",
@@ -824,54 +718,22 @@ class TVTeamAccount:
             debug=False
         )
 
-        if not resp:
-            if DEBUG: print("  ❌ Erotica toggle failed - no response")
-            return False
-
-        if DEBUG: print(f"  Erotica toggle response status: {resp.status_code}")
-
-        if resp.status_code == 200:
-            try:
-                result = resp.json()
-
-                if result.get("data", {}).get("showPorno") == (1 if enable else 0):
-                    if DEBUG: print(f"  ✅ Erotica content set to {'ON' if enable else 'OFF'} successfully!")
-                    return True
-                else:
-                    if DEBUG: print(f"  ❌ Erotica toggle failed - unexpected response")
-                    return False
-            except Exception as e:
-                if DEBUG: print(f"  ❌ Error parsing erotica response: {str(e)[:100]}")
-                return False
-        else:
-            if DEBUG: print(f"  ❌ Erotica toggle failed with status: {resp.status_code}")
-            if DEBUG: print(f"  Response: {resp.text[:200]}")
-            return False
+        return resp and resp.status_code == 200
 
     def get_account_info(self) -> Optional[Dict]:
         """Get account information"""
         if not self.is_authenticated:
-            if DEBUG: print("  ❌ Cannot get account info - not authenticated")
             return None
 
-        if DEBUG: print("  📋 Getting account information...")
         resp = self.safe_request("GET", f"{self.base_url}/v3/profile", debug=False)
 
         if not resp or resp.status_code != 200:
-            if DEBUG: print(f"  ❌ Failed to get account info: {resp.status_code if resp else 'No response'}")
             return None
 
         try:
             data = resp.json()
-
-            profile_data = data.get("data", {})
-            if DEBUG:
-                print(f"  ✓ Account ID: #{profile_data.get('id', 'N/A')}")
-                print(f"  ✓ Email: {profile_data.get('email', 'N/A')}")
-                print(f"  ✓ Registration: {profile_data.get('regDate', 'N/A')}")
-            return profile_data
-        except Exception as e:
-            if DEBUG: print(f"  ❌ Error parsing account info: {str(e)[:100]}")
+            return data.get("data", {})
+        except:
             return None
 
     def complete_account_creation(self) -> Optional[Dict]:
@@ -910,8 +772,6 @@ class TVTeamAccount:
         # Get account info
         print(f"\n  🔄 Step 4/5: Getting account info...")
         account_info = self.get_account_info()
-        if not account_info:
-            if DEBUG: print("  ⚠️ Could not get account info, but continuing...")
 
         # Check trial status
         print(f"\n  🔄 Step 5/6: Checking trial status...")
@@ -925,91 +785,57 @@ class TVTeamAccount:
         else:
             if DEBUG: print("  ⚠️ Skipping trial activation - account not eligible")
 
-        # Toggle erotica based on user setting
+        # Toggle erotica
         erotica_set = False
         if self.enable_erotica:
             print(f"\n  🔄 Step 7/7: Setting erotica preference...")
             erotica_set = self.toggle_erotica(enable=True)
-        else:
-            if DEBUG: print("  ⚠️ Skipping erotica toggle - disabled by user setting")
 
         # Get playlist URL
         print(f"\n  🔄 Getting playlist URL...")
         playlist_url = self.generate_playlist_url(use_https=False)
 
-        # Prepare account data
         account_data = {
             "username": email.split('@')[0],
             "password": "QuickRegisterPassword",
             "email": email,
-            "fingerprint": self.fingerprint_data["fingerprint"],
-            "user_agent": self.fingerprint_data["user_agent"],
-            "account_id": account_info.get("id") if account_info else "N/A",
-            "trial_status": trial_status,
-            "trial_eligible": trial_status.get("eligible", False) if trial_status else False,
             "trial_activated": trial_activated,
-            "erotica_enabled": self.enable_erotica,
-            "erotica_set": erotica_set,
             "playlist_url": playlist_url,
-            "playlist_app_id": self.playlist_app_id,
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
         }
 
         return account_data
 
     def check_saved_account_trial(self) -> Tuple[bool, Optional[Dict]]:
-        """Check if saved account has active trial by logging in and checking"""
-        # Load saved account
+        """Check if saved account has active trial"""
         saved_account = AccountManager.load_account()
 
         if not saved_account:
-            if DEBUG: print("  📭 No saved account found")
             return False, None
 
         print(f"\n  🔍 Checking trial status for saved account: {saved_account['username']}")
 
-        # Try to login
-        print(f"  🔐 Attempting to login...")
         if not self.login(saved_account['username'], saved_account['password']):
             print(f"  ❌ Failed to login with saved credentials")
-            if DEBUG: print(f"  🗑️ Removing invalid saved account...")
             try:
                 os.remove(AccountManager.SAVE_FILE)
             except:
                 pass
             return False, None
 
-        # Check trial status via website
-        print(f"  📊 Checking trial status via website...")
         trial_status = self.check_trial_status()
 
-        if not trial_status:
-            if DEBUG: print(f"  ❌ Failed to check trial status")
-            return False, saved_account
+        if trial_status and trial_status.get('hasActiveTrial'):
+            print(f"  ✅ Trial is ACTIVE")
+            return True, saved_account
 
-        # Check if trial is still active
-        has_active_trial = trial_status.get('hasActiveTrial', False)
-
-        if has_active_trial:
-            date_str = trial_status.get('activeTrialExpires', 'N/A')
-            try:
-                target_date = datetime.strptime(date_str, '%Y-%m-%d').date()
-                today = date.today()
-                if target_date > today:
-                    print(f"  ✅ Trial is ACTIVE on website till {trial_status.get('activeTrialExpires', 'NA')}")
-                    return True, saved_account
-            except:
-                pass
-        if DEBUG: print(f"  ❌ Trial NOT ACTIVE or eligible")
         return False, saved_account
 
     def create_and_save_account(self) -> Optional[Dict]:
         """Create new account and save credentials if trial activated"""
-        # Create account using existing method
         account = self.complete_account_creation()
 
         if account and account.get("trial_activated"):
-            # Save ONLY username/password/email
             AccountManager.save_account(
                 account['username'],
                 account['password'],
@@ -1022,8 +848,6 @@ class TVTeamAccount:
         """Set playlist to HTTP (False) or HTTPS (True)"""
         if not self.is_authenticated:
             return False
-
-        if DEBUG: print(f"  🔗 Setting playlist protocol to {'HTTPS' if use_https else 'HTTP'}...")
 
         if not self.get_csrf_token():
             return False
@@ -1048,8 +872,6 @@ class TVTeamAccount:
         if not self.is_authenticated:
             return None
 
-        if DEBUG: print("  🔍 Getting playlist session ID...")
-
         resp = self.safe_request("GET", f"{self.base_url}/v3/playlists?slot=0", debug=False)
 
         if not resp or resp.status_code != 200:
@@ -1057,32 +879,24 @@ class TVTeamAccount:
 
         try:
             data = resp.json().get("data", {})
-
-            # Check for uniqId
+            
+            # Try uniqId first
             uniq_id = data.get("uniqId")
             if uniq_id:
-                if DEBUG: print(f"  ✅ Found uniqId: {uniq_id}")
                 return uniq_id
 
-            # Alternative: try to extract from items
+            # Try items
             items = data.get("items", [])
-            if items:
-                for item in items:
-                    link = item.get("link", "")
-                    if "/pl/" in link:
-                        parts = link.split("/")
-                        if len(parts) >= 5:
-                            token = parts[4]
-                            if DEBUG: print(f"  ✅ Found token in link: {token}")
-                            return token
+            for item in items:
+                link = item.get("link", "")
+                if "/pl/" in link:
+                    parts = link.split("/")
+                    if len(parts) >= 5:
+                        return parts[4]
 
-            if DEBUG:
-                print(f"  ❌ Could not find playlist session ID")
-                print(f"  Response structure: {data.keys()}")
             return None
 
-        except Exception as e:
-            if DEBUG: print(f"  ❌ Error parsing playlist response: {str(e)[:100]}")
+        except:
             return None
 
     def generate_playlist_url(self, use_https: bool = False) -> Optional[str]:
@@ -1124,8 +938,8 @@ class ProxyFetcher:
                 for ip, port in matches[:50]:
                     proxies.append(f"http://{ip}:{port}")
                 if DEBUG: print(f"✓ Got {len(matches)} proxies from FreeProxyList")
-        except Exception as e:
-            if DEBUG: print(f"✗ FreeProxyList failed: {e}")
+        except:
+            pass
 
         # Source 2: SSLProxies
         try:
@@ -1136,38 +950,8 @@ class ProxyFetcher:
                 for ip, port in matches[:50]:
                     proxies.append(f"http://{ip}:{port}")
                 if DEBUG: print(f"✓ Got {len(matches)} proxies from SSLProxies")
-        except Exception as e:
-            if DEBUG: print(f"✗ SSLProxies failed: {e}")
-
-        # Source 3: ProxyScrape
-        try:
-            resp = self.session.get(
-                "https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all",
-                timeout=10)
-            if resp.status_code == 200:
-                lines = resp.text.strip().split('\n')
-                for line in lines[:100]:
-                    if ':' in line:
-                        proxies.append(f"http://{line.strip()}")
-                if DEBUG: print(f"✓ Got {len(lines)} proxies from ProxyScrape")
-        except Exception as e:
-            if DEBUG: print(f"✗ ProxyScrape failed: {e}")
-
-        # Source 4: Geonode
-        try:
-            resp = self.session.get(
-                "https://proxylist.geonode.com/api/proxy-list?limit=100&page=1&sort_by=lastChecked&sort_type=desc",
-                timeout=10)
-            if resp.status_code == 200:
-                data = resp.json()
-                for proxy in data.get('data', []):
-                    ip = proxy.get('ip')
-                    port = proxy.get('port')
-                    if ip and port:
-                        proxies.append(f"http://{ip}:{port}")
-                if DEBUG: print(f"✓ Got {len(data.get('data', []))} proxies from Geonode")
-        except Exception as e:
-            if DEBUG: print(f"✗ Geonode failed: {e}")
+        except:
+            pass
 
         # Remove duplicates
         unique_proxies = list(set(proxies))
@@ -1175,36 +959,18 @@ class ProxyFetcher:
 
         return unique_proxies
 
-    def test_proxy(self, proxy: str, timeout: int = 5) -> Tuple[bool, float, str]:
-        """Test if a proxy is working"""
+    def test_proxy_simple(self, proxy: str) -> bool:
+        """Simple proxy test"""
         try:
-            start_time = time.time()
-            test_url = "http://httpbin.org/ip"
-
             response = requests.get(
-                test_url,
+                "http://httpbin.org/ip",
                 proxies={"http": proxy, "https": proxy},
-                timeout=timeout,
+                timeout=5,
                 verify=False
             )
-
-            if response.status_code == 200:
-                speed = time.time() - start_time
-                try:
-                    data = response.json()
-                    origin = data.get('origin', '')
-                except:
-                    origin = "unknown"
-                return True, speed, origin
-
+            return response.status_code == 200
         except:
-            pass
-
-        return False, 0, ""
-
-    def test_proxy_simple(self, proxy: str) -> bool:
-        working, speed, origin = self.test_proxy(proxy, timeout=8)
-        return working
+            return False
 
 
 class AccountManager:
@@ -1241,13 +1007,10 @@ class AccountManager:
 
             required_fields = ['username', 'password', 'email']
             if not all(field in data for field in required_fields):
-                if DEBUG: print(f"  ⚠️ Saved account data is incomplete")
                 return None
 
-            if DEBUG: print(f"  📁 Loaded saved account: {data['username']}")
             return data
-        except Exception as e:
-            if DEBUG: print(f"  ❌ Failed to load account: {e}")
+        except:
             return None
 
 
@@ -1269,7 +1032,6 @@ class M3UPlaylistUpdater:
             )
 
             if response.status_code != 200:
-                if DEBUG: print(f"Error getting gists: {response.status_code}")
                 return None, None
 
             gists = response.json()
@@ -1278,56 +1040,21 @@ class M3UPlaylistUpdater:
                 files = gist.get('files', {})
                 if filename in files:
                     gist_id = gist['id']
-                    gist_detail = self.get_gist_detail(gist_id)
-                    if gist_detail:
-                        files_detail = gist_detail.get('files', {})
-                        if filename in files_detail:
-                            file_info = files_detail[filename]
-                            content = self.get_file_content(file_info, gist_id)
-                            return gist_id, content
+                    # Get content
+                    gist_response = requests.get(
+                        f"https://api.github.com/gists/{gist_id}",
+                        headers=self.headers
+                    )
+                    if gist_response.status_code == 200:
+                        gist_data = gist_response.json()
+                        file_info = gist_data['files'][filename]
+                        content = file_info.get('content', '')
+                        return gist_id, content
 
             return None, None
 
-        except Exception as e:
-            if DEBUG: print(f"Error finding gist: {e}")
+        except:
             return None, None
-
-    def get_gist_detail(self, gist_id):
-        """Get detailed gist info"""
-        try:
-            response = requests.get(
-                f"https://api.github.com/gists/{gist_id}",
-                headers=self.headers
-            )
-            if response.status_code == 200:
-                return response.json()
-        except:
-            pass
-        return None
-
-    def get_file_content(self, file_info, gist_id):
-        """Get file content"""
-        if file_info.get('content') and not file_info.get('truncated', False):
-            return file_info['content']
-
-        raw_url = file_info.get('raw_url')
-        if raw_url:
-            try:
-                response = requests.get(raw_url)
-                if response.status_code == 200:
-                    return response.text
-            except:
-                pass
-
-        try:
-            raw_url_alt = f"https://gist.githubusercontent.com/anon/{gist_id}/raw/{file_info.get('filename', 'file')}"
-            response = requests.get(raw_url_alt)
-            if response.status_code == 200:
-                return response.text
-        except:
-            pass
-
-        return ""
 
     def update_gist(self, gist_id, filename, new_content):
         """Update existing gist"""
@@ -1344,92 +1071,9 @@ class M3UPlaylistUpdater:
                 headers=self.headers
             )
 
-            if response.status_code == 200:
-                return True, f"https://gist.githubusercontent.com/anon/{gist_id}/raw/{filename}"
-            else:
-                if DEBUG: print(f"Error updating gist: {response.status_code}")
-                return False, None
-        except Exception as e:
-            if DEBUG: print(f"Error: {e}")
+            return response.status_code == 200, f"https://gist.githubusercontent.com/anon/{gist_id}/raw/{filename}"
+        except:
             return False, None
-
-    def parse_m3u_playlist(self, content):
-        """Parse M3U playlist into structured data"""
-        channels = OrderedDict()
-        lines = content.strip().split('\n')
-
-        i = 0
-        channel_index = 0
-
-        if lines and lines[0].startswith('#EXTM3U'):
-            channels['header'] = lines[0]
-            i = 1
-        else:
-            channels['header'] = '#EXTM3U'
-
-        while i < len(lines):
-            line = lines[i].strip()
-
-            if not line:
-                i += 1
-                continue
-
-            if line.startswith('#EXTINF:'):
-                extinf_line = line
-
-                group_line = ""
-                if i + 1 < len(lines) and lines[i + 1].startswith('#EXTGRP:'):
-                    group_line = lines[i + 1].strip()
-                    i += 1
-
-                url_line = ""
-                if i + 1 < len(lines) and lines[i + 1].startswith('http'):
-                    url_line = lines[i + 1].strip()
-                    i += 1
-
-                channel_data = {
-                    'index': channel_index,
-                    'extinf': extinf_line,
-                    'group': group_line,
-                    'url': url_line,
-                    'raw_lines': [extinf_line, group_line, url_line] if group_line else [extinf_line, url_line]
-                }
-
-                # Extract channel ID from URL
-                channel_id = None
-                if url_line:
-                    match = re.search(r'/ch(\d+)/', url_line)
-                    if match:
-                        channel_id = match.group(1)
-
-                key = f"ch{channel_id}" if channel_id else f"channel_{channel_index}"
-                channels[key] = channel_data
-
-                channel_index += 1
-                i += 1
-
-            else:
-                if line and not line.startswith('http'):
-                    metadata_key = f"metadata_{i}"
-                    channels[metadata_key] = {
-                        'type': 'metadata',
-                        'line': line,
-                        'index': i
-                    }
-                i += 1
-
-        return channels
-
-    def extract_token_from_url(self, url):
-        """Extract token from URL"""
-        if not url:
-            return None
-
-        parsed_url = urlparse(url)
-        query_params = parse_qs(parsed_url.query)
-        if 'token' in query_params:
-            return query_params['token'][0]
-        return None
 
     def download_playlist(self, playlist_url):
         """Download playlist from URL"""
@@ -1440,61 +1084,6 @@ class M3UPlaylistUpdater:
         except:
             pass
         return None
-
-    def update_channels_from_reference(self, gist_channels, reference_channels):
-        """Update gist channels with tokens from reference channels"""
-        change_count = 0
-        updated_channels = OrderedDict()
-
-        for key, value in gist_channels.items():
-            if key == 'header' or (isinstance(value, dict) and value.get('type') == 'metadata'):
-                updated_channels[key] = value
-            elif isinstance(value, dict) and 'extinf' in value:
-                channel_data = value.copy()
-                channel_id = None
-                if key.startswith('ch'):
-                    channel_id = key[2:]
-
-                if channel_id and channel_id in reference_channels:
-                    ref_channel = reference_channels[channel_id]
-                    if channel_data.get('url') != ref_channel.get('url'):
-                        channel_data['url'] = ref_channel.get('url', '')
-                        # Update raw_lines
-                        for j, line in enumerate(channel_data['raw_lines']):
-                            if line.startswith('http'):
-                                channel_data['raw_lines'][j] = ref_channel.get('url', '')
-                        change_count += 1
-
-                updated_channels[key] = channel_data
-            else:
-                updated_channels[key] = value
-
-        return updated_channels, change_count
-
-    def reconstruct_m3u_from_channels(self, channels):
-        """Reconstruct M3U playlist from channel data"""
-        lines = []
-
-        if 'header' in channels:
-            lines.append(channels['header'])
-
-        items_to_sort = []
-        for key, value in channels.items():
-            if key == 'header':
-                continue
-            if isinstance(value, dict):
-                if 'index' in value:
-                    items_to_sort.append((value['index'], key, value))
-
-        items_to_sort.sort(key=lambda x: x[0])
-
-        for _, key, value in items_to_sort:
-            if isinstance(value, dict) and value.get('type') == 'metadata':
-                lines.append(value['line'])
-            elif isinstance(value, dict) and 'extinf' in value:
-                lines.extend(value['raw_lines'])
-
-        return '\n'.join(lines)
 
     def update_gist_with_playlist(self, gist_filename, playlist_url):
         """Update a specific gist file with tokens from playlist URL"""
@@ -1513,8 +1102,6 @@ class M3UPlaylistUpdater:
 
         print(f"✓ Found gist: {gist_id}")
 
-        gist_channels = self.parse_m3u_playlist(gist_content)
-
         print(f"\n🌐 Downloading reference playlist...")
         playlist_content = self.download_playlist(playlist_url)
 
@@ -1522,30 +1109,15 @@ class M3UPlaylistUpdater:
             print("❌ Failed to download reference playlist")
             return False
 
-        reference_channels = self.parse_m3u_playlist(playlist_content)
-
-        # Create lookup dict
-        ref_lookup = {}
-        for key, value in reference_channels.items():
-            if isinstance(value, dict) and 'extinf' in value:
-                if key.startswith('ch'):
-                    channel_id = key[2:]
-                    ref_lookup[channel_id] = value
-
-        updated_channels, change_count = self.update_channels_from_reference(
-            gist_channels, ref_lookup
-        )
-
-        if change_count == 0:
-            print("\n✅ No updates needed - all tokens are current")
+        # Simple check if content changed
+        if gist_content == playlist_content:
+            print("\n✅ No updates needed - content is identical")
             return True
 
-        print(f"\n📈 Updated {change_count} channel(s)")
-
-        new_m3u_content = self.reconstruct_m3u_from_channels(updated_channels)
+        print(f"\n📈 Content differs - updating...")
 
         print(f"\n💾 Uploading updated playlist to gist...")
-        success, raw_url = self.update_gist(gist_id, gist_filename, new_m3u_content)
+        success, raw_url = self.update_gist(gist_id, gist_filename, playlist_content)
 
         if success:
             print(f"✅ Gist updated successfully!")
@@ -1564,7 +1136,6 @@ def main():
         print("🔧 Debug mode enabled")
 
     print(f"\n🎯 TV.Team Account Manager & Gist Updater")
-    print(f"⚙️ Configuration: Erotica enabled by default, using freecustom.email")
     print(f"{'=' * 60}")
 
     # Configuration
@@ -1586,7 +1157,6 @@ def main():
         print(f"{'=' * 60}")
         print(f"  👤 Username: {saved_account['username']}")
         print(f"  📧 Email: {saved_account['email']}")
-        print(f"  🎯 Trial: ACTIVE")
         print(f"  💾 Loaded from: {AccountManager.SAVE_FILE}")
         playlist_url = check_manager.generate_playlist_url(use_https=False)
     else:
@@ -1604,7 +1174,7 @@ def main():
 
         account = None
 
-        for current_proxy in proxies:
+        for current_proxy in proxies[:5]:  # Try first 5 proxies
             try:
                 print(f"\n{'=' * 50}")
                 print(f"🔄 Attempting account creation with proxy: {current_proxy if current_proxy else 'Direct'}")
@@ -1624,16 +1194,10 @@ def main():
                     print(f"\n🎉🎉🎉 SUCCESS: New account created WITH TRIAL ACTIVATED! 🎉🎉🎉")
                     playlist_url = account.get("playlist_url")
                     break
-                elif account:
-                    if DEBUG: print(f"\n⚠️ Account created but trial NOT activated")
-                else:
-                    if DEBUG: print(f"\n❌ Account creation failed")
 
             except Exception as e:
                 if DEBUG:
-                    print(f"\n💥 Unexpected error: {e}")
-                    import traceback
-                    traceback.print_exc()
+                    print(f"\n💥 Error: {e}")
                 continue
 
         print(f"\n\n{'=' * 60}")
