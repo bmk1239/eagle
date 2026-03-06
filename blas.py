@@ -19,7 +19,7 @@ warnings.filterwarnings('ignore')
 
 
 class TempMailService:
-    """Service to get temporary emails using freecustom.email API"""
+    """Service to get temporary emails using freecustom.email"""
 
     def __init__(self):
         self.email = None
@@ -46,7 +46,7 @@ class TempMailService:
             return None
 
     def check_emails(self) -> List[Dict]:
-        """Check for new emails using freecustom.email API"""
+        """Check for new emails using freecustom.email"""
         if not self.email:
             return []
 
@@ -64,8 +64,7 @@ class TempMailService:
                 # Parse the HTML response to find emails
                 html = response.text
                 
-                # Look for email entries - this is a simplified parser
-                # You may need to adjust based on actual HTML structure
+                # Look for email entries
                 email_pattern = r'<div class="email-item[^>]*>.*?<h3[^>]*>(.*?)</h3>.*?<p[^>]*>(.*?)</p>'
                 matches = re.findall(email_pattern, html, re.DOTALL)
                 
@@ -121,14 +120,15 @@ class TempMailService:
                             # Combine all text fields for searching
                             search_text = f"{subject} {intro} {text}"
 
-                            # Search for 6-digit code - matches the exact format from the email
+                            # Search for 6-digit code
                             code_patterns = [
-                                r'<strong[^>]*>(\d{6})</strong>',  # HTML bold tag
-                                r'<div[^>]*class="code-box"[^>]*>.*?(\d{6})',  # code-box div
-                                r'is:?\s*(\d{6})',  # "is: 598863"
-                                r'code:?\s*(\d{6})',  # "code: 598863"
-                                r'(\d{6})\s*will expire',  # code followed by expiration
-                                r'Your verification code is:\s*(\d{6})',  # Exact phrase from email
+                                r'<strong[^>]*>(\d{6})</strong>',
+                                r'<div[^>]*class="code-box"[^>]*>.*?(\d{6})',
+                                r'is:?\s*(\d{6})',
+                                r'code:?\s*(\d{6})',
+                                r'(\d{6})\s*will expire',
+                                r'Your verification code is:\s*(\d{6})',
+                                r'\b\d{6}\b',
                             ]
 
                             for pattern in code_patterns:
@@ -178,11 +178,12 @@ class SessionManager:
         # Generate language
         languages = ["en-US", "ru-RU", "uk-UA", "en-GB"]
 
-        # Generate user agent - updated to match the fetch request
+        # Generate user agent
         user_agents = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
         ]
 
         return {
@@ -210,7 +211,7 @@ class TVTeamAccount:
                  playlist_app_id: int = 41):
         self.base_url = "https://new.tv.team"
         self.session = requests.Session()
-        self.enable_erotica = enable_erotica  # Boolean to control erotica toggle
+        self.enable_erotica = enable_erotica
         self.playlist_app_id = playlist_app_id
 
         # Generate fresh fingerprint
@@ -385,7 +386,7 @@ class TVTeamAccount:
             return challenge_data.get("slotX", 110)
 
     def solve_captcha(self, captcha_data: Dict) -> Tuple[Optional[str], Optional[str]]:
-        """Solve captcha and get proof token"""
+        """Solve captcha and get proof token - KEPT ORIGINAL"""
         captcha_id = captcha_data.get("captchaId")
         challenge = captcha_data.get("challenge", {})
 
@@ -402,24 +403,8 @@ class TVTeamAccount:
 
         if DEBUG: print(f"  🎯 Using offset: {offset_x}")
 
-        # Generate realistic mouse trail
-        trail = []
-        steps = random.randint(8, 12)
-        for i in range(steps):
-            x = int(offset_x * i / (steps - 1)) if i < steps - 1 else offset_x
-            t = random.randint(80 * i, 120 * i)
-            trail.append({"x": x, "t": t})
-        
-        # Add final positions
-        trail.append({"x": offset_x, "t": trail[-1]["t"] + random.randint(200, 400)})
-        trail.append({"x": offset_x, "t": trail[-1]["t"] + random.randint(700, 900)})
-
-        # Verify captcha
-        payload = {
-            "captchaId": captcha_id,
-            "offsetX": offset_x,
-            "trail": trail
-        }
+        # Verify captcha - KEPT ORIGINAL without trail
+        payload = {"captchaId": captcha_id, "offsetX": offset_x}
         if DEBUG: print(f"  Payload: {payload}")
 
         resp = self.safe_request(
@@ -576,7 +561,7 @@ class TVTeamAccount:
             if DEBUG: print("  ❌ Could not solve captcha for login")
             return False
 
-        # Prepare login data with correct parameter names
+        # Prepare login data
         form_data = (
             f"userLogin={quote(username)}&"
             f"userPasswd={quote(password)}&"
@@ -918,7 +903,7 @@ class TVTeamAccount:
             print("  ❌ Email verification failed")
             return None
 
-        # Login to account - username is the email for quick register
+        # Login to account
         print(f"\n  🔄 Step 3/5: Logging in...")
         if not self.login(email, "QuickRegisterPassword"):  # Password not needed for quick register
             print("  ❌ Login failed after registration")
@@ -1009,11 +994,14 @@ class TVTeamAccount:
 
         if has_active_trial:
             date_str = trial_status.get('activeTrialExpires', 'N/A')
-            target_date = datetime.strptime(date_str, '%Y-%m-%d').date()
-            today = date.today()
-            if target_date > today:
-                print(f"  ✅ Trial is ACTIVE on website till {trial_status.get('activeTrialExpires', 'NA')}")
-                return True, saved_account
+            try:
+                target_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+                today = date.today()
+                if target_date > today:
+                    print(f"  ✅ Trial is ACTIVE on website till {trial_status.get('activeTrialExpires', 'NA')}")
+                    return True, saved_account
+            except:
+                pass
         if DEBUG: print(f"  ❌ Trial NOT ACTIVE or eligible")
         return False, saved_account
 
@@ -1058,7 +1046,7 @@ class TVTeamAccount:
         return resp and resp.status_code == 200
 
     def get_playlist_session_id(self) -> Optional[str]:
-        """Get playlist session ID from new API response structure"""
+        """Get playlist session ID"""
         if not self.is_authenticated:
             return None
 
@@ -1072,20 +1060,18 @@ class TVTeamAccount:
         try:
             data = resp.json().get("data", {})
 
-            # Check for uniqId in the response data
+            # Check for uniqId
             uniq_id = data.get("uniqId")
             if uniq_id:
                 if DEBUG: print(f"  ✅ Found uniqId: {uniq_id}")
                 return uniq_id
 
-            # Alternative: try to extract from items if available
+            # Alternative: try to extract from items
             items = data.get("items", [])
             if items:
-                # Check if any item has a link that contains the token
                 for item in items:
                     link = item.get("link", "")
                     if "/pl/" in link:
-                        # Extract token from link like http://tvtm.one/pl/41/ukq6cx5ef47m/playlist.m3u8
                         parts = link.split("/")
                         if len(parts) >= 5:
                             token = parts[4]
@@ -1093,7 +1079,7 @@ class TVTeamAccount:
                             return token
 
             if DEBUG:
-                print(f"  ❌ Could not find playlist session ID in response")
+                print(f"  ❌ Could not find playlist session ID")
                 print(f"  Response structure: {data.keys()}")
             return None
 
@@ -1232,13 +1218,13 @@ class ProxyFetcher:
 
 
 class AccountManager:
-    """Manages saved account information - only saves username/password/email"""
+    """Manages saved account information"""
 
     SAVE_FILE = "/home/bmk1239/tvteam_account.json"
 
     @staticmethod
     def save_account(username: str, password: str, email: str) -> None:
-        """Save only username, password, email to file"""
+        """Save account info to file"""
         try:
             account_data = {
                 "username": username,
@@ -1285,7 +1271,7 @@ class M3UPlaylistUpdater:
         }
 
     def find_gist_file(self, filename):
-        """Find a gist containing the specific filename, return (gist_id, content)"""
+        """Find a gist containing the specific filename"""
         try:
             response = requests.get(
                 "https://api.github.com/gists",
@@ -1331,7 +1317,7 @@ class M3UPlaylistUpdater:
         return None
 
     def get_file_content(self, file_info, gist_id):
-        """Get file content, handling truncated content"""
+        """Get file content"""
         if file_info.get('content') and not file_info.get('truncated', False):
             return file_info['content']
 
@@ -1381,26 +1367,17 @@ class M3UPlaylistUpdater:
             return False, None
 
     def parse_m3u_playlist(self, content):
-        """
-        Parse M3U playlist into structured data
-        Format exactly as shown:
-        #EXTM3U
-        #EXTINF:0 tvg-id="ch2934" tvg-name="..." tvg-logo="..." timeshift="6", Channel Name
-        #EXTGRP:28. Israel
-        http://11.tvtm.one/ch2934/mono.m3u8?token=...
-        """
+        """Parse M3U playlist into structured data"""
         channels = OrderedDict()
         lines = content.strip().split('\n')
 
         i = 0
         channel_index = 0
 
-        # Check for M3U header
         if lines and lines[0].startswith('#EXTM3U'):
             channels['header'] = lines[0]
             i = 1
         else:
-            # No header, start from beginning
             channels['header'] = '#EXTM3U'
 
         while i < len(lines):
@@ -1410,52 +1387,39 @@ class M3UPlaylistUpdater:
                 i += 1
                 continue
 
-            # Check for channel entry
             if line.startswith('#EXTINF:'):
-                # This is a channel block
                 extinf_line = line
 
-                # The next line should be #EXTGRP:
                 group_line = ""
                 if i + 1 < len(lines) and lines[i + 1].startswith('#EXTGRP:'):
                     group_line = lines[i + 1].strip()
                     i += 1
 
-                # The next line should be the URL
                 url_line = ""
                 if i + 1 < len(lines) and lines[i + 1].startswith('http'):
                     url_line = lines[i + 1].strip()
                     i += 1
 
-                # Parse EXTINF line
-                # Format: #EXTINF:0 tvg-id="ch2934" tvg-name="IL: Aruch Sdarot Hahodiot" tvg-logo="http://..." timeshift="6", IL: Aruch Sdarot Hahodiot
                 attrs = {}
                 channel_name = ""
 
-                # Extract duration (0)
                 duration_match = re.search(r'#EXTINF:([\d.-]+)', extinf_line)
                 duration = duration_match.group(1) if duration_match else "0"
 
-                # Extract attributes using regex
                 attr_pattern = r'(\S+)="([^"]*)"'
                 attrs = dict(re.findall(attr_pattern, extinf_line))
 
-                # Extract channel name (after comma)
                 if ',' in extinf_line:
                     channel_name = extinf_line.split(',', 1)[1].strip()
 
-                # Extract channel ID from tvg-id attribute or URL
                 channel_id = attrs.get('tvg-id', '').replace('ch', '')
                 if not channel_id and url_line:
-                    # Fallback: extract from URL
                     channel_id = self.extract_channel_id_from_url(url_line)
 
-                # Extract group from #EXTGRP line
                 group = ""
                 if group_line:
                     group = group_line.replace('#EXTGRP:', '').strip()
 
-                # Create channel object
                 channel_data = {
                     'index': channel_index,
                     'extinf': extinf_line,
@@ -1468,15 +1432,13 @@ class M3UPlaylistUpdater:
                     'raw_lines': [extinf_line, group_line, url_line] if group_line else [extinf_line, url_line]
                 }
 
-                # Use channel_id as key
                 key = f"ch{channel_id}" if channel_id else f"channel_{channel_index}"
                 channels[key] = channel_data
 
                 channel_index += 1
-                i += 1  # Move to next line
+                i += 1
 
             else:
-                # Store other lines as metadata
                 if line and not line.startswith('http'):
                     metadata_key = f"metadata_{i}"
                     channels[metadata_key] = {
@@ -1493,12 +1455,10 @@ class M3UPlaylistUpdater:
         if not url:
             return None
 
-        # Try pattern /ch2934/
         match = re.search(r'/ch(\d+)/', url)
         if match:
             return match.group(1)
 
-        # Try pattern ch2934 in query string
         match = re.search(r'ch(\d+)', url)
         if match:
             return match.group(1)
@@ -1543,21 +1503,16 @@ class M3UPlaylistUpdater:
             return None
 
     def update_channels_from_reference(self, gist_channels, reference_channels):
-        """
-        Update gist channels with tokens from reference channels
-        Returns: (updated_gist_channels, change_count)
-        """
+        """Update gist channels with tokens from reference channels"""
         change_count = 0
         updated_channels = OrderedDict()
 
-        # First, copy all metadata and structure
         for key, value in gist_channels.items():
             if key == 'header':
                 updated_channels[key] = value
             elif isinstance(value, dict) and value.get('type') == 'metadata':
                 updated_channels[key] = value
             elif isinstance(value, dict) and 'extinf' in value:
-                # This is a channel
                 channel_data = value.copy()
                 channel_id = channel_data.get('channel_id')
 
@@ -1567,12 +1522,10 @@ class M3UPlaylistUpdater:
                     current_token = self.extract_token_from_url(channel_data.get('url', ''))
 
                     if ref_token and current_token != ref_token:
-                        # Update the URL with new token
                         old_url = channel_data['url']
-                        new_url = ref_channel.get('url', '') #self.replace_token_in_url(old_url, ref_token)
+                        new_url = ref_channel.get('url', '')
                         channel_data['url'] = new_url
 
-                        # Update the raw lines
                         for j, line in enumerate(channel_data['raw_lines']):
                             if line == old_url:
                                 channel_data['raw_lines'][j] = new_url
@@ -1581,20 +1534,17 @@ class M3UPlaylistUpdater:
 
                 updated_channels[key] = channel_data
             else:
-                # Keep other elements as-is
                 updated_channels[key] = value
 
         return updated_channels, change_count
 
     def reconstruct_m3u_from_channels(self, channels):
-        """Reconstruct M3U playlist from channel data while preserving structure"""
+        """Reconstruct M3U playlist from channel data"""
         lines = []
 
-        # Add header
         if 'header' in channels:
             lines.append(channels['header'])
 
-        # Sort items to maintain original order
         items_to_sort = []
         for key, value in channels.items():
             if key == 'header':
@@ -1605,14 +1555,12 @@ class M3UPlaylistUpdater:
                 else:
                     items_to_sort.append((999999, key, value))
 
-        # Sort by original index
         items_to_sort.sort(key=lambda x: x[0])
 
         for _, key, value in items_to_sort:
             if isinstance(value, dict) and value.get('type') == 'metadata':
                 lines.append(value['line'])
             elif isinstance(value, dict) and 'extinf' in value:
-                # Add channel with all its original lines
                 lines.extend(value['raw_lines'])
 
         return '\n'.join(lines)
@@ -1625,7 +1573,6 @@ class M3UPlaylistUpdater:
         print(f"🔗 Reference: {playlist_url}")
         print("=" * 80)
 
-        # Step 1: Find and parse gist playlist
         print(f"\n🔍 Searching for gist '{gist_filename}'...")
         gist_id, gist_content = self.find_gist_file(gist_filename)
 
@@ -1635,7 +1582,6 @@ class M3UPlaylistUpdater:
 
         print(f"✓ Found gist: {gist_id}")
 
-        # Parse gist content
         if DEBUG: print("📝 Parsing gist M3U playlist...")
         gist_channels = self.parse_m3u_playlist(gist_content)
 
@@ -1643,7 +1589,6 @@ class M3UPlaylistUpdater:
                                   if isinstance(v, dict) and 'extinf' in v])
         if DEBUG: print(f"📊 Gist contains {gist_channel_count} channels")
 
-        # Step 2: Download and parse reference playlist
         print(f"\n🌐 Downloading reference playlist...")
         playlist_content = self.download_playlist(playlist_url)
 
@@ -1658,7 +1603,6 @@ class M3UPlaylistUpdater:
                                  if isinstance(v, dict) and 'extinf' in v])
         if DEBUG: print(f"📊 Reference contains {ref_channel_count} channels")
 
-        # Create lookup dict for reference channels
         ref_lookup = {}
         for key, value in reference_channels.items():
             if isinstance(value, dict) and 'extinf' in value:
@@ -1668,7 +1612,6 @@ class M3UPlaylistUpdater:
 
         if DEBUG: print(f"📋 Reference has {len(ref_lookup)} unique channel IDs")
 
-        # Show sample of reference channels
         if DEBUG and ref_lookup:
             print("\n📋 Sample reference channels:")
             sample_ids = list(ref_lookup.keys())[:3]
@@ -1680,20 +1623,17 @@ class M3UPlaylistUpdater:
                     print(f"  • ch{ch_id}: {name[:30]}...")
                     print(f"    Token: {token[:40]}...")
 
-        # Step 3: Update channels
         if DEBUG: print(f"\n🔄 Comparing and updating channels...")
         updated_channels, change_count = self.update_channels_from_reference(
             gist_channels, ref_lookup
         )
 
-        # Step 4: Check if changes were made
         if change_count == 0:
             print("\n✅ No updates needed - all tokens are current")
             return True
 
         print(f"\n📈 Updated {change_count} channel(s)")
 
-        # Show detailed changes
         if DEBUG:
             print("\n📝 Detailed changes:")
             changes_shown = 0
@@ -1701,7 +1641,6 @@ class M3UPlaylistUpdater:
                 if isinstance(channel, dict) and 'extinf' in channel:
                     channel_id = channel.get('channel_id')
                     if channel_id in ref_lookup:
-                        # Check if URL changed
                         original_channel = None
                         for orig_key, orig_val in gist_channels.items():
                             if isinstance(orig_val, dict) and 'extinf' in orig_val:
@@ -1721,15 +1660,13 @@ class M3UPlaylistUpdater:
                                 print(f"    New token: ...{new_token[-30:]}")
                                 changes_shown += 1
 
-                                if changes_shown >= 5:  # Limit output
+                                if changes_shown >= 5:
                                     print(f"\n    ... and {change_count - changes_shown} more changes")
                                     break
 
-        # Step 5: Reconstruct M3U
         if DEBUG: print(f"\n🔧 Reconstructing M3U playlist...")
         new_m3u_content = self.reconstruct_m3u_from_channels(updated_channels)
 
-        # Verify reconstruction - count lines
         old_lines = [l for l in gist_content.strip().split('\n') if l.strip()]
         new_lines = [l for l in new_m3u_content.strip().split('\n') if l.strip()]
 
@@ -1738,7 +1675,6 @@ class M3UPlaylistUpdater:
             print(f"   Original non-empty lines: {len(old_lines)}")
             print(f"   New non-empty lines: {len(new_lines)}")
 
-        # Step 6: Update gist
         print(f"\n💾 Uploading updated playlist to gist...")
         success, raw_url = self.update_gist(gist_id, gist_filename, new_m3u_content)
 
@@ -1755,9 +1691,8 @@ class M3UPlaylistUpdater:
 
 def main():
     global DEBUG
-    DEBUG = False  # Default debug mode off
+    DEBUG = False
 
-    # Check for debug flag
     if '--debug' in sys.argv:
         DEBUG = True
         print("🔧 Debug mode enabled")
@@ -1770,19 +1705,13 @@ def main():
     ENABLE_EROTICA = True
     TIVIMATE_ID = 41
     GITHUB_TOKEN = ""
-    GIST_FILES = ["file4", "file5"]  # Gist files to update
+    GIST_FILES = ["file4", "file5"]
 
     playlist_url = None
 
-    # ============================================
-    # FIRST: Check saved account WITHOUT proxy
-    # ============================================
+    # Check saved account
     print(f"\n📋 Checking saved account (no proxy)...")
-
-    # Create account manager WITHOUT proxy
     check_manager = TVTeamAccount(proxy=None, enable_erotica=ENABLE_EROTICA, playlist_app_id=TIVIMATE_ID)
-
-    # Check if saved account exists and has active trial
     has_active_trial, saved_account = check_manager.check_saved_account_trial()
 
     if has_active_trial and '--force' not in sys.argv:
@@ -1793,15 +1722,11 @@ def main():
         print(f"  📧 Email: {saved_account['email']}")
         print(f"  🎯 Trial: ACTIVE")
         print(f"  💾 Loaded from: {AccountManager.SAVE_FILE}")
-        # Get playlist URL from existing account
         playlist_url = check_manager.generate_playlist_url(use_https=False)
     else:
-        # ============================================
-        # SECOND: Create new account with proxies
-        # ============================================
+        # Create new account with proxies
         print(f"\n🔄 Creating new account with proxies...")
 
-        # Load proxies
         fetcher = ProxyFetcher()
         proxies = fetcher.fetch_proxy_list()
 
@@ -1824,11 +1749,9 @@ def main():
                         if DEBUG: print("❌ Proxy not working, skipping...")
                         continue
 
-                # Create account manager WITH proxy
                 account_manager = TVTeamAccount(proxy=current_proxy, enable_erotica=ENABLE_EROTICA,
                                                 playlist_app_id=TIVIMATE_ID)
 
-                # Create new account
                 account = account_manager.create_and_save_account()
 
                 if account and account.get("trial_activated"):
@@ -1837,10 +1760,8 @@ def main():
                     break
                 elif account:
                     if DEBUG: print(f"\n⚠️ Account created but trial NOT activated")
-                    # Continue to next proxy
                 else:
                     if DEBUG: print(f"\n❌ Account creation failed")
-                    # Continue to next proxy
 
             except Exception as e:
                 if DEBUG:
@@ -1849,7 +1770,6 @@ def main():
                     traceback.print_exc()
                 continue
 
-        # Final summary
         print(f"\n\n{'=' * 60}")
         print(f"📈 FINAL RESULTS")
         print(f"{'=' * 60}")
@@ -1865,9 +1785,7 @@ def main():
             print(f"\n❌ No valid account available")
             return
 
-    # ============================================
-    # THIRD: Update gists with playlist URL
-    # ============================================
+    # Update gists
     if playlist_url:
         print(f"\n{'=' * 60}")
         print(f"🔄 UPDATING GIST FILES")
@@ -1892,20 +1810,15 @@ def main():
 
 
 if __name__ == "__main__":
-    # Check for required packages
     try:
         import requests
-
         print("✅ All required packages are installed")
     except ImportError:
         print("❌ Please install required packages:")
         print("pip install requests")
         exit(1)
 
-    # Disable SSL warnings
     from urllib3.exceptions import InsecureRequestWarning
-
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-    # Run main
     main()
