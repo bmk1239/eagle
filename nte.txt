@@ -1,31 +1,10 @@
-lRqbGFqUzqSMzuASo/1OW/pgs9sA9B32syuQrb0T8WZUpUbYx7If9i7vxun1SAM4852sdp+toJzWkCiFW6oAVECEiVRho2ed+ZzNishIeEL0Dw/EeL4717Na8/nOK6g35UAAFcBuROHopsiXTKPgsx8GvlvpPiz4FiPY2Cc+JbvBVC/uTOIxbxo6LAvpukE9Y0+GdTleA/6eEuNUbClJOkqCQA682nD8JO8VOptp7nTJffoAswCnsvDfLag2lfBT8e+NqzfFmBVFq/BABASHSC0lep+om4Y0Vo6j1bPForez9pOknSdBABn6+BMPNMHcUC//7ZtO1W4prvGr27N6dyORRT5nRN7tiuEA0WcKwKwSo6QdhHr1dk96+TygFl44lC1TJJ0rQ6AupUTORN/W3jTqyEAGJilsPP+viivil0qEB7XyfhBt5Yo/qcbA8r8GHztg61qqop/7auOK0m6zhkAoNiCd87aQeFerRwaNowVEBKrSCPLewbLUvv7MxWdM3vmL+ybYzAfWT8o//xYDO/3oOG4ubKQJF2mA4Az/HUff51tU6B5PVGdD3r/qMJcVwh3uYuHRVwlULi5h5QJZB5pwKvlWFmQYOA4jCPwXi/Wq7+HH43himGFhSTpGh0ADOquAp3qW2f63RpiDtO8U7wZIn6P5aeq7b+U2t8hsN553EPigIX9txzdbmLe2ysISdKfS01/eXn58enLt2cKLWpwljPwLN62vZ7FA1oxFOadL2f1YsZxaQ1RuI+dL21VuSZSWIdXjnQc/KvPafX0z0jS42fnPIT04emg9cyh2+3YPv7/6reAJelCuQJACniqMAWaU/gq4hR1ijfhQO+edQiBp7UuG7MN/62CnWk+FXYXmagNM7lW5DERfOBChOkMPFcrihZU1pUkXeoswVwFsOfPX78/3wtunbHXWqxaYwX1ozFVoOuUng9svcKjPtzbOl3ZM5sh3friGEFCzNDjR4p9BoDrriT+jg//vebhbz74TZKuRel+sILgb2HhlyRJki7UvRlJ0jQGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQD8I36yV8dEAAAwEML8u66J3v1AooANmcA3AwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAICFY6+OaQAAABiE+Xc9G0toDXBy0DQAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgKgFAAD//+16oAxTegdyAAAAAElFTkSuQmCC', 'width': 384}
-  - Target slot X: 110
-  - Knob size: 44
-  - Calculated offset: 112 (with variation: 2)
-  🎯 Using offset: 112
-  Payload: {'captchaId': 'UvcaBubY3eoJX2qEm3QuqA==', 'offsetX': 112}
+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', 'width': 384}
+  🎯 Target slot X: 110
+  Payload: {'captchaId': 'iTsla3yS2Hg7Nk8GY6iw9Q==', 'offsetX': 110, 'trail': [{'x': 0, 't': 0}, {'x': 5, 't': 98}, {'x': 53, 't': 134}, {'x': 94, 't': 170}, {'x': 105, 't': 204}, {'x': 147, 't': 240}, {'x': 161, 't': 278}, {'x': 167, 't': 321}, {'x': 168, 't': 364}, {'x': 173, 't': 406}, {'x': 180, 't': 441}, {'x': 184, 't': 490}, {'x': 185, 't': 612}, {'x': 185, 't': 1338}]}
   Verification response status: 200
-  ❌ No proof token in response
-  Response structure: {'data': {'message': 'invalid', 'valid': False}}
+  Verification response: {'data': {'message': 'invalid', 'valid': False}}
+  ❌ No proof token in response data
+  Response data: {'message': 'invalid', 'valid': False}
   ❌ Could not solve captcha
-  ❌ Registration failed
-
-❌ Account creation failed
-
-
- 📧 Getting temporary email...
-  ✓ Created temporary email: 9spjk7x9b4@freecustom.email
-  📨 Email: 9spjk7x9b4@freecustom.email
-
-  🔄 Step 1/5: Starting registration...
-  📝 Registering 9spjk7x9b4@freecustom.email...
-  🔍 Getting captcha...
-  ⚠️ Request error: HTTPSConnectionPool(host='new.tv.team', port=443): Max retries exceeded with url: /v3/auth/captcha/g, retrying... (1/3)
-  ⏳ Retry 2/3, waiting 2s...
-  ⚠️ Request error: HTTPSConnectionPool(host='new.tv.team', port=443): Max retries exceeded with url: /v3/auth/captcha/g, retrying... (2/3)
-  ⏳ Retry 3/3, waiting 4s...
-  ⚠️ Request error: HTTPSConnectionPool(host='new.tv.team', port=443): Max retries exceeded with url: /v3/auth/captcha/g, retrying... (3/3)
-  ❌ Failed to get captcha: No response
-  ❌ Could not get captcha data
   ❌ Registration failed
 
