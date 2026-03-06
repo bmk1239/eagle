@@ -1,0 +1,31 @@
+lRqbGFqUzqSMzuASo/1OW/pgs9sA9B32syuQrb0T8WZUpUbYx7If9i7vxun1SAM4852sdp+toJzWkCiFW6oAVECEiVRho2ed+ZzNishIeEL0Dw/EeL4717Na8/nOK6g35UAAFcBuROHopsiXTKPgsx8GvlvpPiz4FiPY2Cc+JbvBVC/uTOIxbxo6LAvpukE9Y0+GdTleA/6eEuNUbClJOkqCQA682nD8JO8VOptp7nTJffoAswCnsvDfLag2lfBT8e+NqzfFmBVFq/BABASHSC0lep+om4Y0Vo6j1bPForez9pOknSdBABn6+BMPNMHcUC//7ZtO1W4prvGr27N6dyORRT5nRN7tiuEA0WcKwKwSo6QdhHr1dk96+TygFl44lC1TJJ0rQ6AupUTORN/W3jTqyEAGJilsPP+viivil0qEB7XyfhBt5Yo/qcbA8r8GHztg61qqop/7auOK0m6zhkAoNiCd87aQeFerRwaNowVEBKrSCPLewbLUvv7MxWdM3vmL+ybYzAfWT8o//xYDO/3oOG4ubKQJF2mA4Az/HUff51tU6B5PVGdD3r/qMJcVwh3uYuHRVwlULi5h5QJZB5pwKvlWFmQYOA4jCPwXi/Wq7+HH43himGFhSTpGh0ADOquAp3qW2f63RpiDtO8U7wZIn6P5aeq7b+U2t8hsN553EPigIX9txzdbmLe2ysISdKfS01/eXn58enLt2cKLWpwljPwLN62vZ7FA1oxFOadL2f1YsZxaQ1RuI+dL21VuSZSWIdXjnQc/KvPafX0z0jS42fnPIT04emg9cyh2+3YPv7/6reAJelCuQJACniqMAWaU/gq4hR1ijfhQO+edQiBp7UuG7MN/62CnWk+FXYXmagNM7lW5DERfOBChOkMPFcrihZU1pUkXeoswVwFsOfPX78/3wtunbHXWqxaYwX1ozFVoOuUng9svcKjPtzbOl3ZM5sh3friGEFCzNDjR4p9BoDrriT+jg//vebhbz74TZKuRel+sILgb2HhlyRJki7UvRlJ0jQGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQBI0lAGgCQNZQD8I36yV8dEAAAwEML8u66J3v1AooANmcA3AwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAICFY6+OaQAAABiE+Xc9G0toDXBy0DQAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgCgDAIgyAIAoAwCIMgCAKAMAiDIAgKgFAAD//+16oAxTegdyAAAAAElFTkSuQmCC', 'width': 384}
+  - Target slot X: 110
+  - Knob size: 44
+  - Calculated offset: 112 (with variation: 2)
+  🎯 Using offset: 112
+  Payload: {'captchaId': 'UvcaBubY3eoJX2qEm3QuqA==', 'offsetX': 112}
+  Verification response status: 200
+  ❌ No proof token in response
+  Response structure: {'data': {'message': 'invalid', 'valid': False}}
+  ❌ Could not solve captcha
+  ❌ Registration failed
+
+❌ Account creation failed
+
+
+ 📧 Getting temporary email...
+  ✓ Created temporary email: 9spjk7x9b4@freecustom.email
+  📨 Email: 9spjk7x9b4@freecustom.email
+
+  🔄 Step 1/5: Starting registration...
+  📝 Registering 9spjk7x9b4@freecustom.email...
+  🔍 Getting captcha...
+  ⚠️ Request error: HTTPSConnectionPool(host='new.tv.team', port=443): Max retries exceeded with url: /v3/auth/captcha/g, retrying... (1/3)
+  ⏳ Retry 2/3, waiting 2s...
+  ⚠️ Request error: HTTPSConnectionPool(host='new.tv.team', port=443): Max retries exceeded with url: /v3/auth/captcha/g, retrying... (2/3)
+  ⏳ Retry 3/3, waiting 4s...
+  ⚠️ Request error: HTTPSConnectionPool(host='new.tv.team', port=443): Max retries exceeded with url: /v3/auth/captcha/g, retrying... (3/3)
+  ❌ Failed to get captcha: No response
+  ❌ Could not get captcha data
+  ❌ Registration failed
+
