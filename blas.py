@@ -172,18 +172,17 @@ class SessionManager:
             "1440x900", "1280x720", "1600x900"
         ]
 
-        # Generate timezone
-        timezones = ["Europe/Moscow", "Europe/Kiev", "Europe/Minsk", "Asia/Yerevan"]
+        # Generate timezone - updated to match fetch request
+        timezones = ["Asia/Jerusalem", "Europe/Moscow", "Europe/Kiev", "Europe/Minsk"]
 
-        # Generate language
-        languages = ["en-US", "ru-RU", "uk-UA", "en-GB"]
+        # Generate language - updated to match fetch request
+        languages = ["he-IL", "en-US", "ru-RU", "uk-UA"]
 
-        # Generate user agent
+        # Generate user agent - updated to match fetch request
         user_agents = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
         ]
 
         return {
@@ -241,22 +240,24 @@ class TVTeamAccount:
             print(f"  User Agent: {self.fingerprint_data['user_agent'][:50]}...")
 
     def setup_headers(self):
-        """Setup headers with fingerprint"""
+        """Setup headers with fingerprint - updated to match fetch request"""
         headers = {
             "User-Agent": self.fingerprint_data["user_agent"],
             "Accept": "application/json, text/plain, */*",
-            "Accept-Language": f"{self.fingerprint_data['language']};q=0.9,en;q=0.8",
+            "Accept-Language": f"{self.fingerprint_data['language']},en;q=0.9",
             "Accept-Encoding": "gzip, deflate, br",
             "Cache-Control": "no-cache",
             "Pragma": "no-cache",
             "Connection": "keep-alive",
+            "Sec-Ch-Ua": '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
+            "Sec-Ch-Ua-Mobile": "?0",
+            "Sec-Ch-Ua-Platform": '"Windows"',
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-origin",
-            "X-Device-Fingerprint": self.fingerprint_data["fingerprint"],
-            "X-Session-Id": self.session_id,
+            "X-Device-Fingerprint": json.dumps(self.fingerprint_data),
             "Origin": self.base_url,
-            "Referer": f"{self.base_url}/login",
+            "Referer": f"{self.base_url}/register",
         }
 
         self.session.headers.update(headers)
@@ -279,30 +280,12 @@ class TVTeamAccount:
                 else:
                     self.human_delay(1, 3)
 
-                # Update referer if not specified
-                if "referer" not in kwargs:
-                    if "login" in url:
-                        self.session.headers["Referer"] = f"{self.base_url}/login"
-                    elif "packages" in url:
-                        self.session.headers["Referer"] = f"{self.base_url}/packages"
-                    else:
-                        self.session.headers["Referer"] = self.base_url
+                # Make request with longer timeout
+                resp = self.session.request(method, url, timeout=45, **kwargs)
 
                 if debug and DEBUG:
                     print(f"  🔍 Request: {method} {url}")
-                    if "headers" in kwargs:
-                        print(f"  Headers: {kwargs['headers']}")
-                    if "data" in kwargs:
-                        d = kwargs['data']
-                        print(f"  Data: {d[:200] if isinstance(d, list) else d}...")
-
-                # Make request
-                resp = self.session.request(method, url, timeout=30, **kwargs)
-
-                if debug and DEBUG:
                     print(f"  Response Status: {resp.status_code}")
-                    print(f"  Response Headers: {dict(resp.headers)}")
-                    print(f"  Response Preview: {resp.text[:500]}...")
 
                 # Handle rate limits
                 if resp.status_code == 429:
@@ -317,8 +300,21 @@ class TVTeamAccount:
 
                 return resp
 
+            except requests.exceptions.ConnectTimeout:
+                if DEBUG: print(f"  ⚠️ Connection timeout, retrying... ({attempt + 1}/{max_retries})")
+                time.sleep(5)
+                continue
+            except requests.exceptions.ReadTimeout:
+                if DEBUG: print(f"  ⚠️ Read timeout, retrying... ({attempt + 1}/{max_retries})")
+                time.sleep(5)
+                continue
+            except requests.exceptions.SSLError:
+                if DEBUG: print(f"  ⚠️ SSL Error, retrying... ({attempt + 1}/{max_retries})")
+                time.sleep(5)
+                continue
             except Exception as e:
                 if DEBUG: print(f"  ⚠️ Request error: {str(e)[:100]}, retrying... ({attempt + 1}/{max_retries})")
+                time.sleep(5)
                 continue
 
         return None
@@ -385,8 +381,43 @@ class TVTeamAccount:
             if DEBUG: print(f"  ⚠️ Error calculating offset: {str(e)[:100]}")
             return challenge_data.get("slotX", 110)
 
+    def generate_mouse_trail(self, target_x: int) -> List[Dict[str, int]]:
+        """Generate realistic mouse trail for captcha - based on fetch request"""
+        trail = []
+        
+        # Starting point
+        current_x = 0
+        current_time = 0
+        
+        # Generate movement steps - exactly like in the fetch request
+        movements = [
+            (5, 98),    # x=5, t=98
+            (53, 134),  # x=53, t=134
+            (94, 170),  # x=94, t=170
+            (105, 204), # x=105, t=204
+            (147, 240), # x=147, t=240
+            (161, 278), # x=161, t=278
+            (167, 321), # x=167, t=321
+            (168, 364), # x=168, t=364
+            (173, 406), # x=173, t=406
+            (180, 441), # x=180, t=441
+            (184, 490), # x=184, t=490
+            (185, 612), # x=185, t=612
+            (185, 1338) # x=185, t=1338
+        ]
+        
+        # Scale movements to match target_x
+        scale_factor = target_x / 185 if target_x != 185 else 1
+        
+        for x, t in movements:
+            scaled_x = min(int(x * scale_factor), target_x)
+            scaled_t = int(t * (target_x / 185) * random.uniform(0.9, 1.1))
+            trail.append({"x": scaled_x, "t": scaled_t})
+        
+        return trail
+
     def solve_captcha(self, captcha_data: Dict) -> Tuple[Optional[str], Optional[str]]:
-        """Solve captcha and get proof token - KEPT ORIGINAL"""
+        """Solve captcha and get proof token - WITH TRAIL from fetch request"""
         captcha_id = captcha_data.get("captchaId")
         challenge = captcha_data.get("challenge", {})
 
@@ -403,15 +434,22 @@ class TVTeamAccount:
 
         if DEBUG: print(f"  🎯 Using offset: {offset_x}")
 
-        # Verify captcha - KEPT ORIGINAL without trail
-        payload = {"captchaId": captcha_id, "offsetX": offset_x}
+        # Generate mouse trail - FIX FOR FIRST ERROR
+        trail = self.generate_mouse_trail(offset_x)
+
+        # Verify captcha with trail
+        payload = {
+            "captchaId": captcha_id,
+            "offsetX": offset_x,
+            "trail": trail
+        }
         if DEBUG: print(f"  Payload: {payload}")
 
         resp = self.safe_request(
             "POST",
             f"{self.base_url}/v3/auth/captcha/verify",
             json=payload,
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": "application/json; charset=UTF-8"},
             debug=False
         )
 
@@ -429,13 +467,18 @@ class TVTeamAccount:
         try:
             result = resp.json()
 
-            if "data" in result and "proof" in result["data"]:
-                proof_token = result["data"]["proof"]
-                if DEBUG: print(f"  ✓ Got proof token: {proof_token[:30]}...")
-                return captcha_id, proof_token
+            # Check response structure - from fetch request it returns data.proof
+            if "data" in result:
+                if "proof" in result["data"]:
+                    proof_token = result["data"]["proof"]
+                    if DEBUG: print(f"  ✓ Got proof token: {proof_token[:30]}...")
+                    return captcha_id, proof_token
+                else:
+                    if DEBUG: print(f"  ❌ No proof token in response data")
+                    if DEBUG: print(f"  Response data: {result['data']}")
             else:
-                if DEBUG: print(f"  ❌ No proof token in response")
-                if DEBUG: print(f"  Response structure: {result}")
+                if DEBUG: print(f"  ❌ No 'data' field in response")
+                if DEBUG: print(f"  Response: {result}")
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing verification: {str(e)[:100]}")
             if DEBUG: print(f"  Raw response: {resp.text[:200]}...")
@@ -458,7 +501,7 @@ class TVTeamAccount:
             if DEBUG: print("  ❌ Could not solve captcha")
             return False
 
-        # Start quick registration
+        # Start quick registration - matching fetch request exactly
         form_data = f"email={quote(email)}&captchaId={quote(captcha_id)}&captchaSolution={quote(proof_token)}&lang=US"
 
         if DEBUG: print(f"  Registration form data: {form_data[:200]}...")
@@ -467,7 +510,11 @@ class TVTeamAccount:
             "POST",
             f"{self.base_url}/v3/auth/quick-register/start",
             data=form_data,
-            headers={"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "Cache-Control": "no-cache",
+                "Pragma": "no-cache"
+            },
             debug=False
         )
 
@@ -483,13 +530,15 @@ class TVTeamAccount:
             return False
 
         try:
-            result = resp.json().get("data", {})
-
-            if "ok" in result and result["ok"]:
+            result = resp.json()
+            if DEBUG: print(f"  Registration response: {result}")
+            
+            # Check for success in response
+            if result.get("data", {}).get("ok") or result.get("success"):
                 if DEBUG: print(f"  ✓ Registration started successfully")
                 return True
             else:
-                if DEBUG: print(f"  ❌ Registration not successful according to response")
+                if DEBUG: print(f"  ❌ Registration not successful")
                 return False
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing registration response: {str(e)[:100]}")
@@ -514,7 +563,11 @@ class TVTeamAccount:
             "POST",
             f"{self.base_url}/v3/auth/quick-register/verify",
             data=form_data,
-            headers={"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "Cache-Control": "no-cache",
+                "Pragma": "no-cache"
+            },
             debug=False
         )
 
@@ -530,14 +583,15 @@ class TVTeamAccount:
             return False
 
         try:
-            result = resp.json().get("data", {})
-
-            if "ok" in result and result["ok"]:
+            result = resp.json()
+            if DEBUG: print(f"  Verification response: {result}")
+            
+            if result.get("data", {}).get("ok") or result.get("success"):
                 print(f"  🎉 Account verified successfully!")
                 self.account_created = True
                 return True
             else:
-                if DEBUG: print(f"  ❌ Verification not successful according to response")
+                if DEBUG: print(f"  ❌ Verification not successful")
                 return False
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing verification response: {str(e)[:100]}")
@@ -561,7 +615,7 @@ class TVTeamAccount:
             if DEBUG: print("  ❌ Could not solve captcha for login")
             return False
 
-        # Prepare login data
+        # Prepare login data - matching fetch request
         form_data = (
             f"userLogin={quote(username)}&"
             f"userPasswd={quote(password)}&"
@@ -597,7 +651,7 @@ class TVTeamAccount:
             login_result = login_resp.json()
             if DEBUG: print(f"  Login result: {login_result}")
 
-            # Check for success in different possible formats
+            # Check for success
             if (login_result.get("success") or
                     login_result.get("authorized") == 1 or
                     login_result.get("data", {}).get("authorized") == 1):
@@ -607,67 +661,11 @@ class TVTeamAccount:
             else:
                 error_msg = login_result.get("message") or login_result.get("data", {}).get("message", "Unknown error")
                 if DEBUG: print(f"  ❌ Login failed: {error_msg}")
-
-                # Check if it's a captcha issue
-                if "captcha" in str(error_msg).lower():
-                    if DEBUG: print("  ⚠️ Captcha validation failed, retrying with new captcha...")
-                    # Retry once with fresh captcha
-                    return self._retry_login_with_fresh_captcha(username, password)
-
                 return False
         except Exception as e:
             if DEBUG: print(f"  ❌ Error parsing login response: {e}")
             if DEBUG: print(f"  Raw response: {login_resp.text[:200]}")
             return False
-
-    def _retry_login_with_fresh_captcha(self, username: str, password: str) -> bool:
-        """Retry login with fresh captcha"""
-        if DEBUG: print("  🔄 Retrying login with fresh captcha...")
-
-        # Get fresh captcha
-        captcha_data = self.get_captcha()
-        if not captcha_data:
-            return False
-
-        # Solve fresh captcha
-        captcha_id, proof_token = self.solve_captcha(captcha_data)
-        if not captcha_id or not proof_token:
-            return False
-
-        # Prepare login data
-        form_data = (
-            f"userLogin={quote(username)}&"
-            f"userPasswd={quote(password)}&"
-            f"rememberMe=1&"
-            f"captchaId={quote(captcha_id)}&"
-            f"captchaSolution={quote(proof_token)}"
-        )
-
-        login_resp = self.safe_request(
-            "POST",
-            f"{self.base_url}/v3/auth/login",
-            data=form_data,
-            headers={
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            debug=False
-        )
-
-        if not login_resp or login_resp.status_code != 200:
-            return False
-
-        try:
-            login_result = login_resp.json()
-            if (login_result.get("success") or
-                    login_result.get("authorized") == 1 or
-                    login_result.get("data", {}).get("authorized") == 1):
-                if DEBUG: print(f"  ✅ Login successful on retry!")
-                self.is_authenticated = True
-                return True
-        except:
-            pass
-
-        return False
 
     def get_csrf_token(self) -> Optional[str]:
         """Get CSRF token for authenticated requests"""
@@ -905,7 +903,7 @@ class TVTeamAccount:
 
         # Login to account
         print(f"\n  🔄 Step 3/5: Logging in...")
-        if not self.login(email, "QuickRegisterPassword"):  # Password not needed for quick register
+        if not self.login(email, "QuickRegisterPassword"):
             print("  ❌ Login failed after registration")
             return None
 
@@ -1193,27 +1191,19 @@ class ProxyFetcher:
             if response.status_code == 200:
                 speed = time.time() - start_time
                 try:
-                    data = response.json().get("data", {})
+                    data = response.json()
                     origin = data.get('origin', '')
                 except:
                     origin = "unknown"
                 return True, speed, origin
 
-        except requests.exceptions.ProxyError:
-            return False, 0, ""
-        except requests.exceptions.ConnectTimeout:
-            return False, 0, ""
-        except requests.exceptions.ReadTimeout:
-            return False, 0, ""
-        except Exception:
-            return False, 0, ""
+        except:
+            pass
 
         return False, 0, ""
 
     def test_proxy_simple(self, proxy: str) -> bool:
         working, speed, origin = self.test_proxy(proxy, timeout=8)
-        if working and DEBUG:
-            print(f"{proxy} | Speed: {speed}s")
         return working
 
 
@@ -1249,7 +1239,6 @@ class AccountManager:
             with open(AccountManager.SAVE_FILE, 'r') as f:
                 data = json.load(f)
 
-            # Validate the data has required fields
             required_fields = ['username', 'password', 'email']
             if not all(field in data for field in required_fields):
                 if DEBUG: print(f"  ⚠️ Saved account data is incomplete")
@@ -1356,9 +1345,7 @@ class M3UPlaylistUpdater:
             )
 
             if response.status_code == 200:
-                gist = response.json()
-                raw_url = f"https://gist.githubusercontent.com/anon/{gist_id}/raw/{filename}"
-                return True, raw_url
+                return True, f"https://gist.githubusercontent.com/anon/{gist_id}/raw/{filename}"
             else:
                 if DEBUG: print(f"Error updating gist: {response.status_code}")
                 return False, None
@@ -1400,37 +1387,20 @@ class M3UPlaylistUpdater:
                     url_line = lines[i + 1].strip()
                     i += 1
 
-                attrs = {}
-                channel_name = ""
-
-                duration_match = re.search(r'#EXTINF:([\d.-]+)', extinf_line)
-                duration = duration_match.group(1) if duration_match else "0"
-
-                attr_pattern = r'(\S+)="([^"]*)"'
-                attrs = dict(re.findall(attr_pattern, extinf_line))
-
-                if ',' in extinf_line:
-                    channel_name = extinf_line.split(',', 1)[1].strip()
-
-                channel_id = attrs.get('tvg-id', '').replace('ch', '')
-                if not channel_id and url_line:
-                    channel_id = self.extract_channel_id_from_url(url_line)
-
-                group = ""
-                if group_line:
-                    group = group_line.replace('#EXTGRP:', '').strip()
-
                 channel_data = {
                     'index': channel_index,
                     'extinf': extinf_line,
-                    'duration': duration,
-                    'attrs': attrs,
-                    'name': channel_name,
-                    'group': group,
+                    'group': group_line,
                     'url': url_line,
-                    'channel_id': channel_id,
                     'raw_lines': [extinf_line, group_line, url_line] if group_line else [extinf_line, url_line]
                 }
+
+                # Extract channel ID from URL
+                channel_id = None
+                if url_line:
+                    match = re.search(r'/ch(\d+)/', url_line)
+                    if match:
+                        channel_id = match.group(1)
 
                 key = f"ch{channel_id}" if channel_id else f"channel_{channel_index}"
                 channels[key] = channel_data
@@ -1450,21 +1420,6 @@ class M3UPlaylistUpdater:
 
         return channels
 
-    def extract_channel_id_from_url(self, url):
-        """Extract channel ID from URL"""
-        if not url:
-            return None
-
-        match = re.search(r'/ch(\d+)/', url)
-        if match:
-            return match.group(1)
-
-        match = re.search(r'ch(\d+)', url)
-        if match:
-            return match.group(1)
-
-        return None
-
     def extract_token_from_url(self, url):
         """Extract token from URL"""
         if not url:
@@ -1476,31 +1431,15 @@ class M3UPlaylistUpdater:
             return query_params['token'][0]
         return None
 
-    def replace_token_in_url(self, url, new_token):
-        """Replace token in URL"""
-        if not url or not new_token:
-            return url
-
-        parsed_url = urlparse(url)
-        query_params = parse_qs(parsed_url.query)
-        query_params['token'] = [new_token]
-
-        new_query = urlencode(query_params, doseq=True)
-        new_url = parsed_url._replace(query=new_query).geturl()
-        return new_url
-
     def download_playlist(self, playlist_url):
         """Download playlist from URL"""
         try:
             response = requests.get(playlist_url, timeout=10)
             if response.status_code == 200:
                 return response.text
-            else:
-                if DEBUG: print(f"Failed to download playlist: {response.status_code}")
-                return None
-        except Exception as e:
-            if DEBUG: print(f"Error downloading playlist: {e}")
-            return None
+        except:
+            pass
+        return None
 
     def update_channels_from_reference(self, gist_channels, reference_channels):
         """Update gist channels with tokens from reference channels"""
@@ -1508,28 +1447,22 @@ class M3UPlaylistUpdater:
         updated_channels = OrderedDict()
 
         for key, value in gist_channels.items():
-            if key == 'header':
-                updated_channels[key] = value
-            elif isinstance(value, dict) and value.get('type') == 'metadata':
+            if key == 'header' or (isinstance(value, dict) and value.get('type') == 'metadata'):
                 updated_channels[key] = value
             elif isinstance(value, dict) and 'extinf' in value:
                 channel_data = value.copy()
-                channel_id = channel_data.get('channel_id')
+                channel_id = None
+                if key.startswith('ch'):
+                    channel_id = key[2:]
 
                 if channel_id and channel_id in reference_channels:
                     ref_channel = reference_channels[channel_id]
-                    ref_token = self.extract_token_from_url(ref_channel.get('url', ''))
-                    current_token = self.extract_token_from_url(channel_data.get('url', ''))
-
-                    if ref_token and current_token != ref_token:
-                        old_url = channel_data['url']
-                        new_url = ref_channel.get('url', '')
-                        channel_data['url'] = new_url
-
+                    if channel_data.get('url') != ref_channel.get('url'):
+                        channel_data['url'] = ref_channel.get('url', '')
+                        # Update raw_lines
                         for j, line in enumerate(channel_data['raw_lines']):
-                            if line == old_url:
-                                channel_data['raw_lines'][j] = new_url
-
+                            if line.startswith('http'):
+                                channel_data['raw_lines'][j] = ref_channel.get('url', '')
                         change_count += 1
 
                 updated_channels[key] = channel_data
@@ -1552,8 +1485,6 @@ class M3UPlaylistUpdater:
             if isinstance(value, dict):
                 if 'index' in value:
                     items_to_sort.append((value['index'], key, value))
-                else:
-                    items_to_sort.append((999999, key, value))
 
         items_to_sort.sort(key=lambda x: x[0])
 
@@ -1582,12 +1513,7 @@ class M3UPlaylistUpdater:
 
         print(f"✓ Found gist: {gist_id}")
 
-        if DEBUG: print("📝 Parsing gist M3U playlist...")
         gist_channels = self.parse_m3u_playlist(gist_content)
-
-        gist_channel_count = len([v for v in gist_channels.values()
-                                  if isinstance(v, dict) and 'extinf' in v])
-        if DEBUG: print(f"📊 Gist contains {gist_channel_count} channels")
 
         print(f"\n🌐 Downloading reference playlist...")
         playlist_content = self.download_playlist(playlist_url)
@@ -1596,34 +1522,16 @@ class M3UPlaylistUpdater:
             print("❌ Failed to download reference playlist")
             return False
 
-        if DEBUG: print("📝 Parsing reference M3U playlist...")
         reference_channels = self.parse_m3u_playlist(playlist_content)
 
-        ref_channel_count = len([v for v in reference_channels.values()
-                                 if isinstance(v, dict) and 'extinf' in v])
-        if DEBUG: print(f"📊 Reference contains {ref_channel_count} channels")
-
+        # Create lookup dict
         ref_lookup = {}
         for key, value in reference_channels.items():
             if isinstance(value, dict) and 'extinf' in value:
-                channel_id = value.get('channel_id')
-                if channel_id:
+                if key.startswith('ch'):
+                    channel_id = key[2:]
                     ref_lookup[channel_id] = value
 
-        if DEBUG: print(f"📋 Reference has {len(ref_lookup)} unique channel IDs")
-
-        if DEBUG and ref_lookup:
-            print("\n📋 Sample reference channels:")
-            sample_ids = list(ref_lookup.keys())[:3]
-            for ch_id in sample_ids:
-                channel = ref_lookup[ch_id]
-                name = channel.get('name', 'Unknown')
-                token = self.extract_token_from_url(channel.get('url', ''))
-                if token:
-                    print(f"  • ch{ch_id}: {name[:30]}...")
-                    print(f"    Token: {token[:40]}...")
-
-        if DEBUG: print(f"\n🔄 Comparing and updating channels...")
         updated_channels, change_count = self.update_channels_from_reference(
             gist_channels, ref_lookup
         )
@@ -1634,55 +1542,13 @@ class M3UPlaylistUpdater:
 
         print(f"\n📈 Updated {change_count} channel(s)")
 
-        if DEBUG:
-            print("\n📝 Detailed changes:")
-            changes_shown = 0
-            for key, channel in updated_channels.items():
-                if isinstance(channel, dict) and 'extinf' in channel:
-                    channel_id = channel.get('channel_id')
-                    if channel_id in ref_lookup:
-                        original_channel = None
-                        for orig_key, orig_val in gist_channels.items():
-                            if isinstance(orig_val, dict) and 'extinf' in orig_val:
-                                if orig_val.get('channel_id') == channel_id:
-                                    original_channel = orig_val
-                                    break
-
-                        if original_channel:
-                            orig_url = original_channel.get('url', '')
-                            new_url = channel.get('url', '')
-                            if orig_url != new_url:
-                                orig_token = self.extract_token_from_url(orig_url) or "NO_TOKEN"
-                                new_token = self.extract_token_from_url(new_url) or "NO_TOKEN"
-                                name = channel.get('name', 'Unknown')[:30]
-                                print(f"\n  📺 ch{channel_id}: {name}...")
-                                print(f"    Old token: ...{orig_token[-30:]}")
-                                print(f"    New token: ...{new_token[-30:]}")
-                                changes_shown += 1
-
-                                if changes_shown >= 5:
-                                    print(f"\n    ... and {change_count - changes_shown} more changes")
-                                    break
-
-        if DEBUG: print(f"\n🔧 Reconstructing M3U playlist...")
         new_m3u_content = self.reconstruct_m3u_from_channels(updated_channels)
-
-        old_lines = [l for l in gist_content.strip().split('\n') if l.strip()]
-        new_lines = [l for l in new_m3u_content.strip().split('\n') if l.strip()]
-
-        if DEBUG:
-            print(f"✅ Reconstruction successful")
-            print(f"   Original non-empty lines: {len(old_lines)}")
-            print(f"   New non-empty lines: {len(new_lines)}")
 
         print(f"\n💾 Uploading updated playlist to gist...")
         success, raw_url = self.update_gist(gist_id, gist_filename, new_m3u_content)
 
         if success:
             print(f"✅ Gist updated successfully!")
-            if DEBUG:
-                print(f"🔗 Raw URL: {raw_url}")
-                print(f"🆔 Gist ID: {gist_id}")
             return True
         else:
             print("❌ Failed to update gist")
