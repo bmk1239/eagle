@@ -19,7 +19,7 @@ warnings.filterwarnings('ignore')
 
 
 class TempMailService:
-    """Service to get temporary emails using mail.tm API"""
+    """Service to get temporary emails using freecustom.email API"""
 
     def __init__(self):
         self.email = None
@@ -27,115 +27,58 @@ class TempMailService:
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/json",
         })
-        self.account_id = None
-        self.token = None
         self.session.verify = False
 
     def generate_email(self) -> Optional[str]:
-        """Generate a random temporary email using mail.tm API"""
+        """Generate a random temporary email using freecustom.email"""
         try:
-            # First get available domains
-            if DEBUG: print("  Getting available domains...")
-            response = self.session.get(
-                "https://api.mail.tm/domains",
-                timeout=10
-            )
-
-            if response.status_code != 200:
-                if DEBUG: print(f"  Failed to get domains: {response.status_code}")
-                if DEBUG: print(f"  Response: {response.text[:200]}")
-                return None
-
-            domains_data = response.json()
-            domains = domains_data.get('hydra:member', [])
-
-            if not domains:
-                if DEBUG: print("  No domains available")
-                return None
-
-            # Get first available domain
-            domain = domains[0].get('domain')
-            if not domain:
-                return None
-
-            # Generate random username
-            username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=12))
+            # Generate random email
+            username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+            domain = "freecustom.email"
             email = f"{username}@{domain}"
-
-            # Create account
-            account_data = {
-                "address": email,
-                "password": "".join(random.choices(string.ascii_letters + string.digits, k=16))
-            }
-
-            if DEBUG: print(f"  Creating account for {email}...")
-            account_response = self.session.post(
-                "https://api.mail.tm/accounts",
-                json=account_data,
-                timeout=10
-            )
-
-            if account_response.status_code == 201:
-                account_info = account_response.json()
-                self.account_id = account_info.get('id')
-                self.email = email
-                print(f"  ✓ Created temporary email: {email}")
-
-                # Get token for accessing emails
-                token_response = self.session.post(
-                    "https://api.mail.tm/token",
-                    json={"address": email, "password": account_data["password"]},
-                    timeout=10
-                )
-
-                if token_response.status_code == 200:
-                    token_data = token_response.json()
-                    self.token = token_data.get('token')
-                    self.session.headers.update({
-                        "Authorization": f"Bearer {self.token}"
-                    })
-                    if DEBUG: print(f"  ✓ Got mail.tm token")
-
-                return email
-            else:
-                if DEBUG: print(f"  Failed to create account: {account_response.status_code}")
-                if DEBUG: print(f"  Response: {account_response.text[:200]}")
-                return None
+            self.email = email
+            print(f"  ✓ Created temporary email: {email}")
+            return email
 
         except Exception as e:
             if DEBUG: print(f"  Error generating email: {str(e)[:100]}")
             return None
 
     def check_emails(self) -> List[Dict]:
-        """Check for new emails"""
-        if not self.email or not self.token:
+        """Check for new emails using freecustom.email API"""
+        if not self.email:
             return []
 
         try:
+            # Extract username from email
+            username = self.email.split('@')[0]
+            
             response = self.session.get(
-                "https://api.mail.tm/messages",
+                f"https://www.freecustom.email/{username}",
                 timeout=10
             )
 
             if response.status_code == 200:
-                messages_data = response.json()
-                messages = messages_data.get('hydra:member', [])
-
-                formatted_messages = []
-                for msg in messages:
-                    formatted_messages.append({
-                        'id': msg.get('id'),
-                        'subject': msg.get('subject', ''),
-                        'from': msg.get('from', {}).get('address', ''),
-                        'intro': msg.get('intro', ''),
-                        'text': msg.get('text', '')
+                messages = []
+                # Parse the HTML response to find emails
+                html = response.text
+                
+                # Look for email entries - this is a simplified parser
+                # You may need to adjust based on actual HTML structure
+                email_pattern = r'<div class="email-item[^>]*>.*?<h3[^>]*>(.*?)</h3>.*?<p[^>]*>(.*?)</p>'
+                matches = re.findall(email_pattern, html, re.DOTALL)
+                
+                for match in matches:
+                    messages.append({
+                        'id': str(len(messages)),
+                        'subject': match[0] if match else '',
+                        'from': 'support@tv.team',
+                        'intro': match[1] if len(match) > 1 else '',
+                        'text': match[1] if len(match) > 1 else ''
                     })
-
-                return formatted_messages
-            else:
-                if DEBUG: print(f"  Mail check failed: {response.status_code}")
+                
+                return messages
             return []
 
         except Exception as e:
@@ -169,33 +112,27 @@ class TempMailService:
                         subject = msg.get('subject', '')
                         intro = msg.get('intro', '')
                         text = msg.get('text', '')
-                        sender = msg.get('from', '')
 
                         # Check if it's from TV.Team or contains verification
-                        if 'tv.team' in sender.lower() or 'verification' in subject.lower():
+                        if 'verification' in subject.lower() or 'code' in subject.lower():
                             email_found = True
-                            if DEBUG: print(f"\n  📨 Found email from: {sender}")
-                            if DEBUG: print(f"     Subject: {subject[:50]}...")
-                            if DEBUG: print(f"     Intro: {intro[:100]}...")
-                            if DEBUG: print(f"     Text preview: {text[:200]}...")
+                            if DEBUG: print(f"\n  📨 Found email with subject: {subject[:50]}...")
 
                             # Combine all text fields for searching
                             search_text = f"{subject} {intro} {text}"
 
-                            # Search for 6-digit code
+                            # Search for 6-digit code - matches the exact format from the email
                             code_patterns = [
-                                r'\b\d{6}\b',
-                                r'code[:\s]+(\d{6})',
-                                r'verification[:\s]+(\d{6})',
-                                r'is[:\s]+(\d{6})',
-                                r'Your code: (\d{6})',
-                                r'код: (\d{6})',
-                                r'code is: (\d{6})',
-                                r'code: (\d{6})',
+                                r'<strong[^>]*>(\d{6})</strong>',  # HTML bold tag
+                                r'<div[^>]*class="code-box"[^>]*>.*?(\d{6})',  # code-box div
+                                r'is:?\s*(\d{6})',  # "is: 598863"
+                                r'code:?\s*(\d{6})',  # "code: 598863"
+                                r'(\d{6})\s*will expire',  # code followed by expiration
+                                r'Your verification code is:\s*(\d{6})',  # Exact phrase from email
                             ]
 
                             for pattern in code_patterns:
-                                match = re.search(pattern, search_text, re.IGNORECASE)
+                                match = re.search(pattern, search_text, re.IGNORECASE | re.DOTALL)
                                 if match:
                                     code = match.group(1) if match.groups() else match.group(0)
                                     if code.isdigit() and len(code) == 6:
@@ -209,22 +146,13 @@ class TempMailService:
             elapsed = int(time.time() - start_time)
             remaining = timeout - elapsed
 
-            if remaining > 0 and DEBUG:
+            if remaining > 0 and not DEBUG:
                 status = "Found email, scanning..." if email_found else "Still waiting for email..."
                 print(f"\r  ⏱️ Elapsed: {elapsed}s | Remaining: {remaining}s | {status}", end="", flush=True)
 
             time.sleep(1)
 
         print(f"\n  ❌ Timeout waiting for verification code")
-
-        # Fallback to manual input
-        print("\n  ⚠️ Could not find verification code automatically.")
-        #print(f"  Please check your email at: https://mail.tm (login with token)")
-        #manual_code = input("  Enter the 6-digit verification code (or press Enter to skip): ").strip()
-
-        #if manual_code and len(manual_code) == 6 and manual_code.isdigit():
-        #    return manual_code
-
         return None
 
 
@@ -250,12 +178,11 @@ class SessionManager:
         # Generate language
         languages = ["en-US", "ru-RU", "uk-UA", "en-GB"]
 
-        # Generate user agent
+        # Generate user agent - updated to match the fetch request
         user_agents = [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
         ]
 
         return {
@@ -366,7 +293,7 @@ class TVTeamAccount:
                         print(f"  Headers: {kwargs['headers']}")
                     if "data" in kwargs:
                         d = kwargs['data']
-                        print(f"  Data: {d[:200] if isinstance(d, List) else d}...")
+                        print(f"  Data: {d[:200] if isinstance(d, list) else d}...")
 
                 # Make request
                 resp = self.session.request(method, url, timeout=30, **kwargs)
@@ -475,8 +402,24 @@ class TVTeamAccount:
 
         if DEBUG: print(f"  🎯 Using offset: {offset_x}")
 
+        # Generate realistic mouse trail
+        trail = []
+        steps = random.randint(8, 12)
+        for i in range(steps):
+            x = int(offset_x * i / (steps - 1)) if i < steps - 1 else offset_x
+            t = random.randint(80 * i, 120 * i)
+            trail.append({"x": x, "t": t})
+        
+        # Add final positions
+        trail.append({"x": offset_x, "t": trail[-1]["t"] + random.randint(200, 400)})
+        trail.append({"x": offset_x, "t": trail[-1]["t"] + random.randint(700, 900)})
+
         # Verify captcha
-        payload = {"captchaId": captcha_id, "offsetX": offset_x}
+        payload = {
+            "captchaId": captcha_id,
+            "offsetX": offset_x,
+            "trail": trail
+        }
         if DEBUG: print(f"  Payload: {payload}")
 
         resp = self.safe_request(
@@ -514,9 +457,9 @@ class TVTeamAccount:
 
         return None, None
 
-    def start_registration(self, username: str, password: str, email: str) -> bool:
-        """Start the registration process"""
-        print(f"  📝 Registering {username}...")
+    def quick_register_start(self, email: str) -> bool:
+        """Start quick registration with email"""
+        print(f"  📝 Registering {email}...")
 
         # Get captcha
         captcha_data = self.get_captcha()
@@ -530,16 +473,16 @@ class TVTeamAccount:
             if DEBUG: print("  ❌ Could not solve captcha")
             return False
 
-        # Start registration
-        form_data = f"login={quote(username)}&password={quote(password)}&email={quote(email)}&captchaId={quote(captcha_id)}&captchaSolution={quote(proof_token)}"
+        # Start quick registration
+        form_data = f"email={quote(email)}&captchaId={quote(captcha_id)}&captchaSolution={quote(proof_token)}&lang=US"
 
         if DEBUG: print(f"  Registration form data: {form_data[:200]}...")
 
         resp = self.safe_request(
             "POST",
-            f"{self.base_url}/v3/auth/register/start",
+            f"{self.base_url}/v3/auth/quick-register/start",
             data=form_data,
-            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            headers={"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
             debug=False
         )
 
@@ -557,7 +500,7 @@ class TVTeamAccount:
         try:
             result = resp.json().get("data", {})
 
-            if "success" in result and result["success"]:
+            if "ok" in result and result["ok"]:
                 if DEBUG: print(f"  ✓ Registration started successfully")
                 return True
             else:
@@ -568,7 +511,7 @@ class TVTeamAccount:
             if DEBUG: print(f"  Raw response: {resp.text[:200]}...")
             return False
 
-    def verify_email(self, username: str, email: str) -> bool:
+    def quick_register_verify(self, email: str) -> bool:
         """Verify email with code"""
         # Get verification code
         code = self.temp_mail.get_verification_code(timeout=180)
@@ -578,15 +521,15 @@ class TVTeamAccount:
 
         # Complete registration
         print(f"  ✅ Verifying with code {code}...")
-        form_data = f"login={quote(username)}&email={quote(email)}&code={code}"
+        form_data = f"email={quote(email)}&code={code}&lang=US"
 
         if DEBUG: print(f"  Verification form data: {form_data}")
 
         resp = self.safe_request(
             "POST",
-            f"{self.base_url}/v3/auth/register/verify",
+            f"{self.base_url}/v3/auth/quick-register/verify",
             data=form_data,
-            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            headers={"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
             debug=False
         )
 
@@ -604,7 +547,7 @@ class TVTeamAccount:
         try:
             result = resp.json().get("data", {})
 
-            if "success" in result and result["success"]:
+            if "ok" in result and result["ok"]:
                 print(f"  🎉 Account verified successfully!")
                 self.account_created = True
                 return True
@@ -617,7 +560,7 @@ class TVTeamAccount:
             return False
 
     def login(self, username: str, password: str) -> bool:
-        """Login to the account with correct parameter names"""
+        """Login to the account"""
         print(f"  🔐 Logging in as {username}...")
 
         # First get captcha for login
@@ -633,7 +576,7 @@ class TVTeamAccount:
             if DEBUG: print("  ❌ Could not solve captcha for login")
             return False
 
-        # Prepare login data with CORRECT parameter names
+        # Prepare login data with correct parameter names
         form_data = (
             f"userLogin={quote(username)}&"
             f"userPasswd={quote(password)}&"
@@ -825,7 +768,7 @@ class TVTeamAccount:
 
         # Activate trial
         trial_data = {
-            "fingerprint": self.fingerprint_data["fingerprint"],
+            "fingerprint": json.dumps(self.fingerprint_data),
             "userAgent": self.fingerprint_data["user_agent"]
         }
 
@@ -949,17 +892,10 @@ class TVTeamAccount:
             return None
 
     def complete_account_creation(self) -> Optional[Dict]:
-        """Complete account creation flow including trial activation and erotica toggle"""
+        """Complete account creation flow using quick register"""
         print(f"\n{'=' * 60}")
         print(f"🚀 Creating New Account with Trial Activation")
         print(f"{'=' * 60}")
-
-        # Generate credentials
-        username = f"{''.join(random.choices(string.ascii_uppercase, k=1))}{''.join(random.choices(string.ascii_lowercase + string.digits, k=10))}"
-        password = f"{''.join(random.choices(string.ascii_uppercase, k=1))}{random.randint(1000, 9999)}!{''.join(random.choices(string.ascii_letters, k=8))}"
-
-        print(f"  👤 Username: {username}")
-        print(f"  🔐 Password: {password}")
 
         # Get email
         print(f"\n  📧 Getting temporary email...")
@@ -970,21 +906,21 @@ class TVTeamAccount:
 
         print(f"  📨 Email: {email}")
 
-        # Register account
+        # Start quick registration
         print(f"\n  🔄 Step 1/5: Starting registration...")
-        if not self.start_registration(username, password, email):
+        if not self.quick_register_start(email):
             print("  ❌ Registration failed")
             return None
 
         # Verify email
         print(f"\n  🔄 Step 2/5: Verifying email...")
-        if not self.verify_email(username, email):
+        if not self.quick_register_verify(email):
             print("  ❌ Email verification failed")
             return None
 
-        # Login to account
+        # Login to account - username is the email for quick register
         print(f"\n  🔄 Step 3/5: Logging in...")
-        if not self.login(username, password):
+        if not self.login(email, "QuickRegisterPassword"):  # Password not needed for quick register
             print("  ❌ Login failed after registration")
             return None
 
@@ -1020,8 +956,8 @@ class TVTeamAccount:
 
         # Prepare account data
         account_data = {
-            "username": username,
-            "password": password,
+            "username": email.split('@')[0],
+            "password": "QuickRegisterPassword",
             "email": email,
             "fingerprint": self.fingerprint_data["fingerprint"],
             "user_agent": self.fingerprint_data["user_agent"],
@@ -1827,7 +1763,7 @@ def main():
         print("🔧 Debug mode enabled")
 
     print(f"\n🎯 TV.Team Account Manager & Gist Updater")
-    print(f"⚙️ Configuration: Erotica enabled by default")
+    print(f"⚙️ Configuration: Erotica enabled by default, using freecustom.email")
     print(f"{'=' * 60}")
 
     # Configuration
@@ -1857,7 +1793,8 @@ def main():
         print(f"  📧 Email: {saved_account['email']}")
         print(f"  🎯 Trial: ACTIVE")
         print(f"  💾 Loaded from: {AccountManager.SAVE_FILE}")
-        #playlist_url = check_manager.generate_playlist_url(use_https=False)
+        # Get playlist URL from existing account
+        playlist_url = check_manager.generate_playlist_url(use_https=False)
     else:
         # ============================================
         # SECOND: Create new account with proxies
